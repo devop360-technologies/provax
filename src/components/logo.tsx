@@ -1,13 +1,15 @@
-import { Zap } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2">
-      <Zap className="text-primary size-5" />
-      <span className="text-[22px] font-bold">
-        Saas<span className="text-primary">Pilot</span>
-      </span>
+      <Image
+        src="/provax/logo.svg"
+        alt="Provax Logo"
+        width={119.6}
+        height={64.67}
+      />
     </Link>
   );
 }

@@ -7,7 +7,7 @@ import CTA from "@/components/sections/cta";
 import FAQ from "@/components/sections/faq";
 import Features from "@/components/sections/features";
 import FeaturesGrid from "@/components/sections/features-grid";
-import Hero from "@/components/sections/hero";
+import Hero from "@/components/carSections/hero";
 import Pricing from "@/components/sections/pricing";
 import Problem from "@/components/sections/problem";
 import Stats from "@/components/sections/stats";

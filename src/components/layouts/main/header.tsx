@@ -16,28 +16,25 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { appConfig } from "@/config";
 import { getCurrentUser } from "@/lib/auth";
 import { cn } from "@/lib/utils";
+import CustomButton from "@/components/ui/CustomButton";
 
 const headerMenu = [
-  { id: 1, name: "Pricing", href: "#pricing" },
-  { id: 2, name: "Features", href: "#features" },
-  { id: 3, name: "FAQ", href: "#faq" },
-  { id: 4, name: "Wall of Love", href: "#wall-of-love" }
+  { id: 1, name: "Home", href: "#pricing" },
+  { id: 2, name: "How its Works", href: "#features" },
+  { id: 3, name: "Marketplace", href: "#faq" },
+  { id: 4, name: "Services", href: "#wall-of-love" },
+  { id: 5, name: "Subscriptions", href: "#wall-of-love" },
+  { id: 6, name: "Contact", href: "#wall-of-love" }
 ];
 
 export default async function Header() {
   const currentUser = await getCurrentUser();
 
   return (
-    <header className="border-border/40 bg-background/80 sticky top-0 z-50 w-full border-b py-4 backdrop-blur-md">
-      <div className="container mx-auto max-w-7xl">
+    <header className="border-border/40 bg-background/80 sticky top-0 z-50 w-full border-b py-5 backdrop-blur-md">
+      <div className="mx-auto px-60">
         <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Logo />
-            </div>
-          </div>
-
-          <div className="flex grow items-center justify-center gap-6">
+          <div className="flex items-center gap-1">
             <div className="flex items-center">
               <NavigationMenu className="relative z-[100]">
                 <NavigationMenuList>
@@ -56,10 +53,16 @@ export default async function Header() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <ModeToggle />
+          <div className="flex grow items-center justify-center ">
+            <div className="flex items-center gap-2">
+              <Logo />
+            </div>
+          </div>
 
-            <div className="flex gap-2">
+          <div className="flex items-center gap-2">
+            {/* <ModeToggle /> */}
+
+            <div className="flex gap-2 items-center">
               {currentUser ? (
                 <Link
                   href={appConfig.auth.afterLogin}
@@ -71,17 +74,21 @@ export default async function Header() {
                 <Fragment>
                   <Link
                     href={appConfig.auth.login}
-                    className={buttonVariants({ variant: "ghost" })}
+                    // className={buttonVariants({ variant: "ghost" })}
                   >
-                    Log in
+                     Log in
                   </Link>
+                  <span>|</span>
                   <Link
                     href={appConfig.auth.signUp}
-                    className={buttonVariants({ variant: "default" })}
+                    // className={buttonVariants({ variant: "main" })}
                   >
-                    Register
+                    
+                     Register
                   </Link>
+                  <Link href={appConfig.auth.signUp} className="bg-primary text-secondary px-4 py-2 mx-2 rounded-full">Get Certified <span className="ml-3 text-lg font-bold">→</span></Link>
                 </Fragment>
+                
               )}
             </div>
           </div>
