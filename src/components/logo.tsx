@@ -7,8 +7,8 @@ export default function Logo() {
       <Image
         src="/provax/logo.svg"
         alt="Provax Logo"
-        width={119.6}
-        height={64.67}
+        width={100}
+        height={64}
       />
     </Link>
   );

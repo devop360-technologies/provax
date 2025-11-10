@@ -1,22 +1,6 @@
-import { Menu } from "lucide-react";
-import Link from "next/link";
-import { Fragment } from "react";
-
+'use client'
+import { useState } from "react";
 import Logo from "@/components/logo";
-import { ModeToggle } from "@/components/mode-toggle";
-import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle
-} from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { appConfig } from "@/config";
-import { getCurrentUser } from "@/lib/auth";
-import { cn } from "@/lib/utils";
-import CustomButton from "@/components/ui/CustomButton";
 
 const headerMenu = [
   { id: 1, name: "Home", href: "#pricing" },
@@ -27,167 +11,126 @@ const headerMenu = [
   { id: 6, name: "Contact", href: "#wall-of-love" }
 ];
 
-export default async function Header() {
-  const currentUser = await getCurrentUser();
+export default function Navbar() {
+  const [activeLink, setActiveLink] = useState("#pricing");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="border-border/40 bg-background/80 sticky top-0 z-50 w-full border-b py-5 backdrop-blur-md">
-      <div className="mx-auto px-60">
-        <nav className="hidden justify-between lg:flex">
-          <div className="flex items-center gap-1">
-            <div className="flex items-center">
-              <NavigationMenu className="relative z-[100]">
-                <NavigationMenuList>
-                  {headerMenu.map((menu) => (
-                    <NavigationMenuItem key={menu.id}>
-                      <Link
-                        href={menu.href}
-                        className={cn(navigationMenuTriggerStyle(), "bg-transparent")}
-                      >
-                        {menu.name}
-                      </Link>
-                    </NavigationMenuItem>
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
+    <nav className="bg-[#0f0f0f]">
+      <div className="container mx-auto px-10">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          
+          {/* Left Side - Navigation Links (Desktop) */}
+          <div className="hidden lg:flex items-center space-x-8">
+            {headerMenu.slice(0, 6).map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                onClick={() => setActiveLink(item.href)}
+                className={`text-[12px] font-medium transition-colors duration-300 ${
+                  activeLink === item.href
+                    ? "text-[#00ff7f]"
+                    : "text-white hover:text-[#00ff7f]"
+                }`}
+              >
+                {item.name}
+              </a>
+            ))}
+
+             <div className="flex-1 flex justify-center lg:flex-none px-15">
+            <Logo />
+          </div>
+          </div>
+
+          {/* Center - Logo */}
+         
+
+          {/* Right Side - Navigation Links + Auth Buttons (Desktop) */}
+          <div className="hidden lg:flex items-center space-x-8">
+
+            {/* Auth Links */}
+            <div className="flex items-center space-x-3">
+              <a
+                href="#login"
+                className="text-[12px] font-medium text-white hover:text-[#00ff7f] transition-colors duration-300"
+              >
+                Log in
+              </a>
+              <span className="text-white">|</span>
+              <a
+                href="#register"
+                className="text-[12px] font-medium text-white hover:text-[#00ff7f] transition-colors duration-300"
+              >
+                Register
+              </a>
+              <button className="bg-[#00ff7f] text-gray-700 px-6 py-2 rounded-full text-[12px] font-semibold hover:bg-[#00e370] transition-colors duration-300 shadow-lg shadow-green-500/30">
+                Get certified
+              </button>
             </div>
           </div>
 
-          <div className="flex grow items-center justify-center ">
-            <div className="flex items-center gap-2">
-              <Logo />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {/* <ModeToggle /> */}
-
-            <div className="flex gap-2 items-center">
-              {currentUser ? (
-                <Link
-                  href={appConfig.auth.afterLogin}
-                  className={buttonVariants({ variant: "default" })}
-                >
-                  Dashboard
-                </Link>
-              ) : (
-                <Fragment>
-                  <Link
-                    href={appConfig.auth.login}
-                    // className={buttonVariants({ variant: "ghost" })}
-                  >
-                     Log in
-                  </Link>
-                  <span>|</span>
-                  <Link
-                    href={appConfig.auth.signUp}
-                    // className={buttonVariants({ variant: "main" })}
-                  >
-                    
-                     Register
-                  </Link>
-                  <Link href={appConfig.auth.signUp} className="bg-primary text-secondary px-4 py-2 mx-2 rounded-full">Get Certified <span className="ml-3 text-lg font-bold">→</span></Link>
-                </Fragment>
-                
-              )}
-            </div>
-          </div>
-        </nav>
-
-        {/* Mobile Menu */}
-        <div className="block lg:hidden">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Logo />
-            </div>
-
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button className="shadow-none" variant="outline" size="icon">
-                  <Menu className="size-4" />
-                </Button>
-              </SheetTrigger>
-
-              <SheetContent className="max-w-72 overflow-y-auto px-4">
-                <SheetHeader className="border-b px-0 pb-4">
-                  <SheetTitle>
-                    <Logo />
-                  </SheetTitle>
-                </SheetHeader>
-
-                <div className="flex flex-col">
-                  {headerMenu.map((menu) => (
-                    <Link
-                      key={menu.id}
-                      href={menu.href}
-                      className="border-border/40 flex items-center border-b px-1 py-3 text-base font-medium"
-                    >
-                      {menu.name}
-                    </Link>
-                  ))}
-                </div>
-
-                <div className="border-t pt-4">
-                  <div className="mt-2 flex flex-col gap-2">
-                    {currentUser ? (
-                      <Link
-                        href={appConfig.auth.afterLogin}
-                        className={buttonVariants({ variant: "default" })}
-                      >
-                        Dashboard
-                      </Link>
-                    ) : (
-                      <>
-                        <Link
-                          href={appConfig.auth.login}
-                          className={buttonVariants({ variant: "secondary" })}
-                        >
-                          Log in
-                        </Link>
-
-                        <Link
-                          href={appConfig.auth.signUp}
-                          className={buttonVariants({ variant: "default" })}
-                        >
-                          Get Started
-                        </Link>
-                      </>
-                    )}
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+          {/* Mobile Menu Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white p-2"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-white/10 backdrop-blur-md border-t border-white/20 mt-2 rounded-lg">
+            <div className="py-4 space-y-4">
+              {/* Navigation Links */}
+              {headerMenu.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => {
+                    setActiveLink(item.href);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`block px-4 py-2 text-base font-medium transition-colors duration-300 ${
+                    activeLink === item.href
+                      ? "text-[#00ff7f] bg-black/30"
+                      : "text-white hover:text-[#00ff7f] hover:bg-black/20"
+                  }`}
+                >
+                  {item.name}
+                </a>
+              ))}
+
+              {/* Mobile Auth Links */}
+              <div className="px-4 pt-4 border-t border-white/20 space-y-3">
+                <a
+                  href="#login"
+                  className="block text-base font-medium text-white hover:text-[#00ff7f] transition-colors duration-300"
+                >
+                  Log in
+                </a>
+                <a
+                  href="#register"
+                  className="block text-base font-medium text-white hover:text-[#00ff7f] transition-colors duration-300"
+                >
+                  Register
+                </a>
+                <button className="w-full bg-[#00ff7f] text-black px-6 py-3 rounded-full text-base font-semibold hover:bg-[#00e370] transition-colors duration-300 shadow-lg shadow-green-500/30">
+                  Get certified
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-    </header>
+    </nav>
   );
 }
-
-const ListItem = ({
-  className,
-  title,
-  children,
-  ref,
-  ...props
-}: React.ComponentPropsWithRef<"a">) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block space-y-1 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none",
-            className
-          )}
-          {...props}
-        >
-          <div className="text-sm leading-none font-medium">{title}</div>
-          <p className="text-muted-foreground line-clamp-2 text-sm leading-snug">{children}</p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-};
-
-ListItem.displayName = "ListItem";
