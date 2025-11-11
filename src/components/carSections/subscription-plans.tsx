@@ -57,7 +57,7 @@ export default function SubscriptionPlans() {
           {/* Label */}
           <div className="inline-flex items-center space-x-2 mb-6">
             <span className="inline-block w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
-            <p className="text-xs md:text-sm font-light tracking-widest text-cyan-300/80 uppercase">
+            <p className="text-xs md:text-[10px] font-light tracking-widest text-cyan-300/80 uppercase">
               Subscription Plan
             </p>
           </div>

@@ -2,6 +2,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import crystalCarImage from "../../asests/crystalCar.png";
+import car1  from "../../asests/card/car1.png"
+import car2  from "../../asests/card/car2.png"
+import car3  from "../../asests/card/car3.png"
+import car4  from "../../asests/card/car4.png"
 
 export default function ExploreCertifiedVehicles() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -11,28 +15,28 @@ export default function ExploreCertifiedVehicles() {
       id: 1,
       name: "2021 Tesla Model S",
       price: "$48,000",
-      image: "/provax/tesla-model-s.png",
+      image: car1,
       category: "All"
     },
     {
       id: 2,
       name: "2018 Lexus IS",
       price: "$18,900",
-      image: "/provax/lexus-is.png",
+      image: car2,
       category: "Exterior"
     },
     {
       id: 3,
       name: "2016 BMW 320i",
       price: "$14,400",
-      image: "/provax/bmw-320i.png",
+      image: car3,
       category: "Safety"
     },
     {
       id: 4,
       name: "2020 Tesla Model 3",
       price: "$29,900",
-      image: "/provax/tesla-model-3.png",
+      image: car4,
       category: "Premium"
     }
   ];
@@ -68,20 +72,20 @@ export default function ExploreCertifiedVehicles() {
         {/* Header Section */}
         <div className="mb-16 text-center">
           {/* Label */}
-          <div className="mb-6 inline-flex items-center space-x-2">
+          <div className="mb-3 inline-flex items-center space-x-2">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
-            <p className="text-xs font-light tracking-widest text-cyan-300/80 uppercase md:text-sm">
+            <p className="text-[11px] font-light tracking-widest text-cyan-300/80 uppercase md:text-[12px">
               Certified Vehicle Marketplace
             </p>
           </div>
 
           {/* Main Heading */}
-          <h2 className="mb-6 text-2xl leading-tight font-bold text-white md:text-3xl lg:text-4xl">
+          <h2 className="mb-2 text-2xl leading-tight  text-white md:text-3xl lg:text-4xl">
             Explore Certified Vehicle
           </h2>
 
           {/* Description */}
-          <p className="mx-auto mb-12 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
+          <p className="mx-auto mb-6 max-w-3xl text-sm leading-relaxed text-white/70 md:text-base">
             Experience the confidence of buying AI-certified vehicles, where every car is verified
             for quality, safety, and performance.
           </p>
@@ -93,7 +97,7 @@ export default function ExploreCertifiedVehicles() {
               <button
                 key={index}
                 onClick={() => setSelectedCategory(category)}
-                className={`rounded-full px-6 py-2.5 text-sm font-semibold transition-all duration-300 md:px-13 md:py-3 md:text-base ${
+                className={`rounded-full px-6 py-2.5 text-sm  transition-all duration-300 md:px-13 md:py-4 md:text-base ${
                   selectedCategory === category
                     ? "border-2 border-[#0b723f] bg-transparent text-white"
                     : "border-2 border-transparent text-white/70 hover:text-white"
@@ -126,7 +130,7 @@ export default function ExploreCertifiedVehicles() {
               </div>
 
               {/* Vehicle Info */}
-              <div className="space-y-3 p-3 md:p-6">
+              <div className="space-y-3 p-3 md:p-5">
                 {/* Vehicle Name */}
                 <h3 className="line-clamp-2 text-center text-base font-semibold text-white md:text-lg">
                   {vehicle.name}
@@ -152,7 +156,7 @@ export default function ExploreCertifiedVehicles() {
 
         {/* CTA Button */}
         <div className="flex justify-center">
-          <button className="inline-flex items-center gap-3 rounded-full bg-[#00ff7f] px-8 py-3.5 text-base font-semibold text-black shadow-lg shadow-green-500/50 transition-all duration-300 hover:gap-4 hover:bg-[#00e370] hover:shadow-xl">
+          <button className="inline-flex items-center gap-3 rounded-full bg-[#00ff7f] px-5 py-2 text-base font-semibold text-black shadow-sm shadow-green-500/50 transition-all duration-300 hover:gap-4 hover:bg-[#00e370] hover:shadow-xl">
             Visit Marketplace
             <span className="text-lg">→</span>
           </button>

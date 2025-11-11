@@ -1,21 +1,24 @@
 'use client'
 import Image from "next/image";
 import carRepairImage from "../../asests/carRepair.png";
+import curent from "../../asests/icons/current.png"
+import lock from "../../asests/icons/lock.svg"
+import sign from "../../asests/icons/sign.png"
 
 export default function ServiceBidding() {
   const features = [
     {
-      icon: "●",
+      icon: sign,
       title: "Verified Mechanics Only",
       description: ""
     },
     {
-      icon: "🔒",
+      icon: lock,
       title: "Secure Split Payments",
       description: ""
     },
     {
-      icon: "⚡",
+      icon: curent,
       title: "Real - Time Bidding",
       description: ""
     }
@@ -23,6 +26,8 @@ export default function ServiceBidding() {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden px-4 py-20 md:px-8">
+      {/* Blue and black gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-800/30 via-black/60 to-blue-800/20 pointer-events-none z-10"></div>
       {/* Background Image */}
       <Image
         src={carRepairImage}
@@ -51,13 +56,13 @@ export default function ServiceBidding() {
             {/* Label */}
             <div className="inline-flex items-center space-x-2">
               <span className="inline-block w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
-              <p className="text-xs md:text-sm font-light tracking-widest text-cyan-300/80 uppercase">
+              <p className="text-xs md:text-[10px] font-light tracking-widest text-cyan-300/80 uppercase">
                 Service Bidding
               </p>
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl text-white leading-tight">
               Need Repairs? Post Your
               <br />
               Request And Let Verified
@@ -66,23 +71,25 @@ export default function ServiceBidding() {
             </h2>
 
             {/* Description */}
-            <p className="text-sm md:text-base text-white/70 leading-relaxed max-w-xl">
+            <p className=" text-white/70 leading-relaxed max-w-lg">
               Smart, transparent, and powered by AI — get instant, real-time offers from verified mechanics. Experience hassle-free repairs with complete trust and efficiency.
             </p>
 
             {/* Features List */}
-            <div className="space-y-4 pt-4">
+            <div className="space-y-2">
               {features.map((feature, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 mt-1">
-                    {feature.icon === "●" ? (
-                      <span className="inline-block w-3 h-3 bg-cyan-400 rounded-full"></span>
-                    ) : (
-                      <span className="text-xl text-cyan-400">{feature.icon}</span>
-                    )}
+                <div key={index} className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
+                    <Image
+                      src={feature.icon}
+                      alt={feature.title}
+                      width={10}
+                      height={10}
+                      className="object-contain"
+                    />
                   </div>
                   <div>
-                    <p className="text-sm md:text-base font-semibold text-white">
+                    <p className="text-sm text-white">
                       {feature.title}
                     </p>
                   </div>
@@ -91,10 +98,10 @@ export default function ServiceBidding() {
             </div>
 
             {/* CTA Button */}
-            <div className="pt-6">
-              <button className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#00ff7f] hover:bg-[#00e370] text-black font-semibold text-base transition-all duration-300 hover:gap-4 shadow-lg hover:shadow-xl shadow-green-500/50">
+            <div className="pt-1">
+              <button className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#00ff7f] hover:bg-[#00e370] text-gray-800 font-semibold text-sm transition-all duration-300 hover:gap-4 shadow-lg hover:shadow-sm shadow-green-500/50">
                 Post a Service Request
-                <span className="text-lg">→</span>
+                <span className="">→</span>
               </button>
             </div>
 

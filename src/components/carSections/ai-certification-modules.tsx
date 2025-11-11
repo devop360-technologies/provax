@@ -1,5 +1,5 @@
 import Image from "next/image";
-import lightCarImage from "../../asests/lightCar.png";
+import lightCarImage from "../../asests/carGif.gif";
 
 export default function AICertificationModules() {
   const modules = [
@@ -69,7 +69,7 @@ export default function AICertificationModules() {
                 </div>
 
                 {/* Main Heading */}
-                <h2 className="text-3xl py-2 leading-tight font-bold text-white md:text-3xl lg:text-4xl">
+                <h2 className="text-3xl py-2 leading-tight  text-white md:text-3xl lg:text-4xl">
                   AI Certification
                   <br />
                   Modules Preview
@@ -83,7 +83,7 @@ export default function AICertificationModules() {
 
               {/* View Demo Button */}
               <div className="pt-8 ">
-                <button className=" items-center  flex flex-none rounded-full bg-[#00ff7f] px-6 py-3 font-semibold text-black transition-all duration-300 hover:gap-4 hover:bg-[#00e370]">
+                <button className=" items-center flex flex-none rounded-full bg-[#00ff7f] px-5 py-2 font-semibold text-black transition-all duration-300 hover:gap-4 hover:bg-[#00e370]">
                   View Demo
                   <span className="text-lg ml-3.5">→</span>
                 </button>
@@ -92,7 +92,7 @@ export default function AICertificationModules() {
           </div>
 
         {/* Bottom Section - Inspection Modules Grid */}
-        <div className="mt-[300px] grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-[300px] grid grid-cols-1 gap-1 md:grid-cols-2 lg:grid-cols-4">
           {modules.map((module, index) => (
             <div
               key={index}
@@ -100,7 +100,7 @@ export default function AICertificationModules() {
             >
 
               {/* Content */}
-              <div className="relative z-10 space-y-4">
+              <div className="relative z-10 space-y-2">
                 {/* Title with accent */}
                 <div className="flex items-start justify-between">
                   <h3 className="text-lg leading-tight font-semibold text-white md:text-xl">
