@@ -224,11 +224,11 @@ export default function FAQSection() {
           {faqItems.map((item) => (
             <div
               key={item.id}
-              className="from-blue-1000 rounded-full border border-green-900/20 bg-transparent bg-gradient-to-br to-green-900 transition-all duration-300 hover:border-green-400/30"
+              className="from-blue-1000 rounded-4xl border border-green-900/20 bg-transparent bg-gradient-to-br to-green-900 transition-all duration-300 hover:border-green-400/30"
             >
               <button
                 onClick={() => toggleItem(item.id)}
-                className="flex w-full items-center justify-between p-2 md:p-6 text-left transition-all duration-300"
+                className="flex w-full items-center justify-between p-3 md:p-6 text-left transition-all duration-300"
               >
                 <h3 className="pr-4 text-[8px] text-white md:text-sm">{item.question}</h3>
                 <div className="flex-shrink-0">
@@ -257,7 +257,7 @@ export default function FAQSection() {
                 }`}
               >
                 <div className="px-6 pb-6">
-                  <p className="leading-relaxed text-white/70 text-sm">{item.answer}</p>
+                  <p className="leading-relaxed text-white/70 text-[10px] md:text-sm">{item.answer}</p>
                 </div>
               </div>
             </div>
