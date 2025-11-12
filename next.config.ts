@@ -15,7 +15,14 @@ const nextConfig: NextConfig = {
         hostname: "randomuser.me",
         port: "",
         pathname: "/**"
-      }
+      },
+
+        {
+        protocol: "https",
+        hostname: "t4.ftcdn.net",
+        port: "",
+        pathname: "/**",
+      },
     ]
   }
 };

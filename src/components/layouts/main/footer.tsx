@@ -1,156 +1,453 @@
-import Link from "next/link";
+// "use client";
+// import React from "react";
+// import Image from "next/image";
+// import carfooter from "../../../asests/footerCar.png";
+// import { Logs } from "lucide-react";
+// import Logo from "@/components/logo";
 
+// export default function Footer() {
+//   return (
+//     <section
+//       className="relative min-h-[calc(100vh-200px)] w-full overflow-hidden"
+//       style={{
+//         backgroundImage: `url(${carfooter.src})`,
+//         backgroundSize: "contain",
+//         backgroundPosition: "center",
+//         backgroundRepeat: "no-repeat"
+//       }}
+//     >
+//       {/* <footer className="relative w-full bg-gradient-to-b from-[#0a0f24] to-[#050810] overflow-hidden"> */}
+//       {/* <footer className="relative w-full bg-gradient-to-br from-[#0A0F24]/80 via-[#0A0F24]/70 to-[#0A0F24]/80 overflow-hidden"> */}
+//       <footer className="relative w-full overflow-hidden bg-gradient-to-br from-[#0A0F24]/40 via-[#0A0F24]/30 to-[#0A0F24]/40">
+//         {/* Background gradient effects */}
+//         <div className="pointer-events-none absolute inset-0 overflow-hidden">
+//           <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl"></div>
+//           <div className="absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl"></div>
+//         </div>
+
+//         <div className="relative z-10">
+//           {/* Main Footer Content */}
+//           <div className="container mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
+//             <div className="grid grid-cols-1 gap-12 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+//               {/* Left Column - Brand & Social */}
+
+//               <div className=" flex space-y-8 lg:col-span-1">
+//                 {/* Vertical "EXPERT AUTO" text */}
+//                 <div className=" flex-col items-center lg:flex">
+//                   <p className="rotate-270 text-[10px] font-light tracking-[0.3em] text-white/50 uppercase whitespace-nowrap">
+//                     EXPERT AUTO
+//                   </p>
+//                 </div>
+//                 {/* Logo */}
+//                 <div className="space-y-10">
+//                   <div className="flex items-center space-x-2">
+//                     <Logo />
+//                   </div>
+
+//                   {/* Social Links */}
+//                   <div>
+//                     <div className="space-y-4">
+//                       <a
+//                         href="#"
+//                         className="flex items-center space-x-3 text-white/70 transition-colors hover:text-cyan-400"
+//                       >
+//                         <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+//                           <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+//                         </svg>
+//                         <span className="text-[12px] tracking-widest uppercase">Facebook</span>
+//                       </a>
+//                       <div className="flex justify-between">
+//                         <a
+//                           href="#"
+//                           className="flex items-center space-x-3 text-white/70 transition-colors hover:text-cyan-400"
+//                         >
+//                           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+//                             <path d="M23.953 4.57a10 10 0 002.856-3.515 10 10 0 01-2.837.856c1.021-.609 1.802-1.574 2.165-2.724-.954.564-2.005.974-3.127 1.195-.9-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06c0 2.386 1.697 4.374 3.946 4.827a4.996 4.996 0 01-2.212.085c.627 1.956 2.444 3.379 4.6 3.419-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548z" />
+//                           </svg>
+//                           <span className="text-[12px] tracking-widest uppercase">Twitter</span>
+//                         </a>
+//                       </div>
+//                       <div className="">
+//                         <a
+//                           href="#"
+//                           className="flex items-center space-x-3 text-white/70 transition-colors hover:text-cyan-400"
+//                         >
+//                           <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+//                             <rect
+//                               x="2"
+//                               y="2"
+//                               width="20"
+//                               height="20"
+//                               rx="5"
+//                               ry="5"
+//                               fill="none"
+//                               stroke="currentColor"
+//                               strokeWidth="2"
+//                             />
+//                             <circle
+//                               cx="12"
+//                               cy="12"
+//                               r="3.5"
+//                               fill="none"
+//                               stroke="currentColor"
+//                               strokeWidth="2"
+//                             />
+//                             <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
+//                           </svg>
+//                           <span className="text-sm tracking-widest uppercase">Instagram</span>
+//                           <h3 className="pl-20 text-xl text-white">Navigate</h3>
+//                         </a>
+//                       </div>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* Column 2 - Find Us */}
+//               <div className="space-y-6">
+//                 <h3 className="text-xl font-bold text-white">Find Us</h3>
+//                 <div className="space-y-4">
+//                   <div>
+//                     <p className="mb-2 text-xs tracking-widest text-cyan-300/80 uppercase">
+//                       Visit Us
+//                     </p>
+//                     <p className="text-sm leading-relaxed text-white/70">
+//                       457 Nova Drive, Arcadia Heights, NY 11204
+//                     </p>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* Column 3 - Opening Hours */}
+//               <div className="space-y-6">
+//                 <h3 className="text-xs font-light tracking-widest text-white/80 uppercase">
+//                   Opening Hours
+//                 </h3>
+//                 <div className="space-y-2">
+//                   <p className="text-sm text-white/70">Mon to Fri: 07 AM - 5 PM</p>
+//                   <p className="text-sm text-white/70">Sat: 07 AM - 01 PM</p>
+//                 </div>
+//               </div>
+
+//               {/* Column 5 - Ratings & "For Every Need" */}
+//               <div className="flex items-center space-y-60 lg:items-end">
+//                 {/* Ratings */}
+//                 <div className="space-y-3">
+//                   <div className="flex items-baseline space-x-2">
+//                     <span className="text-3xl font-bold text-white">4.8</span>
+//                     <span className="text-white/60">/5</span>
+//                   </div>
+//                   <div className="flex space-x-1">
+//                     {[...Array(5)].map((_, i) => (
+//                       <span key={i} className="text-xl text-green-400">
+//                         ★
+//                       </span>
+//                     ))}
+//                   </div>
+//                   <p className="text-sm text-white/60">+1,000 Reviews</p>
+//                   <a
+//                     href="#"
+//                     className="inline-flex items-center space-x-2 text-sm text-cyan-400 transition-colors hover:text-cyan-300"
+//                   >
+//                     <span>VIEW ON GOOGLE</span>
+//                     <span>↗</span>
+//                   </a>
+//                 </div>
+
+//                 {/* Vertical "FOR EVERY NEED" text */}
+//                 <div className="-translate-y-1/2 rotate-90 lg:flex">
+//                   <p className="text-xs font-light tracking-[0.2em] text-white/40 uppercase">
+//                     FOR EVERY NEED
+//                   </p>
+//                 </div>
+//               </div>
+//             </div>
+//             {/* Column 4 - Navigate */}
+//             <div className="py-3 pl-80">
+//               {/* <*/}
+//               <div className="flex space-x-8">
+//                 <a
+//                   href="#"
+//                   className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+//                 >
+//                   Home
+//                 </a>
+//                 <a
+//                   href="#"
+//                   className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+//                 >
+//                   How Its Works
+//                 </a>
+//                 <a
+//                   href="#"
+//                   className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+//                 >
+//                   Marketplace
+//                 </a>
+//                 <a
+//                   href="#"
+//                   className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+//                 >
+//                   Service
+//                 </a>
+//                 <a
+//                   href="#"
+//                   className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+//                 >
+//                   Subscription
+//                 </a>
+//                 <a
+//                   href="#"
+//                   className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+//                 >
+//                   Contact
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+
+//           {/* Divider */}
+//           <div className="border-t border-white/10"></div>
+
+//           {/* Bottom Footer */}
+//           <div className="container mx-auto max-w-7xl px-4 py-8 md:px-8">
+//             <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
+//               <p className="text-xs text-white/50">© PROVAX 2025 · All rights reserved</p>
+//               <div className="flex items-center space-x-6">
+//                 <a href="#" className="text-xs text-white/50 transition-colors hover:text-white/80">
+//                   Privacy Policy
+//                 </a>
+//                 <a href="#" className="text-xs text-white/50 transition-colors hover:text-white/80">
+//                   Terms of Use
+//                 </a>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </footer>
+//     </section>
+//   );
+// }
+"use client";
+import React from "react";
+import Image from "next/image";
+import carfooter from "../../../asests/footerCar.png";
+import { Logs } from "lucide-react";
 import Logo from "@/components/logo";
-import { Separator } from "@/components/ui/separator";
-
-const footerLinks = {
-  product: [
-    { name: "Overview", href: "/" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "Features", href: "#features" },
-    { name: "FAQ", href: "#faq" }
-  ],
-  company: [
-    { name: "About", href: "#" },
-    { name: "Team", href: "#" },
-    { name: "Blog", href: "#" },
-    { name: "Contact", href: "#" }
-  ],
-  resources: [
-    { name: "Help Center", href: "#" },
-    { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: "Terms & Conditions", href: "/terms" },
-    { name: "License Agreement", href: "#" }
-  ]
-};
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary pt-12 pb-8 md:pt-20">
-      <div className="container mx-auto max-w-7xl">
-        <div className="flex flex-col">
-          <div className="flex flex-col gap-6 md:flex-row md:justify-between">
-            <div className="w-full">
-              <div className="space-y-2">
-                <Logo />
-                <p className="text-muted-foreground md:max-w-[70%]">
-                  This SaaS starter kit provides a modern foundation for building scalable web
-                  applications, featuring best practices, intuitive UI, and essential integrations.
-                </p>
+    <section
+      className="relative min-h-[50vh] lg:min-h-[calc(100vh-200px)] w-full overflow-hidden"
+      style={{
+        backgroundImage: `url(${carfooter.src})`,
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
+      <footer className="relative w-full overflow-hidden bg-gradient-to-br from-[#0A0F24]/40 via-[#0A0F24]/30 to-[#0A0F24]/40">
+        {/* Background gradient effects */}
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl"></div>
+          <div className="absolute right-1/4 bottom-1/4 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl"></div>
+        </div>
+
+        <div className="relative z-10">
+          {/* Main Footer Content */}
+          <div className="container mx-auto max-w-7xl px-4 py-8 lg:py-16 md:px-8 lg:py-20">
+            <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-12">
+              {/* Left Column - Brand & Social */}
+              <div className="flex flex-col items-center lg:items-start space-y-6 lg:space-y-8 lg:col-span-1">
+                {/* Vertical "EXPERT AUTO" text - Hidden on mobile */}
+                <div className="hidden lg:flex flex-col items-center">
+                  <p className="rotate-270 text-[10px] font-light tracking-[0.3em] text-white/50 uppercase whitespace-nowrap">
+                    EXPERT AUTO
+                  </p>
+                </div>
+                
+                {/* Logo */}
+                <div className="space-y-6 lg:space-y-10">
+                  <div className="flex items-center justify-center lg:justify-start space-x-2">
+                    <Logo />
+                  </div>
+
+                  {/* Social Links */}
+                  <div>
+                    <div className="space-y-3 lg:space-y-4">
+                      <a
+                        href="#"
+                        className="flex items-center justify-center lg:justify-start space-x-3 text-white/70 transition-colors hover:text-cyan-400"
+                      >
+                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                        <span className="text-[12px] tracking-widest uppercase">Facebook</span>
+                      </a>
+                      <a
+                        href="#"
+                        className="flex items-center justify-center lg:justify-start space-x-3 text-white/70 transition-colors hover:text-cyan-400"
+                      >
+                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M23.953 4.57a10 10 0 002.856-3.515 10 10 0 01-2.837.856c1.021-.609 1.802-1.574 2.165-2.724-.954.564-2.005.974-3.127 1.195-.9-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06c0 2.386 1.697 4.374 3.946 4.827a4.996 4.996 0 01-2.212.085c.627 1.956 2.444 3.379 4.6 3.419-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548z" />
+                        </svg>
+                        <span className="text-[12px] tracking-widest uppercase">Twitter</span>
+                      </a>
+                      <a
+                        href="#"
+                        className="flex items-center justify-center lg:justify-start space-x-3 text-white/70 transition-colors hover:text-cyan-400"
+                      >
+                        <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <rect
+                            x="2"
+                            y="2"
+                            width="20"
+                            height="20"
+                            rx="5"
+                            ry="5"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          />
+                          <circle
+                            cx="12"
+                            cy="12"
+                            r="3.5"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          />
+                          <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
+                        </svg>
+                        <span className="text-sm tracking-widest uppercase">Instagram</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-6 flex items-center gap-6">
-                <Link
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow us on X (Twitter)"
-                >
-                  <svg
-                    className="fill-muted-foreground hover:fill-text-foreground size-5.5 transition-colors"
-                    viewBox="0 0 24 24"
-                  >
-                    <g>
-                      <path d="M20.317,4.37c-1.53-0.702-3.17-1.219-4.885-1.515c-0.031-0.006-0.062,0.009-0.079,0.037   c-0.211,0.375-0.445,0.865-0.608,1.249c-1.845-0.276-3.68-0.276-5.487,0C9.095,3.748,8.852,3.267,8.641,2.892   C8.624,2.864,8.593,2.85,8.562,2.855C6.848,3.15,5.208,3.667,3.677,4.37C3.664,4.375,3.652,4.385,3.645,4.397   c-3.111,4.648-3.964,9.182-3.546,13.66c0.002,0.022,0.014,0.043,0.031,0.056c2.053,1.508,4.041,2.423,5.993,3.029   c0.031,0.01,0.064-0.002,0.084-0.028c0.462-0.63,0.873-1.295,1.226-1.994c0.021-0.041,0.001-0.09-0.042-0.106   c-0.653-0.248-1.274-0.55-1.872-0.892c-0.047-0.028-0.051-0.095-0.008-0.128c0.126-0.094,0.252-0.192,0.372-0.291   c0.022-0.018,0.052-0.022,0.078-0.01c3.928,1.793,8.18,1.793,12.061,0c0.026-0.012,0.056-0.009,0.079,0.01   c0.12,0.099,0.246,0.198,0.373,0.292c0.044,0.032,0.041,0.1-0.007,0.128c-0.598,0.349-1.219,0.645-1.873,0.891   c-0.043,0.016-0.061,0.066-0.041,0.107c0.36,0.698,0.772,1.363,1.225,1.993c0.019,0.027,0.053,0.038,0.084,0.029   c1.961-0.607,3.95-1.522,6.002-3.029c0.018-0.013,0.029-0.033,0.031-0.055c0.5-5.177-0.838-9.674-3.548-13.66   C20.342,4.385,20.33,4.375,20.317,4.37z M8.02,15.331c-1.183,0-2.157-1.086-2.157-2.419s0.955-2.419,2.157-2.419   c1.211,0,2.176,1.095,2.157,2.419C10.177,14.246,9.221,15.331,8.02,15.331z M15.995,15.331c-1.182,0-2.157-1.086-2.157-2.419   s0.955-2.419,2.157-2.419c1.211,0,2.176,1.095,2.157,2.419C18.152,14.246,17.206,15.331,15.995,15.331z" />
-                    </g>
-                  </svg>
-                </Link>
+              {/* Column 2 - Find Us */}
+              <div className="space-y-4 lg:space-y-6 text-center lg:text-left">
+                <h3 className="text-lg lg:text-xl font-bold text-white">Find Us</h3>
+                <div className="space-y-3 lg:space-y-4">
+                  <div>
+                    <p className="mb-1 lg:mb-2 text-xs tracking-widest text-cyan-300/80 uppercase">
+                      Visit Us
+                    </p>
+                    <p className="text-sm leading-relaxed text-white/70">
+                      457 Nova Drive, Arcadia Heights, NY 11204
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-                <Link
-                  href="https://facebook.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Follow us on Facebook"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="fill-muted-foreground hover:fill-text-foreground size-5 transition-colors"
-                  >
-                    <g>
-                      <path d="M24,12.073c0,5.989-4.394,10.954-10.13,11.855v-8.363h2.789l0.531-3.46H13.87V9.86c0-0.947,0.464-1.869,1.95-1.869h1.509   V5.045c0,0-1.37-0.234-2.679-0.234c-2.734,0-4.52,1.657-4.52,4.656v2.637H7.091v3.46h3.039v8.363C4.395,23.025,0,18.061,0,12.073   c0-6.627,5.373-12,12-12S24,5.445,24,12.073z" />
-                    </g>
-                  </svg>
-                </Link>
+              {/* Column 3 - Opening Hours */}
+              <div className="space-y-4 lg:space-y-6 text-center lg:text-left">
+                <h3 className="text-xs font-light tracking-widest text-white/80 uppercase">
+                  Opening Hours
+                </h3>
+                <div className="space-y-2">
+                  <p className="text-sm text-white/70">Mon to Fri: 07 AM - 5 PM</p>
+                  <p className="text-sm text-white/70">Sat: 07 AM - 01 PM</p>
+                </div>
+              </div>
 
-                <Link
-                  href="https://youtube.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Subscribe to our YouTube channel"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="fill-muted-foreground hover:fill-text-foreground size-6 transition-colors"
+              {/* Column 4 - Ratings & "For Every Need" */}
+              <div className="flex flex-col items-center lg:items-end space-y-6 lg:space-y-60">
+                {/* Ratings */}
+                <div className="space-y-2 lg:space-y-3 text-center lg:text-left">
+                  <div className="flex items-baseline justify-center lg:justify-start space-x-2">
+                    <span className="text-2xl lg:text-3xl font-bold text-white">4.8</span>
+                    <span className="text-white/60">/5</span>
+                  </div>
+                  <div className="flex justify-center lg:justify-start space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-lg lg:text-xl text-green-400">
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-sm text-white/60">+1,000 Reviews</p>
+                  <a
+                    href="#"
+                    className="inline-flex items-center justify-center lg:justify-start space-x-2 text-sm text-cyan-400 transition-colors hover:text-cyan-300"
                   >
-                    <g id="XMLID_184_">
-                      <path d="M23.498,6.186c-0.276-1.039-1.089-1.858-2.122-2.136C19.505,3.546,12,3.546,12,3.546s-7.505,0-9.377,0.504   C1.591,4.328,0.778,5.146,0.502,6.186C0,8.07,0,12,0,12s0,3.93,0.502,5.814c0.276,1.039,1.089,1.858,2.122,2.136   C4.495,20.454,12,20.454,12,20.454s7.505,0,9.377-0.504c1.032-0.278,1.845-1.096,2.122-2.136C24,15.93,24,12,24,12   S24,8.07,23.498,6.186z M9.546,15.569V8.431L15.818,12L9.546,15.569z" />
-                    </g>
-                  </svg>
-                </Link>
+                    <span>VIEW ON GOOGLE</span>
+                    <span>↗</span>
+                  </a>
+                </div>
 
-                <Link
-                  href="https://github.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="View our GitHub repository"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="fill-muted-foreground hover:fill-text-foreground size-5 transition-colors"
-                  >
-                    <g>
-                      <path d="M12,0.296c-6.627,0-12,5.372-12,12c0,5.302,3.438,9.8,8.206,11.387   c0.6,0.111,0.82-0.26,0.82-0.577c0-0.286-0.011-1.231-0.016-2.234c-3.338,0.726-4.043-1.416-4.043-1.416   C4.421,18.069,3.635,17.7,3.635,17.7c-1.089-0.745,0.082-0.729,0.082-0.729c1.205,0.085,1.839,1.237,1.839,1.237   c1.07,1.834,2.807,1.304,3.492,0.997C9.156,18.429,9.467,17.9,9.81,17.6c-2.665-0.303-5.467-1.332-5.467-5.93   c0-1.31,0.469-2.381,1.237-3.221C5.455,8.146,5.044,6.926,5.696,5.273c0,0,1.008-0.322,3.301,1.23   C9.954,6.237,10.98,6.104,12,6.099c1.02,0.005,2.047,0.138,3.006,0.404c2.29-1.553,3.297-1.23,3.297-1.23   c0.653,1.653,0.242,2.873,0.118,3.176c0.769,0.84,1.235,1.911,1.235,3.221c0,4.609-2.807,5.624-5.479,5.921   c0.43,0.372,0.814,1.103,0.814,2.222c0,1.606-0.014,2.898-0.014,3.293c0,0.319,0.216,0.694,0.824,0.576   c4.766-1.589,8.2-6.085,8.2-11.385C24,5.669,18.627,0.296,12,0.296z" />
-                      <path d="M4.545,17.526c-0.026,0.06-0.12,0.078-0.206,0.037c-0.087-0.039-0.136-0.121-0.108-0.18   c0.026-0.061,0.12-0.078,0.207-0.037C4.525,17.384,4.575,17.466,4.545,17.526L4.545,17.526z" />
-                      <path d="M5.031,18.068c-0.057,0.053-0.169,0.028-0.245-0.055c-0.079-0.084-0.093-0.196-0.035-0.249   c0.059-0.053,0.167-0.028,0.246,0.056C5.076,17.903,5.091,18.014,5.031,18.068L5.031,18.068z" />
-                      <path d="M5.504,18.759c-0.074,0.051-0.194,0.003-0.268-0.103c-0.074-0.107-0.074-0.235,0.002-0.286   c0.074-0.051,0.193-0.005,0.268,0.101C5.579,18.579,5.579,18.707,5.504,18.759L5.504,18.759z" />
-                      <path d="M6.152,19.427c-0.066,0.073-0.206,0.053-0.308-0.046c-0.105-0.097-0.134-0.234-0.068-0.307   c0.067-0.073,0.208-0.052,0.311,0.046C6.191,19.217,6.222,19.355,6.152,19.427L6.152,19.427z" />
-                      <path d="M7.047,19.814c-0.029,0.094-0.164,0.137-0.3,0.097C6.611,19.87,6.522,19.76,6.55,19.665   c0.028-0.095,0.164-0.139,0.301-0.096C6.986,19.609,7.075,19.719,7.047,19.814L7.047,19.814z" />
-                      <path d="M8.029,19.886c0.003,0.099-0.112,0.181-0.255,0.183c-0.143,0.003-0.26-0.077-0.261-0.174c0-0.1,0.113-0.181,0.256-0.184   C7.912,19.708,8.029,19.788,8.029,19.886L8.029,19.886z" />
-                      <path d="M8.943,19.731c0.017,0.096-0.082,0.196-0.224,0.222c-0.139,0.026-0.268-0.034-0.286-0.13   c-0.017-0.099,0.084-0.198,0.223-0.224C8.797,19.574,8.925,19.632,8.943,19.731L8.943,19.731z" />
-                    </g>
-                  </svg>
-                </Link>
+                {/* Vertical "FOR EVERY NEED" text - Hidden on mobile */}
+                <div className="hidden lg:flex -translate-y-1/2 rotate-90">
+                  <p className="text-xs font-light tracking-[0.2em] text-white/40 uppercase">
+                    FOR EVERY NEED
+                  </p>
+                </div>
               </div>
             </div>
 
-            <div className="grid w-full grid-cols-2 gap-8 sm:grid-cols-3">
-              <LinksGroup title="Product" links={footerLinks.product} />
-              <LinksGroup title="Company" links={footerLinks.company} />
-              <LinksGroup title="Resources" links={footerLinks.resources} />
+            {/* Column 5 - Navigate */}
+            <div className="py-4 lg:py-3 lg:pl-80 mt-6 lg:mt-0">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 lg:gap-8">
+                <a
+                  href="#"
+                  className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+                >
+                  Home
+                </a>
+                <a
+                  href="#"
+                  className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+                >
+                  How Its Works
+                </a>
+                <a
+                  href="#"
+                  className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+                >
+                  Marketplace
+                </a>
+                <a
+                  href="#"
+                  className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+                >
+                  Service
+                </a>
+                <a
+                  href="#"
+                  className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+                >
+                  Subscription
+                </a>
+                <a
+                  href="#"
+                  className="block text-[12px] font-semibold tracking-wider text-white/70 uppercase transition-colors hover:text-cyan-400"
+                >
+                  Contact
+                </a>
+              </div>
             </div>
           </div>
 
-          <Separator className="my-8" />
+          {/* Divider */}
+          <div className="border-t border-white/10"></div>
 
-          <p className="text-center">
-            Copyright © {new Date().getFullYear()} - All rights reserved by SaasPilot
-          </p>
+          {/* Bottom Footer */}
+          <div className="container mx-auto max-w-7xl px-4 py-6 lg:py-8 md:px-8">
+            <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
+              <p className="text-xs text-white/50 text-center lg:text-left">© PROVAX 2025 · All rights reserved</p>
+              <div className="flex items-center space-x-6">
+                <a href="#" className="text-xs text-white/50 transition-colors hover:text-white/80">
+                  Privacy Policy
+                </a>
+                <a href="#" className="text-xs text-white/50 transition-colors hover:text-white/80">
+                  Terms of Use
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </footer>
-  );
-}
-
-interface LinksGroupProps {
-  title: string;
-  links: Array<{ name: string; href: string }>;
-}
-
-function LinksGroup({ title, links }: LinksGroupProps) {
-  return (
-    <div className="space-y-4">
-      <p className="text-base font-semibold">{title}</p>
-
-      <ul className="space-y-2">
-        {links.map((link) => (
-          <li key={link.name}>
-            <Link href={link.href} className="text-muted-foreground hover:text-foreground">
-              {link.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+      </footer>
+    </section>
   );
 }

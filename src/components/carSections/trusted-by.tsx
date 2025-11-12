@@ -1,27 +1,34 @@
 import Image from "next/image";
-
 import { Marquee } from "@/components/marquee";
 import { SectionHeader } from "@/components/section-headers";
 
 const sponsors = [
-  "/clients/client-logo-1.svg",
-  "/clients/client-logo-2.svg",
-  "/clients/client-logo-3.svg",
-  "/clients/client-logo-4.svg",
-  "/clients/client-logo-5.svg",
-  "/clients/client-logo-6.svg"
+  "/clients/BMW.png",
+  "/clients/Daihatsu.png",
+  "/clients/w.png",
+  "/clients/toyota.png",
+  "/clients/Vector.png",
+  "/clients/Shape.png",
+  "/clients/volvo.png",
+  "/clients/tesla.png"
 ];
 
 export default function TrustedBy() {
   return (
-    <SectionHeader>
-      <SectionHeader.HeaderContent className="pb-12">
-        <SectionHeader.Heading>Trusted by</SectionHeader.Heading>
-        <SectionHeader.Text>We are trusted by the world's best companies</SectionHeader.Text>
-      </SectionHeader.HeaderContent>
+    <section className="w-full py-20 bg-gradient-to-br from-[#0A0F24]/100 via-[#0A0F24]/100 to-[#0A0F24]/70">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8">
+        {/* Header Content */}
+        <div className="pb-12 text-center">
+          <p className= "text-[10px] md:text-[12px] font-light tracking-widest text-cyan-300/80 uppercase mb-3">
+            Our Partners
+          </p>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+            Powered by Industry Leaders
+          </h2>
+        </div>
 
-      <SectionHeader.Content>
-        <div className="bg-background relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg">
+        {/* Marquee Section */}
+        <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg">
           <Marquee duration="40s" className="ms-2 flex shrink-0 flex-row justify-around gap-2">
             {sponsors.map((sponsor, index) => (
               <div key={index} className="flex h-16 w-40 items-center justify-center">
@@ -37,10 +44,11 @@ export default function TrustedBy() {
             ))}
           </Marquee>
 
-          <div className="from-background pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-linear-to-r" />
-          <div className="from-background pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-linear-to-l" />
+          {/* Gradient fade effects on sides */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-[#0A0F24] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-[#0A0F24] to-transparent" />
         </div>
-      </SectionHeader.Content>
-    </SectionHeader>
+      </div>
+    </section>
   );
 }

@@ -52,11 +52,11 @@ export default function ServiceBidding() {
       <div className="relative z-10 container mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Content */}
-          <div className="space-y-8">
+          <div className="space-y-7 md:space-y-8">
             {/* Label */}
             <div className="inline-flex items-center space-x-2">
               <span className="inline-block w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
-              <p className="text-xs md:text-[10px] font-light tracking-widest text-cyan-300/80 uppercase">
+              <p className="text-[10px] md:text-[10px] font-light tracking-widest text-cyan-300/80 uppercase">
                 Service Bidding
               </p>
             </div>
@@ -71,12 +71,12 @@ export default function ServiceBidding() {
             </h2>
 
             {/* Description */}
-            <p className=" text-white/70 leading-relaxed max-w-lg">
+            <p className=" text-white/70 leading-relaxed max-w-lg text-sm md:text:base">
               Smart, transparent, and powered by AI — get instant, real-time offers from verified mechanics. Experience hassle-free repairs with complete trust and efficiency.
             </p>
 
             {/* Features List */}
-            <div className="space-y-2">
+            <div className="space-y-1 md:space-y-2">
               {features.map((feature, index) => (
                 <div key={index} className="flex items-start space-x-3">
                   <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
@@ -99,14 +99,14 @@ export default function ServiceBidding() {
 
             {/* CTA Button */}
             <div className="pt-1">
-              <button className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#00ff7f] hover:bg-[#00e370] text-gray-800 font-semibold text-sm transition-all duration-300 hover:gap-4 shadow-lg hover:shadow-sm shadow-green-500/50">
+              <button className="inline-flex items-center gap-3 px-3 py-2 md:px-6 md:py-3 rounded-full bg-[#00ff7f] hover:bg-[#00e370] text-gray-800 font-semibold text-[12px] md:text-base transition-all duration-300 hover:gap-4 shadow-lg hover:shadow-sm shadow-green-500/50">
                 Post a Service Request
                 <span className="">→</span>
               </button>
             </div>
 
             {/* Bottom Text */}
-            <p className="text-xs md:text-sm text-white/60 leading-relaxed">
+            <p className="text-[10px] md:text-sm text-white/60 leading-relaxed">
               Instantly connect you with the best local provider
             </p>
           </div>

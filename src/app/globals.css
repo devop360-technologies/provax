@@ -3,6 +3,13 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ✅ Custom classes must be defined outside theme */
+@layer utilities {
+  .animate-scale-up {
+    animation: scaleUp 0.8s ease-out forwards;
+  }
+}
+
 @theme inline {
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -14,10 +21,10 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   /* --color-primary: var(--primary); */
-  --color-primary: #00FF88;
+  --color-primary: #00ff88;
   --color-popover: var(--popover);
   /* --color-secondary: var(--secondary); */
-  --color-secondary: #0A0F24;
+  --color-secondary: #0a0f24;
   --color-destructive: var(--destructive);
 
   --color-card-foreground: var(--card-foreground);
@@ -55,6 +62,17 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-marquee: marquee 20s linear infinite;
   --animate-marquee-vertical: marquee-vertical 20s linear infinite;
+
+  @keyframes scaleUp {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.25);
+      opacity: 1;
+    }
+  }
 
   @keyframes accordion-down {
     from {
