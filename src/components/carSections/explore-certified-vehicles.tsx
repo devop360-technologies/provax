@@ -278,12 +278,13 @@ export default function ExploreCertifiedVehicles() {
           </div>
         </div> */}
           <div className="w-full flex justify-center">
-          <div className="flex  justify-between gap-2 w-180 rounded-full border border-green-800 bg-white/10 backdrop-blur-md md:gap-4">
+            
+          <div className="flex  bg-gradient-to-br from-green-500/10 to-green-500/5 bg-transparent justify-between gap-2 w-180 rounded-full border border-green-800 transparent backdrop-blur-sm md:gap-4">
             {categories.map((category, index) => (
               <button
                 key={index}
                 onClick={() => setSelectedCategory(category)}
-                className={`rounded-full px-4 py-2.5 text-sm  transition-all duration-300 md:px-13 md:py-4 md:text-base ${
+                className={`rounded-full px-4 py-2.5 text-[12px]  transition-all duration-300 md:px-13 md:py-4 md:text-sm ${
                   selectedCategory === category
                     ? "border-2 border-[#0b723f] bg-transparent text-white"
                     : "border-2 border-transparent text-white/70 hover:text-white"
@@ -319,7 +320,7 @@ export default function ExploreCertifiedVehicles() {
                   </div>
 
                   {/* Vehicle Info */}
-                  <div className="space-y-3 p-4">
+                  <div className="space-y-3 p-4 ">
                     {/* Vehicle Name */}
                     <h3 className="line-clamp-2 text-center text-sm font-semibold text-white">
                       {vehicle.name}

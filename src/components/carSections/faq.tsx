@@ -134,10 +134,14 @@
 import { useState } from "react";
 import carview from "../../asests/carview.png";
 export default function FAQSection() {
-  const [openItem, setOpenItem] = useState<number | null>(null);
+  const [openItems, setOpenItems] = useState<number[]>([]);
 
   const toggleItem = (id: number) => {
-    setOpenItem((prev) => (prev === id ? null : id));
+    setOpenItems((prev) => 
+      prev.includes(id) 
+        ? prev.filter(item => item !== id)
+        : [...prev, id]
+    );
   };
 
   const faqItems = [
@@ -216,7 +220,7 @@ export default function FAQSection() {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="grid grid-cols-1 gap-4 space-y-1 md:space-y-5 md:grid-cols-2">
+  <div style={{alignItems: 'start'}} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {faqItems.map((item) => (
             <div
               key={item.id}
@@ -230,7 +234,7 @@ export default function FAQSection() {
                 <div className="flex-shrink-0">
                   <svg
                     className={`h-6 w-6 text-white transition-transform duration-300 ${
-                      openItem === item.id ? "rotate-180" : ""
+                      openItems.includes(item.id) ? "rotate-180" : ""
                     }`}
                     fill="none"
                     viewBox="0 0 24 24"
@@ -249,11 +253,11 @@ export default function FAQSection() {
               {/* Answer Content */}
               <div
                 className={`overflow-hidden transition-all duration-300 ${
-                  openItem === item.id ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  openItems.includes(item.id) ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                 }`}
               >
                 <div className="px-6 pb-6">
-                  <p className="leading-relaxed text-white/70">{item.answer}</p>
+                  <p className="leading-relaxed text-white/70 text-sm">{item.answer}</p>
                 </div>
               </div>
             </div>
