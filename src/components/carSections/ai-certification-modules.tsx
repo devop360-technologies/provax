@@ -146,7 +146,7 @@ export default function AICertificationModules() {
   ];
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-[#0a0e27] via-[#0f1535] to-[#0a0e27] px-4 py-8 sm:py-16 md:px-8">
+    <section className="relative min-h-screen w-full overflow-hidden bg-gradient-to-b from-[#686d8e] via-[#0d1231] to-[#0a0e27] px-4 py-8 sm:py-16 md:px-8">
       {/* Background Image */}
       <Image
         src={lightCarImage}
@@ -160,7 +160,7 @@ export default function AICertificationModules() {
       <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent bg-blend-multiply"></div>
 
       {/* Cyan overlay with low opacity */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indeo-500/20 via-blue-500/20 to-blue-600/10 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/12 via-blue-500/12 to-blue-600/13 pointer-events-none"></div>
 
       {/* Animated background elements */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

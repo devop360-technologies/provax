@@ -25,9 +25,9 @@ export default function ServiceBidding() {
   ];
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden px-4 py-20 md:px-8">
+    <section className="relative min-h-screen  w-full overflow-hidden px-4 py-20 md:px-8">
       {/* Blue and black gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-800/30 via-black/60 to-blue-800/20 pointer-events-none z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/1 via-blue-900/10 to-blue-600/12 pointer-events-none z-10"></div>
       {/* Background Image */}
       <Image
         src={carRepairImage}
@@ -45,7 +45,7 @@ export default function ServiceBidding() {
 
       {/* Background glow effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/3 left-1/4 h-80 w-80 rounded-full bg-blue-600/10 blur-3xl"></div>
+        <div className="absolute top-1/3 left-1/4 h-80 w-80 rounded-full bg-indigo-600/20 blur-3xl"></div>
         <div className="absolute bottom-1/4 right-1/3 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl"></div>
       </div>
 
@@ -114,7 +114,7 @@ export default function ServiceBidding() {
           {/* Right Side - Empty Space (for image visibility) */}
           <div className="hidden lg:block relative h-96">
             {/* Decorative element - vertical dotted line */}
-            <div className="absolute left-0 top-1/2 w-1 h-64 -translate-y-1/2 border-l border-cyan-400/30 border-dashed"></div>
+            {/* <div className="absolute left-0 top-1/2 w-1 h-64 -translate-y-1/2 border-l border-cyan-400/30 border-dashed"></div> */}
           </div>
         </div>
       </div>

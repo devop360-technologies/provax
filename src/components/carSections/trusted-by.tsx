@@ -15,7 +15,7 @@ const sponsors = [
 
 export default function TrustedBy() {
   return (
-    <section className="w-full py-20 bg-gradient-to-br from-[#0A0F24]/100 via-[#0A0F24]/100 to-[#0A0F24]/70">
+    <section className="w-full py-20 bg-gradient-to-br from-[#0A0F24]/100 via-[#0A0F24]/80 to-[#0A0F24]/100">
       <div className="container mx-auto max-w-7xl px-4 md:px-8">
         {/* Header Content */}
         <div className="pb-12 text-center">

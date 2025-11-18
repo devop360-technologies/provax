@@ -90,9 +90,12 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#0a0e27] overflow-hidden">
+    <div className="relative flex min-h-screen w-full items-center justify-center bg-[#0a0e27]">
       {/* Background Image */}
       <Image src="/provax/car.png" alt="Car Image" fill className="object-cover" priority />
+
+      {/* Blue Background Overlay with 0.5 opacity */}
+      <div className="absolute inset-0 bg-blue-600/12"></div>
 
       {/* Top "Artificial Intelligence" label */}
       <div className="absolute top-10 sm:top-16 lg:top-20 left-1/2 lg:left-1/4 z-10 flex -translate-x-1/2 items-center space-x-2 sm:space-x-3">
@@ -164,7 +167,7 @@ export default function Hero() {
 
       {/* Vertical text on the right - Hidden on mobile */}
       <div className="hidden lg:flex items-center justify-center absolute top-1/3 right-8 xl:right-12">
-        <div className="h-24 w-px bg-white/60"></div>
+        {/* <div className="h-24 w-px bg-white/60"></div> */}
         <div className="absolute right-[-35px] flex origin-center -translate-x-1/2 -translate-y-1/2 rotate-90 transform items-center space-x-3">
           <div className="h-[0.5px] w-20 bg-white/60"></div>
           <p className="text-[9px] font-light tracking-[0.3em] whitespace-nowrap text-white/60 uppercase">
