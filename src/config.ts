@@ -3,33 +3,33 @@ export const appConfig = {
    * App name used for branding and SEO
    * ============================================
    */
-  appName: "SaasPilot",
+  appName: "PROVAX",
 
   /** ============================================
    * Short description for SEO tags (can be overwritten)
    * ============================================
    */
-  appTagline: "Next.js SaaS Starter Kit Boilerplate",
+  appTagline: "AI-Powered Vehicle Certification & Service Bidding",
 
   /** ============================================
    * Detailed app description for SEO purposes
    * ============================================
    */
   appDescription:
-    "A comprehensive Next.js SaaS starter kit with authentication, payments, AI integration, and modern UI components. Build scalable web applications faster with pre-configured features including Stripe payments, Resend email service, social login, and OpenAI integration.",
+    "PROVAX - AI-Powered Vehicle Certification & Service Bidding Platform. Certify, sell, and service vehicles with transparency and trust. Automated AI inspections, instant reports with QR codes, and a verified bidding network for repairs.",
 
   /** ============================================
    * Domain name without protocol or trailing slash
    * ============================================
    */
-  domainName: "https://demo.saaspilot.com",
+  domainName: "https://provax.com",
 
   /** ============================================
    * Full URL based on environment
    * ============================================
    */
   domainUrl:
-    process.env.NODE_ENV === "production" ? "https://demo.saaspilot.com" : "http://localhost:3000",
+    process.env.NODE_ENV === "production" ? "https://provax.com" : "http://localhost:3000",
 
   /** ============================================
    * Color configuration
@@ -72,9 +72,9 @@ export const appConfig = {
    */
   resend: {
     subdomain: "resend",
-    fromNoReply: `SaasPilot <noreply@resend.saaspilot.com>`,
-    fromAdmin: `Nabed at SaasPilot <nabed@resend.saaspilot.com>`,
-    supportEmail: "support@saaspilot.com",
+    fromNoReply: `PROVAX <noreply@resend.provax.com>`,
+    fromAdmin: `PROVAX Team <team@resend.provax.com>`,
+    supportEmail: "support@provax.com",
     resendKey: process.env.AUTH_RESEND_KEY
   },
 

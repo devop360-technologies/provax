@@ -2,7 +2,7 @@ import { Clock } from "lucide-react";
 
 import { CustomerPortalButton } from "@/components/billing";
 import { DashboardTitle } from "@/components/dashboard-title";
-import { DashboardPlans } from "@/components/sections/pricing";
+import { DashboardPlans } from "@/components/old-sections/pricing";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

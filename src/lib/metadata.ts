@@ -71,7 +71,7 @@ export function createMetadata({
       },
 
       twitter: {
-        creator: "@nextsaaspilot",
+        creator: "@provax_ai",
         images: openGraph.images,
         card: "summary_large_image",
         title: openGraph?.title || appConfig.appName,

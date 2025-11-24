@@ -140,12 +140,12 @@ import { useState } from "react";
 import Logo from "@/components/logo";
 
 const headerMenu = [
-  { id: 1, name: "Home", href: "#pricing" },
-  { id: 2, name: "How its Works", href: "#features" },
-  { id: 3, name: "Marketplace", href: "#faq" },
-  { id: 4, name: "Services", href: "#wall-of-love" },
-  { id: 5, name: "Subscriptions", href: "#wall-of-love" },
-  { id: 6, name: "Contact", href: "#wall-of-love" }
+  { id: 1, name: "Home", href: "home" },
+  { id: 2, name: "How its Works", href: "how-its-works" },
+  { id: 3, name: "Marketplace", href: "marketplace" },
+  { id: 4, name: "Services", href: "services" },
+  { id: 5, name: "Subscriptions", href: "subscriptions" },
+  { id: 6, name: "Contact", href: "contact" }
 ];
 
 export default function Navbar() {
@@ -162,7 +162,7 @@ export default function Navbar() {
             {headerMenu.slice(0, 6).map((item) => (
               <a
                 key={item.id}
-                href={item.href}
+                href={`/${item.href}`}
                 onClick={() => setActiveLink(item.href)}
                 className={`text-[12px] font-medium transition-colors duration-300 ${
                   activeLink === item.href
@@ -232,7 +232,7 @@ export default function Navbar() {
               {headerMenu.map((item) => (
                 <a
                   key={item.id}
-                  href={item.href}
+                  href={`/${item.href}`}
                   onClick={() => {
                     setActiveLink(item.href);
                     setIsMobileMenuOpen(false);
