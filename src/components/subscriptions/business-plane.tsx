@@ -40,7 +40,7 @@ export default function BusinessPlans() {
   ];
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0f24] px-4 py-1 md:px-8 ">
+    <section className="relative  w-full overflow-hidden bg-[#0a0f24] px-4 py-[-100px] md:px-8 ">
       {/* Background glow effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-blue-600/10 blur-3xl"></div>
@@ -70,16 +70,16 @@ export default function BusinessPlans() {
                 {/* Billing Options */}
                 <div className="flex gap-2">
                   {plan.billingOptions.map((option, idx) => (
-                    <span
+                    <button
                       key={idx}
-                      className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
                         idx === 0
-                  ? "border-1 border-green-400/60 bg-gradient-to-br from-green-500/10 to-blue-500/5 shadow-2xl shadow-cyan-500/20 md:scale-105"
-                  : "border-1 border-green-800/60  bg-gradient-to-br from-green-500/10 to-green-500/5  hover:border-green-900/40"
+                          ? "bg-white/80 text-black hover:bg-white"
+                          : "bg-white/20 text-white border border-white/30 hover:bg-white/30"
                       }`}
                     >
                       {option}
-                    </span>
+                    </button>
                   ))}
                 </div>
 

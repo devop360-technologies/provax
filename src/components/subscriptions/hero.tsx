@@ -28,7 +28,7 @@ export default function HowItWorksHero() {
         </div>
 
         {/* Heading */}
-        <h1 className="mb-2 text-4xl leading-tight font-semibold text-white md:text-5xl lg:text-6xl">
+        <h1 className="mb-2 text-4xl leading-tight text-white md:text-5xl lg:text-6xl">
           Choose Your Plan <br /> Start Bidding Smarter
         </h1>
 

@@ -90,11 +90,11 @@ export default function OurServices() {
             <span>Service Bidding</span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl text-white mb-6">
             Our Services
           </h2>
           
-          <p className="text-white/70 text-lg max-w-2xl">
+          <p className="text-white/70  max-w-2xl">
             Certified, transparent and AI-assisted services — choose what your vehicle needs.
           </p>
         </div>
@@ -108,12 +108,12 @@ export default function OurServices() {
             >
               {/* Badge and Price */}
               <div className="flex items-center justify-between mb-6">
-                <span className={`bg-gray-700 border border-green-900 text-green-400 text-xs  px-3 py-1`}>
+                <span className={`bg-gray-700 border border-green-900 text-[#87FFC7] text-xs  px-3 py-1`}>
                   {service.badge}
                 </span>
                 <div className="text-right">
-                  <div className="text-[#00ff7f] text-xl font-bold">{service.price}</div>
-                  <div className="text-green-600 text-xs">{service.estimateTime}</div>
+                  <div className="text-[#87FFC7] text-lg">{service.price}</div>
+                  <div className="text-[#87FFC7] text-xs">{service.estimateTime}</div>
                 </div>
               </div>
 
@@ -140,10 +140,10 @@ export default function OurServices() {
                 <span>{service.rating}</span>
               </div>
 
-                <button className="flex-1 bg-[#00ff7f] text-black font-semibold py-2 text-[13px] rounded-full hover:bg-[#00e370] transition-colors">
+                <button className="flex-1 bg-[#00ff7f] text-black font-semibold py-2 text-[12px] rounded-full hover:bg-[#00e370] transition-colors">
                   {service.buttonText}
                 </button>
-                <button className="flex-1 border border-[#00ff7f] text-[#00ff7f] font-semibold py-2 text-[13px] rounded-full hover:bg-[#00ff7f]/10 transition-colors">
+                <button className="flex-1 border border-[#00ff7f] text-[#00ff7f] font-semibold py-2 text-[12px] rounded-full hover:bg-[#00ff7f]/10 transition-colors">
                   {service.requestText}
                 </button>
                 

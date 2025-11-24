@@ -44,13 +44,24 @@ export default function ContactHero() {
 
   return (
     <section className="relative py-32 bg-[#0a0f24] overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 -top-60">
+        <Image
+          src="/provax-images/Contact/animation.gif"
+          alt="Contact background"
+          fill
+          className="object-contain object-center"
+        />
+      </div>
+
       {/* Background gradient orbs */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
       <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0f24]/50 to-[#0a0f24]" />
+      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#0a0f24]/60 to-[#0a0f24]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#0a0f24]/60 to-[#0a0f24]" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6">
@@ -61,11 +72,11 @@ export default function ContactHero() {
             <span>Contact</span>
           </div>
           
-          <h1 className="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
+          <h1 className="text-4xl md:text-5xl text-white mb-2 leading-tight">
             Contact us today
           </h1>
           
-          <p className="text-white/70 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-white/70 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
             We're eager to hear from you. Whether you have questions, feedback, or need support, our team is ready to provide assistance now.
           </p>
         </div>
@@ -78,32 +89,32 @@ export default function ContactHero() {
               className="relative flex flex-col items-center text-center group"
             >
               {/* Icon container */}
-              <div className="mb-8 relative">
+              <div className=" relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-[#00ff7f]/20 to-cyan-500/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="relative w-16 h-16 bg-gradient-to-br from-[#00ff7f]/10 to-cyan-500/10 border border-[#00ff7f]/30 rounded-lg flex items-center justify-center text-[#00ff7f] hover:border-[#00ff7f]/60 transition-colors duration-300">
+                <div className="relative w-16 h-16  rounded-lg flex items-center justify-center text-[#00ff7f] hover:border-[#00ff7f]/60 transition-colors duration-300">
                   {method.icon}
                 </div>
               </div>
 
               {/* Content */}
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-xl  text-white mb-2">
                 {method.title}
               </h3>
               
-              <p className="text-white/60 mb-6 leading-relaxed min-h-[72px]">
+              <p className="text-white/60 font-light leading-relaxed min-h-[72px] max-w-70">
                 {method.description}
               </p>
 
               {/* Contact info */}
-              <p className="text-[#00ff7f] font-semibold text-lg mb-8">
+              <p className="text-[#00ff7f] text-sm">
                 {method.contact}
               </p>
 
               {/* Action button */}
-              <button className="bg-[#00ff7f] text-black font-semibold px-6 py-3 rounded-full hover:bg-[#00e370] transition-colors duration-300 flex items-center gap-2 group/btn">
+              {/* <button className="bg-[#00ff7f] text-black font-semibold px-6 py-3 rounded-full hover:bg-[#00e370] transition-colors duration-300 flex items-center gap-2 group/btn">
                 <span>{method.buttonText}</span>
                 <span className="text-lg">→</span>
-              </button>
+              </button> */}
             </div>
           ))}
         </div>

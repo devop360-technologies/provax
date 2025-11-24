@@ -208,12 +208,12 @@ export default function FAQSection() {
           </div>
 
           {/* Main Heading */}
-          <h2 className="mb-4 text-2xl leading-tight text-white md:text-3xl lg:text-5xl">
-            We've Got the Answers You're Looking For
+          <h2 className="mb-4 text-xl leading-tight text-white md:text-2xl lg:text-4xl">
+            We've Got the Answers You're <br/> Looking For
           </h2>
 
           {/*  Description */}
-          <p className="mx-auto max-w-3xl text-[12px] leading-relaxed text-white/60 md:text-base">
+          <p className="mx-auto max-w-3xl text-[12px] leading-relaxed text-white/60 md:text-sm">
             Find clear, concise answers to your most common PROVAX AI automation questions. We're
             here to help you understand, optimize, and grow with confidence.
           </p>

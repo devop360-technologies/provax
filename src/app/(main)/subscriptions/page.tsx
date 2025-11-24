@@ -1,4 +1,4 @@
-import SubscriptionPlans from "@/components/home/subscription-plans";
+import SubscriptionPlans from "@/components/subscriptions/subscription-plans";
 import TrustedBy from "@/components/home/trusted-by";
 import FAQ from "@/components/home/faq";
 import Hero from "@/components/subscriptions/hero";

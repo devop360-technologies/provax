@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-export default function ContactForm() {
+export default function     ContactForm() {
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -53,12 +53,12 @@ export default function ContactForm() {
             <span>Get in touch</span>
           </div>
           
-          <h2 className="text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl  text-white mb-6">
             Send us a message
           </h2>
           
-          <p className="text-white/70 text-lg leading-relaxed">
-            If you have questions or need information, use the form below. Our team will get back to you promptly today.
+          <p className="text-white/70 text-sm  text-center leading-relaxed">
+            If you have questions or need information, use the form below. Our team <br/> will get back to you promptly today.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export default function ContactForm() {
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="John Carter"
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 rounded-full px-4 py-3 text-base text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
                 required
               />
             </div>
@@ -91,7 +91,7 @@ export default function ContactForm() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="email@example.com"
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 rounded-full px-4 py-3 text-base text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
                 required
               />
             </div>
@@ -109,7 +109,7 @@ export default function ContactForm() {
                 value={formData.phone}
                 onChange={handleChange}
                 placeholder="(123) 456 - 7890"
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 rounded-full px-4 py-3 text-base text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
               />
             </div>
 
@@ -123,7 +123,7 @@ export default function ContactForm() {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="Support request"
-                className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
+                className="w-full bg-white/5 border border-white/10 rounded-full px-4 py-3 text-base text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300"
               />
             </div>
           </div>
@@ -139,7 +139,7 @@ export default function ContactForm() {
               onChange={handleChange}
               placeholder="Write your message here..."
               rows={6}
-              className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300 resize-none"
+              className="w-full bg-white/5 border border-white/10 rounded-3xl px-4 py-3 text-base text-white placeholder-white/40 focus:outline-none focus:border-[#00ff7f]/50 focus:bg-white/10 transition-all duration-300 resize-none"
               required
             />
           </div>
