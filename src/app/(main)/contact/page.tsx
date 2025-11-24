@@ -1,5 +1,9 @@
+import ContactHero from "@/components/contact/hero";
+import ContactForm from "@/components/contact/form";
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
+import Testimonials from "@/components/home/Testimonials";
+import CTASection from "@/components/home/CTASection";
 
 export const metadata: Metadata = createMetadata({
   title: "Contact | PROVAX",
@@ -9,11 +13,11 @@ export const metadata: Metadata = createMetadata({
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-white">Contact</h1>
-        <p className="text-white/60">Coming soon...</p>
-      </div>
+    <div>
+     <ContactHero/>
+     <ContactForm/>
+     <Testimonials />
+     <CTASection />
     </div>
   );
 }

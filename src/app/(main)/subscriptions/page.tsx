@@ -1,5 +1,10 @@
+import SubscriptionPlans from "@/components/home/subscription-plans";
+import TrustedBy from "@/components/home/trusted-by";
+import FAQ from "@/components/home/faq";
+import Hero from "@/components/subscriptions/hero";
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
+import BusinessPlans from "@/components/subscriptions/business-plane";
 
 export const metadata: Metadata = createMetadata({
   title: "Subscriptions | PROVAX",
@@ -9,11 +14,12 @@ export const metadata: Metadata = createMetadata({
 
 export default function SubscriptionsPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-white">Subscriptions</h1>
-        <p className="text-white/60">Coming soon...</p>
-      </div>
+    <div>
+      <Hero />
+      <SubscriptionPlans />
+      <BusinessPlans />
+      <TrustedBy />
+      <FAQ />
     </div>
   );
 }
