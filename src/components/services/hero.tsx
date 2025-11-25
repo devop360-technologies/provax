@@ -37,12 +37,12 @@ export default function HowItWorksHero() {
           Access verified providers and AI-backed service options — repair, maintain, or certify
           your vehicle with full transparency and instant Vehicle Integrity Scores (VIS).{" "}
         </p>
-        <div className="flex mt-10 flex-col justify-center gap-4 sm:flex-row lg:flex-row lg:items-start lg:justify-center lg:gap-4">
-          <button className="group flex items-center justify-center gap-2 rounded-full bg-[#00ff7f] px-5 py-2 text-sm font-semibold text-black transition-all duration-300 hover:gap-3 hover:bg-[#00e370]">
+        <div className="flex mt-10 justify-center gap-4 sm:flex-row lg:flex-row lg:items-start lg:justify-center lg:gap-4">
+          <button className="group flex items-center justify-center gap-2 rounded-full bg-[#00ff7f] px-4 py-1 md:px-5 md:py-2 text-[11px] md:text-sm font-semibold text-black transition-all duration-300 hover:gap-3 hover:bg-[#00e370]">
             Star Inspection
             <span className="text-lg transition-all duration-300">→</span>
           </button>
-          <button className="group flex items-center justify-center gap-2 rounded-full border-2 border-[#00ff7f] px-5 py-2 text-base font-semibold text-[#00ff7f] transition-all duration-300 hover:gap-3 hover:bg-[#00ff7f]/10">
+          <button className="group flex items-center justify-center gap-2 rounded-full border-2 border-[#00ff7f] px-4 py-1 md:px-5 md:py-2 text-[11px] md:text-sm font-semibold text-[#00ff7f] transition-all duration-300 hover:gap-3 hover:bg-[#00ff7f]/10">
             Find a Provider
             <span className="text-lg transition-all duration-300">→</span>
           </button>

@@ -1,115 +1,153 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
+import Image from "next/image";
+import { OtpVerificationForm } from "./otp-verification-form";
+import { NewPasswordForm } from "./new-password-form";
+import { PasswordResetSuccess } from "./password-reset-success";
 
-import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-
-import { forgotPasswordSchema, ForgotPasswordSchema } from "@/lib/zod-schemas";
+type Step = 'email' | 'otp' | 'newPassword' | 'success';
 
 export function ForgotPasswordForm() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [currentStep, setCurrentStep] = useState<Step>('email');
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<ForgotPasswordSchema>({
-    resolver: zodResolver(forgotPasswordSchema),
-    defaultValues: { email: "" }
-  });
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simulate API call to send OTP
+    setTimeout(() => {
+      setCurrentStep('otp');
+      setIsSubmitting(false);
+    }, 1500);
+  };
 
-  const {
-    handleSubmit,
-    formState: { isSubmitting }
-  } = form;
+  const handleResendOtp = () => {
+    // Resend OTP logic here
+    console.log('Resending OTP to:', email);
+  };
 
-  const onSubmit = handleSubmit(async (values) => {
-    toast.error("Don't allow to send reset email", {
-      description: "This is a demo website, so you can't send reset email"
-    });
-  });
+  const handleOtpSuccess = () => {
+    setCurrentStep('newPassword');
+  };
 
-  if (isSubmitted) {
+  const handleNewPasswordSuccess = () => {
+    setCurrentStep('success');
+  };
+
+  const handleBackToEmail = () => {
+    setCurrentStep('email');
+  };
+
+  // Render different components based on current step
+  if (currentStep === 'otp') {
     return (
-      <div className="grid gap-6 text-center">
-        <div className="space-y-2">
-          <h2 className="text-lg font-semibold">Check your email</h2>
-          <p className="text-muted-foreground text-sm">
-            We've sent a password reset link to your email address if an account exists.
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          <p className="text-muted-foreground text-sm">
-            Didn't receive the email? Check your spam folder or try again.
-          </p>
-
-          <Button variant="outline" onClick={() => setIsSubmitted(false)} className="w-full">
-            Send another email
-          </Button>
-
-          <div className="text-center">
-            <Link
-              href="/login"
-              className="text-primary hover:text-foreground text-sm underline underline-offset-4"
-            >
-              Back to login
-            </Link>
-          </div>
-        </div>
-      </div>
+      <OtpVerificationForm
+        email={email}
+        onBack={handleBackToEmail}
+        onSuccess={handleOtpSuccess}
+        onResendOtp={handleResendOtp}
+      />
     );
   }
 
+  if (currentStep === 'newPassword') {
+    return (
+      <NewPasswordForm
+        email={email}
+        onSuccess={handleNewPasswordSuccess}
+      />
+    );
+  }
+
+  if (currentStep === 'success') {
+    return <PasswordResetSuccess />;
+  }
+
+  // Email step - render the email input form
   return (
-    <div className="grid gap-6">
-      <div className="space-y-2 text-center">
-        <h1 className="text-xl font-bold md:text-2xl">Forgot your password?</h1>
-        <p className="text-muted-foreground text-sm">
-          Enter your email address and we'll send you a link to reset your password.
-        </p>
+    <div className="min-h-screen flex">
+      {/* Left side - Image */}
+      <div className="hidden lg:flex lg:w-1/2 relative">
+        <Image
+          src="/provax-images/authentication/carGif.gif"
+          alt="Car animation"
+          fill
+          className="object-cover"
+          priority
+        />
+        
+        {/* Overlay with Login/Sign Up buttons */}
+        {/* <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
+          <div className="space-y-4">
+            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+              Login
+            </button>
+            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
+              Sign Up
+            </button>
+          </div>
+        </div> */}
       </div>
 
-      <Form {...form}>
-        <form onSubmit={onSubmit} className="space-y-6">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel htmlFor="email">Email address</FormLabel>
-                <FormControl>
-                  <Input placeholder="johndoe@mail.com" autoComplete="email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      {/* Right side - Forgot Password Form */}
+      <div className="w-full lg:w-1/2 bg-[#141332] flex items-center justify-center p-8">
+        <div className="max-w-md w-full space-y-8">
+          {/* Header */}
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-white mb-2">Forgot your password?</h1>
+            <p className="text-gray-300">
+              Enter your email address and we'll send you a verification code to reset your password.
+            </p>
+          </div>
 
-          <Button type="submit" className="w-full" disabled={isSubmitting}>
-            {isSubmitting && <Loader className="me-3 animate-spin" />}
-            Send reset email
-          </Button>
-        </form>
-      </Form>
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Email Field */}
+            <div>
+              <label className="block text-white text-sm font-medium mb-3">
+                Email Address
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                className="w-full px-4 py-3 bg-transparent border border-gray-500 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                required
+              />
+            </div>
 
-      <div className="text-center">
-        <Link
-          href="/login"
-          className="text-primary hover:text-foreground text-sm underline underline-offset-4"
-        >
-          Back to login
-        </Link>
+            {/* Send OTP Button */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+            >
+              {isSubmitting ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Sending OTP...
+                </>
+              ) : (
+                'Send Verification Code'
+              )}
+            </button>
+
+            {/* Back to Login Link */}
+            <p className="text-center text-gray-300 mt-6">
+              Remember your password?{" "}
+              <a href="/login" className="text-green-400 hover:text-green-300 transition-colors">
+                Back to login
+              </a>
+            </p>
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -68,7 +68,7 @@ export default function FilterStrip() {
   const assemblies = ['Local', 'Imported'];
 
   return (
-    <div className="min-h-screen bg-[#0a0f24] pt-8 pr-12 pb-12">
+    <div className="min-h-screen bg-[#0a0f24] pt-8 md:pr-12 pb-12">
           {/* Sidebar Filters */}
           <div className="lg:col-span-1 rounded-3xl bg-gradient-to-br from-green-500/5 to-green-500/5  hover:border-green-900/40">
             <div className="backdrop-blur-sm  border-1 border-green-800/60  rounded-lg p-6 sticky top-24">

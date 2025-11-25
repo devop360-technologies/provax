@@ -58,9 +58,9 @@ export default function TopVerifiedProviders() {
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-[#0a0f24]/80 to-[#0a0f24]" />
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-7xl px-6">
+      <div className="relative  z-10 mx-auto max-w-7xl px-6">
         {/* Header */}
-        <div className="mb-16 flex items-start justify-between">
+        <div className="mb-16 flex flex-col md:flex-row items-start justify-between">
           <div>
             <div className="mb-4 flex items-center gap-2 text-sm text-white/60">
               <span className="text-[#00ff7f]">●</span>
@@ -76,7 +76,7 @@ export default function TopVerifiedProviders() {
           </div>
 
           {/* View All Providers Button */}
-          <button className="rounded-full bg-[#00ff7f] px-3 py-3 text-sm font-semibold whitespace-nowrap text-black transition-colors hover:bg-[#00e370]">
+          <button className="rounded-full mt-5 bg-[#00ff7f] px-3 py-2.5 md:py-3  text-sm font-semibold whitespace-nowrap text-black transition-colors hover:bg-[#00e370]">
             View All Providers →
           </button>
         </div>
@@ -100,12 +100,12 @@ export default function TopVerifiedProviders() {
                   />
                 </div>
                 <div className="flex-1">
-                  <h3 className="mb-1 text-xl font-semibold text-white">{provider.name}</h3>
-                  <p className="text-sm font-light text-white/20">{provider.location}</p>
+                  <h3 className="mb-1 text-lg md:text-xl font-semibold text-white">{provider.name}</h3>
+                  <p className="text-[10px] md:text-sm font-light text-white/20">{provider.location}</p>
                 </div>
               </div>
 
-              <div className="mr-20">
+              <div className="mr-5 md:mr-20">
                 {/* Buttons */}
                 <div className="flex gap-3">
                   <button className="flex-1 rounded-full bg-[#00ff7f] text-[10px] font-semibold text-black transition-colors hover:bg-[#00e370]">

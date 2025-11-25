@@ -11,7 +11,7 @@ export default function HowItWorksHero() {
           src="/provax-images/How-Its-Works/first.gif"
           alt="Engine"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center md:object-center  md:rotate-0 rotate-90 h-full "
           priority
         />
       </div>

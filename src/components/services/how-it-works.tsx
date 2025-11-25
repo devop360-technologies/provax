@@ -57,7 +57,7 @@ export default function ServicesHowItWorks() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="mb-40 flex items-start justify-between">
+        <div className="mb-40 flex flex-col md:flex-row items-start justify-between">
           <div>
             <div className="text-sm text-white/60 mb-4 flex items-center gap-2">
               <span className="text-[#00ff7f]">●</span>
@@ -74,41 +74,43 @@ export default function ServicesHowItWorks() {
           </div>
 
           {/* See Full Process Button */}
-          <button className="bg-[#00ff7f] text-black text-sm font-semibold px-4 py-3 rounded-full hover:bg-[#00e370] transition-colors whitespace-nowrap">
+          <button className="bg-[#00ff7f] text-black text-sm font-semibold px-4 py-3 mt-4 rounded-full hover:bg-[#00e370] transition-colors whitespace-nowrap">
             See Full Process →
           </button>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {steps.map((step) => (
-            <div
-              key={step.id}
-              className="bg-cyan/1 backdrop-blur-sm border-[1px] border-[#0b6884]  rounded-2xl p-4 hover:border-[#00ff7f]/50 transition-all duration-300 group"
-            >
-              {/* Step Number */}
-              <div className="text-[12px] text-[#00C4FF] mb-4">
-                {step.number}
-              </div>
-
-              {/* Icon */}
-              <div className="mb-6">
-                <div className="w-12 h-12 bg-gray-800 border border-[#00ff7f]/50 rounded-lg flex items-center justify-center group-hover:bg-[#00ff7f]/30 transition-colors">
-                   <Image src={step.icon} alt="" width={24} height={24} />
+        <div className="overflow-x-auto pb-4 md:overflow-x-visible">
+          <div className="flex gap-6 md:grid md:grid-cols-2 lg:grid-cols-4 min-w-max md:min-w-0">
+            {steps.map((step) => (
+              <div
+                key={step.id}
+                className="bg-cyan/1 backdrop-blur-sm border-[1px] border-[#0b6884] rounded-2xl p-4 hover:border-[#00ff7f]/50 transition-all duration-300 group flex-shrink-0 w-80 md:w-auto"
+              >
+                {/* Step Number */}
+                <div className="text-[12px] text-[#00C4FF] mb-4">
+                  {step.number}
                 </div>
+
+                {/* Icon */}
+                <div className="mb-6">
+                  <div className="w-12 h-12 bg-gray-800 border border-[#00ff7f]/50 rounded-lg flex items-center justify-center group-hover:bg-[#00ff7f]/30 transition-colors">
+                     <Image src={step.icon} alt="" width={24} height={24} />
+                  </div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg  text-white mb-4">
+                  {step.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-white/70 text-[13px] leading-relaxed">
+                  {step.description}
+                </p>
               </div>
-
-              {/* Title */}
-              <h3 className="text-lg  text-white mb-4">
-                {step.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-white/70 text-[13px] leading-relaxed">
-                {step.description}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

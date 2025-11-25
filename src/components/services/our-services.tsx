@@ -132,7 +132,7 @@ export default function OurServices() {
               {/* Buttons */}
               <div className="flex gap-2">
                    {/* Rating */}
-              <div className=" gap-2   text-[11px]">
+              <div className=" gap-2  text-[9px] md:text-[11px]">
                 {/* <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                 </svg> */}
@@ -140,10 +140,10 @@ export default function OurServices() {
                 <span>{service.rating}</span>
               </div>
 
-                <button className="flex-1 bg-[#00ff7f] text-black font-semibold py-2 text-[12px] rounded-full hover:bg-[#00e370] transition-colors">
+                <button className="flex-1 bg-[#00ff7f] text-black font-semibold py-2 text-[9px] md:text-[12px] rounded-full hover:bg-[#00e370] transition-colors">
                   {service.buttonText}
                 </button>
-                <button className="flex-1 border border-[#00ff7f] text-[#00ff7f] font-semibold py-2 text-[12px] rounded-full hover:bg-[#00ff7f]/10 transition-colors">
+                <button className="flex-1 border border-[#00ff7f] text-[#00ff7f] font-semibold  md:py-2  text-[9px] md:text-[12px] rounded-full hover:bg-[#00ff7f]/10 transition-colors">
                   {service.requestText}
                 </button>
                 
