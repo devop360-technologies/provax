@@ -68,13 +68,13 @@ export default function FilterStrip() {
   const assemblies = ['Local', 'Imported'];
 
   return (
-    <div className="min-h-screen bg-[#0a0f24] pb-12">
+    <div className="min-h-screen bg-[#0a0f24] pt-8 pr-12 pb-12">
           {/* Sidebar Filters */}
-          <div className="lg:col-span-1">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 sticky top-24">
+          <div className="lg:col-span-1 rounded-3xl bg-gradient-to-br from-green-500/5 to-green-500/5  hover:border-green-900/40">
+            <div className="backdrop-blur-sm  border-1 border-green-800/60  rounded-lg p-6 sticky top-24">
               {/* Show Results By */}
               <div className="mb-8">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4 ">
                   <h3 className="text-white font-semibold">Show Results By:</h3>
                 </div>
                 <button
@@ -95,7 +95,7 @@ export default function FilterStrip() {
                         placeholder="Search"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-white/5 border border-white/20 rounded-full px-5 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#00ff7f]/50 transition-colors"
+                        className="w-full bg-white/5 border-1 border-green-800/90 rounded-full px-5 py-3 text-white text-sm placeholder-white/30 focus:outline-none focus:border-[#00ff7f]/50 transition-colors"
                       />
                       <button
                         type="submit"

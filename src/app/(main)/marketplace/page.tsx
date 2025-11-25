@@ -20,14 +20,12 @@ export default function MarketplacePage() {
       <div className=" bg-[#0a0f24] pb-12">
 
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-0 lg:grid-cols-3">
             {/* Sidebar Filters */}
             <FilterStrip />
             {/* Main Content Area */}
-            <div className="lg:col-span-3">
-              <div className="">
-                <Marketplace />
-              </div>
+            <div className="lg:col-span-2">
+              <Marketplace />
             </div>
           </div>
         </div>
