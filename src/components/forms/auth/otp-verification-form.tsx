@@ -6,7 +6,7 @@ import Image from "next/image";
 interface OtpVerificationFormProps {
   email: string;
   onBack: () => void;
-  onSuccess: () => void;
+  onSuccess: (otp: string) => void;
   onResendOtp: () => void;
 }
 
@@ -70,16 +70,19 @@ export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: O
     setIsVerifying(true);
     setError('');
     
-    // Simulate API call
-    setTimeout(() => {
-      // For demo purposes, accept any 6-digit code
-      if (otpValue === '123456') {
-        onSuccess();
-      } else {
-        setError('Invalid verification code. Please try again.');
-      }
-      setIsVerifying(false);
-    }, 1500);
+    // Import the API client
+    const { verifyPasswordResetOtp } = await import('@/lib/api/auth-client');
+    
+    // Verify OTP via API
+    const result = await verifyPasswordResetOtp({ email, otp: otpValue });
+    
+    if (result.success) {
+      onSuccess(otpValue); // Pass the verified OTP to parent
+    } else {
+      setError(result.error || 'Invalid verification code. Please try again.');
+    }
+    
+    setIsVerifying(false);
   };
 
   const handleResendOtp = () => {
@@ -128,7 +131,7 @@ export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: O
                 {otp.map((digit, index) => (
                   <input
                     key={index}
-                    ref={(el) => (inputRefs.current[index] = el)}
+                    ref={(el) => { inputRefs.current[index] = el; }}
                     type="text"
                     maxLength={1}
                     value={digit}

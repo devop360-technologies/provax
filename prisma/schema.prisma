@@ -57,3 +57,18 @@ model VerificationToken {
     @@index([token])
     @@map("verification_tokens")
 }
+
+
+model OtpToken {
+    id         String   @id @default(auto()) @map("_id") @db.ObjectId
+    email      String
+    otp        String
+    type       String   // "email_verification", "password_reset", "login"
+    expires    DateTime
+    verified   Boolean  @default(false)
+    createdAt  DateTime @default(now())
+
+    @@index([email])
+    @@index([otp])
+    @@map("otp_tokens")
+}

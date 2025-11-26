@@ -1,18 +1,21 @@
 import type { PropsWithChildren } from "react";
 
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { DashboardHeader } from "./dashboard-header";
 import { DashboardSidebar } from "./dashboard-sidebar";
 
 export default function DashboardLayout({ children }: PropsWithChildren) {
   return (
-    <SidebarProvider>
+    <div className="flex h-screen bg-[#141332]">
       <DashboardSidebar />
-
-      <SidebarInset>
+      
+      <div className="flex-1 flex flex-col ml-64 overflow-hidden">
         <DashboardHeader />
-        <div className="container mx-auto py-8">{children}</div>
-      </SidebarInset>
-    </SidebarProvider>
+        <main className="flex-1 overflow-auto py-9">
+          <div className="bg-[#141332] rounded-2xl">
+            {children}
+          </div>
+        </main>
+      </div>
+    </div>
   );
 }

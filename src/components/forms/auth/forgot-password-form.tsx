@@ -5,31 +5,44 @@ import Image from "next/image";
 import { OtpVerificationForm } from "./otp-verification-form";
 import { NewPasswordForm } from "./new-password-form";
 import { PasswordResetSuccess } from "./password-reset-success";
+import { requestPasswordReset, verifyPasswordResetOtp } from "@/lib/api/auth-client";
 
 type Step = 'email' | 'otp' | 'newPassword' | 'success';
 
 export function ForgotPasswordForm() {
   const [currentStep, setCurrentStep] = useState<Step>('email');
   const [email, setEmail] = useState('');
+  const [verifiedOtp, setVerifiedOtp] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError('');
     
-    // Simulate API call to send OTP
-    setTimeout(() => {
+    // Send OTP via API
+    const result = await requestPasswordReset(email);
+    
+    if (result.success) {
       setCurrentStep('otp');
-      setIsSubmitting(false);
-    }, 1500);
+    } else {
+      setError(result.error || 'Failed to send reset code');
+    }
+    
+    setIsSubmitting(false);
   };
 
-  const handleResendOtp = () => {
-    // Resend OTP logic here
-    console.log('Resending OTP to:', email);
+  const handleResendOtp = async () => {
+    setError('');
+    const result = await requestPasswordReset(email);
+    if (!result.success) {
+      setError(result.error || 'Failed to resend code');
+    }
   };
 
-  const handleOtpSuccess = () => {
+  const handleOtpSuccess = (otp: string) => {
+    setVerifiedOtp(otp);
     setCurrentStep('newPassword');
   };
 
@@ -39,6 +52,7 @@ export function ForgotPasswordForm() {
 
   const handleBackToEmail = () => {
     setCurrentStep('email');
+    setError('');
   };
 
   // Render different components based on current step
@@ -57,6 +71,7 @@ export function ForgotPasswordForm() {
     return (
       <NewPasswordForm
         email={email}
+        otp={verifiedOtp}
         onSuccess={handleNewPasswordSuccess}
       />
     );
@@ -118,6 +133,9 @@ export function ForgotPasswordForm() {
                 className="w-full px-4 py-3 bg-transparent border border-gray-500 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
                 required
               />
+              {error && (
+                <p className="text-red-400 text-sm mt-2">{error}</p>
+              )}
             </div>
 
             {/* Send OTP Button */}

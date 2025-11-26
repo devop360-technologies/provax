@@ -5,10 +5,11 @@ import Image from "next/image";
 
 interface NewPasswordFormProps {
   email: string;
+  otp: string;
   onSuccess: () => void;
 }
 
-export function NewPasswordForm({ email, onSuccess }: NewPasswordFormProps) {
+export function NewPasswordForm({ email, otp, onSuccess }: NewPasswordFormProps) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -32,11 +33,19 @@ export function NewPasswordForm({ email, onSuccess }: NewPasswordFormProps) {
 
     setIsSubmitting(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    // Import the API client
+    const { resetPassword } = await import('@/lib/api/auth-client');
+    
+    // Reset password via API
+    const result = await resetPassword({ email, otp, newPassword });
+    
+    if (result.success) {
       onSuccess();
-    }, 1500);
+    } else {
+      setError(result.error || 'Failed to reset password. Please try again.');
+    }
+    
+    setIsSubmitting(false);
   };
 
   return (
