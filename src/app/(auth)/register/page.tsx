@@ -49,7 +49,7 @@ export default function Register() {
       </div>
 
       {/* Right side - Signup Form */}
-      <div className="w-full lg:w-1/2 bg-[#141332] flex items-center justify-center p-8">
+      <div className="w-full lg:w-1/2 bg-[#141332] flex items-center justify-center p-1">
         <div className="max-w-md w-full space-y-19">
           {/* Header */}
           <div className="text-center">

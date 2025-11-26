@@ -5,8 +5,6 @@ import { ThemeProvider } from "next-themes";
 import NextTopLoader from "nextjs-toploader";
 import type { PropsWithChildren } from "react";
 
-import { CookieConsentBanner } from "@/components/cookie-consent-banner";
-import { Toaster } from "@/components/ui/sonner";
 import { appConfig } from "@/config";
 import { inter, jetBrainsMono } from "@/lib/fonts";
 import { createMetadata, getViewportMetadata } from "@/lib/metadata";
@@ -24,29 +22,12 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <SessionProvider>
             {children}
 
-            <Toaster
-              richColors
-              toastOptions={{
-                classNames: {
-                  title: "truncate",
-                  content: "truncate",
-                  description: "truncate",
-                  icon: "!flex !size-8 !items-center !justify-center",
-                  success:
-                    "!border-green-200 !bg-green-50 dark:!border-green-800 dark:!bg-green-950",
-                  error: "!border-red-200 !bg-red-100 dark:!border-red-800 dark:!bg-red-950"
-                }
-              }}
-            />
-
             <NextTopLoader
               height={2}
               shadow={false}
               showSpinner={false}
               color={appConfig.colors.primary}
             />
-
-            <CookieConsentBanner />
 
             <GoogleAnalytics gaId={appConfig.googleAnalytics.id} />
           </SessionProvider>
