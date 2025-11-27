@@ -41,7 +41,7 @@ export function DashboardSidebar() {
   const pathname = usePathname();
 
   return (
-    <div className="fixed left-4 rounded-2xl top-4 z-40 h-[calc(100vh-25px)] w-52 border-r border-[#2a2d4a] bg-gradient-to-b from-[#202047] to-[#131231] transition-transform lg:translate-x-0">
+    <div className="fixed left-4 rounded-2xl top-4 z-40 h-[calc(100vh-25px)] w-54 border-r border-[#2a2d4a] bg-gradient-to-b from-[#202047] to-[#131231] transition-transform lg:translate-x-0">
 
     {/* <div className="fixed left-4 rounded-2xl top-4 z-40 h-[calc(100vh-25px)] w-52 border-r border-[#2a2d4a] bg-[#1a1d3a] transition-transform lg:translate-x-0"> */}
       {/* Logo Section */}

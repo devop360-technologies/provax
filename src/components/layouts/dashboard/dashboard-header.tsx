@@ -127,7 +127,7 @@ import { Bell, Search } from "lucide-react";
 
 export function DashboardHeader() {
   return (
-    <header className="bg-[#1D1D41] border-b border-[#2a2d4a] px-6 py-5 sticky top-5 rounded-2xl mr-4 z-40">
+    <header className="bg-[#1D1D41] border-b border-[#2a2d4a] px-6 py-5 sticky top-5 rounded-2xl mr-10 z-40">
       <div className="flex items-center justify-between gap-8">
         {/* Left side - Welcome text */}
         <div className="flex-1 min-w-0">
