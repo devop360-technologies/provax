@@ -6,6 +6,7 @@ import { EnhancedUserTable } from "@/components/users/enhanced-user-table";
 import { EditUserModal } from "@/components/users/edit-user-modal";
 import { User } from "@/types/user";
 import { Edit, Trash } from "lucide-react";
+import { BarChartOverview, ChartOverview } from "../dashboard";
 
 interface certificationManagementProps {
   users: User[];
@@ -195,10 +196,18 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
     }
   ];
 
+  const handleViewInspection = (inspection: any) => {
+    // Map inspection to a User object to navigate to Certification Detail
+    const user = users[0]; // Use first user or you can create a mock user
+    if (user) {
+      onViewUser(user);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Filters */}
-      <div className="mr-0 rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 md:mr-7">
+      <div className="flex justify-between items-center mr-0 rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 md:mr-7">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
           <div>
             <label className="mb-2 block text-sm font-medium text-white">Date Range</label>
@@ -256,11 +265,11 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
               <option>Rejected</option>
             </select>
           </div>
-          <div>
-            <button className="w-full rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-4 py-3 text-sm font-medium text-cyan-400 transition-colors hover:bg-cyan-500/30">
-              Apply Filters
-            </button>
-          </div>
+        </div>
+        <div>
+          <button className="w-full mt-4 rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-4 py-3 text-sm font-medium text-cyan-400 transition-colors hover:bg-cyan-500/30">
+            Apply Filters
+          </button>
         </div>
       </div>
 
@@ -293,30 +302,33 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
                   key={idx}
                   className="border-b border-[#2a2d4a] transition-colors hover:bg-[#252850]/50"
                 >
-                  <td className="px-6 py-4 text-sm font-medium text-white">{inspection.userId}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{inspection.vehicle}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">
+                  <td className="px-4 py-4 text-[12px] font-medium text-white">
+                    {inspection.userId}
+                  </td>
+                  <td className="px-4 py-4 text-[12px] text-gray-300">{inspection.vehicle}</td>
+                  <td className="px-4 py-4 text-[12px] text-gray-300">
                     <div className="flex items-center gap-2">
                       <div className="h-8 w-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500"></div>
                       <span>{inspection.owner.name}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{inspection.date}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{inspection.aiModule}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{inspection.comboType}</td>
-                  <td className="px-6 py-4 text-sm font-medium text-white">
+                  <td className="px-4 py-4 text-[12px] text-gray-300">{inspection.date}</td>
+                  <td className="px-4 py-4 text-[12px] text-gray-300">{inspection.aiModule}</td>
+                  <td className="px-4 py-4 text-[12px] text-gray-300">{inspection.comboType}</td>
+                  <td className="px-4 py-4 text-[12px] font-medium text-white">
                     {inspection.integrityScore}
                   </td>
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-4 py-4 text-sm">
                     <span
-                      className={`rounded-lg px-3 py-1 text-xs font-medium ${inspection.statusColor}`}
+                      className={`rounded px-3 py-1 text-xs font-medium ${inspection.statusColor}`}
                     >
                       {inspection.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-sm">
+                  <td className="px-4 py-4 text-sm">
                     <div className="flex gap-2">
                       <button
+                        onClick={() => handleViewInspection(inspection)}
                         className="text-gray-400 transition-colors hover:text-cyan-400"
                         title="View"
                       >
@@ -377,15 +389,13 @@ function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => v
   ];
 
   return (
-    <div className="mr-0 space-y-6 md:mr-7">
+    <div className="mr-0 space-y-6 rounded-2xl bg-[#1e1e40] px-6 pt-6 md:mr-7">
       {/* Inspection Header */}
       <div className="rounded-xl border border-[#2a2d4a] bg-[#252850] p-6">
         <div className="mb-6 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <div className="flex-1">
-            <h2 className="text-xl font-bold text-white">
-              Inspection #CERT-4582 - Toyota Camry 2022
-            </h2>
-            <p className="mt-2 text-sm text-gray-400">
+            <h2 className="text-white">Inspection #CERT-4582 - Toyota Camry 2022</h2>
+            <p className="mt-2 text-[12px] text-gray-400">
               Submitted by John Smith on 2023-10-15 • Vehicle VIN: JTNKU4BEXC9012345
             </p>
           </div>
@@ -419,8 +429,8 @@ function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => v
       </div>
 
       {/* Detail Sub-Tabs */}
-      <div className="border-b border-[#2a2d4a]">
-        <div className="flex gap-6 overflow-x-auto pb-0">
+      <div className="rounded-2xl border border-[#2a2d4a] bg-[#252850] px-6 pt-5">
+        <div className="flex gap-6 overflow-x-auto">
           {detailTabs.map((tab) => (
             <button
               key={tab}
@@ -438,7 +448,7 @@ function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => v
       </div>
 
       {/* Tab Content */}
-      <div className="mr-0 md:mr-7">
+      <div>
         {activeDetailTab === "User Uploads" && <UserUploadsTab />}
         {activeDetailTab === "AI Module Results" && <AIModuleResultsTab />}
         {activeDetailTab === "Reports" && <ReportsTab />}
@@ -448,6 +458,8 @@ function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => v
     </div>
   );
 }
+
+// --------------------------------------------------------------- other Detail Tab Components ---------------------------------------------------------------------------------
 
 // User Uploads Tab
 function UserUploadsTab() {
@@ -866,45 +878,42 @@ function AdminCommentsTab() {
   );
 }
 
+const serviceRequestData = [35, 48, 52, 58, 62, 70, 72, 68, 71, 75, 78, 80];
+const completedJobsData = [
+  { month: "Jan", value: 45 },
+  { month: "Feb", value: 52 },
+  { month: "Mar", value: 48 },
+  { month: "Apr", value: 61 },
+  { month: "May", value: 55 },
+  { month: "Jun", value: 67 },
+  { month: "Jul", value: 72 },
+  { month: "Aug", value: 68 },
+  { month: "Sep", value: 74 },
+  { month: "Oct", value: 71 },
+  { month: "Nov", value: 69 },
+  { month: "Dec", value: 75 }
+];
+
 // AI Statistics Tab
 function AIStatisticsTab() {
   return (
     <div className="mr-0 space-y-6 md:mr-7">
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
-          <h3 className="mb-4 text-lg font-semibold text-white">AI Performance Metrics</h3>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-gray-300">Average Accuracy</span>
-              <span className="font-semibold text-cyan-400">94.2%</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-300">Processing Speed</span>
-              <span className="font-semibold text-cyan-400">2.3s/scan</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-300">False Positives</span>
-              <span className="font-semibold text-green-400">2.1%</span>
-            </div>
-          </div>
-        </div>
-        <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
-          <h3 className="mb-4 text-lg font-semibold text-white">Module Usage</h3>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-gray-300">Structure Analysis</span>
-              <span className="font-semibold text-cyan-400">32%</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-300">Paint Analysis</span>
-              <span className="font-semibold text-cyan-400">28%</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-gray-300">Interior Inspection</span>
-              <span className="font-semibold text-cyan-400">25%</span>
-            </div>
-          </div>
-        </div>
+      {/* Charts Grid - 2x1 */}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <BarChartOverview
+          title="Completed Jobs Overview"
+          subtitle="Summary of key metrics and insights across all registered companies"
+          data={completedJobsData}
+          color="#06b6d4"
+          filters={["Monthly", "Quarterly"]}
+        />
+        <ChartOverview
+          title="Service Request Activity Overview"
+          subtitle="Summary of key metrics and insights across all registered companies"
+          data={serviceRequestData}
+          color="#06b6d4"
+          filters={["Daily", "Weekly", "Monthly"]}
+        />
       </div>
     </div>
   );
@@ -912,191 +921,117 @@ function AIStatisticsTab() {
 
 // Data Export Tab
 function DataExportTab() {
+  const [dateRangeFilter, setDateRangeFilter] = useState("Last 7 Days");
+  const [aiModuleFilter, setAiModuleFilter] = useState("AI Modules");
+  const [statusFilter, setStatusFilter] = useState("All Status");
+
   return (
-    <div className="mr-0 space-y-6 md:mr-7">
-      <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
-        <h3 className="mb-6 text-lg font-semibold text-white">Export Data</h3>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <button className="rounded-lg border border-cyan-500/50 bg-cyan-500/20 p-6 transition-colors hover:bg-cyan-500/30">
-            <div className="mb-2 text-lg font-semibold text-cyan-400">📊 Export as CSV</div>
-            <p className="text-sm text-gray-300">Download inspection data in CSV format</p>
-          </button>
-          <button className="rounded-lg border border-cyan-500/50 bg-cyan-500/20 p-6 transition-colors hover:bg-cyan-500/30">
-            <div className="mb-2 text-lg font-semibold text-cyan-400">📄 Export as PDF</div>
-            <p className="text-sm text-gray-300">Download formatted inspection reports</p>
-          </button>
-          <button className="rounded-lg border border-cyan-500/50 bg-cyan-500/20 p-6 transition-colors hover:bg-cyan-500/30">
-            <div className="mb-2 text-lg font-semibold text-cyan-400">📋 Export as Excel</div>
-            <p className="text-sm text-gray-300">Download data with advanced formatting</p>
-          </button>
-          <button className="rounded-lg border border-cyan-500/50 bg-cyan-500/20 p-6 transition-colors hover:bg-cyan-500/30">
-            <div className="mb-2 text-lg font-semibold text-cyan-400">⚙️ Custom Export</div>
-            <p className="text-sm text-gray-300">Choose specific fields and format</p>
-          </button>
-        </div>
+    <div className="space-y-6 rounded-2xl bg-[#1D1D41] p-5 mr-0 md:mr-7">
+      <div>
+        <h3 className="mb-2 text-lg font-semibold text-white">Export Inspection Data</h3>
+        <p className="text-xs text-gray-400">
+          Select the format and data range for exporting inspection and certification data.
+        </p>
       </div>
-    </div>
-  );
-}
 
-// Audit Log Tab
-function AuditLogTab() {
-  const [dateFilter, setDateFilter] = useState("Last 7 Days");
-  const [adminFilter, setAdminFilter] = useState("All User");
-  const [actionFilter, setActionFilter] = useState("All Action");
-
-  const auditLogs = [
-    {
-      timestamp: "2023-10-15 11:30",
-      admin: "Admin User",
-      action: "Changed user role",
-      user: "Sarah Johnson (#USR-1002)",
-      previousValue: "Buyer",
-      newValue: "Seller"
-    },
-    {
-      timestamp: "2023-10-14 16:45",
-      admin: "System Admin",
-      action: "Reset user password",
-      user: "Michael Brown (#USR-1003)",
-      previousValue: "-",
-      newValue: "Password Reset"
-    },
-    {
-      timestamp: "2023-10-12 14:30",
-      admin: "Admin User",
-      action: "Added internal note",
-      user: "John Smith (#USR-1001)",
-      previousValue: "-",
-      newValue: "Note added"
-    },
-    {
-      timestamp: "2023-10-10 09:15",
-      admin: "Admin User",
-      action: "Deactivated account",
-      user: "Robert Wilson (#USR-1005)",
-      previousValue: "Active",
-      newValue: "Inactive"
-    },
-    {
-      timestamp: "2023-10-05 14:20",
-      admin: "System",
-      action: "Flagged user",
-      user: "John Smith (#USR-1001)",
-      previousValue: "-",
-      newValue: "Security flag added"
-    }
-  ];
-
-  return (
-    <div className="space-y-6">
       {/* Filters */}
-      <div className="mr-0 rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-4 md:mr-7">
-        <div className="mb-1 flex items-center justify-between">
-          <div className="mb-4 grid grid-cols-1 gap-5 md:grid-cols-3">
-            <div>
-              <label className="mb-2 block text-[12px] text-gray-400">Date Range</label>
-              <select
-                value={dateFilter}
-                onChange={(e) => setDateFilter(e.target.value)}
-                className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
-              >
-                <option>Last 7 Days</option>
-                <option>Last 30 Days</option>
-                <option>Last 90 Days</option>
-                <option>All Time</option>
-              </select>
-            </div>
-            <div>
-              <label className="mb-2 block text-[12px] text-gray-400">Admin</label>
-              <select
-                value={adminFilter}
-                onChange={(e) => setAdminFilter(e.target.value)}
-                className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
-              >
-                <option>All User</option>
-                <option>Admin User</option>
-                <option>System Admin</option>
-                <option>System</option>
-              </select>
-            </div>
-            <div>
-              <label className="mb-2 block text-[12px] text-gray-400">Action Type</label>
-              <select
-                value={actionFilter}
-                onChange={(e) => setActionFilter(e.target.value)}
-                className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
-              >
-                <option>All Action</option>
-                <option>Changed user role</option>
-                <option>Reset user password</option>
-                <option>Added internal note</option>
-                <option>Deactivated account</option>
-                <option>Flagged user</option>
-              </select>
-            </div>
+      <div className="rounded-2xl border border-[#2a2d4a] bg-[#262651] p-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
+          <div>
+            <label className="mb-2 block text-xs font-medium text-gray-300">Date Range</label>
+            <select
+              value={dateRangeFilter}
+              onChange={(e) => setDateRangeFilter(e.target.value)}
+              className="w-full rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] px-4 py-5 text-xs text-white focus:outline-none"
+            >
+              <option>Last 7 Days</option>
+              <option>This Month</option>
+              <option>Last 3 Months</option>
+              <option>All Time</option>
+            </select>
           </div>
-          <div className="flex justify-end">
-            <button className="rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-6 py-4 text-[11px] text-cyan-400 transition-colors hover:bg-cyan-500/30">
-              Apply Filters
-            </button>
+          <div>
+            <label className="mb-2 block text-xs font-medium text-gray-300">AI Module</label>
+            <select
+              value={aiModuleFilter}
+              onChange={(e) => setAiModuleFilter(e.target.value)}
+              className="w-full rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] px-4 py-5 text-xs text-white focus:outline-none"
+            >
+              <option>AI Modules</option>
+              <option>Structure Analysis</option>
+              <option>Paint Analysis</option>
+              <option>Ballistic Glass</option>
+              <option>Interior Inspection</option>
+            </select>
+          </div>
+          <div>
+            <label className="mb-2 block text-xs font-medium text-gray-300">Status</label>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="w-full rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] px-4 py-5 text-xs text-white focus:outline-none"
+            >
+              <option>All Status</option>
+              <option>Approved</option>
+              <option>Processing</option>
+              <option>Pending</option>
+              <option>Rejected</option>
+            </select>
           </div>
         </div>
       </div>
 
-      {/* Audit Log Table */}
-      <div className="mr-0 overflow-hidden rounded-xl border border-[#2a2d4a] bg-[#1D1D41] md:mr-7">
-        <div className="border-b border-[#2a2d4a] p-6">
-          <h3 className="font-semibold text-white">System Audit Log</h3>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="border-b border-[#2a2d4a]">
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Timestamp</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Admin</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">Action</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">User</th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">
-                  Previous Value
-                </th>
-                <th className="px-6 py-4 text-left text-sm font-medium text-gray-400">New Value</th>
-              </tr>
-            </thead>
-            <tbody>
-              {auditLogs.map((log, idx) => (
-                <tr
-                  key={idx}
-                  className="border-b border-[#2a2d4a] transition-colors hover:bg-[#1a1d3a]/50"
-                >
-                  <td className="px-6 py-4 text-sm text-gray-300">{log.timestamp}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{log.admin}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{log.action}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{log.user}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{log.previousValue}</td>
-                  <td className="px-6 py-4 text-sm text-gray-300">{log.newValue}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* Export Options Grid */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+        {/* CSV Export */}
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-[#2a2d4a] bg-[#262651] p-6 text-center transition-colors hover:border-cyan-400/30">
+          <Image
+            src="/provax-dashboard/file-icons/csv.png"
+            alt="CSV"
+            width={60}
+            height={60}
+            className="mb-4 h-16 w-16"
+          />
+          <h4 className="mb-2 text-base font-semibold text-white">CSV Export</h4>
+
+          <hr className="my-2 w-full border-gray-600" />
+          <p className="my-1 max-w-50 text-base text-gray-400">
+            Structured data in CSV format for analysis
+          </p>
         </div>
 
-        {/* Pagination */}
-        <div className="flex items-center justify-between border-t border-[#2a2d4a] px-6 py-4">
-          <div className="text-sm text-gray-400">Showing 1 to 4 of 28 results</div>
-          <div className="flex gap-2">
-            <button className="rounded p-2 text-gray-400 transition-colors hover:bg-[#1a1d3a]">
-              &lt;
-            </button>
-            <button className="h-8 w-8 rounded bg-cyan-500/20 text-sm font-medium text-cyan-400">
-              1
-            </button>
-            <button className="h-8 w-8 rounded text-sm text-gray-400 hover:bg-[#1a1d3a]">2</button>
-            <button className="h-8 w-8 rounded text-sm text-gray-400 hover:bg-[#1a1d3a]">3</button>
-            <button className="rounded p-2 text-gray-400 transition-colors hover:bg-[#1a1d3a]">
-              &gt;
-            </button>
-          </div>
+        {/* PDF Report */}
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-[#2a2d4a] bg-[#262651] p-6 text-center transition-colors hover:border-cyan-400/30">
+          <Image
+            src="/provax-dashboard/file-icons/pdf.png"
+            alt="PDF"
+            width={60}
+            height={60}
+            className="mb-4 h-16 w-16"
+          />
+          <h4 className="mb-2 text-base font-semibold text-white">CSV Export</h4>
+
+          <hr className="my-2 w-full border-gray-600" />
+          <p className="my-1 max-w-50 text-base text-gray-400">
+            Structured data in CSV format for analysis
+          </p>
+        </div>
+
+        {/* Shareable Link */}
+        <div className="flex flex-col items-center justify-center rounded-2xl border border-[#2a2d4a] bg-[#262651] p-6 text-center transition-colors hover:border-cyan-400/30">
+          <Image
+            src="/provax-dashboard/file-icons/share.png"
+            alt="Share"
+            width={60}
+            height={60}
+            className="mb-4 h-16 w-16"
+          />
+          <h4 className="mb-2 text-base font-semibold text-white">CSV Export</h4>
+
+          <hr className="my-2 w-full border-gray-600" />
+          <p className="my-1 max-w-50 text-base text-gray-400">
+            Structured data in CSV format for analysis
+          </p>
         </div>
       </div>
     </div>
