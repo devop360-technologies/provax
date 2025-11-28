@@ -61,11 +61,11 @@ export function UsersManagement({ users }: UsersManagementProps) {
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="border-b border-[#2a2d4a]">
+      <div className="border border-[#2a2d4a] mr-0 md:mr-7 rounded-xl bg-[#1D1D41] px-6 py-4 flex justify-between items-center  ">
         <div className="flex gap-8">
           <button
             onClick={() => setActiveTab("list")}
-            className={`px-2 pb-4 font-medium transition-colors ${
+            className={`px-2 font-medium transition-colors  ${
               activeTab === "list"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -75,7 +75,7 @@ export function UsersManagement({ users }: UsersManagementProps) {
           </button>
           <button
             onClick={() => setActiveTab("detail")}
-            className={`px-2 pb-4 font-medium transition-colors ${
+            className={`px-2  font-medium transition-colors ${
               activeTab === "detail"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -85,7 +85,7 @@ export function UsersManagement({ users }: UsersManagementProps) {
           </button>
           <button
             onClick={() => setActiveTab("audit")}
-            className={`px-2 pb-4 font-medium transition-colors ${
+            className={`px-2 font-medium transition-colors ${
               activeTab === "audit"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -127,8 +127,8 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
   return (
     <div className="space-y-6">
       {/* Filters */}
-      <div className="rounded-2xl border border-[#2a2d4a] bg-[#1D1D41] p-4 mr-6">
-        <div className="flex justify-between">
+      <div className="rounded-2xl border border-[#2a2d4a] bg-[#1D1D41] p-4 mr-0 md:mr-7">
+        <div className="flex justify-between items-center mb-1">
           <div className="mb-4 grid grid-cols-1 gap-5 md:grid-cols-4">
             <div>
               <label className="mb-2 block text-[11px] text-gray-100">Role</label>
@@ -867,14 +867,15 @@ function AuditLogTab() {
   return (
     <div className="space-y-6">
       {/* Filters */}
-      <div className="rounded-xl border border-[#2a2d4a] bg-[#1a1d3a] p-6">
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+      <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-4 mr-0 md:mr-7">
+        <div className="flex justify-between items-center mb-1">
+        <div className="mb-4 grid grid-cols-1 gap-5 md:grid-cols-3">
           <div>
-            <label className="mb-2 block text-sm text-gray-400">Date Range</label>
+            <label className="mb-2 block text-[12px] text-gray-400">Date Range</label>
             <select
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-2 text-white"
+              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
             >
               <option>Last 7 Days</option>
               <option>Last 30 Days</option>
@@ -883,11 +884,11 @@ function AuditLogTab() {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm text-gray-400">Admin</label>
+            <label className="mb-2 block text-[12px] text-gray-400">Admin</label>
             <select
               value={adminFilter}
               onChange={(e) => setAdminFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-2 text-white"
+              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
             >
               <option>All User</option>
               <option>Admin User</option>
@@ -896,11 +897,11 @@ function AuditLogTab() {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm text-gray-400">Action Type</label>
+            <label className="mb-2 block text-[12px] text-gray-400">Action Type</label>
             <select
               value={actionFilter}
               onChange={(e) => setActionFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-2 text-white"
+              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
             >
               <option>All Action</option>
               <option>Changed user role</option>
@@ -912,14 +913,15 @@ function AuditLogTab() {
           </div>
         </div>
         <div className="flex justify-end">
-          <button className="rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-6 py-2 text-cyan-400 transition-colors hover:bg-cyan-500/30">
+          <button className="rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-6 py-4 text-[11px] text-cyan-400 transition-colors hover:bg-cyan-500/30">
             Apply Filters
           </button>
+        </div>
         </div>
       </div>
 
       {/* Audit Log Table */}
-      <div className="overflow-hidden rounded-xl border border-[#2a2d4a] bg-[#252850]">
+      <div className="overflow-hidden rounded-xl border border-[#2a2d4a] bg-[#1D1D41] mr-0 md:mr-7">
         <div className="border-b border-[#2a2d4a] p-6">
           <h3 className="font-semibold text-white">System Audit Log</h3>
         </div>

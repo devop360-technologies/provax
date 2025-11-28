@@ -51,7 +51,7 @@ export default async function UsersPage() {
           value="3,742"
           change="+3.5% from last month"
           changeType="positive"
-          iconSrc="/provax-dashboard/icons/vehicle.png"
+          iconSrc="/provax-dashboard/icons/active.png"
           iconBg="bg-[#64CFF6]"
         />
         <StatCard
@@ -59,7 +59,7 @@ export default async function UsersPage() {
           value="8,921"
           change="+12.4% from last month"
           changeType="positive"
-          iconSrc="/provax-dashboard/icons/list.png"
+          iconSrc="/provax-dashboard/icons/tw.png"
           iconBg="bg-[#64CFF6]"
         />
         <StatCard
@@ -67,7 +67,7 @@ export default async function UsersPage() {
           value="1,245"
           change=""
           changeType="positive"
-          iconSrc="/provax-dashboard/icons/services.png"
+          iconSrc="/provax-dashboard/icons/flag.png"
           iconBg="bg-[#64CFF6]"
         />
       </div>
