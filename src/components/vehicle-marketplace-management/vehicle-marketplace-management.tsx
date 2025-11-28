@@ -2,11 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { EnhancedUserTable } from "@/components/users/enhanced-user-table";
-import { EditUserModal } from "@/components/users/edit-user-modal";
 import { User } from "@/types/user";
 import { Edit, Trash } from "lucide-react";
-import { BarChartOverview, ChartOverview } from "../dashboard";
 
 interface vehicleMarketplaceManagementProps {
   users: User[];
@@ -16,48 +13,13 @@ type Tab = "Catalog" | "detail" | "tools" | "moderation";
 
 export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManagementProps) {
   const [activeTab, setActiveTab] = useState<Tab>("Catalog");
-  const [selectedUser, setSelectedUser] = useState<User | null>(
+  const [selectedListing, setSelectedListing] = useState<User | null>(
     users && users.length > 0 ? users[0] : null
   );
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [editFormData, setEditFormData] = useState<{
-    fullName: string;
-    email: string;
-    role: string;
-    status: string;
-    segment: string;
-    verification: string;
-  }>({
-    fullName: "",
-    email: "",
-    role: "Inspector",
-    status: "Active",
-    segment: "Premium",
-    verification: "Verified"
-  });
 
-  const handleViewUser = (user: User) => {
-    setSelectedUser(user);
+  const handleViewListing = (listing: User) => {
+    setSelectedListing(listing);
     setActiveTab("detail");
-  };
-
-  const handleEditClick = () => {
-    if (selectedUser) {
-      const newFormData = {
-        fullName: selectedUser.name || "",
-        email: selectedUser.email || "",
-        role: "Inspector",
-        status: "Active",
-        segment: "Premium",
-        verification: "Verified"
-      };
-      setEditFormData(newFormData);
-      setIsEditModalOpen(true);
-    }
-  };
-
-  const handleSaveChanges = () => {
-    setIsEditModalOpen(false);
   };
 
   return (
@@ -110,28 +72,19 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
 
       {/* Tab Content */}
       <div>
-        {activeTab === "Catalog" && <UserListTab users={users} onViewUser={handleViewUser} />}
+        {activeTab === "Catalog" && <CatalogTab users={users} onViewListing={handleViewListing} />}
         {activeTab === "detail" && (
-          <UserDetailTab user={selectedUser || users[0]} onEditClick={handleEditClick} />
+          <ListingDetailTab listing={selectedListing || users[0]} />
         )}
-        {activeTab === "tools" && <AIStatisticsTab />}
-        {activeTab === "moderation" && <DataExportTab />}
+        {activeTab === "tools" && <PromotionalToolsTab />}
+        {activeTab === "moderation" && <ModerationGuidelinesTab />}
       </div>
-
-      {/* Edit User Modal */}
-      <EditUserModal
-        isOpen={isEditModalOpen}
-        formData={editFormData}
-        onFormChange={setEditFormData}
-        onSave={handleSaveChanges}
-        onCancel={() => setIsEditModalOpen(false)}
-      />
     </div>
   );
 }
 
-// User List Tab - Inspection List
-function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: User) => void }) {
+// Catalog Tab - Vehicle Listings
+function CatalogTab({ users, onViewListing }: { users: User[]; onViewListing: (listing: User) => void }) {
   const [dateRangeFilter, setDateRangeFilter] = useState("All Dates");
   const [aiModuleFilter, setAiModuleFilter] = useState("AI Modules");
   const [comboTypeFilter, setComboTypeFilter] = useState("All Types");
@@ -207,11 +160,10 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
     }
   ];
 
-  const handleViewInspection = (inspection: any) => {
-    // Map inspection to a User object to navigate to Certification Detail
-    const user = users[0]; // Use first user or you can create a mock user
-    if (user) {
-      onViewUser(user);
+  const handleViewListing = (vehicle: any) => {
+    const listing = users[0];
+    if (listing) {
+      onViewListing(listing);
     }
   };
 
@@ -387,8 +339,8 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
   );
 }
 
-// Certification Detail Tab
-function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => void }) {
+// Listing Detail Tab
+function ListingDetailTab({ listing }: { listing: User }) {
   const [activeDetailTab, setActiveDetailTab] = useState("Overview");
 
   const detailTabs = ["Overview", "Certification", "Seller Information", "Image"];
@@ -1019,8 +971,8 @@ const completedJobsData = [
   { month: "Dec", value: 75 }
 ];
 
-// AI Statistics Tab
-function AIStatisticsTab() {
+// Promotional Tools Tab
+function PromotionalToolsTab() {
   const [appliedPromotions, setAppliedPromotions] = useState<{ [key: number]: boolean }>({});
 
   const promotionPackages = [
@@ -1210,8 +1162,8 @@ function AIStatisticsTab() {
   );
 }
 
-// Data Export Tab
-function DataExportTab() {
+// Moderation Guidelines Tab
+function ModerationGuidelinesTab() {
   const guidelines = [
     {
       title: "Text Content",
