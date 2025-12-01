@@ -320,9 +320,9 @@ function CatalogTab({ users, onViewListing }: { users: User[]; onViewListing: (l
               {/* Action Buttons */}
               <div className="flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600/30 to-pink-600/30 p-3">
                 <button
-                  onClick={() => handleViewInspection(inspection)}
+                  onClick={() => handleViewListing(inspection)}
                   className="flex flex-1 items-center justify-center gap-2 text-gray-400 transition-colors hover:text-cyan-400"
-                  title="View"
+                  title="View Listing"
                 >
                   <span className="text-lg">👁️</span>
                 </button>
