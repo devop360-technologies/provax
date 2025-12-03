@@ -73,9 +73,7 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
       {/* Tab Content */}
       <div>
         {activeTab === "Catalog" && <CatalogTab users={users} onViewListing={handleViewListing} />}
-        {activeTab === "detail" && (
-          <ListingDetailTab listing={selectedListing || users[0]} />
-        )}
+        {activeTab === "detail" && <ListingDetailTab listing={selectedListing || users[0]} />}
         {activeTab === "tools" && <PromotionalToolsTab />}
         {activeTab === "moderation" && <ModerationGuidelinesTab />}
       </div>
@@ -84,7 +82,13 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
 }
 
 // Catalog Tab - Vehicle Listings
-function CatalogTab({ users, onViewListing }: { users: User[]; onViewListing: (listing: User) => void }) {
+function CatalogTab({
+  users,
+  onViewListing
+}: {
+  users: User[];
+  onViewListing: (listing: User) => void;
+}) {
   const [dateRangeFilter, setDateRangeFilter] = useState("All Dates");
   const [aiModuleFilter, setAiModuleFilter] = useState("AI Modules");
   const [comboTypeFilter, setComboTypeFilter] = useState("All Types");
@@ -318,18 +322,30 @@ function CatalogTab({ users, onViewListing }: { users: User[]; onViewListing: (l
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600/30 to-pink-600/30 p-3">
-                <button
-                  onClick={() => handleViewListing(inspection)}
-                  className="flex flex-1 items-center justify-center gap-2 text-gray-400 transition-colors hover:text-cyan-400"
-                  title="View Listing"
-                >
-                  <span className="text-lg">👁️</span>
-                </button>
-                <div className="h-6 w-px bg-[#2a2d4a]"></div>
-                <button className="flex-1 text-center text-sm font-medium text-white transition-colors hover:text-cyan-400">
-                  Promote
-                </button>
+              <div className="grid grid-cols-4 gap-3 md:grid">
+                <div className="flex justify-between gap-2 rounded-lg ">
+                  <button
+                    onClick={() => handleViewListing(inspection)}
+                    className="flex flex-1 items-center justify-center gap-2 bg-[#3083FF4D] p-2 rounded text-gray-400 transition-colors hover:text-cyan-400"
+                    title="View Listing"
+                  >
+                    <span className="text-lg">👁️</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleViewListing(inspection)}
+                    className="flex flex-1 items-center justify-center gap-2 bg-[#3083FF] p-2 rounded text-gray-400 transition-colors hover:text-cyan-400"
+                    title="View Listing"
+                  >
+                   < span className="text-lg "><Edit size={26} /></span>
+                  </button>
+                </div>
+                <div className="flex items-center justify-center gap-2 rounded-lg col-span-3   bg-gradient-to-r from-purple-600/30 to-pink-600/30 p-3">
+                  <div className="h-6 w-px bg-[#2a2d4a]"></div>
+                  <button className="flex-1 text-center text-sm font-medium text-white transition-colors hover:text-cyan-400">
+                    Promote
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -412,36 +428,38 @@ function ListingDetailTab({ listing }: { listing: User }) {
             {/* Two Column Layout */}
             <div className="mx-8 grid grid-cols-1 gap-6 md:grid-cols-2">
               {/* Vehicle Details */}
-              <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
-                <h4 className="mb-6 text-base font-semibold text-white">Vehicle Details</h4>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+              <div className="border border-[#2a2d4a] rounded-xl overflow-hidden bg-[#1D1D41]">
+                <div className="bg-[#252850] px-6 py-4 border-b border-[#2a2d4a]">
+                  <h4 className="text-base font-semibold text-white">Vehicle Details</h4>
+                </div>
+                <div className="divide-y divide-[#2a2d4a]">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
                     <span className="text-sm text-gray-400">Make & Model:</span>
                     <span className="text-sm font-medium text-white">Toyota Camry 2022</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
                     <span className="text-sm text-gray-400">Price:</span>
                     <span className="text-sm font-medium text-cyan-400">$24,500</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
                     <span className="text-sm text-gray-400">Integrity Score:</span>
                     <span className="inline-block rounded bg-green-500/20 px-3 py-1 text-sm font-semibold text-green-400">
                       92%
                     </span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
                     <span className="text-sm text-gray-400">Combo Type:</span>
                     <span className="text-sm font-medium text-white">Premium Package</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
                     <span className="text-sm text-gray-400">Mileage:</span>
                     <span className="text-sm font-medium text-white">18,450 miles</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
                     <span className="text-sm text-gray-400">Location:</span>
                     <span className="text-sm font-medium text-white">New York, NY</span>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
                     <span className="text-sm text-gray-400">Status:</span>
                     <span className="inline-block rounded bg-green-500/20 px-3 py-1 text-sm font-semibold text-green-400">
                       Active
@@ -451,30 +469,32 @@ function ListingDetailTab({ listing }: { listing: User }) {
               </div>
 
               {/* Listing Information */}
-              <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
-                <h4 className="mb-6 text-base font-semibold text-white">Listing Information</h4>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+              <div className="border border-[#2a2d4a] rounded-xl overflow-hidden bg-[#1D1D41]">
+                <div className="bg-[#252850] px-6 py-4 border-b border-[#2a2d4a]">
+                  <h4 className="text-base font-semibold text-white">Listing Information</h4>
+                </div>
+                <div className="divide-y divide-[#2a2d4a]">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
                     <span className="text-sm text-gray-400">Listing ID:</span>
                     <span className="text-sm font-medium text-white">#LIST-4582</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
                     <span className="text-sm text-gray-400">Created Date:</span>
                     <span className="text-sm font-medium text-white">2023-10-15</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
                     <span className="text-sm text-gray-400">Last Updated:</span>
                     <span className="text-sm font-medium text-white">2023-10-20</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
                     <span className="text-sm text-gray-400">Views:</span>
                     <span className="text-sm font-medium text-white">1,248</span>
                   </div>
-                  <div className="flex items-center justify-between border-b border-[#2a2d4a]/50 pb-4">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
                     <span className="text-sm text-gray-400">Inquiries:</span>
                     <span className="text-sm font-medium text-white">42</span>
                   </div>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
                     <span className="text-sm text-gray-400">Promotion Status:</span>
                     <span className="text-sm font-medium text-white">Featured</span>
                   </div>
@@ -517,18 +537,292 @@ function ListingDetailTab({ listing }: { listing: User }) {
           </div>
         )}
         {activeDetailTab === "Certification" && (
-          <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 text-center text-gray-400">
-            Certification details coming soon...
+          <div className="space-y-6 p-6">
+            {/* AI Module Results Header */}
+            <h3 className="text-lg font-semibold text-white">AI Module Results</h3>
+            
+            {/* Three Column Layout */}
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              {/* Certification Details */}
+              <div className="border border-[#2a2d4a] rounded-xl overflow-hidden bg-[#1D1D41]">
+                <div className="bg-[#252850] px-6 py-4 border-b border-[#2a2d4a]">
+                  <h4 className="text-base font-semibold text-white">Certification Details</h4>
+                </div>
+                <div className="divide-y divide-[#2a2d4a]">
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
+                    <span className="text-sm text-gray-400">Certification ID:</span>
+                    <span className="text-sm font-medium text-white">#CERT-4582</span>
+                  </div>
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
+                    <span className="text-sm text-gray-400">Inspection Date:</span>
+                    <span className="text-sm font-medium text-white">2023-10-15</span>
+                  </div>
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
+                    <span className="text-sm text-gray-400">Inspector:</span>
+                    <span className="text-sm font-medium text-white">John Smith</span>
+                  </div>
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
+                    <span className="text-sm text-gray-400">Combo Type:</span>
+                    <span className="text-sm font-medium text-white">Premium Package</span>
+                  </div>
+                  <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
+                    <span className="text-sm text-gray-400">Integrity Score:</span>
+                    <span className="inline-block rounded bg-green-500/20 px-3 py-1 text-sm font-medium text-green-400">
+                      92%
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Certification Report */}
+              <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
+                <h4 className="mb-6 text-base font-semibold text-white">Certification Report</h4>
+                <div className="space-y-4">
+                  <p className="text-sm text-gray-300">
+                    Complete AI certification report with detailed analysis of vehicle condition.
+                  </p>
+                  
+                  <div className="space-y-3">
+                    <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-500/20 px-4 py-3 text-sm font-medium text-blue-400 transition-colors hover:bg-blue-500/30">
+                      <span>📄</span>
+                      View Full Report
+                    </button>
+                    
+                    <button className="flex w-full items-center justify-center gap-2 rounded-lg bg-green-500/20 px-4 py-3 text-sm font-medium text-green-400 transition-colors hover:bg-green-500/30">
+                      <span>📥</span>
+                      Download PDF
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* QR Code */}
+              <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
+                <h4 className="mb-6 text-base font-semibold text-white">QR Code</h4>
+                <div className="space-y-4 text-center">
+                  <p className="text-sm text-gray-300">
+                    Scan to verify certification
+                  </p>
+                  
+                  {/* QR Code Display */}
+                  <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-lg bg-white p-2">
+                    <Image
+                      src="/provax-dashboard/file-icons/code.png"
+                      alt="QR Code"
+                      width={112}
+                      height={112}
+                      className="h-full w-full object-contain"
+                    />
+                  </div>
+                  
+                  <button className="w-full rounded-lg bg-cyan-500/20 px-4 py-2 text-sm font-medium text-cyan-400 transition-colors hover:bg-cyan-500/30">
+                    Generate New QR Code
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
+
+        
         {activeDetailTab === "Seller Information" && (
-          <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 text-center text-gray-400">
-            Seller information details coming soon...
+          <div className="space-y-6 p-6 border rounded m-2 border-[#2a2d4a]">
+            {/* Information Header */}
+            <h3 className="text-lg font-semibold text-white">Information</h3>
+            
+            {/* Seller Profile Section */}
+            <div className="space-y-6 border-t border-[#2a2d4a] pt-6">
+              {/* Seller Avatar and Basic Info */}
+              <div className="flex items-center gap-4">
+                <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-gray-300">
+                  <Image  
+                    src="/avatars/john-smith.jpg"
+                    alt="John Smith"
+                    width={64}
+                    height={64}
+                    className="h-full w-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling.style.display = 'flex';
+                    }}
+                  />
+                  <div className="hidden h-full w-full items-center justify-center bg-gray-500 text-white text-xl font-semibold">
+                    JS
+                  </div>
+                </div>
+                
+                <div className="flex-1">
+                  <h4 className="text-xl font-semibold text-white">John Smith</h4>
+                  
+                  {/* Rating Stars */}
+                  <div className="flex items-center gap-2 mt-1">
+                    <div className="flex items-center">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <span
+                          key={star}
+                          className={`text-lg ${
+                            star <= 4 ? 'text-yellow-400' : 'text-gray-400'
+                          }`}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    <span className="text-sm text-gray-300">4.5/5.0</span>
+                  </div>
+                  
+                  <p className="text-sm text-gray-400 mt-1">
+                    Certified Seller • Member since 2022
+                  </p>
+                </div>
+              </div>
+              
+              {/* Contact Information and Seller Statistics Grid */}
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                {/* Contact Information */}
+                <div className="border border-[#2a2d4a] rounded-xl overflow-hidden bg-[#1D1D41]">
+                  <div className="bg-[#252850] px-6 py-4 border-b border-[#2a2d4a]">
+                    <h5 className="text-lg font-semibold text-white">Contact Information</h5>
+                  </div>
+                  
+                  <div className="divide-y divide-[#2a2d4a]">
+                    <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
+                      <span className="text-sm text-gray-400">Email:</span>
+                      <span className="text-sm font-medium text-white">john.smith@example.com</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
+                      <span className="text-sm text-gray-400">Phone:</span>
+                      <span className="text-sm font-medium text-white">+1 (555) 123-4567</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
+                      <span className="text-sm text-gray-400">Location:</span>
+                      <span className="text-sm font-medium text-white">New York, NY</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Seller Statistics */}
+                <div className="border border-[#2a2d4a] rounded-xl overflow-hidden bg-[#1D1D41]">
+                  <div className="bg-[#252850] px-6 py-4 border-b border-[#2a2d4a]">
+                    <h5 className="text-lg font-semibold text-white">Seller Statistics</h5>
+                  </div>
+                  
+                  <div className="divide-y divide-[#2a2d4a]">
+                    <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
+                      <span className="text-sm text-gray-400">Total Listings:</span>
+                      <span className="text-sm font-medium text-white">#LIST-4582</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
+                      <span className="text-sm text-gray-400">Sold Vehicles:</span>
+                      <span className="text-sm font-medium text-white">2023-10-15</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between px-6 py-4 bg-[#1D1D41]">
+                      <span className="text-sm text-gray-400">Response Rate:</span>
+                      <span className="text-sm font-medium text-white">2023-10-20</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between px-6 py-4 bg-[#252850]">
+                      <span className="text-sm text-gray-400">Average Response Time:</span>
+                      <span className="text-sm font-medium text-white">1,248</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
+
+
         {activeDetailTab === "Image" && (
-          <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 text-center text-gray-400">
-            Image details coming soon...
+          <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 space-y-4  text-gray-400">
+            
+              {/* Uploaded Photos */}
+                <div className="rounded-xl border border-[#2a2d4a] bg-[#23234B] p-6">
+                  <h4 className="mb-4 text-base font-semibold text-white">Vehicle Images</h4>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src="/provax/seat.png"
+                        alt="Engine Bay" 
+                        className="w-full h-32 object-cover"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#191840] p-2">
+                        <span className="text-xs font-medium text-white">Engine Bay</span>
+                      </div>
+                    </div>
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src="/provax/car-top-view.png"
+                        alt="Dashboard Warning" 
+                        className="w-full h-32 object-cover"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#191840] p-2">
+                        <span className="text-xs font-medium text-white">Dashboard Warning</span>
+                      </div>
+                    </div>
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src="/provax/lightCar.png"
+                        alt="Engine Overall" 
+                        className="w-full h-32 object-cover"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#191840] p-2">
+                        <span className="text-xs font-medium text-white">Engine Overall</span>
+                      </div>
+                    </div>
+                      <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src="/provax/seat.png"
+                        alt="Engine Bay" 
+                        className="w-full h-32 object-cover"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#191840] p-2">
+                        <span className="text-xs font-medium text-white">Engine Bay</span>
+                      </div>
+                    </div>
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src="/provax/car-top-view.png"
+                        alt="Dashboard Warning" 
+                        className="w-full h-32 object-cover"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#191840] p-2">
+                        <span className="text-xs font-medium text-white">Dashboard Warning</span>
+                      </div>
+                    </div>
+                    <div className="relative overflow-hidden rounded-lg">
+                      <img 
+                        src="/provax/lightCar.png"
+                        alt="Engine Overall" 
+                        className="w-full h-32 object-cover"
+                      />
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#191840] p-2">
+                        <span className="text-xs font-medium text-white">Engine Overall</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Status Control */}
+                <div className="rounded-xl border border-[#2a2d4a] bg-[#23234B] p-6">
+                  <h4 className="mb-4 text-base font-semibold text-white">Image Moderation</h4>
+                  <div className="flex gap-3">
+                    <button className="rounded-lg bg-green-500/20 px-5 py-3 text-sm font-medium text-green-400 transition-colors hover:bg-green-500/30">
+                    <span className="pr-2">✓</span>
+                      Approve All Images
+                    </button>
+                    
+                    <button className="rounded-lg bg-red-500/20 px-5 py-3 text-sm font-medium text-red-400 transition-colors hover:bg-red-500/30">
+                      <span  className="pr-2" >✗</span>
+                      Reject Selected
+                    </button>
+                  </div>
+                </div>
           </div>
         )}
       </div>
@@ -1313,7 +1607,7 @@ function ModerationGuidelinesTab() {
           <h3 className="font-semibold text-white">Moderation Guidelines</h3>
         </div>
         {/* Guidelines Grid - 3 Columns */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 p-7">
+        <div className="grid grid-cols-1 gap-6 p-7 md:grid-cols-3">
           {guidelines.map((guideline, idx) => (
             <div
               key={idx}
