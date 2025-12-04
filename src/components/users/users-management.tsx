@@ -4,6 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { EnhancedUserTable } from "@/components/users/enhanced-user-table";
 import { EditUserModal } from "@/components/users/edit-user-modal";
+import { ResetPasswordModal } from "@/components/modals/reset-password-modal";
+import { AddNoteModal } from "@/components/modals/add-note-modal";
+import { AddFlagModal } from "@/components/modals/add-flag-modal";
+import { DeactivateUserModal } from "@/components/modals/deactivate-user-modal";
 import { User } from "@/types/user";
 
 interface UsersManagementProps {
@@ -18,6 +22,10 @@ export function UsersManagement({ users }: UsersManagementProps) {
     users && users.length > 0 ? users[0] : null
   );
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
+  const [isAddNoteModalOpen, setIsAddNoteModalOpen] = useState(false);
+  const [isAddFlagModalOpen, setIsAddFlagModalOpen] = useState(false);
+  const [isDeactivateModalOpen, setIsDeactivateModalOpen] = useState(false);
   const [editFormData, setEditFormData] = useState<{
     fullName: string;
     email: string;
@@ -100,7 +108,14 @@ export function UsersManagement({ users }: UsersManagementProps) {
       <div>
         {activeTab === "list" && <UserListTab users={users} onViewUser={handleViewUser} />}
         {activeTab === "detail" && (
-          <UserDetailTab user={selectedUser || users[0]} onEditClick={handleEditClick} />
+          <UserDetailTab 
+            user={selectedUser || users[0]} 
+            onEditClick={handleEditClick}
+            onResetPassword={() => setIsResetPasswordModalOpen(true)}
+            onAddNote={() => setIsAddNoteModalOpen(true)}
+            onAddFlag={() => setIsAddFlagModalOpen(true)}
+            onDeactivate={() => setIsDeactivateModalOpen(true)}
+          />
         )}
         {activeTab === "audit" && <AuditLogTab />}
       </div>
@@ -112,6 +127,31 @@ export function UsersManagement({ users }: UsersManagementProps) {
         onFormChange={setEditFormData}
         onSave={handleSaveChanges}
         onCancel={() => setIsEditModalOpen(false)}
+      />
+      
+      {/* Other Modals */}
+      <ResetPasswordModal
+        isOpen={isResetPasswordModalOpen}
+        onClose={() => setIsResetPasswordModalOpen(false)}
+        userName={selectedUser?.name || "Unknown User"}
+      />
+      
+      <AddNoteModal
+        isOpen={isAddNoteModalOpen}
+        onClose={() => setIsAddNoteModalOpen(false)}
+        userName={selectedUser?.name || "Unknown User"}
+      />
+      
+      <AddFlagModal
+        isOpen={isAddFlagModalOpen}
+        onClose={() => setIsAddFlagModalOpen(false)}
+        userName={selectedUser?.name || "Unknown User"}
+      />
+      
+      <DeactivateUserModal
+        isOpen={isDeactivateModalOpen}
+        onClose={() => setIsDeactivateModalOpen(false)}
+        userName={selectedUser?.name || "Unknown User"}
       />
     </div>
   );
@@ -199,8 +239,23 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
 }
 
 // User Detail Tab
-function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => void }) {
+function UserDetailTab({ 
+  user, 
+  onEditClick,
+  onResetPassword,
+  onAddNote,
+  onAddFlag,
+  onDeactivate
+}: { 
+  user: User; 
+  onEditClick: () => void;
+  onResetPassword: () => void;
+  onAddNote: () => void;
+  onAddFlag: () => void;
+  onDeactivate: () => void;
+}) {
   const [activeDetailTab, setActiveDetailTab] = useState("Personal Info");
+  
   const userRole = "Inspector";
   const userSegment = "Premium";
 
@@ -252,24 +307,28 @@ function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => v
             </button>
             <button
               type="button"
+              onClick={onResetPassword}
               className="rounded-lg bg-[#1a1d3a] px-4 py-2 text-sm text-white transition-colors hover:bg-[#239bc6]"
             >
               Reset Access PW
             </button>
             <button
               type="button"
+              onClick={onAddNote}
               className="rounded-lg bg-[#1a1d3a] px-4 py-2 text-sm text-white transition-colors hover:bg-[#239bc6]"
             >
               Add Notes
             </button>
             <button
               type="button"
+              onClick={onAddFlag}
               className="rounded-lg bg-[#1a1d3a] px-4 py-2 text-sm text-white transition-colors hover:bg-[#239bc6]"
             >
               Add Flag
             </button>
             <button
               type="button"
+              onClick={onDeactivate}
               className="rounded-lg border border-red-500/50 bg-red-500/20 px-4 py-2 text-sm text-red-400 transition-colors hover:bg-red-500/30"
             >
               Deactive

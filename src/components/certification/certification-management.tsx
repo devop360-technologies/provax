@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { EnhancedUserTable } from "@/components/users/enhanced-user-table";
 import { EditUserModal } from "@/components/users/edit-user-modal";
+import { AddTechnicalCommentModal } from "@/components/modals/add-technical-comment-modal";
+import { DeleteCommentModal } from "@/components/modals/delete-comment-modal";
 import { User } from "@/types/user";
 import { Edit, Trash } from "lucide-react";
 import { BarChartOverview, ChartOverview } from "../dashboard";
@@ -20,6 +22,10 @@ export function CertificationManagement({ users }: certificationManagementProps)
     users && users.length > 0 ? users[0] : null
   );
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isTechnicalCommentModalOpen, setIsTechnicalCommentModalOpen] = useState(false);
+  const [isDeleteCommentModalOpen, setIsDeleteCommentModalOpen] = useState(false);
+  const [editingComment, setEditingComment] = useState<any>(null);
+  const [deletingComment, setDeletingComment] = useState<any>(null);
   const [editFormData, setEditFormData] = useState<{
     fullName: string;
     email: string;
@@ -58,6 +64,52 @@ export function CertificationManagement({ users }: certificationManagementProps)
 
   const handleSaveChanges = () => {
     setIsEditModalOpen(false);
+  };
+
+  const handleTechnicalCommentModalOpen = () => {
+    setEditingComment(null);
+    setIsTechnicalCommentModalOpen(true);
+  };
+
+  const handleEditComment = (comment: any) => {
+    setEditingComment({
+      commentType: "Technical Override",
+      aiModule: comment.module.replace("AI Module: ", ""),
+      priority: "Medium",
+      comment: comment.text,
+      requiresFollowUp: false
+    });
+    setIsTechnicalCommentModalOpen(true);
+  };
+
+  const handleDeleteComment = (comment: any) => {
+    setDeletingComment(comment);
+    setIsDeleteCommentModalOpen(true);
+  };
+
+  const handleConfirmDeleteComment = () => {
+    console.log("Comment deleted:", deletingComment);
+    // Add your delete logic here
+    setDeletingComment(null);
+    setIsDeleteCommentModalOpen(false);
+  };
+
+  const handleSaveTechnicalComment = (commentData: {
+    commentType: string;
+    aiModule: string;
+    priority: string;
+    comment: string;
+    requiresFollowUp: boolean;
+  }) => {
+    if (editingComment) {
+      console.log("Technical comment updated:", commentData);
+      // Add your update logic here
+    } else {
+      console.log("Technical comment saved:", commentData);
+      // Add your save logic here
+    }
+    setEditingComment(null);
+    setIsTechnicalCommentModalOpen(false);
   };
 
   return (
@@ -112,7 +164,13 @@ export function CertificationManagement({ users }: certificationManagementProps)
       <div>
         {activeTab === "list" && <UserListTab users={users} onViewUser={handleViewUser} />}
         {activeTab === "detail" && (
-          <UserDetailTab user={selectedUser || users[0]} onEditClick={handleEditClick} />
+          <UserDetailTab 
+            user={selectedUser || users[0]} 
+            onEditClick={handleEditClick}
+            onTechnicalCommentClick={handleTechnicalCommentModalOpen}
+            onEditComment={handleEditComment}
+            onDeleteComment={handleDeleteComment}
+          />
         )}
         {activeTab === "statistics" && <AIStatisticsTab />}
         {activeTab === "export" && <DataExportTab />}
@@ -125,6 +183,29 @@ export function CertificationManagement({ users }: certificationManagementProps)
         onFormChange={setEditFormData}
         onSave={handleSaveChanges}
         onCancel={() => setIsEditModalOpen(false)}
+      />
+
+      {/* Technical Comment Modal */}
+      <AddTechnicalCommentModal
+        isOpen={isTechnicalCommentModalOpen}
+        onClose={() => {
+          setIsTechnicalCommentModalOpen(false);
+          setEditingComment(null);
+        }}
+        onSave={handleSaveTechnicalComment}
+        editData={editingComment}
+        isEditing={!!editingComment}
+      />
+
+      {/* Delete Comment Modal */}
+      <DeleteCommentModal
+        isOpen={isDeleteCommentModalOpen}
+        onClose={() => {
+          setIsDeleteCommentModalOpen(false);
+          setDeletingComment(null);
+        }}
+        onConfirm={handleConfirmDeleteComment}
+        commentAuthor={deletingComment?.author}
       />
     </div>
   );
@@ -377,7 +458,19 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
 }
 
 // Certification Detail Tab
-function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => void }) {
+function UserDetailTab({ 
+  user, 
+  onEditClick, 
+  onTechnicalCommentClick,
+  onEditComment,
+  onDeleteComment
+}: { 
+  user: User; 
+  onEditClick: () => void;
+  onTechnicalCommentClick: () => void;
+  onEditComment: (comment: any) => void;
+  onDeleteComment: (comment: any) => void;
+}) {
   const [activeDetailTab, setActiveDetailTab] = useState("User Uploads");
 
   const detailTabs = [
@@ -453,7 +546,13 @@ function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => v
         {activeDetailTab === "AI Module Results" && <AIModuleResultsTab />}
         {activeDetailTab === "Reports" && <ReportsTab />}
         {activeDetailTab === "Vehicle Metrics" && <VehicleMetricsTab />}
-        {activeDetailTab === "Admin Comments" && <AdminCommentsTab />}
+        {activeDetailTab === "Admin Comments" && (
+          <AdminCommentsTab 
+            onTechnicalCommentClick={onTechnicalCommentClick}
+            onEditComment={onEditComment}
+            onDeleteComment={onDeleteComment}
+          />
+        )}
       </div>
     </div>
   );
@@ -464,16 +563,16 @@ function UserDetailTab({ user, onEditClick }: { user: User; onEditClick: () => v
 // User Uploads Tab
 function UserUploadsTab() {
   const mediaItems = [
-    { id: 1, title: "Front View", image: "https://via.placeholder.com/300x200?text=Front+View" },
-    { id: 2, title: "Rear View", image: "https://via.placeholder.com/300x200?text=Rear+View" },
-    { id: 3, title: "Slide View", image: "https://via.placeholder.com/300x200?text=Slide+View" },
-    { id: 4, title: "Engine Bay", image: "https://via.placeholder.com/300x200?text=Engine+Bay" },
+    { id: 1, title: "Front View", image: "/provax-images/Markeetplace/card-cars/frontcar.png" },
+    { id: 2, title: "Rear View", image: "/provax-images/Markeetplace/card-cars/fullcar.png" },
+    { id: 3, title: "Slide View", image: "/provax-images/Markeetplace/card-cars/darkcar.png" },
+    { id: 4, title: "Engine Bay", image: "/provax-images/Markeetplace/card-cars/car.png" },
     {
       id: 5,
       title: "Interior View",
-      image: "https://via.placeholder.com/300x200?text=Interior+View"
+      image: "/provax-images/Markeetplace/card-cars/first.png"
     },
-    { id: 6, title: "Test Drive Video", image: "https://via.placeholder.com/300x200?text=Video" }
+    { id: 6, title: "Test Drive Video", image: "/provax-images/Markeetplace/card-cars/treecar.png" }
   ];
 
   return (
@@ -486,13 +585,20 @@ function UserUploadsTab() {
               key={item.id}
               className="group relative overflow-hidden rounded-lg border border-[#2a2d4a] bg-[#252850] transition-colors hover:border-cyan-400/50"
             >
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={300}
-                height={200}
-                className="h-40 w-full object-cover"
-              />
+              <div className="relative h-40 w-full bg-[#2a2d4a]">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={300}
+                  height={200}
+                  className="h-40 w-full object-cover"
+                  unoptimized
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%232a2d4a'/%3E%3Ctext x='150' y='90' font-family='Arial, sans-serif' font-size='14' fill='%236b7280' text-anchor='middle' dy='0.3em'%3E" + item.title + "%3C/text%3E%3Ctext x='150' y='110' font-family='Arial, sans-serif' font-size='12' fill='%234b5563' text-anchor='middle' dy='0.3em'%3EImage Loading...%3C/text%3E%3C/svg%3E";
+                  }}
+                />
+              </div>
               <div className="absolute inset-0 flex items-center justify-center gap-4 bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
                 <button className="rounded-lg bg-cyan-500/20 p-3 text-cyan-400 transition-colors hover:bg-cyan-500/40">
                   👁️ View
@@ -788,7 +894,15 @@ function VehicleMetricsTab() {
 }
 
 // Admin Comments Tab
-function AdminCommentsTab() {
+function AdminCommentsTab({ 
+  onTechnicalCommentClick, 
+  onEditComment, 
+  onDeleteComment 
+}: { 
+  onTechnicalCommentClick: () => void;
+  onEditComment: (comment: any) => void;
+  onDeleteComment: (comment: any) => void;
+}) {
   const comments = [
     {
       id: 1,
@@ -854,12 +968,18 @@ function AdminCommentsTab() {
               <div className="flex gap-2">
                 {/* Action Buttons */}
                 {/* Edit */}
-                <button className="rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] p-2 transition-colors hover:border-cyan-400/50">
+                <button 
+                  onClick={() => onEditComment(comment)}
+                  className="rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] p-2 transition-colors hover:border-cyan-400/50"
+                >
                   <Edit className="h-4 w-4 text-cyan-400" />
                 </button>
 
                 {/* Delete */}
-                <button className="rounded-lg border border-red-500/30 bg-red-500/20 p-2 transition-colors hover:border-red-500/50">
+                <button 
+                  onClick={() => onDeleteComment(comment)}
+                  className="rounded-lg border border-red-500/30 bg-red-500/20 p-2 transition-colors hover:border-red-500/50"
+                >
                   <Trash className="h-4 w-4 text-red-400" />
                 </button>
               </div>
@@ -870,7 +990,10 @@ function AdminCommentsTab() {
 
       {/* Add New Comment Button */}
       <div className="mt- flex w-full justify-center">
-        <button className="align-center flex items-center justify-center gap-2 rounded-xl bg-[#3083FF] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+        <button 
+          onClick={onTechnicalCommentClick}
+          className="align-center flex items-center justify-center gap-2 rounded-xl bg-[#3083FF] px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+        >
           <span>+</span> Add New Comment
         </button>
       </div>
