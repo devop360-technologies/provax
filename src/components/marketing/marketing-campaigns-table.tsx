@@ -77,20 +77,20 @@ export function MarketingCampaignsTable({
   className,
 }: MarketingCampaignsTableProps) {
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-4 bg-[#1D1D41] p-4 border border-[#404254] rounded-2xl", className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium text-white">Marketing Campaigns</h2>
         <Button
           onClick={onViewAll}
-          className="h-8 rounded-lg border border-[#3B82F6] bg-transparent px-4 text-xs font-medium text-[#3B82F6] hover:bg-[#3B82F6]/10"
+          className="h-8 rounded border border-[#3B82F6] bg-transparent px-4 text-xs font-medium text-[#3B82F6] hover:bg-[#3B82F6]/10"
         >
           View All Templates
         </Button>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-[#404254] bg-[#0f1123]">
+      <div className="overflow-x-auto rounded-lg border border-[#404254] bg-[#1D1D41]">
         <table className="w-full">
           <thead>
             <tr className="border-b border-[#404254]">

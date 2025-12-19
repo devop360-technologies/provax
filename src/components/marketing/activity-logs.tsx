@@ -67,13 +67,13 @@ export function ActivityLogs({
   className,
 }: ActivityLogsProps) {
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-4 bg-[#1D1D41] p-6 border border-[#404254] rounded-2xl", className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium text-white">Activity Log</h2>
         <Button
           onClick={onViewAll}
-          className="h-8 rounded-lg border border-[#3B82F6] bg-transparent px-4 text-xs font-medium text-[#3B82F6] hover:bg-[#3B82F6]/10"
+          className="h-8 rounded border border-[#3B82F6] bg-transparent px-4 text-xs font-medium text-[#3B82F6] hover:bg-[#3B82F6]/10"
         >
           View All Templates
         </Button>

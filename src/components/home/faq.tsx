@@ -185,7 +185,7 @@ export default function FAQSection() {
 
   return (
     <section
-      className="relative min-h-screen w-full overflow-hidden px-4 py-20 md:px-8"
+      className="relative min-h-screen w-full overflow-hidden px-4 py-20 md:px-8 bg-secondary"
       style={{
         backgroundImage: `url(${carview.src})`,
         backgroundSize: "cover",

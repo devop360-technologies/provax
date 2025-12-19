@@ -54,12 +54,12 @@ export function VersionHistoryTable({
   className,
 }: VersionHistoryTableProps) {
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-4 bg-[#1D1D41] p-4 border border-[#404254] rounded-2xl  ", className)}>
       {/* Header */}
       <h2 className="text-sm font-medium text-white">Version History</h2>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-[#404254] bg-[#0f1123]">
+      <div className="overflow-x-auto rounded-lg border border-[#404254] bg-[#1D1D41]">
         <table className="w-full">
           <thead>
             <tr className="border-b border-[#404254]">

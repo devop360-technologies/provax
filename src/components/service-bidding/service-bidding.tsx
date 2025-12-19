@@ -636,7 +636,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                 {/* Provider Cards Grid */}
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   {/* AutoFix Pro Services */}
-                  <div className="rounded-xl border border-[#23234B] bg-[#1D1D41] p-6">
+                  <div className="rounded-xl border border-[#23234B] bg-[#26265c] p-6">
                     <h4 className="mb-4 text-lg font-semibold text-white">AutoFix Pro Services</h4>
                     
                     <div className="mb-4 flex gap-6 text-sm">
@@ -676,10 +676,10 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                   </div>
 
                   {/* QuickFix Mechanics */}
-                  <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
+                  <div className="rounded-xl border border-[#2a2d4a] bg-[#26265c] p-6">
                     <h4 className="mb-4 text-lg font-semibold text-white">QuickFix Mechanics</h4>
                     
-                    <div className="mb-4 flex gap-6 text-sm">
+                    <div className="mb-4 flex gap-6 text-sm"> 
                       <div>
                         <span className="text-gray-400">Deadline: </span>
                         <span className="text-white">7 days</span>
@@ -716,7 +716,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                   </div>
 
                   {/* Elite Auto Care */}
-                  <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
+                  <div className="rounded-xl border border-[#2a2d4a] bg-[#26265c] p-6">
                     <h4 className="mb-4 text-lg font-semibold text-white">Elite Auto Care</h4>
                     
                     <div className="mb-4 flex gap-6 text-sm">
@@ -756,7 +756,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                   </div>
 
                   {/* QuickFix Mechanics (Second Entry) */}
-                  <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
+                  <div className="rounded-xl border border-[#2a2d4a] bg-[#26265c] p-6">
                     <h4 className="mb-4 text-lg font-semibold text-white">QuickFix Mechanics</h4>
                     
                     <div className="mb-4 flex gap-6 text-sm">

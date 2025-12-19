@@ -33,7 +33,7 @@ export function EmailTemplateCard({
   return (
     <div
       className={cn(
-        "rounded-lg border border-[#404254] bg-[#0f1123] p-4 transition-all hover:border-[#505464]",
+        "rounded-lg border border-[#404254] bg-[#26244A] p-4 transition-all hover:border-[#505464]",
         className
       )}
     >
@@ -44,7 +44,7 @@ export function EmailTemplateCard({
         </div>
         <span
           className={cn(
-            "rounded-full px-2 py-0.5 text-[9px] font-medium",
+            "rounded px-2 py-0.5 text-[9px] font-medium",
             statusStyles[status]
           )}
         >

@@ -238,7 +238,7 @@ import Logo from "@/components/logo";
 export default function Footer() {
   return (
     <section
-      className="relative min-h-[50vh] lg:min-h-[calc(100vh-200px)] w-full overflow-hidden"
+      className="relative min-h-[50vh] lg:min-h-[calc(100vh-200px)] w-full overflow-hidden bg-secondary"
       style={{
         backgroundImage: `url(${carfooter.src})`,
         backgroundSize: "contain",

@@ -137,13 +137,13 @@ export default function MarketingPage() {
       </div>
       <div className="mr-0 space-y-0 md:mr-7">
         {/* Tabs Section */}
-        <div className="mb-5 rounded-t-xl border border-[#2a2d4a] bg-[#1D1D41]">
+        <div className="mb-5 rounded-xl pb-1 border border-[#404254] bg-[#1D1D41]">
           <ManagementTabs tabs={managementTabs} activeTab={activeTab} onTabChange={setActiveTab} />
         </div>
 
         {/* Action Buttons */}
         {activeTab === "home" && (
-          <div className="mb-5 border-x border-[#2a2d4a] bg-[#1D1D41] px-6 py-4">
+          <div className="mb-5 border-x rounded-xl border-[#404254] bg-[#1D1D41] p-6 ">
             <ActionButtons
               onPreviewChanges={handlePreviewChanges}
               onPublish={handlePublish}
@@ -153,12 +153,12 @@ export default function MarketingPage() {
         )}
 
         {/* Content Area */}
-        <div className="space-y-6 rounded-xl bg-[#1D1D41] p-6">
+        <div className="space-y-6 rounded-xl bg-[#141332]">
           {/* Home Management Tab Content */}
           {activeTab === "home" && (
             <>
               {/* Homepage Banners Section */}
-              <div className="space-y-4 pb-6">
+              <div className="space-y-2 bg-[#1D1D41]  p-6 border border-[#404254] rounded-2xl">
                 <div className="flex items-center justify-between pb-3">
                   <h2 className="text-base font-medium text-white">
                     Homepage Banners

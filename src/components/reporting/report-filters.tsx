@@ -1,30 +1,27 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Plus, Download } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface EmailFiltersProps {
+interface ReportFiltersProps {
   onApplyFilters?: (filters: {
     status: string;
     category: string;
     fromDate: string;
     toDate: string;
   }) => void;
-  onCreateTemplate?: () => void;
-  onCreateCampaign?: () => void;
+  onResetFilter?: () => void;
   className?: string;
 }
 
-export function EmailFilters({
+export function ReportFilters({
   onApplyFilters,
-  onCreateTemplate,
-  onCreateCampaign,
+  onResetFilter,
   className,
-}: EmailFiltersProps) {
+}: ReportFiltersProps) {
   const handleApplyFilters = () => {
     onApplyFilters?.({
-      status: "All Status",
+      status: "Last 7 Days",
       category: "All Categories",
       fromDate: "01/01/2023",
       toDate: "12/31/2023",
@@ -32,21 +29,19 @@ export function EmailFilters({
   };
 
   return (
-    <div>
-    <div>
+    <div className={cn("space-y-4 rounded-lg bg-[#1D1D41] p-6", className)}>
       {/* Filter Row */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-5 lg:grid-cols-6 border p-4 rounded-2xl my-3 bg-[#1D1D41]  border-[#404254]">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-5 lg:grid-cols-5">
         {/* Status Filter */}
         <div>
           <label className="mb-2 block text-xs font-medium text-gray-300">
             Status
           </label>
           <select className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
-            <option>All Status</option>
-            <option>Draft</option>
-            <option>Scheduled</option>
-            <option>Sent</option>
-            <option>Failed</option>
+            <option>Last 7 Days</option>
+            <option>Last 14 Days</option>
+            <option>Last 30 Days</option>
+            <option>Last 90 Days</option>
           </select>
         </div>
 
@@ -57,10 +52,9 @@ export function EmailFilters({
           </label>
           <select className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
             <option>All Categories</option>
-            <option>Promotional</option>
-            <option>Transactional</option>
-            <option>Newsletter</option>
-            <option>Alerts</option>
+            <option>Certifications</option>
+            <option>Marketplace</option>
+            <option>Services</option>
           </select>
         </div>
 
@@ -99,36 +93,15 @@ export function EmailFilters({
         </div>
       </div>
 
-    <div className={cn("space-y-4 rounded-lg bg-[#1D1D41] p-6 border border-[#404254]", className)}>
-      {/* Action Buttons Row */}
-      <div className="flex items-center justify-between ">
-        <div className="flex gap-3">
-          <Button
-            onClick={onCreateTemplate}
-            className="h-9 gap-2 rounded-lg bg-[#3B82F6] px-4 text-xs font-medium text-white hover:bg-[#2563EB]"
-          >
-            <Plus className="size-4" />
-            Create Template
-          </Button>
-          <Button
-            onClick={onCreateCampaign}
-            className="h-9 gap-2 rounded-lg bg-[#10B981] px-4 text-xs font-medium text-white hover:bg-[#059669]"
-          >
-            <Plus className="size-4" />
-            Create Campaign
-          </Button>
-        </div>
+      {/* Reset Filter Button */}
+      <div className="flex justify-end">
         <Button
-          variant="outline"
-          className="h-9 gap-2 rounded-lg border border-[#404254] bg-transparent px-4 text-xs font-medium text-gray-300 hover:bg-[#252850] hover:text-white"
+          onClick={onResetFilter}
+          className="rounded-lg border border-[#404254] bg-transparent px-4 py-2 text-xs font-medium text-gray-400 hover:bg-[#252850]"
         >
-          <Download className="size-4" />
-          Export Data
+          Reset Filter
         </Button>
       </div>
-
-      </div>
-    </div>
     </div>
   );
 }

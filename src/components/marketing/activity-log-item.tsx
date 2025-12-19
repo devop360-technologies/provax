@@ -20,7 +20,7 @@ export function ActivityLogItem({
   return (
     <div
       className={cn(
-        "border-l-4 border-l-[#00D9FF] bg-[#0f1123] p-4 transition-all hover:bg-[#1a1d3a]",
+        "border-l-4 rounded-2xl border-l-[#00D9FF] bg-[#26244A] p-4 transition-all hover:bg-[#1a1d3a]",
         className
       )}
     >

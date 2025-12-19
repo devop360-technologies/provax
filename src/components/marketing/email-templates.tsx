@@ -55,7 +55,7 @@ export function EmailTemplates({
   className,
 }: EmailTemplatesProps) {
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("space-y-4 bg-[#1D1D41] p-4 border border-[#404254] rounded-2xl", className)}>
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="text-sm font-medium text-white">

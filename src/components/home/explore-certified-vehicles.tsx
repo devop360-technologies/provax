@@ -217,7 +217,7 @@ export default function ExploreCertifiedVehicles() {
     : vehicles.filter(vehicle => vehicle.category === selectedCategory);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden px-4 py-12 sm:py-20 md:px-8">
+    <section className="relative min-h-screen w-full overflow-hidden px-4 py-12 sm:py-20 md:px-8 bg-secondary">
       {/* Background Image */}
       <Image
         src={crystalCarImage}

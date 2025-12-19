@@ -272,3 +272,33 @@
 .animate-gradient {
   animation: gradient 3s ease infinite;
 }
+
+
+
+/* For Chrome, Edge, Safari, and Opera */
+/* Target the scrollbar itself */
+::-webkit-scrollbar {
+  width: 12px; /* Set the width of the vertical scrollbar */
+  background-color: #757070; /* Color of the scrollbar track area */
+}
+/* Target the scrollbar track */
+::-webkit-scrollbar-track {
+  background: #888282; /* You can also use a variable here */
+  border-radius: 10px; /* Optional: adds rounded corners to the track */
+}
+/* Target the draggable scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #5d5858; /* Color of the draggable part */
+  border-radius: 10px; /* Optional: adds rounded corners to the thumb */
+  border: 3px solid #F5F5F5; /* Optional: creates a margin around the thumb */
+}
+/* Optional: Style the thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #000000; /* Color when the user hovers over the thumb */
+}
+/* For Firefox */
+/* The scrollbar-color property sets the thumb and track color respectively */
+body {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #000 #F5F5F5; /* thumb color track color */
+}
