@@ -1,5 +1,6 @@
 "use client";
 
+import { Download, FileText, Clock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type StatusBadgeType = "COMPLETED" | "PENDING" | "VERIFIED" | "APPROVED";
@@ -17,6 +18,9 @@ interface RevenueAnalyticsRow {
 interface RevenueAnalyticsTableProps {
   rows?: RevenueAnalyticsRow[];
   className?: string;
+  onExportCSV?: () => void;
+  onExportPDF?: () => void;
+  onViewTimeline?: () => void;
 }
 
 const defaultRows: RevenueAnalyticsRow[] = [
@@ -77,11 +81,39 @@ const statusColorMap: Record<StatusBadgeType, { bg: string; text: string }> = {
 export function RevenueAnalyticsTable({
   rows = defaultRows,
   className,
+  onExportCSV,
+  onExportPDF,
+  onViewTimeline,
 }: RevenueAnalyticsTableProps) {
   return (
     <div className={cn("rounded-lg border border-[#404254] bg-[#1D1D41] p-6", className)}>
       {/* Header */}
-      <h3 className="mb-4 text-base font-medium text-white">Revenue Analytics</h3>
+      <div className="mb-4 flex items-center justify-between">
+        <h3 className="text-base font-medium text-white">Escrow Analytics</h3>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onExportCSV}
+            className="flex items-center gap-1 rounded bg-[#10B981] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#059669] transition-colors"
+          >
+            <Download size={14} />
+            Export CSV
+          </button>
+          <button
+            onClick={onExportPDF}
+            className="flex items-center gap-1 rounded bg-[#FF6B6B] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#EF4444] transition-colors"
+          >
+            <FileText size={14} />
+            Export PDF
+          </button>
+          <button
+            onClick={onViewTimeline}
+            className="flex items-center gap-1 rounded border border-[#00D9FF] px-3 py-1.5 text-xs font-medium text-[#00D9FF] hover:bg-[#1D1D41] transition-colors"
+          >
+            <Clock size={14} />
+            View Timeline
+          </button>
+        </div>
+      </div>
 
       {/* Table */}
       <div className="overflow-x-auto">
@@ -89,13 +121,13 @@ export function RevenueAnalyticsTable({
           <thead>
             <tr className="border-b border-[#404254]">
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Source ID
+                Dispute ID
               </th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
                 Amount
               </th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Details
+                Parties
               </th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
                 Status
@@ -104,10 +136,7 @@ export function RevenueAnalyticsTable({
                 Days Open
               </th>
               <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Notes
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Resolutions
+                Resolution
               </th>
             </tr>
           </thead>
@@ -142,7 +171,6 @@ export function RevenueAnalyticsTable({
                   <td className="px-4 py-3 text-sm text-gray-300">
                     {row.daysOpen}
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-500">{row.notes}</td>
                   <td className="px-4 py-3 text-sm text-gray-500">
                     {row.resolutions}
                   </td>

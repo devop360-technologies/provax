@@ -62,7 +62,7 @@ export function AIModuleConfiguration({
 
       <AIModuleCard
         moduleName="Decision Engine"
-        icon="⚙️"
+        icon="🧠"
         iconBgColor="#FF6B6B"
         thresholdLabel="Decisiveness Threshold"
         decisivenessThreshold={modules.decisionEngine.decisiveness}
@@ -81,7 +81,7 @@ export function AIModuleConfiguration({
 
       <AIModuleCard
         moduleName="LLM Module"
-        icon="🧠"
+        icon="⚙️"
         iconBgColor="#F59E0B"
         thresholdLabel="Accuracy Threshold"
         accuracyThreshold={modules.llmModule.accuracy}

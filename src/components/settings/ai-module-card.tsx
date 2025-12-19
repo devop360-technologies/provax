@@ -34,11 +34,10 @@ export function AIModuleCard({
   alertSettings = { enabled: true, email: false },
   onAlertSettingsChange,
   iconBgColor = "#3B82F6",
-  thresholdLabel = "Confidence Threshold",
+  thresholdLabel = "Confidence Threshold"
 }: AIModuleCardProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const threshold =
-    confidenceThreshold ?? decisivenessThreshold ?? accuracyThreshold ?? 80;
+  const threshold = confidenceThreshold ?? decisivenessThreshold ?? accuracyThreshold ?? 80;
   const onThresholdChange =
     onConfidenceThresholdChange ||
     onDecisivenessThresholdChange ||
@@ -49,34 +48,32 @@ export function AIModuleCard({
     "Auto - review on low confidence",
     "Manual - always require review",
     "Auto - review on errors only",
-    "Disabled",
+    "Disabled"
   ];
 
   return (
-    <div className="rounded-lg border border-[#404254] bg-[#252850] p-6 mb-6">
+    <div className="mb-6 rounded-lg border border-[#404254] bg-[#252850] p-6">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="mb-6 flex items-center gap-3">
         <div
-          className="h-8 w-8 rounded-lg flex items-center justify-center text-lg"
+          className="flex h-8 w-8 items-center justify-center rounded-lg text-lg"
           style={{ backgroundColor: iconBgColor }}
         >
           {icon}
         </div>
         <div>
           <h3 className="text-base font-medium text-white">{moduleName}</h3>
-          <span className="inline-block mt-1 px-2 py-0.5 rounded bg-[#10B981] text-xs font-medium text-white">
+          <span className="mt-1 inline-block rounded bg-[#10B981] px-2 py-0.5 text-xs font-medium text-white">
             Live
           </span>
         </div>
       </div>
 
       {/* Main Controls Grid */}
-      <div className="grid grid-cols-2 gap-8 mb-6">
+      <div className="mb-6 grid grid-cols-2 gap-8">
         {/* Threshold Section */}
         <div>
-          <label className="block text-sm font-medium text-white mb-3">
-            {thresholdLabel}
-          </label>
+          <label className="mb-3 block text-sm font-medium text-white">{thresholdLabel}</label>
           <div className="flex items-center gap-4">
             <input
               type="range"
@@ -84,41 +81,33 @@ export function AIModuleCard({
               max="100"
               value={threshold}
               onChange={(e) => onThresholdChange(Number(e.target.value))}
-              className="flex-1 h-2 rounded-lg appearance-none bg-gradient-to-r from-[#3B82F6] to-[#00D9FF] cursor-pointer"
+              className="h-2 flex-1 cursor-pointer appearance-none rounded-lg bg-gradient-to-r from-[#3B82F6] to-[#00D9FF]"
               style={{
-                background: `linear-gradient(to right, #3B82F6 0%, #00D9FF ${threshold}%, #404254 ${threshold}%, #404254 100%)`,
+                background: `linear-gradient(to right, #3B82F6 0%, #00D9FF ${threshold}%, #404254 ${threshold}%, #404254 100%)`
               }}
             />
-            <span className="text-sm font-medium text-gray-400 w-12 text-right">
-              {threshold}%
-            </span>
+            <span className="w-12 text-right text-sm font-medium text-gray-400">{threshold}%</span>
           </div>
-          <p className="mt-2 text-xs text-gray-500">
-            {thresholdLabel.toLowerCase()}
-          </p>
+          <p className="mt-2 text-xs text-gray-500">{thresholdLabel.toLowerCase()}</p>
         </div>
 
         {/* Human Review Rule */}
         <div>
-          <label className="block text-sm font-medium text-white mb-3">
-            Human Review Rule
-          </label>
+          <label className="mb-3 block text-sm font-medium text-white">Human Review Rule</label>
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-lg border border-[#404254] bg-[#1D1D41] text-sm text-gray-400 hover:border-[#505464]"
+              className="flex w-full items-center justify-between rounded-lg border border-[#404254] bg-[#1D1D41] px-3 py-2 text-sm text-gray-400 hover:border-[#505464]"
             >
               <span>{humanReviewRule}</span>
               <ChevronDown
                 size={18}
-                className={`transition-transform ${
-                  isDropdownOpen ? "rotate-180" : ""
-                }`}
+                className={`transition-transform ${isDropdownOpen ? "rotate-180" : ""}`}
               />
             </button>
 
             {isDropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-1 rounded-lg border border-[#404254] bg-[#1D1D41] shadow-lg z-10">
+              <div className="absolute top-full right-0 left-0 z-10 mt-1 rounded-lg border border-[#404254] bg-[#1D1D41] shadow-lg">
                 {dropdownOptions.map((option) => (
                   <button
                     key={option}
@@ -126,7 +115,7 @@ export function AIModuleCard({
                       onHumanReviewRuleChange?.(option);
                       setIsDropdownOpen(false);
                     }}
-                    className="w-full text-left px-3 py-2 text-sm text-gray-400 hover:bg-[#252850] hover:text-white first:rounded-t-lg last:rounded-b-lg transition-colors"
+                    className="w-full px-3 py-2 text-left text-sm text-gray-400 transition-colors first:rounded-t-lg last:rounded-b-lg hover:bg-[#252850] hover:text-white"
                   >
                     {option}
                   </button>
@@ -138,37 +127,57 @@ export function AIModuleCard({
       </div>
 
       {/* Alert Settings */}
-      <div className="pt-4 border-t border-[#404254]">
-        <h4 className="text-sm font-medium text-white mb-3">Alert Settings</h4>
-        <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={alertSettings.enabled}
-              onChange={(e) =>
-                onAlertSettingsChange?.({
-                  ...alertSettings,
-                  enabled: e.target.checked,
-                })
-              }
-              className="w-4 h-4 rounded border-[#404254] bg-[#1D1D41] accent-[#00D9FF]"
-            />
-            <span className="text-sm text-gray-400">Enable Alerts</span>
-          </label>
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={alertSettings.email}
-              onChange={(e) =>
-                onAlertSettingsChange?.({
-                  ...alertSettings,
-                  email: e.target.checked,
-                })
-              }
-              className="w-4 h-4 rounded border-[#404254] bg-[#1D1D41] accent-[#00D9FF]"
-            />
-            <span className="text-sm text-gray-400">Email Alerts</span>
-          </label>
+      <div className="border-t border-[#404254] pt-4">
+        <div className="grid grid-cols-2 gap-8">
+          {/* Error Rate Threshold */}
+          <div>
+            <label className="mb-3 block text-sm font-medium text-white">Error Rate Threshold</label>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                defaultValue="3.0"
+                step="0.1"
+                className="w-[calc(100%-100px)] rounded-lg border border-[#404254] bg-[#1D1D41] px-3 py-2 text-sm text-white focus:border-[#00D9FF] focus:outline-none"
+              />
+              <span className="text-sm font-medium text-gray-400">%</span>
+            </div>
+            <p className="mt-2 text-xs text-gray-500">Alert when error rate exceeds this value</p>
+          </div>
+
+          {/* Alert Settings */}
+          <div>
+            <h4 className="mb-3 text-sm font-medium text-white">Alert Settings</h4>
+            <div className="flex flex-col gap-3">
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={alertSettings.email}
+                  onChange={(e) =>
+                    onAlertSettingsChange?.({
+                      ...alertSettings,
+                      email: e.target.checked
+                    })
+                  }
+                  className="h-4 w-4 rounded border-[#404254] bg-[#1D1D41] accent-[#00D9FF]"
+                />
+                <span className="text-sm text-white">Email Alerts</span>
+              </label>
+              <label className="flex cursor-pointer items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={alertSettings.enabled}
+                  onChange={(e) =>
+                    onAlertSettingsChange?.({
+                      ...alertSettings,
+                      enabled: e.target.checked
+                    })
+                  }
+                  className="h-4 w-4 rounded border-[#404254] bg-[#1D1D41] accent-[#00D9FF]"
+                />
+                <span className="text-sm text-white">Slack/Webhook Alerts</span>
+              </label>
+            </div>
+          </div>
         </div>
       </div>
     </div>

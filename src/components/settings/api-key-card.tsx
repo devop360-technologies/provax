@@ -62,7 +62,8 @@ export function APIKeyCard({
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Public Key */}
         <div>
           <label className="block text-xs font-medium text-gray-400 mb-2">
@@ -115,6 +116,8 @@ export function APIKeyCard({
           </div>
         )}
 
+        
+
         {accessToken && (
           <div>
             <label className="block text-xs font-medium text-gray-400 mb-2">
@@ -140,9 +143,10 @@ export function APIKeyCard({
             </div>
           </div>
         )}
+        </div>
       </div>
 
-      <div className="flex items-center gap-4 mt-6 pt-4 border-t border-[#404254]">
+      <div className="flex justify-end gap-4 mt-6 pt-4 border-t border-[#404254]">
         <button
           onClick={onGenerateNewKey}
           className="px-4 py-2 rounded-lg border border-[#F59E0B] text-sm font-medium text-[#F59E0B] hover:bg-[#1D1D41] transition-colors"

@@ -1,5 +1,6 @@
 "use client";
 
+import { Download, FileText, Expand } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface DataPoint {
@@ -12,6 +13,9 @@ interface RevenueOverviewChartProps {
   dataLabel: string;
   color: "cyan" | "green";
   className?: string;
+  onExportCSV?: () => void;
+  onExportPDF?: () => void;
+  onExpand?: () => void;
 }
 
 export function RevenueOverviewChart({
@@ -19,6 +23,9 @@ export function RevenueOverviewChart({
   dataLabel,
   color,
   className,
+  onExportCSV,
+  onExportPDF,
+  onExpand,
 }: RevenueOverviewChartProps) {
   const colorClass = color === "cyan" ? "#00D9FF" : "#22C55E";
   const gradientColor = color === "cyan" ? "#00D9FF" : "#22C55E";
@@ -68,8 +75,31 @@ export function RevenueOverviewChart({
   return (
     <div className={cn("rounded-lg border border-[#404254] bg-[#1D1D41] p-6", className)}>
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-6 flex items-center justify-between">
         <h3 className="text-base font-medium text-white">{title}</h3>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onExportCSV}
+            className="flex items-center gap-1 rounded bg-[#10B981] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#059669] transition-colors"
+          >
+            <Download size={14} />
+            Export CSV
+          </button>
+          <button
+            onClick={onExportPDF}
+            className="flex items-center gap-1 rounded bg-[#FF6B6B] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#EF4444] transition-colors"
+          >
+            <FileText size={14} />
+            Export PDF
+          </button>
+          <button
+            onClick={onExpand}
+            className="flex items-center gap-1 rounded border border-[#00D9FF] px-3 py-1.5 text-xs font-medium text-[#00D9FF] hover:bg-[#1D1D41] transition-colors"
+          >
+            <Expand size={14} />
+            Expand
+          </button>
+        </div>
       </div>
 
       {/* Chart */}

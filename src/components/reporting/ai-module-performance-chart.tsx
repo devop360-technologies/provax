@@ -1,5 +1,6 @@
 "use client";
 
+import { Download, FileText, Expand } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface BarData {
@@ -13,6 +14,9 @@ interface AIModulePerformanceChartProps {
   color: "green" | "red";
   data?: BarData[];
   className?: string;
+  onExportCSV?: () => void;
+  onExportPDF?: () => void;
+  onExpand?: () => void;
 }
 
 const defaultSuccessData: BarData[] = [
@@ -37,30 +41,56 @@ export function AIModulePerformanceChart({
   color,
   data,
   className,
+  onExportCSV,
+  onExportPDF,
+  onExpand,
 }: AIModulePerformanceChartProps) {
   const chartData = data || (color === "green" ? defaultSuccessData : defaultErrorData);
   const colorClass = color === "green" ? "#22C55E" : "#FF6B6B";
   const maxValue = Math.max(...chartData.map(item => item.value));
 
   return (
-    <div className={cn("rounded-lg border border-[#404254] bg-[#1D1D41] p-6", className)}>
+    <div className={cn("rounded-lg border border-[#404254] bg-[#1D1D41] p-4", className)}>
       {/* Header */}
-      <div className="mb-6">
-        <h3 className="text-base font-medium text-white">{title}</h3>
+      <div className="mb-6 flex items-center justify-between ">
+        <h4 className="text-base font-medium text-white">{title}</h4>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onExportCSV}
+            className="flex items-center gap-1 rounded bg-[#10B981] px-2 py-1.5 text-[11px] font-medium text-white hover:bg-[#059669] transition-colors"
+          >
+            <Download size={14} />
+            Export CSV
+          </button>
+          <button
+            onClick={onExportPDF}
+            className="flex items-center gap-1 rounded bg-[#FF6B6B] px-2 py-1.5 text-[11px] font-medium text-white hover:bg-[#EF4444] transition-colors"
+          >
+            <FileText size={14} />
+            Export PDF
+          </button>
+          <button
+            onClick={onExpand}
+            className="flex items-center gap-1 rounded border border-[#00D9FF] px-2 py-1.5 text-[11px] font-medium text-[#00D9FF] hover:bg-[#1D1D41] transition-colors"
+          >
+            <Expand size={14} />
+            Expand
+          </button>
+        </div>
       </div>
 
       {/* Chart */}
-      <div className="flex items-end justify-between gap-3" style={{ height: "250px" }}>
+      <div className="flex items-end justify-between gap-4 px-4" style={{ height: "280px" }}>
         {chartData.map((item, index) => (
-          <div key={index} className="flex flex-col items-center gap-2 flex-1">
+          <div key={index} className="flex flex-col items-center gap-3 flex-1">
             <div
-              className="w-full rounded-t-lg transition-all hover:opacity-80"
+              className="w-full rounded-t-md transition-all hover:opacity-80"
               style={{
-                height: `${(item.value / maxValue) * 200}px`,
+                height: `${(item.value / maxValue) * 230}px`,
                 backgroundColor: colorClass,
               }}
             />
-            <span className="text-xs text-gray-400 text-center">{item.label}</span>
+            <span className="text-[10px] text-gray-400 text-center whitespace-nowrap">{item.label}</span>
           </div>
         ))}
       </div>

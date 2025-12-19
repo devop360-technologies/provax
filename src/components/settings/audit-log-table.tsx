@@ -111,7 +111,7 @@ export function AuditLogTable({
               >
                 <td className="px-6 py-4">
                   <span
-                    className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white"
+                    className="inline-block px-3 py-1 rounded text-xs font-semibold text-white"
                     style={{ backgroundColor: colors.bg }}
                   >
                     {entry.eventType}

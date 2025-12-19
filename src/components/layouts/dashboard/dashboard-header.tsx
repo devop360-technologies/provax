@@ -124,14 +124,18 @@ import { Input } from "@/components/ui/input";
 import { UserDropdown } from "@/components/layouts/dashboard/nav-user"; // ← your new component
 import { Button } from "@react-email/components";
 import { Bell, Search } from "lucide-react";
+import { getCurrentUser } from "@/lib/auth";
 
-export function DashboardHeader() {
+export async function DashboardHeader() {
+
+  const user = await getCurrentUser();
+  console.log("user hu mai",user);
   return (
     <header className="bg-[#1D1D41] border-b border-[#2a2d4a] px-6 py-5 sticky top-5 rounded-2xl mr-10 z-40">
       <div className="flex items-center justify-between gap-8">
         {/* Left side - Welcome text */}
         <div className="flex-1 min-w-0">
-          <h1 className="text-xl font-semibold text-white truncate">Welcome back, Andrew Smith</h1>
+          <h1 className="text-xl font-semibold text-white truncate">Welcome back, {user?.name}</h1>
           <p className="text-[12px] text-gray-400 mt-1">Welcome back, manage your automotive AI platform</p>
         </div>
 

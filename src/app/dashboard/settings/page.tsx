@@ -54,8 +54,8 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f1123]">
-      <div className="mx-auto max-w-7xl px-6 py-8">
+    <div className="min-h-screen ">
+      <div className="mx-auto max-w-7xl mr-0 md:mr-7 py-6">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white">Settings</h1>
@@ -73,7 +73,7 @@ export default function SettingsPage() {
 
         {/* Tab Content */}
         {activeTab === "fees-commissions" && (
-          <div className="bg-[#1D1D41] rounded-lg p-8">
+          <div className="bg-[#1D1D41] rounded-lg p-6">
             <h2 className="text-xl font-semibold text-white mb-8">
               Fee & Commissions Configuration
             </h2>

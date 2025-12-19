@@ -98,21 +98,21 @@ export function AIModuleVolumeAreaChart({
         <div className="flex gap-2">
           <Button
             onClick={handleExportCSV}
-            className="h-8 gap-2 rounded-lg bg-[#10B981] px-3 text-xs font-medium text-white hover:bg-[#059669]"
+            className="h-8 gap-2 rounded bg-[#10B981] px-1 text-xs font-medium text-white hover:bg-[#059669]"
           >
             <Download className="size-3" />
             Export CSV
           </Button>
           <Button
             onClick={handleExportPDF}
-            className="h-8 gap-2 rounded-lg bg-[#FF6B6B] px-3 text-xs font-medium text-white hover:bg-[#EE5A52]"
+            className="h-8 gap-2 rounded bg-[#FF6B6B] px-1 text-xs font-medium text-white hover:bg-[#EE5A52]"
           >
             <Download className="size-3" />
             Export PDF
           </Button>
           <Button
             onClick={handleComparePeriods}
-            className="h-8 gap-2 rounded-lg border border-[#404254] bg-transparent px-3 text-xs font-medium text-gray-400 hover:bg-[#252850]"
+            className="h-8 gap-2 rounded border border-[#404254] bg-transparent px-1 text-xs font-medium text-gray-400 hover:bg-[#252850]"
           >
             Compare Periods
           </Button>

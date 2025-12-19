@@ -98,7 +98,7 @@ export default function SubscriptionPlans() {
                 <div className="align-center flex items-center justify-center space-y-1">
                   <div className="flex flex-col items-baseline text-center">
                     <div>
-                      <span className="mb-30 text-3xl">$</span>
+                      <span className="mb-30 text-3xl text-white">$</span>
 
                       <span className="text-4xl font-bold text-white md:text-5xl">
                         {plan.price}

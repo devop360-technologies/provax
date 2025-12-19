@@ -16,7 +16,7 @@ export function ReportTabs({
   className,
 }: ReportTabsProps) {
   return (
-    <div className={cn("flex border-b border-[#404254]", className)}>
+    <div className={cn("flex  bg-[#1D1D41] rounded-2xl border border-[#2a2d4a] ", className)}>
       {tabs.map((tab) => (
         <button
           key={tab.id}
@@ -24,13 +24,13 @@ export function ReportTabs({
           className={cn(
             "px-6 py-4 text-sm font-medium transition-colors relative",
             activeTab === tab.id
-              ? "text-white"
+              ? "text-[#64CFF6]"
               : "text-gray-400 hover:text-gray-300"
           )}
         >
           {tab.label}
           {activeTab === tab.id && (
-            <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#3B82F6]" />
+            <div className="absolute bottom-0 left-3 right-3 h-0.5 bg-[#64CFF6]" />
           )}
         </button>
       ))}

@@ -34,7 +34,7 @@ const navItems: NavItem[] = [
   { href: "/dashboard/marketing", icon: BarChart3, label: "Marketing" },
   { href: "/dashboard/reporting", icon: FileText, label: "Reporting Panel" },
   { href: "/dashboard/settings", icon: Settings, label: "Settings" },
-  { href: "/dashboard/change-password", icon: Lock, label: "Change Password" },
+  // { href: "/dashboard/change-password", icon: Lock, label: "Change Password" },
 ];
 
 export function DashboardSidebar() {

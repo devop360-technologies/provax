@@ -47,7 +47,7 @@ export function AuditLogDetailsModal({
           <div className="flex items-start justify-between">
             <span className="text-gray-400 font-medium">Event Type:</span>
             <span
-              className="inline-block px-3 py-1 rounded-full text-xs font-semibold text-white"
+              className="inline-block px-3 py-1 rounded text-xs font-semibold text-white"
               style={{ backgroundColor: bgColor }}
             >
               {entry.eventType}

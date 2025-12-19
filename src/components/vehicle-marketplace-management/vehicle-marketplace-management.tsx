@@ -503,7 +503,7 @@ function ListingDetailTab({ listing }: { listing: User }) {
             </div>
 
             <div className="m-6 gap-3 rounded-2xl bg-[#23234B] p-6">
-              <h3 className="py-2">Description</h3>
+              <h3 className="py-2 text-white text-lg font-semibold">Description</h3>
               <hr className="border-[#2a2d4a] py-2" />
               <p className="text-sm text-gray-400">
                 This 2022 Toyota Camry comes equipped with the Premium Package and has been
@@ -517,9 +517,9 @@ function ListingDetailTab({ listing }: { listing: User }) {
             </div>
 
             <div className="m-6 gap-3 rounded-2xl bg-[#23234B] p-6">
-              <h3 className="py-2">Description</h3>
+              <h3 className="py-2 text-white text-lg font-semibold">Status Control</h3>
               <hr className="border-[#2a2d4a] py-2" />
-              <div className="flex w-1/2 gap-2.5">
+              <div className="flex w-1/2 gap-2.5 text-white">
                 <button className="rounded-lg border border-[#262656] bg-[#262656] px-8 py-3 text-sm">
                   Active
                 </button>

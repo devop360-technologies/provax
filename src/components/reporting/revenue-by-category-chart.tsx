@@ -1,5 +1,6 @@
 "use client";
 
+import { Download, FileText } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CategoryData {
@@ -18,6 +19,8 @@ interface RevenueByCategoryChartProps {
   data?: CategoryData[];
   tableData?: RevenueByCategory[];
   className?: string;
+  onExportCSV?: () => void;
+  onExportPDF?: () => void;
 }
 
 const defaultData: CategoryData[] = [
@@ -36,6 +39,8 @@ export function RevenueByCategoryChart({
   data = defaultData,
   tableData = defaultTableData,
   className,
+  onExportCSV,
+  onExportPDF,
 }: RevenueByCategoryChartProps) {
   // Calculate angles for pie chart
   const total = data.reduce((sum, item) => sum + item.value, 0);
@@ -67,8 +72,24 @@ export function RevenueByCategoryChart({
   return (
     <div className={cn("rounded-lg border border-[#404254] bg-[#1D1D41] p-6", className)}>
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-6 flex items-center justify-between">
         <h3 className="text-base font-medium text-white">Revenue by Category</h3>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onExportCSV}
+            className="flex items-center gap-1 rounded bg-[#10B981] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#059669] transition-colors"
+          >
+            <Download size={14} />
+            Export CSV
+          </button>
+          <button
+            onClick={onExportPDF}
+            className="flex items-center gap-1 rounded bg-[#FF6B6B] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#EF4444] transition-colors"
+          >
+            <FileText size={14} />
+            Export PDF
+          </button>
+        </div>
       </div>
 
       {/* Content Grid */}
