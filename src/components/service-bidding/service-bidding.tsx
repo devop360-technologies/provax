@@ -159,11 +159,11 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 py-4 md:mr-7">
+      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 pt-4 md:mr-7">
         <div className="flex gap-8">
           <button
             onClick={() => setActiveTab("Service Requests")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "Service Requests"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -173,7 +173,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
           </button>
           <button
             onClick={() => setActiveTab("Service Detail")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "Service Detail"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -183,7 +183,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
           </button>
           <button
             onClick={() => setActiveTab("Dispute Management")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "Dispute Management"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -193,7 +193,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
           </button>
           <button
             onClick={() => setActiveTab("SLA Tracking")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "SLA Tracking"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"

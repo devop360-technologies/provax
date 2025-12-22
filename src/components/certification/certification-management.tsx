@@ -115,11 +115,11 @@ export function CertificationManagement({ users }: certificationManagementProps)
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 py-4 md:mr-7">
+      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 pt-4 md:mr-7">
         <div className="flex gap-8">
           <button
             onClick={() => setActiveTab("list")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "list"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -129,7 +129,7 @@ export function CertificationManagement({ users }: certificationManagementProps)
           </button>
           <button
             onClick={() => setActiveTab("detail")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "detail"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -139,7 +139,7 @@ export function CertificationManagement({ users }: certificationManagementProps)
           </button>
           <button
             onClick={() => setActiveTab("statistics")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "statistics"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -149,7 +149,7 @@ export function CertificationManagement({ users }: certificationManagementProps)
           </button>
           <button
             onClick={() => setActiveTab("export")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "export"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"

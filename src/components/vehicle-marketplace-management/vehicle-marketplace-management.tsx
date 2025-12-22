@@ -25,11 +25,11 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 py-4 md:mr-7">
+      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 pt-4 md:mr-7">
         <div className="flex gap-8">
           <button
             onClick={() => setActiveTab("Catalog")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "Catalog"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -39,7 +39,7 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
           </button>
           <button
             onClick={() => setActiveTab("detail")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "detail"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -49,7 +49,7 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
           </button>
           <button
             onClick={() => setActiveTab("tools")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "tools"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"
@@ -59,7 +59,7 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
           </button>
           <button
             onClick={() => setActiveTab("moderation")}
-            className={`px-2 font-medium transition-colors ${
+            className={`px-2 pb-3 font-medium transition-colors ${
               activeTab === "moderation"
                 ? "border-b-2 border-cyan-400 text-cyan-400"
                 : "text-gray-400 hover:text-white"

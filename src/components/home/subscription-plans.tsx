@@ -128,7 +128,7 @@ export default function SubscriptionPlans() {
                       : "border-2 border-white/30 bg-transparent text-white hover:gap-3 hover:border-green-400/60"
                   }`}
                 >
-                  <span className=" flex justify-between w-full text-[12px] md:text-base">
+                  <span className=" flex justify-between w-full text-[12px] md:text-base text-white font-semibold">
 
                   <span>
                   Subscribe Now

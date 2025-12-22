@@ -144,11 +144,11 @@ export default function HowItWorks() {
           {/* ---- CAR (bottom on mobile) ---- */}
           <div className="relative mt-12 lg:mt-0 lg:w-1/2">
             {/* Glowing circles */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* <div className="absolute inset-0 flex items-center justify-center">
               <div className="h-[500px] w-[500px] rounded-full border border-cyan-500/20"></div>
               <div className="absolute h-[400px] w-[400px] rounded-full border border-cyan-500/30"></div>
               <div className="absolute h-[300px] w-[300px] rounded-full border border-cyan-500/40"></div>
-            </div>
+            </div> */}
 
             {/* Car + glow */}
             <div className="relative z-10">
@@ -156,9 +156,9 @@ export default function HowItWorks() {
               <Image
                 src={carImage}
                 alt="Car Top View"
-                width={800}
-                height={500}
-                className="relative z-10 mx-auto w-full max-w-md"
+                width={900}
+                height={600}
+                className="relative z-10 mx-auto w-full max-w-4xl "
                 priority
               />
             </div>
