@@ -8,6 +8,17 @@
   .animate-scale-up {
     animation: scaleUp 0.8s ease-out forwards;
   }
+
+  .writing-vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .writing-vertical-reverse {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
 }
 
 @theme inline {
