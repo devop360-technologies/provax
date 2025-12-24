@@ -1,18 +1,101 @@
+import { ProvidetStatCard } from "@/provider-components/provider-stat-card";
+import { ActiveJobCard } from "@/provider-components/active-jobs/active-job-card";
+
 export default function ProviderActiveJobsPage() {
+  const activeJobs = [
+    {
+      id: '1',
+      title: 'AC System Repair - 2017 Honda Accord',
+      year: '2017 - Honda Accord',
+      client: 'John Doe',
+      deadline: 'June 15, 2023',
+      jobValue: '$750',
+      escrowStatus: 'Funded',
+      fullDescription:
+        'AC blowing warm air. Need diagnosis and repair. Will do replacement if needed, recharge the system with R134a, and test A/C performance. Includes cabin air filter replacement.',
+      escrowInformation: {
+        amount: '$750',
+        text: 'Funds are held securely. Will be released to you upon client approval of completed work.',
+      },
+      status: 'In Progress' as const,
+    },
+    {
+      id: '2',
+      title: 'Brake Pad Replacement - 2020 Toyota Camry',
+      year: '2020 - Toyota Camry',
+      client: 'Sarah Johnson',
+      deadline: 'June 12, 2023',
+      jobValue: '$520',
+      escrowStatus: 'Funded',
+      fullDescription:
+        'Front brakes are squeaking badly. Need brake pad replacement and rotor inspection. Payment will be released within 24 hours of approval.',
+      escrowInformation: {
+        amount: '$520',
+        text: 'Funds are held securely. Will be released to you upon client approval of completed work.',
+      },
+      status: 'In Progress' as const,
+    },
+    {
+      id: '3',
+      title: 'AC System Repair - 2017 Honda Accord',
+      year: '2017 - Honda Accord',
+      client: 'Michael Chen',
+      deadline: 'June 18, 2023',
+      jobValue: '$750',
+      escrowStatus: 'Funded',
+      fullDescription:
+        'AC system not cooling. Suspect compressor failure. Will inspect, diagnose, and replace if necessary with warranty guarantee.',
+      escrowInformation: {
+        amount: '$750',
+        text: 'Funds are held securely. Will be released to you upon client approval of completed work.',
+      },
+      status: 'In Progress' as const,
+    },
+  ];
+
   return (
-    <div className="flex items-center justify-center min-h-[60vh] pr-6">
-      <div className="text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-green-500/20 to-cyan-500/20 mb-6">
-          <svg className="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-          </svg>
-        </div>
-        <h1 className="text-4xl font-bold text-white mb-4">Coming Soon</h1>
-        <p className="text-gray-400 text-lg max-w-md">Active Jobs feature is under development.</p>
-        <div className="mt-8 flex items-center justify-center gap-2">
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-          <span className="text-green-400 text-sm">In Development</span>
-        </div>
+    <div className="mr-0 md:mr-10">
+      {/* Stats Grid - 4 columns */}
+      <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <ProvidetStatCard
+          title="Open Requests"
+          value="12"
+          change=""
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/users.png"
+          iconBg="bg-[#64CFF6]"
+        />
+        <ProvidetStatCard
+          title="Active Proposals"
+          value="8"
+          change=""
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/vehicle.png"
+          iconBg="bg-[#64CFF6]"
+        />
+        <ProvidetStatCard
+          title="Active Jobs"
+          value="5"
+          change=""
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/list.png"
+          iconBg="bg-[#64CFF6]"
+        />
+        <ProvidetStatCard
+          title="Escrow Value"
+          value="7"
+          change=""
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/services.png"
+          iconBg="bg-[#64CFF6]"
+        />
+      </div>
+
+      {/* Active Job Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {activeJobs.map((job) => (
+          <ActiveJobCard key={job.id} {...job} />
+        ))}
       </div>
     </div>
   );

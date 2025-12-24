@@ -56,7 +56,7 @@ export default function CertificationUploadPage() {
   };
 
   return (
-    <div className="min-h-[70vh] bg-[#1D1D41] rounded-2xl mr-0 md:mr-7 p-6 md:p-8">
+    <div className="min-h-[70vh] bg-[#1D1D41] rounded-2xl mr-0 md:mr-10 p-6 md:p-8">
       {currentStep === 'module-selection' && (
         <div className="space-y-8">
           <MediaUpload
