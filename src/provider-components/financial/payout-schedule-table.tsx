@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { Download, FileText, Eye } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PaymentDetailsModal } from "./payment-details-modal";
 
 interface PayoutItem {
   client: string;
@@ -10,13 +12,24 @@ interface PayoutItem {
   deliveryDate: string;
 }
 
+interface PaymentDetails {
+  paymentId: string;
+  date: string;
+  amount: string;
+  status: "Paid" | "Pending" | "Failed";
+  method: string;
+  breakdown: {
+    name: string;
+    amount: string;
+  }[];
+  total: string;
+}
+
 interface PayoutScheduleTableProps {
   className?: string;
   data?: PayoutItem[];
   onExportCSV?: () => void;
   onExportPDF?: () => void;
-  onViewDetails?: (item: PayoutItem) => void;
-  onDownloadReceipt?: (item: PayoutItem) => void;
 }
 
 const defaultData: PayoutItem[] = [
@@ -51,9 +64,38 @@ export function PayoutScheduleTable({
   data = defaultData,
   onExportCSV,
   onExportPDF,
-  onViewDetails,
-  onDownloadReceipt,
 }: PayoutScheduleTableProps) {
+  const [selectedPayment, setSelectedPayment] = useState<PaymentDetails | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleViewDetails = (item: PayoutItem) => {
+    // Mock payment details - in real app, this would come from an API
+    const paymentDetails: PaymentDetails = {
+      paymentId: "PAY-00123",
+      date: item.deliveryDate,
+      amount: item.amount,
+      status: "Paid",
+      method: "Visa ****4242",
+      breakdown: [
+        { name: "Brake Pads Replacement", amount: "$180.00" },
+        { name: "Brake Rotors Replacement", amount: "$220.00" },
+        { name: "Labor Charges", amount: "$50.00" },
+      ],
+      total: item.amount,
+    };
+    setSelectedPayment(paymentDetails);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedPayment(null);
+  };
+
+  const handleDownloadReceipt = () => {
+    console.log("Download receipt for payment:", selectedPayment?.paymentId);
+    // Implement receipt download logic
+  };
   return (
     <div className={cn("rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6", className)}>
       {/* Header */}
@@ -118,14 +160,14 @@ export function PayoutScheduleTable({
                 <td className="py-4 px-4">
                   <div className="flex items-center justify-end gap-2">
                     <button
-                      onClick={() => onViewDetails?.(item)}
+                      onClick={() => handleViewDetails(item)}
                       className="flex items-center gap-1.5 rounded-full border border-[#2a2d4a] bg-transparent px-3 py-1.5 text-xs font-medium text-gray-300 hover:bg-[#2a2d4a] transition-colors"
                     >
                       <Eye size={14} />
                       Details
                     </button>
                     <button
-                      onClick={() => onDownloadReceipt?.(item)}
+                      onClick={handleDownloadReceipt}
                       className="flex items-center gap-1.5 rounded-full border border-[#2a2d4a] bg-transparent px-3 py-1.5 text-xs font-medium text-gray-300 hover:bg-[#2a2d4a] transition-colors"
                     >
                       <Download size={14} />
@@ -138,6 +180,14 @@ export function PayoutScheduleTable({
           </tbody>
         </table>
       </div>
+
+      {/* Payment Details Modal */}
+      <PaymentDetailsModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        payment={selectedPayment}
+        onDownloadReceipt={handleDownloadReceipt}
+      />
     </div>
   );
 }
