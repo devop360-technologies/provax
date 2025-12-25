@@ -1,19 +1,61 @@
+import { StatCard } from "@/components/dashboard";
+import {
+  RevenueOverviewChart,
+  PaymentStatusChart,
+  EscrowBalancePanel,
+  PayoutScheduleTable,
+} from "@/provider-components/financial";
+
 export default function ProviderFinancialPage() {
   return (
-    <div className="flex items-center justify-center min-h-[60vh] pr-6">
-      <div className="text-center">
-        <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-green-500/20 to-cyan-500/20 mb-6">
-          <svg className="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </div>
-        <h1 className="text-4xl font-bold text-white mb-4">Coming Soon</h1>
-        <p className="text-gray-400 text-lg max-w-md">Financial feature is under development.</p>
-        <div className="mt-8 flex items-center justify-center gap-2">
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-          <span className="text-green-400 text-sm">In Development</span>
-        </div>
+    <div className="mr-0 md:mr-6 space-y-6">
+      {/* Stats Grid - 4 columns */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          title="Total Earnings"
+          value="12,458"
+          change="+2.5% from last month"
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/inspection.png"
+          iconBg="bg-[#64CFF6]"
+        />
+        <StatCard
+          title="Available for Payout"
+          value="3,742"
+          change="+0.5% from last month"
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/warning.png"
+          iconBg="bg-[#64CFF6]"
+        />
+        <StatCard
+          title="In Escrow"
+          value="8,921"
+          change="+12.4% from last month"
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/clock.png"
+          iconBg="bg-[#64CFF6]"
+        />
+        <StatCard
+          title="Avg. Job Value"
+          value="1,245"
+          change="+12.4% from last month"
+          changeType="positive"
+          iconSrc="/provax-dashboard/icons/tw.png"
+          iconBg="bg-[#64CFF6]"
+        />
       </div>
+
+      {/* Revenue Overview & Payment Status Distribution */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <RevenueOverviewChart />
+        <PaymentStatusChart />
+      </div>
+
+      {/* Escrow Balance Panel */}
+      <EscrowBalancePanel />
+
+      {/* Payout Schedule Table */}
+      <PayoutScheduleTable />
     </div>
   );
 }
