@@ -29,7 +29,7 @@ const defaultReviews: Review[] = [
   {
     id: "1",
     author: "Michael Johnson",
-    avatar: "/avatars/avatar-1.png",
+    avatar: "/avatars/avatar-1.jpg",
     date: "June 8, 2023",
     rating: 5.0,
     content:

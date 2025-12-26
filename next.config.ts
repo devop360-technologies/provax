@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         hostname: "via.placeholder.com",
         port: "",
         pathname: "/**"
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.analyticsvidhya.com",
+        port: "",
+        pathname: "/**"
       }
     ]
   }

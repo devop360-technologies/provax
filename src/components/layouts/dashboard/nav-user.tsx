@@ -38,7 +38,7 @@ export async function UserDropdown() {
       <DropdownMenuTrigger asChild>
         <button className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#252850] transition-colors group">
           <Avatar className="h-10 w-10">
-            <AvatarImage src={user.image || "/avatars/user-avatar.jpg"} alt={displayName} />
+            <AvatarImage src={user.image || "/avatars/avatar-1.jpg"} alt={displayName} />
             <AvatarFallback className="bg-gradient-to-br rounded-full from-green-400 to-green-600 text-white font-bold text-sm">
               {initials}
             </AvatarFallback>
@@ -57,7 +57,7 @@ export async function UserDropdown() {
         <DropdownMenuLabel className="px-4 py-3">
           <div className="flex items-center gap-3">
             <Avatar className="h-9 w-9 border-2 border-green-500">
-              <AvatarImage src={user.image || "/avatars/user-avatar.jpg"} alt={displayName} />
+              <AvatarImage src={user.image || "/avatars/avatar-1.jpg"} alt={displayName} />
               <AvatarFallback className="bg-gradient-to-br from-green-400 to-green-600 text-white font-bold text-sm">
                 {initials}
               </AvatarFallback>

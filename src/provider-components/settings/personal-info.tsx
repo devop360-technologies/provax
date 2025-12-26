@@ -40,7 +40,7 @@ const defaultData: PersonalInfoData = {
   city: "San Francisco",
   state: "California",
   zipCode: "94107",
-  avatar: "https://cdn.analyticsvidhya.com/wp-content/uploads/2023/08/Magic-AI-.png",
+  avatar: "/avatars/avatar-1.jpg",
   notifications: [
     { id: "1", label: "Email notifications for new service requests", checked: true },
     { id: "2", label: "SMS notifications for urgent requests", checked: true },
