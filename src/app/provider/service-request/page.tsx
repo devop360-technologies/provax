@@ -61,7 +61,7 @@ export default function ProviderServiceRequestPage() {
 
   return (
 <div>
-  <div className=" mr-0 md:mr-10">
+  <div className=" mr-0 md:mr-7">
      {/* Stats Grid - 4 columns */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <ProvidetStatCard

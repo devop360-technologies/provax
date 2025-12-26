@@ -54,8 +54,8 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen ">
-      <div className="mx-auto max-w-7xl mr-0 md:mr-7 py-6">
+    <div className=" ">
+      <div className="mx-auto max-full mr-0 md:mr-7 py-6">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white">Settings</h1>

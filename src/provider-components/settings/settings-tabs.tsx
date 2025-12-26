@@ -17,14 +17,14 @@ const tabs: { id: SettingsTabType; label: string }[] = [
 
 export function SettingsTabs({ activeTab, onTabChange }: SettingsTabsProps) {
   return (
-    <div className="border-b border-[#2a2d4a] mb-6">
+    <div className="border-b pt-4 px-2 md:px-6 rounded-xl bg-[#1D1D41] border-[#2a2d4a] mb-6">
       <div className="flex gap-8">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}
             className={cn(
-              "pb-3 text-sm font-medium transition-colors relative",
+              "pb-3 text-base font-medium transition-colors relative",
               activeTab === tab.id
                 ? "text-[#00D1FF]"
                 : "text-gray-400 hover:text-white"

@@ -56,7 +56,7 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
               onClick={onClose}
               className="text-gray-400 hover:text-white transition-colors"
             >
-              <X className="w-5 h-5" />
+              {/* <X className="w-5 h-5" /> */}
             </button>
           </div>
           <p className="text-gray-400 text-[11px] mt-1">For Request: {requestId}</p>
@@ -74,7 +74,7 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
                 value={proposedPrice}
                 onChange={(e) => setProposedPrice(e.target.value)}
                 placeholder="Enter amount"
-                className="bg-[#262656] border-[#3a3f5a] text-white placeholder:text-gray-500"
+                className="bg-[#23234B] border-[#3a3f5a] text-white placeholder:text-gray-500"
               />
             </div>
             <div>
@@ -86,7 +86,7 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
                 value={deliveryTime}
                 onChange={(e) => setDeliveryTime(e.target.value)}
                 placeholder="Enter days"
-                className="bg-[#262656] border-[#3a3f5a] text-white placeholder:text-gray-500"
+                className="bg-[#23234B] border-[#3a3f5a] text-white placeholder:text-gray-500"
               />
             </div>
           </div>
