@@ -27,6 +27,7 @@ interface UsageHistoryProps {
   className?: string;
   stats?: UsageStat[];
   history?: UsageHistoryItem[];
+  onPurchaseMore?: () => void;
 }
 
 const defaultStats: UsageStat[] = [
@@ -113,13 +114,20 @@ const statusStyles: Record<UsageHistoryItem["status"], string> = {
 export function UsageHistory({
   className,
   stats = defaultStats,
-  history = defaultHistory
+  history = defaultHistory,
+  onPurchaseMore
 }: UsageHistoryProps) {
+  // Add click handlers to stats
+  const statsWithHandlers = stats.map((stat) => ({
+    ...stat,
+    onButtonClick: stat.buttonText === "Purchase More" ? onPurchaseMore : stat.onButtonClick
+  }));
+
   return (
     <div className={cn("space-y-6", className)}>
       {/* Usage Stats Cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {stats.map((stat, index) => (
+        {statsWithHandlers.map((stat, index) => (
           <div key={index} className="relative rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
             <div className="mb-4 flex items-start justify-between">
               <h3 className="text-sm font-medium text-gray-400">{stat.name}</h3>

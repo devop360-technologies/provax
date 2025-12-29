@@ -155,7 +155,7 @@ export function AllReviews({
               {review.tags.map((tag, index) => (
                 <span
                   key={index}
-                  className="inline-flex items-center rounded-lg bg-[#3B82F6] px-3 py-1.5 text-xs font-medium text-white"
+                  className="inline-flex items-center rounded bg-[#3B82F6] px-3 py-1.5 text-xs font-medium text-white"
                 >
                   {tag.label}
                 </span>
@@ -169,13 +169,13 @@ export function AllReviews({
       <div className="flex items-center justify-end gap-3 mt-8 pt-6 border-t border-[#2a2d4a]">
         <button
           onClick={onExportReviews}
-          className="rounded-full bg-[#374151] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#4B5563] transition-colors"
+          className="rounded bg-[#374151] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#4B5563] transition-colors"
         >
           Export Reviews
         </button>
         <button
           onClick={onRespondToReviews}
-          className="rounded-full bg-[#3B82F6] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#2563EB] transition-colors"
+          className="rounded bg-[#3B82F6] px-6 py-2.5 text-sm font-medium text-white hover:bg-[#2563EB] transition-colors"
         >
           Respond to Reviews
         </button>
