@@ -45,7 +45,7 @@ export function BillingHistory({
         <h3 className="text-lg font-semibold text-white">Billing & Payment History</h3>
         <button
           onClick={onDownloadAll}
-          className="flex items-center gap-2 rounded-lg bg-[#00D1FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#00B8E0] transition-colors"
+          className="flex items-center gap-2 rounded-lg bg-[#3083FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#00B8E0] transition-colors"
         >
           Download All Invoices
         </button>
@@ -87,7 +87,7 @@ export function BillingHistory({
                 <td className="py-4 px-4">
                   <span
                     className={cn(
-                      "inline-flex items-center rounded-full px-3 py-1 text-xs font-medium",
+                      "inline-flex items-center rounded px-3 py-1 text-xs font-medium",
                       statusStyles[item.status]
                     )}
                   >

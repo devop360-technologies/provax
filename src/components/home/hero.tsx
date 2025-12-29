@@ -9,7 +9,7 @@ export default function Hero() {
       <Image src="/provax/car.png" alt="Car Image" fill className="object-cover object-center" priority />
 
       {/* Dark Background Overlay */}
-      <div className="absolute inset-0 bg-[#0a0e17]/40 lg:bg-blue-600/12"></div>
+      <div className="absolute inset-0 bg-blue-600/17 lg:bg-blue-600/12"></div>
 
       {/* Top "Artificial Intelligence" label */}
       <div className="absolute top-6 md:top-16 lg:top-20 left-1/2 lg:left-1/4 z-10 flex -translate-x-1/2 items-center space-x-2 sm:space-x-3">

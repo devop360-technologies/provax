@@ -151,8 +151,13 @@ export function ManageSubscription({
 
       {/* Failed Payment Alert */}
       {failedPayment && (
+        <div className="bg-[#1D1D41] p-4 md:p-8 rounded-xl border border-[#424242] ">
+          <div>
+            <h1 className="text-white font-base text-xl ">Failed Payment</h1>
+            <hr className="my-3 bg-pink-300"/>
+          </div>
         <div className="rounded-xl border border-[#F87171] bg-[#F87171]/10 p-6">
-          <h3 className="text-lg font-semibold text-white mb-4">Failed Payment</h3>
+          {/* <h3 className="text-lg font-semibold text-white mb-4">Failed Payment</h3> */}
           
           <div className="flex items-center justify-between">
             <div className="flex items-start gap-3">
@@ -172,6 +177,8 @@ export function ManageSubscription({
               Retry Payment
             </button>
           </div>
+        </div>
+
         </div>
       )}
     </div>

@@ -75,13 +75,13 @@ export function PlansOverview({
           <div className="flex items-center justify-between">
             <button
               onClick={onViewDetail}
-              className="flex items-center gap-2 rounded-full border border-[#2a2d4a] bg-[#2a2d4a] px-4 py-2 text-sm font-medium text-white hover:bg-[#374151] transition-colors"
+              className="flex items-center gap-2 rounded border border-[#2a2d4a] bg-[#2a2d4a] px-4 py-2 text-sm font-medium text-white hover:bg-[#374151] transition-colors"
             >
               <Eye size={16} />
               View Detail
             </button>
             {isActive && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#22C55E] px-4 py-1.5 text-sm font-medium text-[#22C55E]">
+              <span className="inline-flex items-center gap-1.5 rounded border border-[#22C55E] px-4 py-1.5 text-sm font-medium text-[#22C55E]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#22C55E]" />
                 Active
               </span>
@@ -122,7 +122,7 @@ export function PlansOverview({
 
           <button
             onClick={onViewFullUsage}
-            className="flex items-center gap-2 rounded-full border border-[#2a2d4a] bg-[#2a2d4a] px-4 py-2 text-sm font-medium text-white hover:bg-[#374151] transition-colors"
+            className="flex items-center gap-2 rounded border border-[#2a2d4a] bg-[#2a2d4a] px-4 py-2 text-sm font-medium text-white hover:bg-[#374151] transition-colors"
           >
             <BarChart3 size={16} />
             View Full Usage
