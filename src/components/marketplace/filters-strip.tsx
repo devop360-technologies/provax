@@ -47,8 +47,7 @@ export default function FilterStrip() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Search query:', searchQuery);
-    // Add your search logic here
+    // TODO: Implement search logic with searchQuery
   };    
 
   const toggleSection = (section: keyof typeof expandedSections) => {

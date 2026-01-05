@@ -2,7 +2,7 @@ import { CredentialsSignin, type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
-import { loginSchema } from "@/lib//zod-schemas";
+import { loginSchema } from "@/lib/zod-schemas";
 import { verifyPassword } from "@/lib/password";
 import { prisma } from "@/lib/prisma";
 

@@ -23,7 +23,7 @@ export function AddFlagModal({ isOpen, onClose, userName }: AddFlagModalProps) {
   const handleAddFlag = () => {
     if (title.trim() && description.trim()) {
       // Handle add flag logic here
-      console.log(`Adding flag for ${userName}:`, { priority, title, description });
+      // TODO: Implement flag adding for userName with priority, title, description
       setTitle("");
       setDescription("");
       setPriority("Low Priority");

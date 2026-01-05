@@ -16,7 +16,7 @@ export default function DeleteSubscriptionModal({
 
   const handleConfirm = () => {
     // Handle delete action here
-    console.log(`Deleting subscription for ${providerId}`);
+    // TODO: Implement actual deletion logic
     onClose();
   };
 

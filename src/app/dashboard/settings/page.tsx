@@ -49,8 +49,8 @@ export default function SettingsPage() {
   };
 
   const handleSaveChanges = () => {
-    console.log("Saving changes:", fees);
-    // Add your save logic here
+    // TODO: Implement save changes functionality
+    void fees;
   };
 
   return (
@@ -134,12 +134,12 @@ export default function SettingsPage() {
               API Keys Management
             </h2>
             <APIKeysManagement
-              onGenerateKey={(service) =>
-                console.log("Generate new key for:", service)
-              }
-              onDeactivateKey={(service) =>
-                console.log("Deactivate key for:", service)
-              }
+              onGenerateKey={() => {
+                /* TODO: Implement generate new key */
+              }}
+              onDeactivateKey={() => {
+                /* TODO: Implement deactivate key */
+              }}
             />
           </div>
         )}
@@ -151,9 +151,9 @@ export default function SettingsPage() {
               AI Module Configuration
             </h2>
             <AIModuleConfiguration
-              onConfigChange={(module, config) =>
-                console.log("Config changed for:", module, config)
-              }
+              onConfigChange={() => {
+                /* TODO: Implement config change handler */
+              }}
             />
           </div>
         )}
@@ -165,8 +165,8 @@ export default function SettingsPage() {
               Security & Audit Log
             </h2>
             <SecurityAuditLog
-              onExportCSV={() => console.log("Export CSV")}
-              onExportPDF={() => console.log("Export PDF")}
+              onExportCSV={() => { /* TODO: Implement export CSV */ }}
+              onExportPDF={() => { /* TODO: Implement export PDF */ }}
             />
           </div>
         )}

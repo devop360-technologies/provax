@@ -30,11 +30,11 @@ export default function ReportingPage() {
   const [activeTab, setActiveTab] = useState("pre-configured");
 
   const handleExportCSV = () => {
-    console.log("Export CSV");
+    // TODO: Implement export CSV functionality
   };
 
   const handleExportPDF = () => {
-    console.log("Export PDF");
+    // TODO: Implement export PDF functionality
   };
 
   return (
@@ -89,8 +89,8 @@ export default function ReportingPage() {
         {/* Filters */}
         <div className="py-6">
           <ReportFilters
-            onApplyFilters={() => console.log("Apply filters")}
-            onResetFilter={() => console.log("Reset filter")}
+            onApplyFilters={() => { /* TODO: Implement apply filters */ }}
+            onResetFilter={() => { /* TODO: Implement reset filter */ }}
           />
         </div>
 
@@ -170,9 +170,9 @@ export default function ReportingPage() {
                   ],
                   color: "#3B82F6"
                 }}
-                onExportCSV={() => console.log("Export CSV")}
-                onExportPDF={() => console.log("Export PDF")}
-                onComparePeriods={() => console.log("Compare Periods")}
+                onExportCSV={() => { /* TODO: Implement export CSV */ }}
+                onExportPDF={() => { /* TODO: Implement export PDF */ }}
+                onComparePeriods={() => { /* TODO: Implement compare periods */ }}
               />
             </div>
 
@@ -195,38 +195,38 @@ export default function ReportingPage() {
                 title="Revenue Overview"
                 dataLabel="Total Revenue"
                 color="cyan"
-                onExportCSV={() => console.log("Export CSV")}
-                onExportPDF={() => console.log("Export PDF")}
-                onExpand={() => console.log("Expand")}
+                onExportCSV={() => { /* TODO: Implement export CSV */ }}
+                onExportPDF={() => { /* TODO: Implement export PDF */ }}
+                onExpand={() => { /* TODO: Implement expand */ }}
               />
               <RevenueOverviewChart
                 title="Revenue Overview"
                 dataLabel="Provider Payouts"
                 color="green"
-                onExportCSV={() => console.log("Export CSV")}
-                onExportPDF={() => console.log("Export PDF")}
-                onExpand={() => console.log("Expand")}
+                onExportCSV={() => { /* TODO: Implement export CSV */ }}
+                onExportPDF={() => { /* TODO: Implement export PDF */ }}
+                onExpand={() => { /* TODO: Implement expand */ }}
               />
             </div>
 
             {/* Revenue by Category */}
             <RevenueByCategoryChart
-              onExportCSV={() => console.log("Export CSV")}
-              onExportPDF={() => console.log("Export PDF")}
+              onExportCSV={() => { /* TODO: Implement export CSV */ }}
+              onExportPDF={() => { /* TODO: Implement export PDF */ }}
             />
 
             {/* Provider Payouts Table */}
             <ProviderPayoutsTable
-              onExportCSV={() => console.log("Export CSV")}
-              onExportPDF={() => console.log("Export PDF")}
-              onShowDetails={() => console.log("Show Details")}
+              onExportCSV={() => { /* TODO: Implement export CSV */ }}
+              onExportPDF={() => { /* TODO: Implement export PDF */ }}
+              onShowDetails={() => { /* TODO: Implement show details */ }}
             />
 
             {/* Revenue Analytics Table */}
             <RevenueAnalyticsTable
-              onExportCSV={() => console.log("Export CSV")}
-              onExportPDF={() => console.log("Export PDF")}
-              onViewTimeline={() => console.log("View Timeline")}
+              onExportCSV={() => { /* TODO: Implement export CSV */ }}
+              onExportPDF={() => { /* TODO: Implement export PDF */ }}
+              onViewTimeline={() => { /* TODO: Implement view timeline */ }}
             />
           </div>
         )}
@@ -240,24 +240,24 @@ export default function ReportingPage() {
                 title="AI Module Performance Overview"
                 dataLabel="Success Rate (%)"
                 color="green"
-                onExportCSV={() => console.log("Export CSV")}
-                onExportPDF={() => console.log("Export PDF")}
-                onExpand={() => console.log("Expand")}
+                onExportCSV={() => { /* TODO: Implement export CSV */ }}
+                onExportPDF={() => { /* TODO: Implement export PDF */ }}
+                onExpand={() => { /* TODO: Implement expand */ }}
               />
               <AIModulePerformanceChart
                 title="AI Module Performance Overview"
                 dataLabel="Error Rate (%)"
                 color="red"
-                onExportCSV={() => console.log("Export CSV")}
-                onExportPDF={() => console.log("Export PDF")}
-                onExpand={() => console.log("Expand")}
+                onExportCSV={() => { /* TODO: Implement export CSV */ }}
+                onExportPDF={() => { /* TODO: Implement export PDF */ }}
+                onExpand={() => { /* TODO: Implement expand */ }}
               />
             </div>
 
             {/* AI Module Performance Details Table */}
             <AIModulePerformanceDetailsTable
-              onExportCSV={() => console.log("Export CSV")}
-              onExportPDF={() => console.log("Export PDF")}
+              onExportCSV={() => { /* TODO: Implement export CSV */ }}
+              onExportPDF={() => { /* TODO: Implement export PDF */ }}
             />
 
             {/* Volume by Period Charts */}

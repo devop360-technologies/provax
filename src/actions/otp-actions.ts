@@ -128,7 +128,10 @@ export async function sendOtpAction(
       message: "OTP sent successfully to your email"
     };
   } catch (error) {
-    console.error("Send OTP error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Send OTP error:", error);
+    }
     return {
       success: false,
       error: "Failed to send OTP. Please try again."
@@ -197,7 +200,10 @@ export async function verifyOtpAction(
       message: "OTP verified successfully"
     };
   } catch (error) {
-    console.error("Verify OTP error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Verify OTP error:", error);
+    }
     return {
       success: false,
       error: "Failed to verify OTP. Please try again."
@@ -221,7 +227,10 @@ export async function deleteVerifiedOtpAction(
       }
     });
   } catch (error) {
-    console.error("Delete verified OTP error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Delete verified OTP error:", error);
+    }
   }
 }
 
@@ -238,6 +247,9 @@ export async function cleanupExpiredOtpsAction(): Promise<void> {
       }
     });
   } catch (error) {
-    console.error("Cleanup expired OTPs error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Cleanup expired OTPs error:", error);
+    }
   }
 }

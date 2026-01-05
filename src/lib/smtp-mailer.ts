@@ -11,7 +11,7 @@ export interface SmtpEmailOptions {
 
 export interface SmtpEmailResult {
   success: boolean;
-  data?: any;
+  data?: { messageId: string; response?: string };
   error?: string;
 }
 
@@ -48,16 +48,22 @@ export async function sendSmtpEmail({
 
     const info = await transporter.sendMail(mailOptions);
 
-    console.log(`✅ Email sent successfully to ${recipients}`, {
-      messageId: info.messageId,
-      subject,
-      timestamp: new Date().toISOString()
-    });
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.log(`✅ Email sent successfully to ${recipients}`, {
+        messageId: info.messageId,
+        subject,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     return { success: true, data: info };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-    console.error('SMTP email error:', error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error('SMTP email error:', error);
+    }
 
     return {
       success: false,

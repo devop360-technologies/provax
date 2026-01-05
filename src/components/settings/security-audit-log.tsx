@@ -51,7 +51,7 @@ export function SecurityAuditLog({
         }
         toDate={filters.toDate}
         onToDateChange={(value) => setFilters({ ...filters, toDate: value })}
-        onApplyFilters={() => console.log("Filters applied:", filters)}
+        onApplyFilters={() => { /* TODO: Implement filter application */ }}
       />
 
       {/* Export Buttons */}

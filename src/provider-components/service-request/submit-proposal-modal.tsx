@@ -33,14 +33,7 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
 
   const handleSubmit = () => {
     // Handle proposal submission
-    console.log({
-      requestId,
-      proposedPrice,
-      deliveryTime,
-      warranty,
-      technicalNotes,
-      attachments,
-    });
+    // TODO: Implement actual submission logic
     onClose();
   };
 

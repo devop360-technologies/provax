@@ -15,7 +15,7 @@ export function ResetPasswordModal({ isOpen, onClose, userName }: ResetPasswordM
 
   const handleEnable = () => {
     // Handle password reset enable logic here
-    console.log(`Enabling password reset for ${userName}`);
+    // TODO: Implement password reset for userName
     onClose();
   };
 

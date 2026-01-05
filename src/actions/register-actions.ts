@@ -8,7 +8,10 @@ import { sendOtpAction } from "./otp-actions";
 interface RegisterResult {
   status: "success" | "error";
   message?: string;
-  errors?: any;
+  errors?: {
+    formErrors: string[];
+    fieldErrors: Record<string, string[] | undefined>;
+  };
   requiresVerification?: boolean;
 }
 
@@ -109,7 +112,10 @@ export async function resendVerificationOtpAction(email: string): Promise<Regist
       message: "Verification code sent to your email"
     };
   } catch (error) {
-    console.error("Resend verification OTP error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Resend verification OTP error:", error);
+    }
     return {
       status: "error",
       message: "Failed to resend verification code"

@@ -37,15 +37,15 @@ export function VolumeByPeriodChart({
   ];
 
   const handleExportCSV = () => {
-    console.log("Export CSV");
+    // TODO: Implement CSV export
   };
 
   const handleExportPDF = () => {
-    console.log("Export PDF");
+    // TODO: Implement PDF export
   };
 
   const handleExpand = () => {
-    console.log("Expand");
+    // TODO: Implement expand functionality
   };
 
   return (

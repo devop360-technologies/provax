@@ -164,7 +164,8 @@ function CatalogTab({
     }
   ];
 
-  const handleViewListing = (vehicle: any) => {
+  const handleViewListing = (vehicle: { id?: string; vehicle?: string }) => {
+    void vehicle; // Acknowledge the parameter
     const listing = users[0];
     if (listing) {
       onViewListing(listing);

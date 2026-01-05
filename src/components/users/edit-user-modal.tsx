@@ -30,7 +30,6 @@ export function EditUserModal({
     if (isOpen) {
       // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden';
-      console.log('Modal opened, formData:', formData);
     } else {
       // Re-enable body scroll when modal is closed
       document.body.style.overflow = 'auto';
@@ -39,7 +38,7 @@ export function EditUserModal({
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, [isOpen, formData]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 

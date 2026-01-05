@@ -20,7 +20,7 @@ export default function SuspendSubscriptionModal({
 
   const handleConfirm = () => {
     // Handle suspend/cancel action here
-    console.log(`${isSuspending ? 'Suspending' : 'Cancelling'} subscription for ${providerId} with reason: ${reason}`);
+    // TODO: Implement actual suspend/cancel logic using providerId and reason
     onClose();
     setReason("");
   };

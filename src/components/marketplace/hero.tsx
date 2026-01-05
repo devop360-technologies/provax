@@ -8,8 +8,7 @@ export default function HowItWorksHero() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Search query:', searchQuery);
-    // Add your search logic here
+    // TODO: Implement search logic with searchQuery
   };
 
   return (

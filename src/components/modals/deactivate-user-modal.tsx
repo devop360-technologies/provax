@@ -14,7 +14,7 @@ export function DeactivateUserModal({ isOpen, onClose, userName }: DeactivateUse
 
   const handleDeactivate = () => {
     // Handle user deactivation logic here
-    console.log(`Deactivating user: ${userName}`);
+    // TODO: Implement user deactivation for userName
     onClose();
   };
 

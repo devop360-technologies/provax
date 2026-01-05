@@ -34,7 +34,10 @@ export async function requestPasswordResetAction(
     const result = await sendOtpAction(email, "password_reset");
     return result;
   } catch (error) {
-    console.error("Request password reset error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Request password reset error:", error);
+    }
     return {
       success: false,
       error: "Failed to process password reset request"
@@ -53,7 +56,10 @@ export async function verifyPasswordResetOtpAction(
     const result = await verifyOtpAction(email, otp, "password_reset");
     return result;
   } catch (error) {
-    console.error("Verify password reset OTP error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Verify password reset OTP error:", error);
+    }
     return {
       success: false,
       error: "Failed to verify OTP"
@@ -151,7 +157,8 @@ export async function resetPasswordAction(
       message: "Password reset successfully"
     };
   } catch (error) {
-    console.error("Reset password error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Reset password error:", error);
     return {
       success: false,
       error: "Failed to reset password"

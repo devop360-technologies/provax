@@ -19,7 +19,7 @@ export function CustomerPortalButton({ className = "" }: { className?: string })
         window.location.href = result.url;
       } else {
         // Handle error (could show a toast notification here)
-        console.log("Failed to create customer portal session");
+        // Portal session creation failed
       }
     });
   }, []);

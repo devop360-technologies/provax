@@ -101,19 +101,19 @@ export const appConfig = {
         price: 99,
         title: "Starter",
         mode: "subscription" as "payment" | "subscription",
-        priceId: "price_1RhcRyQtxOjnr4Fwctjrtas5"
+        priceId: process.env.STRIPE_PRICE_STARTER ?? ""
       },
       {
         price: 149,
         title: "Pro",
         mode: "subscription" as "payment" | "subscription",
-        priceId: "price_1RhcSdQtxOjnr4Fw9bqkpKTh"
+        priceId: process.env.STRIPE_PRICE_PRO ?? ""
       },
       {
         price: 499,
         title: "Lifetime",
         mode: "payment" as "payment" | "subscription",
-        priceId: "price_1RhcTRQtxOjnr4FwktYqtmfb"
+        priceId: process.env.STRIPE_PRICE_LIFETIME ?? ""
       }
     ]
   },
@@ -134,7 +134,7 @@ export const appConfig = {
    * ============================================
    */
   googleAnalytics: {
-    id: "G-RD175QS1MJ",
+    id: process.env.NEXT_PUBLIC_GA_ID ?? "",
     consent: {
       storage: "localStorage",
       cookieName: "cookie-consent"

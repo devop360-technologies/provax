@@ -18,7 +18,7 @@ export function AddNoteModal({ isOpen, onClose, userName }: AddNoteModalProps) {
   const handleAddNote = () => {
     if (note.trim()) {
       // Handle add note logic here
-      console.log(`Adding note for ${userName}: ${note}`);
+      // TODO: Implement note adding for userName with note content
       setNote("");
       onClose();
     }

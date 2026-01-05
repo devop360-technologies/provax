@@ -8,6 +8,6 @@ export interface ResendEmailOptions {
 
 export interface ResendEmailResult {
   success: boolean;
-  data?: any;
+  data?: { id: string };
   error?: string;
 }

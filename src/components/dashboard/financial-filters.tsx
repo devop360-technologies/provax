@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { CalendarIcon } from "lucide-react";
 
 interface FinancialFiltersProps {
-  onFiltersChange?: (filters: any) => void;
+  onFiltersChange?: (filters: Record<string, string | number | boolean>) => void;
 }
 
 export function FinancialFilters({ onFiltersChange }: FinancialFiltersProps) {
