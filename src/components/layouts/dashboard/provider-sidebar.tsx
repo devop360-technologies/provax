@@ -45,9 +45,11 @@ export function ProviderDashboardSidebar() {
     <>
       {/* Mobile Overlay */}
       {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+        <button 
+          type="button"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden border-0 cursor-default"
           onClick={close}
+          aria-label="Close sidebar"
         />
       )}
 

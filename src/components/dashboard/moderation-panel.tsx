@@ -132,7 +132,7 @@ export default function ModerationPanel() {
 
   const renderStarRating = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
-      <span key={index} className={index < rating ? "text-yellow-400" : "text-gray-500"}>
+      <span key={`star-${index}`} className={index < rating ? "text-yellow-400" : "text-gray-500"}>
         ★
       </span>
     ));
@@ -288,8 +288,8 @@ export default function ModerationPanel() {
                   </tr>
                 </thead>
                 <tbody>
-                  {marketplaceListings.map((listing, index) => (
-                    <tr key={index} className="border-b border-gray-700 hover:bg-[#252850] transition-colors">
+                  {marketplaceListings.map((listing) => (
+                    <tr key={listing.listingId} className="border-b border-gray-700 hover:bg-[#252850] transition-colors">
                       <td className="py-4 px-4">
                         <span className="text-white font-medium">{listing.listingId}</span>
                       </td>

@@ -3,7 +3,7 @@ import type { PropsWithChildren } from "react";
 
 import { getCurrentUser } from "@/lib/auth";
 
-export default async function AuthLayout({ children }: PropsWithChildren) {
+export default async function AuthLayout({ children }: Readonly<PropsWithChildren>) {
   const currentUser = await getCurrentUser();
   if (currentUser) {
     redirect("/dashboard");

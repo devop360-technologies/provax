@@ -24,7 +24,31 @@ export function StatCard({
   iconSrc,
   iconColor,
   iconBg,
-}: StatCardProps) {
+}: Readonly<StatCardProps>) {
+  const getChangeTypeColor = () => {
+    if (changeType === 'positive') return 'text-green-400';
+    if (changeType === 'negative') return 'text-red-400';
+    return 'text-gray-400';
+  };
+
+  const renderIcon = () => {
+    if (iconSrc) {
+      return (
+        <Image
+          src={iconSrc}
+          alt={title}
+          width={20}
+          height={20}
+          className="w-5 h-5 object-contain"
+        />
+      );
+    }
+    if (Icon) {
+      return <Icon className={cn('w-5 h-5', iconColor)} />;
+    }
+    return null;
+  };
+
   return (
      <div className="bg-gradient-to-b from-[#22224A] to-[#131230] border border-[#2a2d4a] rounded-2xl p-6 hover:border-[#3a3d5a] transition-colors">
 
@@ -33,17 +57,7 @@ export function StatCard({
       <div className="flex gap-2  w-full mb-4">
         {/* Icon Section */}
         <div className={cn('p-3 rounded-xl flex-shrink-0 flex items-center justify-center', iconBg)}>
-          {iconSrc ? (
-            <Image
-              src={iconSrc}
-              alt={title}
-              width={20}
-              height={20}
-              className="w-5 h-5 object-contain"
-            />
-          ) : Icon ? (
-            <Icon className={cn('w-5 h-5', iconColor)} />
-          ) : null}
+          {renderIcon()}
         </div>
 
         {/* Content Section */}
@@ -59,11 +73,7 @@ export function StatCard({
           <span
             className={cn(
               'text-sm font-medium flex items-center gap-1',
-              changeType === 'positive'
-                ? 'text-green-400'
-                : changeType === 'negative'
-                  ? 'text-red-400'
-                  : 'text-gray-400'
+              getChangeTypeColor()
             )}
           >
             {changeType === 'positive' && <ArrowUpRight className="w-4 h-4" />}

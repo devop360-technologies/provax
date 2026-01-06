@@ -1,8 +1,7 @@
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
-import { Fragment } from "react";
 
-import FAQ from "@/components/home/faq";
+import FAQSection from "@/components/home/faq";
 import Hero from "@/components/home/hero";
 import TrustedBy from "@/components/home/trusted-by";
 import HowItWorks from "@/components/home/how-it-works";
@@ -20,7 +19,7 @@ export const metadata: Metadata = createMetadata({
 
 export default function Home() {
   return (
-    <Fragment>
+    <>
       <Hero />
       <HowItWorks/>
       <AICertificationModules/>
@@ -29,10 +28,7 @@ export default function Home() {
       <SubscriptionPlans/>
       <Testimonials/>
       <TrustedBy /> 
-      <FAQ />
+      <FAQSection />
       <CTASection/>
-    </Fragment>
+    </>
   );
-}
-
-{/* <Footer/> */}

@@ -10,7 +10,7 @@ interface ChartCardProps {
   filters?: string[];
 }
 
-export function ChartCard({ title, subtitle, children, filters = ["Today", "Weekly", "Monthly"] }: ChartCardProps) {
+export function ChartCard({ title, subtitle, children, filters = ["Today", "Weekly", "Monthly"] }: Readonly<ChartCardProps>) {
   return (
     <Card className="bg-[#1a1d3a] border-[#2a2d4a]">
       <CardHeader className="pb-4">

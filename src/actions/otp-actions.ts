@@ -1,6 +1,6 @@
 "use server";
 
-import crypto from "crypto";
+import crypto from "node:crypto";
 import { appConfig } from "@/config";
 import { prisma } from "@/lib/prisma";
 import { sendSmtpEmail } from "@/lib/smtp-mailer";
@@ -31,7 +31,7 @@ export async function sendOtpAction(
 ): Promise<OtpResult> {
   try {
     // Validate email
-    if (!email || !email.includes("@")) {
+    if (!email?.includes("@")) {
       return {
         success: false,
         error: "Invalid email address"

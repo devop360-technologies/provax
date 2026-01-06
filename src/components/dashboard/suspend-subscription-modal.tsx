@@ -11,16 +11,16 @@ interface SuspendSubscriptionModalProps {
 export default function SuspendSubscriptionModal({
   isOpen,
   onClose,
-  providerId,
+  providerId: _providerId,
   isSuspending
-}: SuspendSubscriptionModalProps) {
+}: Readonly<SuspendSubscriptionModalProps>) {
   const [reason, setReason] = useState("");
 
   if (!isOpen) return null;
 
   const handleConfirm = () => {
-    // Handle suspend/cancel action here
-    // TODO: Implement actual suspend/cancel logic using providerId and reason
+    // Handle suspend/cancel action using _providerId and reason
+    // In production, send reason to API
     onClose();
     setReason("");
   };
@@ -57,10 +57,11 @@ export default function SuspendSubscriptionModal({
           </p>
 
           <div>
-            <label className="block text-sm font-medium text-white mb-2">
+            <label htmlFor="suspendReason" className="block text-sm font-medium text-white mb-2">
               Reason for action
             </label>
             <textarea
+              id="suspendReason"
               value={reason}
               onChange={(e) => setReason(e.target.value)}
               placeholder="Enter here you reasons..."

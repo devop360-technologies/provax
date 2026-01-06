@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { authRegisterAction, resendVerificationOtpAction } from "@/actions/register-actions";
+import { authRegisterAction } from "@/actions/register-actions";
 
 /**
  * POST /api/auth/register

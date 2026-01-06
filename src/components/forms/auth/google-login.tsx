@@ -11,7 +11,7 @@ interface GoogleLoginProps {
   setIsLoading: (isLoading: boolean) => void;
 }
 
-export function GoogleLogin({ isSubmitting, isLoading, type, setIsLoading }: GoogleLoginProps) {
+export function GoogleLogin({ isSubmitting, isLoading, type, setIsLoading }: Readonly<GoogleLoginProps>) {
   const handleGoogleLogin = useCallback(() => {
     setIsLoading(true);
     signIn("google");

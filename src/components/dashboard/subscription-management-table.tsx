@@ -127,8 +127,8 @@ export default function SubscriptionManagementTable() {
             </tr>
           </thead>
           <tbody>
-            {subscriptionData.map((subscription, index) => (
-              <tr key={index} className="border-b border-gray-700 hover:bg-[#2a2d4a] transition-colors">
+            {subscriptionData.map((subscription) => (
+              <tr key={subscription.provider} className="border-b border-gray-700 hover:bg-[#2a2d4a] transition-colors">
                 <td className="py-4 px-4">
                   <span className="text-white font-medium">{subscription.provider}</span>
                 </td>

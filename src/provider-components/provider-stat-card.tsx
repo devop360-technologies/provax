@@ -25,6 +25,30 @@ export function ProvidetStatCard({
   iconColor,
   iconBg,
 }: ProvidetStatCardProps) {
+  const getChangeTypeBg = () => {
+    if (changeType === 'positive') return 'bg-green-400';
+    if (changeType === 'negative') return 'bg-red-400';
+    return 'bg-gray-400';
+  };
+
+  const renderIcon = () => {
+    if (iconSrc) {
+      return (
+        <Image
+          src={iconSrc}
+          alt={title}
+          width={20}
+          height={20}
+          className="w-5 h-5 object-contain"
+        />
+      );
+    }
+    if (Icon) {
+      return <Icon className={cn('w-5 h-5', iconColor)} />;
+    }
+    return null;
+  };
+
   return (
      <div className="bg-gradient-to-b from-[#22224A] to-[#131230] border border-[#2a2d4a] rounded-2xl p-6 hover:border-[#3a3d5a] transition-colors">
 
@@ -33,17 +57,7 @@ export function ProvidetStatCard({
       <div className="flex gap-2  w-full mb-4">
         {/* Icon Section */}
         <div className={cn('p-3 rounded-xl flex-shrink-0 flex items-center justify-center', iconBg)}>
-          {iconSrc ? (
-            <Image
-              src={iconSrc}
-              alt={title}
-              width={20}
-              height={20}
-              className="w-5 h-5 object-contain"
-            />
-          ) : Icon ? (
-            <Icon className={cn('w-5 h-5', iconColor)} />
-          ) : null}
+          {renderIcon()}
         </div>
 
         {/* Content Section */}
@@ -59,11 +73,7 @@ export function ProvidetStatCard({
           <span
             className={cn(
               'text-sm font-medium flex items-center gap-1 rounded p-1',
-              changeType === 'positive'
-                ? 'bg-green-400'
-                : changeType === 'negative'
-                  ? 'bg-red-400'
-                  : 'bg-gray-400'
+              getChangeTypeBg()
             )}
           >
             {change.split(' ')[0]}

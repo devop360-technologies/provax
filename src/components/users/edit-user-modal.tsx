@@ -71,10 +71,11 @@ export function EditUserModal({
           {/* Full Name and Email */}
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm text-gray-300 mb-2">
+              <label htmlFor="edit-user-full-name" className="block text-sm text-gray-300 mb-2">
                 Full Name
               </label>
               <input
+                id="edit-user-full-name"
                 type="text"
                 value={formData.fullName}
                 onChange={(e) =>
@@ -85,8 +86,9 @@ export function EditUserModal({
               />
             </div>
             <div>
-              <label className="block text-sm text-gray-300 mb-2">Email</label>
+              <label htmlFor="edit-user-email" className="block text-sm text-gray-300 mb-2">Email</label>
               <input
+                id="edit-user-email"
                 type="email"
                 value={formData.email}
                 onChange={(e) =>
@@ -101,8 +103,9 @@ export function EditUserModal({
           {/* Role and Status */}
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm text-gray-300 mb-2">Role</label>
+              <label htmlFor="edit-user-role" className="block text-sm text-gray-300 mb-2">Role</label>
               <select
+                id="edit-user-role"
                 value={formData.role}
                 onChange={(e) =>
                   onFormChange({ ...formData, role: e.target.value })
@@ -117,10 +120,11 @@ export function EditUserModal({
               </select>
             </div>
             <div>
-              <label className="block text-sm text-gray-300 mb-2">
+              <label htmlFor="edit-user-status" className="block text-sm text-gray-300 mb-2">
                 Status
               </label>
               <select
+                id="edit-user-status"
                 value={formData.status}
                 onChange={(e) =>
                   onFormChange({ ...formData, status: e.target.value })
@@ -136,10 +140,11 @@ export function EditUserModal({
           {/* Segment and Verification Status */}
           <div className="grid grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm text-gray-300 mb-2">
+              <label htmlFor="edit-user-segment" className="block text-sm text-gray-300 mb-2">
                 Segment
               </label>
               <select
+                id="edit-user-segment"
                 value={formData.segment}
                 onChange={(e) =>
                   onFormChange({ ...formData, segment: e.target.value })
@@ -152,10 +157,11 @@ export function EditUserModal({
               </select>
             </div>
             <div>
-              <label className="block text-sm text-gray-300 mb-2">
+              <label htmlFor="edit-user-verification" className="block text-sm text-gray-300 mb-2">
                 Verification Status
               </label>
               <select
+                id="edit-user-verification"
                 value={formData.verification}
                 onChange={(e) =>
                   onFormChange({ ...formData, verification: e.target.value })

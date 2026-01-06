@@ -102,7 +102,7 @@ export function ProfessionalInfo({
 
       {/* Business Name */}
       <div className="mb-6">
-        <label className="block text-sm text-gray-300 mb-2">Business Name</label>
+        <span className="block text-sm text-gray-300 mb-2">Business Name</span>
         <div className="rounded-lg bg-[#23234B] px-4 py-3 text-sm text-white">
           {data.businessName}
         </div>
@@ -110,7 +110,7 @@ export function ProfessionalInfo({
 
       {/* Professional Description */}
       <div className="mb-6">
-        <label className="block text-sm text-gray-300 mb-2">Professional Description</label>
+        <span className="block text-sm text-gray-300 mb-2">Professional Description</span>
         <div className="rounded-lg bg-[#23234B] px-4 py-3 text-sm text-gray-300 leading-relaxed">
           {data.description}
         </div>
@@ -118,7 +118,7 @@ export function ProfessionalInfo({
 
       {/* Hourly Rate */}
       <div className="mb-6">
-        <label className="block text-sm text-gray-300 mb-2">Hourly Rate ($)</label>
+        <span className="block text-sm text-gray-300 mb-2">Hourly Rate ($)</span>
         <div className="rounded-lg bg-[#23234B] px-4 py-3 text-sm text-white w-32">
           {data.hourlyRate}
         </div>
@@ -126,7 +126,7 @@ export function ProfessionalInfo({
 
       {/* Categories of Work */}
       <div className="mb-8">
-        <label className="block text-sm text-gray-200 mb-2">Categories of Work</label>
+        <span className="block text-sm text-gray-200 mb-2">Categories of Work</span>
         <p className="text-xs text-gray-400 mb-3">Select the service categories you specialize in:</p>
         <div className="flex flex-wrap gap-2">
           {data.categories.map((category, index) => (
@@ -142,7 +142,7 @@ export function ProfessionalInfo({
 
       {/* Certifications */}
       <div className="mb-8">
-        <label className="block text-sm text-gray-200 mb-4">Categories of Work</label>
+        <span className="block text-sm text-gray-200 mb-4">Certifications</span>
         <div className="space-y-3">
           {data.certifications.map((cert) => (
             <div
@@ -176,7 +176,7 @@ export function ProfessionalInfo({
 
       {/* Portfolio */}
       <div className="mb-8">
-        <label className="block text-base text-gray-200 mb-2">Portfolio</label>
+        <span className="block text-base text-gray-200 mb-2">Portfolio</span>
         <p className="text-xs text-gray-400 mb-4">Showcase your best work with photos and descriptions:</p>
         
         <div className="grid grid-cols-3 gap-4 mb-4">
@@ -195,13 +195,14 @@ export function ProfessionalInfo({
         </div>
 
         {/* Upload Area */}
-        <div
+        <button
+          type="button"
           onClick={onUploadMedia}
-          className="border-2 border-dashed border-[#2a2d4a] bg-[#23234B] rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#00D1FF] transition-colors"
+          className="w-full border-2 border-dashed border-[#2a2d4a] bg-[#23234B] rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#00D1FF] transition-colors"
         >
           <Upload className="w-10 h-10 text-gray-500 mb-2" />
-          <p className="text-sm text-gray-500">Click to upload project media</p>
-        </div>
+          <span className="text-sm text-gray-500">Click to upload project media</span>
+        </button>
       </div>
 
       {/* Save Button */}

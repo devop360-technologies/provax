@@ -84,11 +84,12 @@ export function AddBannerModal({
         <div className="space-y-4">
           {/* Banner Title */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="banner-title" className="mb-2 block text-sm font-medium text-gray-300">
               Banner Title
             </label>
             <input
               type="text"
+              id="banner-title"
               name="title"
               value={formData.title}
               onChange={handleInputChange}
@@ -99,7 +100,7 @@ export function AddBannerModal({
 
           {/* Banner Image */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="banner-image" className="mb-2 block text-sm font-medium text-gray-300">
               Banner Image
             </label>
             <div className="flex items-center gap-3">
@@ -121,11 +122,12 @@ export function AddBannerModal({
 
           {/* Link URL */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="link-url" className="mb-2 block text-sm font-medium text-gray-300">
               Link URL
             </label>
             <input
               type="text"
+              id="link-url"
               name="linkUrl"
               value={formData.linkUrl}
               onChange={handleInputChange}
@@ -140,11 +142,12 @@ export function AddBannerModal({
           {/* Date Range */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-300">
-                Link URL
+              <label htmlFor="start-date" className="mb-2 block text-sm font-medium text-gray-300">
+                Start Date
               </label>
               <input
                 type="datetime-local"
+                id="start-date"
                 name="startDate"
                 value={formData.startDate}
                 onChange={handleInputChange}
@@ -153,11 +156,12 @@ export function AddBannerModal({
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-300">
-                Link URL
+              <label htmlFor="end-date" className="mb-2 block text-sm font-medium text-gray-300">
+                End Date
               </label>
               <input
                 type="datetime-local"
+                id="end-date"
                 name="endDate"
                 value={formData.endDate}
                 onChange={handleInputChange}
@@ -169,11 +173,12 @@ export function AddBannerModal({
 
           {/* Display Order */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="display-order" className="mb-2 block text-sm font-medium text-gray-300">
               Display Order
             </label>
             <input
               type="number"
+              id="display-order"
               name="displayOrder"
               value={formData.displayOrder}
               onChange={handleInputChange}

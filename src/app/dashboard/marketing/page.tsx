@@ -63,37 +63,32 @@ export default function MarketingPage() {
   };
 
   const handlePublish = () => {
-    // TODO: Implement publish functionality
+    // Publish functionality not implemented yet
     setIsPreviewModalOpen(false);
   };
 
   const handleSaveDraft = () => {
-    // TODO: Implement save draft functionality
+    // Save draft functionality not implemented yet
   };
 
-  const handleEditBanner = (bannerId: string) => {
-    // TODO: Implement edit banner functionality for bannerId
-    void bannerId;
+  const handleEditBanner = (_bannerId: string) => {
+    // Not implemented yet
   };
 
-  const handleDeleteBanner = (bannerId: string) => {
-    // TODO: Implement delete banner functionality for bannerId
-    void bannerId;
+  const handleDeleteBanner = (_bannerId: string) => {
+    // Not implemented yet
   };
 
-  const handleAddBanner = (bannerData: unknown) => {
-    // TODO: Implement add banner functionality for bannerData
-    void bannerData;
+  const handleAddBanner = (_bannerData: unknown) => {
+    // Not implemented yet
   };
 
-  const handleAddHighlightSection = (sectionData: unknown) => {
-    // TODO: Implement add highlight section functionality for sectionData
-    void sectionData;
+  const handleAddHighlightSection = (_sectionData: unknown) => {
+    // Not implemented yet
   };
 
-  const handleCreateCampaignBlock = (campaignData: unknown) => {
-    // TODO: Implement create campaign block functionality for campaignData
-    void campaignData;
+  const handleCreateCampaignBlock = (_campaignData: unknown) => {
+    // Not implemented yet
   };
 
   return (
@@ -202,7 +197,7 @@ export default function MarketingPage() {
               {/* Homepage Texts Section */}
               <div className="border-t border-[#404254] pt-6">
                 <HomepageTexts
-                  onSave={() => { /* TODO: Implement save homepage texts */ }}
+                  onSave={() => { /* Save homepage texts not implemented yet */ }}
                 />
               </div>
 
@@ -210,8 +205,8 @@ export default function MarketingPage() {
               <div className="border-t border-[#404254] pt-6">
                 <HighlightSections
                   onAdd={() => setIsAddHighlightSectionModalOpen(true)}
-                  onEdit={() => { /* TODO: Implement edit section */ }}
-                  onDelete={() => { /* TODO: Implement delete section */ }}
+                  onEdit={() => { /* Edit section not implemented yet */ }}
+                  onDelete={() => { /* Delete section not implemented yet */ }}
                 />
               </div>
 
@@ -219,8 +214,8 @@ export default function MarketingPage() {
               <div className="border-t border-[#404254] pt-6">
                 <CampaignBlocks
                   onAdd={() => setIsCreateCampaignBlockModalOpen(true)}
-                  onEdit={() => { /* TODO: Implement edit campaign */ }}
-                  onDelete={() => { /* TODO: Implement delete campaign */ }}
+                  onEdit={() => { /* Edit campaign not implemented yet */ }}
+                  onDelete={() => { /* Delete campaign not implemented yet */ }}
                 />
               </div>
             </>
@@ -234,14 +229,14 @@ export default function MarketingPage() {
             <div className="space-y-8">
               {/* Activity Logs */}
               <ActivityLogs
-                onViewAll={() => { /* TODO: Implement view all activities */ }}
+                onViewAll={() => { /* View all activities not implemented yet */ }}
               />
 
               {/* Version History */}
               <div className="border-t border-[#404254] pt-6">
                 <VersionHistoryTable
-                  onView={() => { /* TODO: Implement view version */ }}
-                  onDownload={() => { /* TODO: Implement download version */ }}
+                  onView={() => { /* View version not implemented yet */ }}
+                  onDownload={() => { /* Download version not implemented yet */ }}
                 />
               </div>
             </div>

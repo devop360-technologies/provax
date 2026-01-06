@@ -34,7 +34,7 @@ export const authConfig = {
           });
 
           // If user not found or no password set
-          if (!user || !user.password) {
+          if (!user?.password) {
             throw new Error("Invalid credentials");
           }
 

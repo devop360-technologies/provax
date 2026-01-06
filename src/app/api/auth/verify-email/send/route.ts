@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { 
-  sendEmailVerificationOtpAction, 
-  verifyEmailWithOtpAction,
-  checkEmailVerificationAction 
+  sendEmailVerificationOtpAction
 } from "@/actions/email-verification-otp-actions";
 
 /**

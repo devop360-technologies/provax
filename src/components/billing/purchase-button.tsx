@@ -14,10 +14,10 @@ import { browserConsoleError, cn } from "@/lib/utils";
 export function PurchaseButton({
   priceId,
   className = ""
-}: {
+}: Readonly<{
   priceId: string;
   className?: string;
-}) {
+}>) {
   const [isPending, startTransition] = useTransition();
   const session = useSession();
 
@@ -31,7 +31,7 @@ export function PurchaseButton({
       const result = await createCheckoutSessionAction(priceId);
 
       if (result.status === "success" && result.url) {
-        window.location.href = result.url; // Redirect to the stripe checkout page
+        globalThis.location.href = result.url; // Redirect to the stripe checkout page
       } else {
         const message = result.message || "Failed to create checkout session";
         toast.error(message);

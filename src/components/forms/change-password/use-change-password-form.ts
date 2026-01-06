@@ -3,7 +3,6 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-// import { changeUserPassword } from "@/actions/setting-actions";
 import { ChangePasswordSchema, changePasswordSchema } from "@/lib/zod-schemas";
 
 export function useChangePasswordForm() {

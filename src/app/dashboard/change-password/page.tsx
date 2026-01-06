@@ -1,19 +1,3 @@
-// import { redirect } from "next/navigation";
-
-// import { appConfig } from "@/config";
-// import { getCurrentUser } from "@/lib/auth";
-
-// import { ChangePasswordForm } from "@/components/forms/change-password";
-
-// export default async function PasswordSettingsPage() {
-//   const currentUser = await getCurrentUser();
-//   if (!currentUser) {
-//     return redirect(appConfig.auth.login);
-//   }
-
-//   return <ChangePasswordForm />;
-// }
-
 "use client";
 
 import { useState } from "react";
@@ -58,23 +42,26 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">Company Name</label>
+                <label htmlFor="companyName" className="text-sm text-gray-400 mb-2 block">Company Name</label>
                 <Input
+                  id="companyName"
                   defaultValue="Provax Auto Solutions"
                   className="bg-[#1a1d3a] border-[#2a2d4a] text-white"
                 />
               </div>
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">Email Address</label>
+                <label htmlFor="settingsEmail" className="text-sm text-gray-400 mb-2 block">Email Address</label>
                 <Input
+                  id="settingsEmail"
                   defaultValue="admin@provax.com"
                   type="email"
                   className="bg-[#1a1d3a] border-[#2a2d4a] text-white"
                 />
               </div>
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">Phone Number</label>
+                <label htmlFor="phoneNumber" className="text-sm text-gray-400 mb-2 block">Phone Number</label>
                 <Input
+                  id="phoneNumber"
                   defaultValue="+1 (555) 123-4567"
                   className="bg-[#1a1d3a] border-[#2a2d4a] text-white"
                 />
@@ -94,16 +81,16 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">Business Type</label>
-                <select className="w-full bg-[#1a1d3a] border border-[#2a2d4a] text-white rounded px-3 py-2">
+                <label htmlFor="businessType" className="text-sm text-gray-400 mb-2 block">Business Type</label>
+                <select id="businessType" className="w-full bg-[#1a1d3a] border border-[#2a2d4a] text-white rounded px-3 py-2">
                   <option>Dealership</option>
                   <option>Service Center</option>
                   <option>Marketplace</option>
                 </select>
               </div>
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">Industry</label>
-                <Input defaultValue="Automotive" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
+                <label htmlFor="industry" className="text-sm text-gray-400 mb-2 block">Industry</label>
+                <Input id="industry" defaultValue="Automotive" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
               </div>
             </CardContent>
           </Card>
@@ -120,16 +107,16 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">Current Password</label>
-                <Input type="password" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
+                <label htmlFor="currentPassword" className="text-sm text-gray-400 mb-2 block">Current Password</label>
+                <Input id="currentPassword" type="password" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
               </div>
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">New Password</label>
-                <Input type="password" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
+                <label htmlFor="newPassword" className="text-sm text-gray-400 mb-2 block">New Password</label>
+                <Input id="newPassword" type="password" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
               </div>
               <div>
-                <label className="text-sm text-gray-400 mb-2 block">Confirm Password</label>
-                <Input type="password" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
+                <label htmlFor="confirmPassword" className="text-sm text-gray-400 mb-2 block">Confirm Password</label>
+                <Input id="confirmPassword" type="password" className="bg-[#1a1d3a] border-[#2a2d4a] text-white" />
               </div>
               <Button className="bg-green-600 hover:bg-green-700">Update Password</Button>
             </CardContent>
@@ -166,17 +153,17 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               {[
-                { title: "Email Notifications", description: "Receive important updates via email" },
-                { title: "Marketing Emails", description: "Receive promotional content and offers" },
-                { title: "Security Alerts", description: "Get notified about security events" },
-                { title: "Service Updates", description: "Receive service-related notifications" },
+                { id: "email-notifications", title: "Email Notifications", description: "Receive important updates via email" },
+                { id: "marketing-emails", title: "Marketing Emails", description: "Receive promotional content and offers" },
+                { id: "security-alerts", title: "Security Alerts", description: "Get notified about security events" },
+                { id: "service-updates", title: "Service Updates", description: "Receive service-related notifications" },
               ].map((notif) => (
-                <div key={notif.title} className="flex items-center justify-between py-3 border-b border-[#1a1d3a] last:border-0">
-                  <div>
+                <div key={notif.id} className="flex items-center justify-between py-3 border-b border-[#1a1d3a] last:border-0">
+                  <label htmlFor={notif.id} className="cursor-pointer">
                     <p className="text-white font-medium">{notif.title}</p>
                     <p className="text-gray-400 text-sm">{notif.description}</p>
-                  </div>
-                  <input type="checkbox" defaultChecked className="h-4 w-4" />
+                  </label>
+                  <input id={notif.id} type="checkbox" defaultChecked className="h-4 w-4" />
                 </div>
               ))}
             </CardContent>

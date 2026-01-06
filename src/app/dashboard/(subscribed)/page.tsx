@@ -7,7 +7,6 @@ import {
   Briefcase,
   DollarSign,
   Wallet,
-  TrendingUp,
   AlertTriangle,
   CreditCard,
   CheckCircle,
@@ -18,6 +17,12 @@ import { StatCard } from "@/components/dashboard/stat-card";
 import { ChartCard } from "@/components/dashboard/chart-card";
 import { AlertItem } from "@/components/dashboard/alert-item";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const CERT_ACTIVITY = [35, 48, 62, 75, 68, 82, 71, 88, 76, 92, 85, 95].map((height, i) => ({ month: MONTHS[i], height }));
+const MARKETPLACE_ACTIVITY = [42, 55, 68, 72, 65, 78, 85, 92, 88, 95, 90, 98].map((height, i) => ({ month: MONTHS[i], height }));
+const SERVICE_ACTIVITY = [38, 52, 65, 78, 72, 85, 80, 90, 85, 95, 92, 97].map((height, i) => ({ month: MONTHS[i], height }));
+const COMPLETED_JOBS = [45, 58, 72, 65, 78, 82, 75, 88, 92, 85, 95, 90].map((height, i) => ({ month: MONTHS[i], height }));
 
 export default function DashboardPage() {
   const stats = [
@@ -97,6 +102,7 @@ export default function DashboardPage() {
 
   const alerts = [
     {
+      id: "alert-dispute-6345",
       icon: AlertTriangle,
       iconColor: "text-red-400",
       iconBg: "bg-red-500/20",
@@ -105,6 +111,7 @@ export default function DashboardPage() {
       time: "5 min ago"
     },
     {
+      id: "alert-payment-4362",
       icon: CreditCard,
       iconColor: "text-yellow-400",
       iconBg: "bg-yellow-500/20",
@@ -113,6 +120,7 @@ export default function DashboardPage() {
       time: "12 min ago"
     },
     {
+      id: "alert-cert-error",
       icon: XCircle,
       iconColor: "text-red-400",
       iconBg: "bg-red-500/20",
@@ -121,6 +129,7 @@ export default function DashboardPage() {
       time: "24 min ago"
     },
     {
+      id: "alert-expiring-certs",
       icon: CheckCircle,
       iconColor: "text-green-400",
       iconBg: "bg-green-500/20",
@@ -134,8 +143,8 @@ export default function DashboardPage() {
     <div className="p-6 space-y-6 bg-[#0f1129] min-h-screen">
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat, index) => (
-          <StatCard key={index} {...stat} />
+        {stats.map((stat) => (
+          <StatCard key={stat.title} {...stat} />
         ))}
       </div>
 
@@ -147,16 +156,16 @@ export default function DashboardPage() {
           subtitle="Currently you have 158 new user certifications compared to last month"
         >
           <div className="h-[300px] flex items-end justify-between gap-2 px-4">
-            {[35, 48, 62, 75, 68, 82, 71, 88, 76, 92, 85, 95].map((height, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
+            {CERT_ACTIVITY.map((item) => (
+              <div key={item.month} className="flex-1 flex flex-col items-center gap-1">
                 <div
                   className="w-full bg-gradient-to-t from-blue-500/80 to-blue-400/40 rounded-t-sm relative"
-                  style={{ height: `${height}%` }}
+                  style={{ height: `${item.height}%` }}
                 >
                   <div className="absolute inset-0 bg-blue-400/20 rounded-t-sm" />
                 </div>
                 <span className="text-xs text-gray-500">
-                  {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i]}
+                  {item.month}
                 </span>
               </div>
             ))}
@@ -169,16 +178,16 @@ export default function DashboardPage() {
           subtitle="Currently you have 892 active listing compared to last month"
         >
           <div className="h-[300px] flex items-end justify-between gap-2 px-4">
-            {[42, 55, 68, 72, 65, 78, 85, 92, 88, 95, 90, 98].map((height, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
+            {MARKETPLACE_ACTIVITY.map((item) => (
+              <div key={item.month} className="flex-1 flex flex-col items-center gap-1">
                 <div
                   className="w-full bg-gradient-to-t from-green-500/80 to-green-400/40 rounded-t-sm relative"
-                  style={{ height: `${height}%` }}
+                  style={{ height: `${item.height}%` }}
                 >
                   <div className="absolute inset-0 bg-green-400/20 rounded-t-sm" />
                 </div>
                 <span className="text-xs text-gray-500">
-                  {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i]}
+                  {item.month}
                 </span>
               </div>
             ))}
@@ -194,16 +203,16 @@ export default function DashboardPage() {
           subtitle="Currently you have 342 service requests compared to last month"
         >
           <div className="h-[300px] flex items-end justify-between gap-2 px-4">
-            {[38, 52, 65, 78, 72, 85, 80, 90, 85, 95, 92, 97].map((height, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
+            {SERVICE_ACTIVITY.map((item) => (
+              <div key={item.month} className="flex-1 flex flex-col items-center gap-1">
                 <div
                   className="w-full bg-gradient-to-t from-indigo-500/80 to-indigo-400/40 rounded-t-sm relative"
-                  style={{ height: `${height}%` }}
+                  style={{ height: `${item.height}%` }}
                 >
                   <div className="absolute inset-0 bg-indigo-400/20 rounded-t-sm" />
                 </div>
                 <span className="text-xs text-gray-500">
-                  {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i]}
+                  {item.month}
                 </span>
               </div>
             ))}
@@ -217,14 +226,14 @@ export default function DashboardPage() {
           filters={["Today", "Monthly"]}
         >
           <div className="h-[300px] flex items-end justify-between gap-3 px-4">
-            {[45, 58, 72, 65, 78, 82, 75, 88, 92, 85, 95, 90].map((height, i) => (
-              <div key={i} className="flex-1 flex flex-col items-center gap-1">
+            {COMPLETED_JOBS.map((item) => (
+              <div key={item.month} className="flex-1 flex flex-col items-center gap-1">
                 <div
                   className="w-full bg-gradient-to-t from-cyan-500 to-cyan-400 rounded-sm"
-                  style={{ height: `${height}%` }}
+                  style={{ height: `${item.height}%` }}
                 />
                 <span className="text-xs text-gray-500">
-                  {['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][i]}
+                  {item.month}
                 </span>
               </div>
             ))}
@@ -243,8 +252,8 @@ export default function DashboardPage() {
           </div>
         </CardHeader>
         <CardContent className="space-y-2">
-          {alerts.map((alert, index) => (
-            <AlertItem key={index} {...alert} />
+          {alerts.map((alert) => (
+            <AlertItem key={alert.id} {...alert} />
           ))}
         </CardContent>
       </Card>

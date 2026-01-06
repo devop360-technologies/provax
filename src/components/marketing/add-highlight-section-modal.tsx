@@ -96,11 +96,12 @@ export function AddHighlightSectionModal({
         <div className="space-y-4">
           {/* Title */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="highlight-title" className="mb-2 block text-sm font-medium text-gray-300">
               Title
             </label>
             <input
               type="text"
+              id="highlight-title"
               name="title"
               value={formData.title}
               onChange={handleInputChange}
@@ -111,10 +112,11 @@ export function AddHighlightSectionModal({
 
           {/* Description */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="highlight-description" className="mb-2 block text-sm font-medium text-gray-300">
               Description
             </label>
             <textarea
+              id="highlight-description"
               name="description"
               value={formData.description}
               onChange={handleInputChange}
@@ -126,12 +128,13 @@ export function AddHighlightSectionModal({
 
           {/* Image Upload */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="highlight-image" className="mb-2 block text-sm font-medium text-gray-300">
               Image (Optional)
             </label>
             <div className="relative">
               <input
                 type="file"
+                id="highlight-image"
                 onChange={handleFileChange}
                 accept="image/*"
                 className="absolute inset-0 cursor-pointer opacity-0"
@@ -145,11 +148,12 @@ export function AddHighlightSectionModal({
 
           {/* Display Order */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="highlight-display-order" className="mb-2 block text-sm font-medium text-gray-300">
               Display Order
             </label>
             <input
               type="number"
+              id="highlight-display-order"
               name="displayOrder"
               value={formData.displayOrder}
               onChange={handleInputChange}

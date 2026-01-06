@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { 
-  requestPasswordResetAction,
-  verifyPasswordResetOtpAction,
-  resetPasswordAction 
+  requestPasswordResetAction
 } from "@/actions/password-reset-actions";
 
 /**

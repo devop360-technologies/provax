@@ -3,7 +3,7 @@ interface DashboardTitleProps {
   text?: string;
 }
 
-export function DashboardTitle({ heading, text }: DashboardTitleProps) {
+export function DashboardTitle({ heading, text }: Readonly<DashboardTitleProps>) {
   return (
     <div className="mb-6">
       <div className="grid gap-1">

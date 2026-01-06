@@ -65,7 +65,6 @@ const UploadVehicleMedia = ({ onBack, onStartProcessing }: UploadVehicleMediaPro
   };
 
   const imageCount = uploadedFiles.filter(f => f.type === 'image').length;
-  const videoCount = uploadedFiles.filter(f => f.type === 'video').length;
   const canProceed = uploadedFiles.length >= 3; // Allow proceeding with at least 3 files
 
   const requirements = [

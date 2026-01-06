@@ -9,7 +9,7 @@ interface LineChartProps {
   color: string;
 }
 
-export function LineChart({ data, color }: LineChartProps) {
+export function LineChart({ data, color }: Readonly<LineChartProps>) {
   const maxValue = Math.max(...data);
   const minValue = Math.min(...data);
   const range = maxValue - minValue || 1;
@@ -173,7 +173,7 @@ export function ChartOverview({
   color,
   filters = ['Daily', 'Weekly', 'Monthly'],
   onFilterChange,
-}: ChartOverviewProps) {
+}: Readonly<ChartOverviewProps>) {
   return (
     <Card className="bg-[#1D1D41] border-[#2a2d4a]">
       <CardHeader className="pb-3">

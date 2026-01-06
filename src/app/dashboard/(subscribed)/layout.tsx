@@ -3,18 +3,12 @@ import type { PropsWithChildren } from "react";
 
 import { appConfig } from "@/config";
 import { getCurrentUser } from "@/lib/auth";
-// import { isTrialPeriod } from "@/lib/utils";
 
-export default async function DashboardPaidLayout({ children }: PropsWithChildren) {
+export default async function DashboardPaidLayout({ children }: Readonly<PropsWithChildren>) {
   const currentUser = await getCurrentUser();
-  if (
-    currentUser &&
-    !currentUser?.hasAccess
-    // TODO: Uncomment this when we have a way to check if the user is in a trial period
-    // && !isTrialPeriod(currentUser.createdAt)
-  ) {
+  if (currentUser && !currentUser?.hasAccess) {
     redirect(appConfig.stripe.billingRoute);
   }
 
-  return <>{children}</>;
+  return children;
 }

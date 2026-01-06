@@ -1,11 +1,8 @@
-import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
 
 export function useDeleteAccountForm() {
-  const router = useRouter();
-
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [isDeleting] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
 
   const handleOpenDialog = useCallback(() => {

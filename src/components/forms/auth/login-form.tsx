@@ -31,7 +31,7 @@ interface LoginFormProps {
   className?: string;
 }
 
-export function LoginForm({ className = "" }: LoginFormProps) {
+export function LoginForm({ className = "" }: Readonly<LoginFormProps>) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);

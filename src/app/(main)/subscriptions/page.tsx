@@ -1,6 +1,6 @@
 import SubscriptionPlans from "@/components/subscriptions/subscription-plans";
 import TrustedBy from "@/components/home/trusted-by";
-import FAQ from "@/components/home/faq";
+import FAQSection from "@/components/home/faq";
 import Hero from "@/components/subscriptions/hero";
 import { createMetadata } from "@/lib/metadata";
 import type { Metadata } from "next";
@@ -19,7 +19,7 @@ export default function SubscriptionsPage() {
       <SubscriptionPlans />
       <BusinessPlans />
       <TrustedBy />
-      <FAQ />
+      <FAQSection />
     </div>
   );
 }

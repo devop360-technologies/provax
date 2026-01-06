@@ -7,7 +7,7 @@ import { createCustomerPortalAction } from "@/actions/payment-actions";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function CustomerPortalButton({ className = "" }: { className?: string }) {
+export function CustomerPortalButton({ className = "" }: Readonly<{ className?: string }>) {
   const [isPending, startTransition] = useTransition();
 
   const handlePortalClick = useCallback(() => {
@@ -16,7 +16,7 @@ export function CustomerPortalButton({ className = "" }: { className?: string })
       const result = await createCustomerPortalAction();
       if (result.status === "success" && result.url) {
         // Redirect to the Stripe customer portal
-        window.location.href = result.url;
+        globalThis.location.href = result.url;
       } else {
         // Handle error (could show a toast notification here)
         // Portal session creation failed

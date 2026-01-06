@@ -62,7 +62,7 @@ export function PaymentMethodsModal({
   const formatCardNumber = (value: string) => {
     const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
     const matches = v.match(/\d{4,16}/g);
-    const match = (matches && matches[0]) || "";
+    const match = matches?.[0] || "";
     const parts = [];
 
     for (let i = 0, len = match.length; i < len; i += 4) {
@@ -147,8 +147,9 @@ export function PaymentMethodsModal({
 
             {/* Card Number */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-white mb-2">Card Number</label>
+              <label htmlFor="payment-card-number" className="block text-sm font-medium text-white mb-2">Card Number</label>
               <input
+                id="payment-card-number"
                 type="text"
                 value={cardNumber}
                 onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
@@ -161,8 +162,9 @@ export function PaymentMethodsModal({
             {/* Expiry and CVC */}
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">Expiration Date</label>
+                <label htmlFor="payment-expiry" className="block text-sm font-medium text-white mb-2">Expiration Date</label>
                 <input
+                  id="payment-expiry"
                   type="text"
                   value={expiry}
                   onChange={(e) => setExpiry(formatExpiry(e.target.value))}
@@ -172,8 +174,9 @@ export function PaymentMethodsModal({
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">CVC</label>
+                <label htmlFor="payment-cvc" className="block text-sm font-medium text-white mb-2">CVC</label>
                 <input
+                  id="payment-cvc"
                   type="text"
                   value={cvc}
                   onChange={(e) => setCvc(e.target.value.replace(/\D/g, "").slice(0, 4))}
@@ -186,8 +189,9 @@ export function PaymentMethodsModal({
 
             {/* Cardholder Name */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-white mb-2">Cardholder Name</label>
+              <label htmlFor="payment-cardholder-name" className="block text-sm font-medium text-white mb-2">Cardholder Name</label>
               <input
+                id="payment-cardholder-name"
                 type="text"
                 value={cardholderName}
                 onChange={(e) => setCardholderName(e.target.value)}

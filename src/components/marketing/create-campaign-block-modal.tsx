@@ -85,10 +85,11 @@ export function CreateCampaignBlockModal({
         <div className="space-y-4">
           {/* Campaign Title */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="block-title" className="mb-2 block text-sm font-medium text-gray-300">
               Campaign Title
             </label>
             <input
+              id="block-title"
               type="text"
               name="title"
               value={formData.title}
@@ -100,10 +101,11 @@ export function CreateCampaignBlockModal({
 
           {/* Description */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="block-description" className="mb-2 block text-sm font-medium text-gray-300">
               Description
             </label>
             <textarea
+              id="block-description"
               name="description"
               value={formData.description}
               onChange={handleInputChange}
@@ -117,10 +119,11 @@ export function CreateCampaignBlockModal({
           <div className="grid grid-cols-2 gap-4">
             {/* Link URL 1 */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-300">
+              <label htmlFor="block-link-url-1" className="mb-2 block text-sm font-medium text-gray-300">
                 Link URL
               </label>
               <input
+                id="block-link-url-1"
                 type="text"
                 name="linkUrl1"
                 value={formData.linkUrl1}
@@ -132,10 +135,11 @@ export function CreateCampaignBlockModal({
 
             {/* Link URL 2 */}
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-300">
+              <label htmlFor="block-link-url-2" className="mb-2 block text-sm font-medium text-gray-300">
                 Link URL
               </label>
               <input
+                id="block-link-url-2"
                 type="text"
                 name="linkUrl2"
                 value={formData.linkUrl2}
@@ -148,10 +152,11 @@ export function CreateCampaignBlockModal({
 
           {/* Display Order */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="block-display-order" className="mb-2 block text-sm font-medium text-gray-300">
               Display Order
             </label>
             <input
+              id="block-display-order"
               type="number"
               name="displayOrder"
               value={formData.displayOrder}

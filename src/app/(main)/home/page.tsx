@@ -1,5 +1,5 @@
 import React from "react";
-import FAQ from "@/components/home/faq";
+import FAQSection from "@/components/home/faq";
 import Hero from "@/components/home/hero";
 import TrustedBy from "@/components/home/trusted-by";
 import HowItWorks from "@/components/home/how-it-works";
@@ -20,7 +20,7 @@ const page = () => {
       <SubscriptionPlans />
       <Testimonials />
       <TrustedBy />
-      <FAQ />
+      <FAQSection />
       <CTASection />
     </div>
   );

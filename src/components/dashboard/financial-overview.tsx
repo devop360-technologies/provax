@@ -10,10 +10,6 @@ export function FinancialOverview() {
     "Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"
   ];
 
-  const certificationData = months.map((m, i) => ({ month: m, value: [12000,18000,15000,22000,20000,26000,24000,28000,30000,32000,34000,42000][i] }));
-  const marketplaceData = months.map((m, i) => ({ month: m, value: [8000,12000,14000,16000,19000,21000,23000,25000,27000,29000,31000,36000][i] }));
-  const serviceData = months.map((m, i) => ({ month: m, value: [6000,7000,8000,9000,11000,12000,14000,16000,18000,20000,23000,26000][i] }));
-
   const grossRevenue = months.map((m, i) => ({ month: m, value: [20000,30000,35000,40000,45000,50000,53000,56000,60000,65000,70000,75000][i] }));
   const providerPayouts = months.map((m, i) => ({ month: m, value: [5000,8000,10000,12000,14000,16000,17000,18000,20000,22000,24000,26000][i] }));
 

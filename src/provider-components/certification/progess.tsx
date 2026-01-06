@@ -17,6 +17,23 @@ interface AIModuleStatus {
   status: 'completed' | 'in-progress' | 'pending';
 }
 
+// Helper function to update module status at specific index
+const updateModuleStatus = (
+  modules: AIModuleStatus[],
+  completedIndex: number | null,
+  inProgressIndex: number | null
+): AIModuleStatus[] => {
+  return modules.map((m, i) => {
+    if (completedIndex !== null && i === completedIndex) {
+      return { ...m, status: 'completed' as const };
+    }
+    if (inProgressIndex !== null && i === inProgressIndex) {
+      return { ...m, status: 'in-progress' as const };
+    }
+    return m;
+  });
+};
+
 const Progress = ({ onBack, onViewResults }: ProgressProps) => {
   const [progress, setProgress] = useState(0);
   const [modules, setModules] = useState<AIModuleStatus[]>([
@@ -61,19 +78,19 @@ const Progress = ({ onBack, onViewResults }: ProgressProps) => {
     // Simulate module status updates
     const statusTimeouts = [
       setTimeout(() => {
-        setModules(prev => prev.map((m, i) => i === 0 ? { ...m, status: 'in-progress' } : m));
+        setModules(prev => updateModuleStatus(prev, null, 0));
       }, 500),
       setTimeout(() => {
-        setModules(prev => prev.map((m, i) => i === 0 ? { ...m, status: 'completed' } : i === 1 ? { ...m, status: 'in-progress' } : m));
+        setModules(prev => updateModuleStatus(prev, 0, 1));
       }, 1500),
       setTimeout(() => {
-        setModules(prev => prev.map((m, i) => i === 1 ? { ...m, status: 'completed' } : i === 2 ? { ...m, status: 'in-progress' } : m));
+        setModules(prev => updateModuleStatus(prev, 1, 2));
       }, 2500),
       setTimeout(() => {
-        setModules(prev => prev.map((m, i) => i === 2 ? { ...m, status: 'completed' } : i === 3 ? { ...m, status: 'in-progress' } : m));
+        setModules(prev => updateModuleStatus(prev, 2, 3));
       }, 3000),
       setTimeout(() => {
-        setModules(prev => prev.map((m, i) => i === 3 ? { ...m, status: 'completed' } : m));
+        setModules(prev => updateModuleStatus(prev, 3, null));
       }, 3500),
     ];
 

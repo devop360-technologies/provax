@@ -85,8 +85,8 @@ export default function DisputeResolution() {
               </tr>
             </thead>
             <tbody>
-              {disputes.map((dispute, index) => (
-                <tr key={index} className="border-b border-gray-700 hover:bg-[#252850] transition-colors">
+              {disputes.map((dispute) => (
+                <tr key={dispute.disputeId} className="border-b border-gray-700 hover:bg-[#252850] transition-colors">
                   <td className="py-4 px-4">
                     <span className="text-white font-medium">{dispute.disputeId}</span>
                   </td>

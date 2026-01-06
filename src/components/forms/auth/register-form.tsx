@@ -28,7 +28,7 @@ interface RegisterFormProps {
   className?: string;
 }
 
-export function RegisterForm({ className = "" }: RegisterFormProps) {
+export function RegisterForm({ className = "" }: Readonly<RegisterFormProps>) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);

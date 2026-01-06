@@ -26,6 +26,16 @@ interface ServiceBiddingProps {
 
 type Tab = "Service Requests" | "Service Detail" | "Dispute Management" | "SLA Tracking";
 
+// Helper function to get urgency badge styling
+const getUrgencyBadgeClass = (urgency: string | undefined) => {
+  switch (urgency) {
+    case "Critical": return "bg-red-500/20 text-red-400";
+    case "High": return "bg-orange-500/20 text-orange-400";
+    case "Medium": return "bg-yellow-500/20 text-yellow-400";
+    default: return "bg-green-500/20 text-green-400";
+  }
+};
+
 export function ServiceBidding({ users }: ServiceBiddingProps) {
   const [activeTab, setActiveTab] = useState<Tab>("Service Requests");
   const [activeDetailTab, setActiveDetailTab] = useState("Service Information");
@@ -226,8 +236,9 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
           <div className="mr-0 rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 md:mr-7">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:items-end">
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">Category</label>
+                <label htmlFor="service-category-filter" className="mb-2 block text-sm font-medium text-white">Category</label>
                 <select
+                  id="service-category-filter"
                   value={filters.category}
                   onChange={(e) => setFilters(prev => ({ ...prev, category: e.target.value }))}
                   className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -241,8 +252,9 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                 </select>
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">Region</label>
+                <label htmlFor="service-region-filter" className="mb-2 block text-sm font-medium text-white">Region</label>
                 <select
+                  id="service-region-filter"
                   value={filters.region}
                   onChange={(e) => setFilters(prev => ({ ...prev, region: e.target.value }))}
                   className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -256,8 +268,9 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                 </select>
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">Urgency</label>
+                <label htmlFor="service-urgency-filter" className="mb-2 block text-sm font-medium text-white">Urgency</label>
                 <select
+                  id="service-urgency-filter"
                   value={filters.urgency}
                   onChange={(e) => setFilters(prev => ({ ...prev, urgency: e.target.value }))}
                   className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -270,8 +283,9 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                 </select>
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">Status</label>
+                <label htmlFor="service-status-filter" className="mb-2 block text-sm font-medium text-white">Status</label>
                 <select
+                  id="service-status-filter"
                   value={filters.status}
                   onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
                   className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -287,8 +301,9 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                 </select>
               </div>
               <div>
-                <label className="mb-2 block text-sm font-medium text-white">Budget Range</label>
+                <label htmlFor="service-budget-filter" className="mb-2 block text-sm font-medium text-white">Budget Range</label>
                 <select
+                  id="service-budget-filter"
                   value={filters.budget}
                   onChange={(e) => setFilters(prev => ({ ...prev, budget: e.target.value }))}
                   className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -346,12 +361,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                       <td className="px-4 py-4 text-xs text-gray-300">{request.category}</td>
                       <td className="px-4 py-4 text-xs text-gray-300">{request.region}</td>
                       <td className="px-4 py-4 text-xs">
-                        <span className={`rounded px-3 py-1 text-xs font-medium ${
-                          request.urgency === "Critical" ? "bg-red-500/20 text-red-400" :
-                          request.urgency === "High" ? "bg-orange-500/20 text-orange-400" :
-                          request.urgency === "Medium" ? "bg-yellow-500/20 text-yellow-400" :
-                          "bg-green-500/20 text-green-400"
-                        }`}>
+                        <span className={`rounded px-3 py-1 text-xs font-medium ${getUrgencyBadgeClass(request.urgency)}`}>
                           {request.urgency}
                         </span>
                       </td>
@@ -490,12 +500,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                         <tr className="border-b border-[#2a2d4a]">
                           <td className="px-6 py-4 text-sm text-gray-400">Urgency:</td>
                           <td className="px-6 py-4 text-sm font-medium">
-                            <span className={`inline-block rounded px-3 py-1 text-xs font-medium ${
-                              selectedService?.urgency === "Critical" ? "bg-red-500/20 text-red-400" :
-                              selectedService?.urgency === "High" ? "bg-orange-500/20 text-orange-400" :
-                              selectedService?.urgency === "Medium" ? "bg-yellow-500/20 text-yellow-400" :
-                              "bg-green-500/20 text-green-400"
-                            }`}>
+                            <span className={`inline-block rounded px-3 py-1 text-xs font-medium ${getUrgencyBadgeClass(selectedService?.urgency)}`}>
                               {selectedService?.urgency || "High"}
                             </span>
                           </td>

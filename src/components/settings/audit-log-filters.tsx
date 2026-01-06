@@ -46,11 +46,12 @@ export function AuditLogFilters({
       <div className="flex items-end gap-4">
         {/* Event Type */}
         <div className="flex-1">
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="audit-event-type" className="block text-sm font-medium text-gray-300 mb-2">
             Event Type
           </label>
           <div className="relative">
             <select
+              id="audit-event-type"
               value={eventType}
               onChange={(e) => onEventTypeChange?.(e.target.value)}
               className="w-full appearance-none rounded-lg border border-[#404254] bg-[#1D1D41] px-4 py-2 text-gray-400 hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none text-sm"
@@ -70,11 +71,12 @@ export function AuditLogFilters({
 
         {/* User */}
         <div className="flex-1">
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="audit-user" className="block text-sm font-medium text-gray-300 mb-2">
             User
           </label>
           <div className="relative">
             <select
+              id="audit-user"
               value={user}
               onChange={(e) => onUserChange?.(e.target.value)}
               className="w-full appearance-none rounded-lg border border-[#404254] bg-[#1D1D41] px-4 py-2 text-gray-400 hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none text-sm"
@@ -94,11 +96,12 @@ export function AuditLogFilters({
 
         {/* From Date */}
         <div className="flex-1">
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="audit-from-date" className="block text-sm font-medium text-gray-300 mb-2">
             From Date
           </label>
           <div className="relative">
             <input
+              id="audit-from-date"
               type="date"
               value={fromDate.split("/").reverse().join("-")}
               onChange={(e) => {
@@ -116,11 +119,12 @@ export function AuditLogFilters({
 
         {/* To Date */}
         <div className="flex-1">
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label htmlFor="audit-to-date" className="block text-sm font-medium text-gray-300 mb-2">
             To Date
           </label>
           <div className="relative">
             <input
+              id="audit-to-date"
               type="date"
               value={toDate.split("/").reverse().join("-")}
               onChange={(e) => {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { loginAction, requestLoginOtpAction, loginWithOtpAction } from "@/actions/login-actions";
+import { loginAction } from "@/actions/login-actions";
 
 /**
  * POST /api/auth/login

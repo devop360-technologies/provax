@@ -19,7 +19,7 @@ export function AlertItem({
   title,
   description,
   time
-}: AlertItemProps) {
+}: Readonly<AlertItemProps>) {
   return (
     <div className="flex items-start gap-3 p-3 rounded-lg hover:bg-[#14162e] transition-colors">
       <div className={cn("p-2 rounded-full", iconBg)}>

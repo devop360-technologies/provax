@@ -7,7 +7,7 @@ interface BarChartProps {
   color: string;
 }
 
-export function BarChart({ data, color }: BarChartProps) {
+export function BarChart({ data, color }: Readonly<BarChartProps>) {
   const maxValue = Math.max(...data.map(d => d.value));
   const svgHeight = 280;
   const svgWidth = 500;
@@ -133,7 +133,7 @@ export function BarChartOverview({
   color,
   filters = ['Daily', 'Quarterly'],
   onFilterChange,
-}: BarChartOverviewProps) {
+}: Readonly<BarChartOverviewProps>) {
   return (
     <Card className="bg-[#252850] border-[#2a2d4a]">
       <CardHeader className="pb-3">

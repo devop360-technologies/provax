@@ -113,9 +113,10 @@ export function RetryPaymentModal({
             
             {/* Card Number */}
             <div className="mb-4">
-              <label className="block text-sm font-medium text-white mb-2">Card Number</label>
+              <label htmlFor="retry-card-number" className="block text-sm font-medium text-white mb-2">Card Number</label>
               <input
                 type="text"
+                id="retry-card-number"
                 value={cardNumber}
                 onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
                 maxLength={19}
@@ -127,9 +128,10 @@ export function RetryPaymentModal({
             {/* Expiry and CVC */}
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">Expiration Date</label>
+                <label htmlFor="retry-expiry" className="block text-sm font-medium text-white mb-2">Expiration Date</label>
                 <input
                   type="text"
+                  id="retry-expiry"
                   value={expiry}
                   onChange={(e) => setExpiry(formatExpiry(e.target.value))}
                   maxLength={5}
@@ -138,9 +140,10 @@ export function RetryPaymentModal({
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-white mb-2">CVC</label>
+                <label htmlFor="retry-cvc" className="block text-sm font-medium text-white mb-2">CVC</label>
                 <input
                   type="text"
+                  id="retry-cvc"
                   value={cvc}
                   onChange={(e) => setCvc(e.target.value.replace(/\D/g, "").slice(0, 4))}
                   maxLength={4}

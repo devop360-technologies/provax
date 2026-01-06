@@ -10,13 +10,12 @@ interface DeleteSubscriptionModalProps {
 export default function DeleteSubscriptionModal({
   isOpen,
   onClose,
-  providerId
-}: DeleteSubscriptionModalProps) {
+  providerId: _providerId
+}: Readonly<DeleteSubscriptionModalProps>) {
   if (!isOpen) return null;
 
   const handleConfirm = () => {
-    // Handle delete action here
-    // TODO: Implement actual deletion logic
+    // Handle delete action here - implement based on _providerId
     onClose();
   };
 

@@ -84,19 +84,19 @@ function StarRating({ rating }: { rating: number }) {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 !== 0;
 
+  const getStarClass = (index: number) => {
+    if (index < fullStars) return "fill-[#22C55E] text-[#22C55E]";
+    if (index === fullStars && hasHalfStar) return "fill-[#22C55E]/50 text-[#22C55E]";
+    return "fill-transparent text-gray-500";
+  };
+
   return (
     <div className="flex items-center gap-1">
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
           size={16}
-          className={cn(
-            i < fullStars
-              ? "fill-[#22C55E] text-[#22C55E]"
-              : i === fullStars && hasHalfStar
-                ? "fill-[#22C55E]/50 text-[#22C55E]"
-                : "fill-transparent text-gray-500"
-          )}
+          className={cn(getStarClass(i))}
         />
       ))}
       <span className="ml-1 text-sm text-white">{rating.toFixed(1)}</span>

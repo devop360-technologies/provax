@@ -5,7 +5,7 @@ import Image from "next/image";
 import { OtpVerificationForm } from "./otp-verification-form";
 import { NewPasswordForm } from "./new-password-form";
 import { PasswordResetSuccess } from "./password-reset-success";
-import { requestPasswordReset, verifyPasswordResetOtp } from "@/lib/api/auth-client";
+import { requestPasswordReset } from "@/lib/api/auth-client";
 
 type Step = 'email' | 'otp' | 'newPassword' | 'success';
 
@@ -122,10 +122,11 @@ export function ForgotPasswordForm() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div>
-              <label className="block text-white text-sm font-medium mb-3">
+              <label htmlFor="forgotPasswordEmail" className="block text-white text-sm font-medium mb-3">
                 Email Address
               </label>
               <input
+                id="forgotPasswordEmail"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

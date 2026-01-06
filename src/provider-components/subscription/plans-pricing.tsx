@@ -3,6 +3,17 @@
 import { Check, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+// Helper component for rendering feature value cell
+const FeatureValueCell = ({ value }: { value: string | boolean }) => {
+  if (typeof value !== "boolean") {
+    return <span className="text-sm text-gray-300">{value}</span>;
+  }
+  if (value) {
+    return <Check className="w-5 h-5 text-[#22C55E] mx-auto" />;
+  }
+  return <X className="w-5 h-5 text-[#F87171] mx-auto" />;
+};
+
 interface PlanFeature {
   text: string;
   included: boolean;
@@ -191,37 +202,13 @@ export function PlansPricing({
                 <tr key={index} className="border-b border-[#2a2d4a] last:border-b-0">
                   <td className="py-4 px-4 text-sm text-gray-300">{feature.name}</td>
                   <td className="py-4 px-4 text-center">
-                    {typeof feature.basic === "boolean" ? (
-                      feature.basic ? (
-                        <Check className="w-5 h-5 text-[#22C55E] mx-auto" />
-                      ) : (
-                        <X className="w-5 h-5 text-[#F87171] mx-auto" />
-                      )
-                    ) : (
-                      <span className="text-sm text-gray-300">{feature.basic}</span>
-                    )}
+                    <FeatureValueCell value={feature.basic} />
                   </td>
                   <td className="py-4 px-4 text-center">
-                    {typeof feature.professional === "boolean" ? (
-                      feature.professional ? (
-                        <Check className="w-5 h-5 text-[#22C55E] mx-auto" />
-                      ) : (
-                        <X className="w-5 h-5 text-[#F87171] mx-auto" />
-                      )
-                    ) : (
-                      <span className="text-sm text-gray-300">{feature.professional}</span>
-                    )}
+                    <FeatureValueCell value={feature.professional} />
                   </td>
                   <td className="py-4 px-4 text-center">
-                    {typeof feature.enterprise === "boolean" ? (
-                      feature.enterprise ? (
-                        <Check className="w-5 h-5 text-[#22C55E] mx-auto" />
-                      ) : (
-                        <X className="w-5 h-5 text-[#F87171] mx-auto" />
-                      )
-                    ) : (
-                      <span className="text-sm text-gray-300">{feature.enterprise}</span>
-                    )}
+                    <FeatureValueCell value={feature.enterprise} />
                   </td>
                 </tr>
               ))}

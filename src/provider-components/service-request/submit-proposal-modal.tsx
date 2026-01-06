@@ -59,10 +59,11 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
           {/* Proposed Price and Delivery Time */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="text-white text-[12px] font-medium mb-2 block">
+              <label htmlFor="proposal-price" className="text-white text-[12px] font-medium mb-2 block">
                 Proposed Price ($)
               </label>
               <Input
+                id="proposal-price"
                 type="number"
                 value={proposedPrice}
                 onChange={(e) => setProposedPrice(e.target.value)}
@@ -71,10 +72,11 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
               />
             </div>
             <div>
-              <label className="text-white text-[12px] font-medium mb-2 block">
+              <label htmlFor="proposal-delivery-time" className="text-white text-[12px] font-medium mb-2 block">
                 Delivery Time (Days)
               </label>
               <Input
+                id="proposal-delivery-time"
                 type="number"
                 value={deliveryTime}
                 onChange={(e) => setDeliveryTime(e.target.value)}
@@ -86,11 +88,11 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
 
           {/* Warranty Offered */}
           <div>
-            <label className="text-white text-[12px] font-medium mb-2 block">
+            <label htmlFor="proposal-warranty" className="text-white text-[12px] font-medium mb-2 block">
               Warranty Offered
             </label>
             <Select value={warranty} onValueChange={setWarranty}>
-              <SelectTrigger className="bg-[#262656] border-[#3a3f5a] text-white">
+              <SelectTrigger id="proposal-warranty" className="bg-[#262656] border-[#3a3f5a] text-white">
                 <SelectValue placeholder="Select warranty period" />
               </SelectTrigger>
               <SelectContent className="bg-[#262656] border-[#3a3f5a]">
@@ -106,10 +108,11 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
 
           {/* Technical Notes & Approach */}
           <div>
-            <label className="text-white text-[12px] font-medium mb-2 block">
+            <label htmlFor="proposal-technical-notes" className="text-white text-[12px] font-medium mb-2 block">
               Technical Notes & Approach
             </label>
             <Textarea
+              id="proposal-technical-notes"
               value={technicalNotes}
               onChange={(e) => setTechnicalNotes(e.target.value)}
               placeholder="Describe your approach to the repair, parts you'll use, and any special considerations..."
@@ -120,12 +123,12 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
 
           {/* Attachments */}
           <div>
-            <label className="text-white text-[12px] font-medium mb-2 block">
+            <label htmlFor="proposal-file-input" className="text-white text-[12px] font-medium mb-2 block">
               Attachments (Optional)
             </label>
             <div
               className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#2C2C68] hover:border-[#4a4f6a] transition-colors cursor-pointer"
-              onClick={() => document.getElementById('file-input')?.click()}
+              onClick={() => document.getElementById('proposal-file-input')?.click()}
             >
               <div className="flex flex-col items-center">
                 <div className="w-12 h-12 rounded-full bg-[#2C2C68] flex items-center justify-center mb-3">
@@ -136,7 +139,7 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
                 </p>
               </div>
               <input
-                id="file-input"
+                id="proposal-file-input"
                 type="file"
                 multiple
                 onChange={handleFileUpload}

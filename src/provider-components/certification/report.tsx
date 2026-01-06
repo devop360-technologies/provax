@@ -25,6 +25,39 @@ interface Finding {
   severity: 'pass' | 'fail' | 'warning';
 }
 
+// Helper functions for styling
+const getStepStatusColor = (status: 'completed' | 'in-progress' | 'pending') => {
+  switch (status) {
+    case 'completed': return 'text-[#00d9ff]';
+    case 'in-progress': return 'text-[#00d9ff]';
+    default: return 'text-gray-500';
+  }
+};
+
+const getSeverityBorderColor = (severity: 'pass' | 'fail' | 'warning') => {
+  switch (severity) {
+    case 'pass': return '#10b981';
+    case 'fail': return '#ef4444';
+    default: return '#f59e0b';
+  }
+};
+
+const getSeverityBadgeClass = (severity: 'pass' | 'fail' | 'warning') => {
+  switch (severity) {
+    case 'pass': return 'bg-green-500/20 text-green-400';
+    case 'fail': return 'bg-red-500/20 text-red-400';
+    default: return 'bg-yellow-500/20 text-yellow-400';
+  }
+};
+
+const getSeverityLabel = (severity: 'pass' | 'fail' | 'warning') => {
+  switch (severity) {
+    case 'pass': return 'Pass';
+    case 'fail': return 'Fail';
+    default: return 'Warning';
+  }
+};
+
 const Report = ({ onBack }: ReportProps) => {
   const processingSteps: ProcessingStep[] = [
     {
@@ -136,13 +169,7 @@ const Report = ({ onBack }: ReportProps) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h3
-                    className={`text-sm font-medium mb-1 ${
-                      step.status === 'completed'
-                        ? 'text-[#00d9ff]'
-                        : step.status === 'in-progress'
-                        ? 'text-[#00d9ff]'
-                        : 'text-gray-500'
-                    }`}
+                    className={`text-sm font-medium mb-1 ${getStepStatusColor(step.status)}`}
                   >
                     {step.title}
                   </h3>
@@ -177,30 +204,15 @@ const Report = ({ onBack }: ReportProps) => {
                   key={finding.id}
                   className="bg-[#23234B] rounded-lg p-4 border-l-4"
                   style={{
-                    borderLeftColor:
-                      finding.severity === 'pass'
-                        ? '#10b981'
-                        : finding.severity === 'fail'
-                        ? '#ef4444'
-                        : '#f59e0b',
+                    borderLeftColor: getSeverityBorderColor(finding.severity),
                   }}
                 >
                   <div className="flex items-start justify-between">
                     <p className="text-gray-300 text-sm flex-1">{finding.title}</p>
                     <Badge
-                      className={`ml-3 border-0 ${
-                        finding.severity === 'pass'
-                          ? 'bg-green-500/20 text-green-400'
-                          : finding.severity === 'fail'
-                          ? 'bg-red-500/20 text-red-400'
-                          : 'bg-yellow-500/20 text-yellow-400'
-                      }`}
+                      className={`ml-3 border-0 ${getSeverityBadgeClass(finding.severity)}`}
                     >
-                      {finding.severity === 'pass'
-                        ? 'Pass'
-                        : finding.severity === 'fail'
-                        ? 'Fail'
-                        : 'Warning'}
+                      {getSeverityLabel(finding.severity)}
                     </Badge>
                   </div>
                 </div>
@@ -217,24 +229,15 @@ const Report = ({ onBack }: ReportProps) => {
                   key={finding.id}
                   className="bg-[#23234B] rounded-lg p-4 border-l-4"
                   style={{
-                    borderLeftColor:
-                      finding.severity === 'pass'
-                        ? '#10b981'
-                        : finding.severity === 'warning'
-                        ? '#f59e0b'
-                        : '#ef4444',
+                    borderLeftColor: getSeverityBorderColor(finding.severity),
                   }}
                 >
                   <div className="flex items-start justify-between">
                     <p className="text-gray-300 text-sm flex-1">{finding.title}</p>
                     <Badge
-                      className={`ml-3 border-0 ${
-                        finding.severity === 'pass'
-                          ? 'bg-green-500/20 text-green-400'
-                          : 'bg-yellow-500/20 text-yellow-400'
-                      }`}
+                      className={`ml-3 border-0 ${getSeverityBadgeClass(finding.severity)}`}
                     >
-                      {finding.severity === 'pass' ? 'Pass' : 'Warning'}
+                      {getSeverityLabel(finding.severity)}
                     </Badge>
                   </div>
                 </div>

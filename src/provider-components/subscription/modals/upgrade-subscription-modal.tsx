@@ -48,6 +48,12 @@ export function UpgradeSubscriptionModal({
 
   const selectedMethod = paymentMethods.find(pm => pm.id === selectedPaymentMethod);
 
+  const getPaymentMethodLabel = () => {
+    if (!selectedMethod) return "Add New Payment method";
+    const typeName = selectedMethod.type === "mastercard" ? "Mastercard" : "Visa";
+    return `${typeName} ending in ${selectedMethod.lastFour}`;
+  };
+
   const modalContent = (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
       {/* Backdrop */}
@@ -95,9 +101,7 @@ export function UpgradeSubscriptionModal({
                 className="w-full flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
               >
                 <span>
-                  {selectedMethod
-                    ? `${selectedMethod.type === "mastercard" ? "Mastercard" : "Visa"} ending in ${selectedMethod.lastFour}`
-                    : "Add New Payment method"}
+                  {getPaymentMethodLabel()}
                 </span>
                 <ChevronDown
                   size={16}

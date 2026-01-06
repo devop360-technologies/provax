@@ -1,6 +1,6 @@
 "use server";
 
-import crypto from "crypto";
+import crypto from "node:crypto";
 
 import { appConfig } from "@/config";
 import { prisma } from "@/lib/prisma";

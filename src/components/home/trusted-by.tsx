@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Marquee } from "@/components/marquee";
-import { SectionHeader } from "@/components/section-headers";
 
 const sponsors = [
   "/clients/BMW.png",

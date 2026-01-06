@@ -6,12 +6,12 @@ import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 
-interface ErrorProps {
+interface ErrorPageProps {
   error: Error;
   reset: () => void;
 }
 
-export default function Error({ error, reset }: ErrorProps) {
+export default function ErrorPage({ error, reset }: Readonly<ErrorPageProps>) {
   useEffect(() => {
     // Optionally log error to an error reporting service
     // console.error(error);

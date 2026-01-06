@@ -30,8 +30,8 @@ export function ReportFilters({ onApplyFilters, onResetFilter, className }: Repo
       <div className="grid grid-cols-1 gap-4 md:grid-cols-5 lg:grid-cols-5">
         {/* Status Filter */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">Status</label>
-          <select className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
+          <label htmlFor="report-status-filter" className="mb-2 block text-xs font-medium text-gray-300">Status</label>
+          <select id="report-status-filter" className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
             <option>Last 7 Days</option>
             <option>Last 14 Days</option>
             <option>Last 30 Days</option>
@@ -41,8 +41,8 @@ export function ReportFilters({ onApplyFilters, onResetFilter, className }: Repo
 
         {/* Category Filter */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">Category</label>
-          <select className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
+          <label htmlFor="report-category-filter" className="mb-2 block text-xs font-medium text-gray-300">Category</label>
+          <select id="report-category-filter" className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
             <option>All Categories</option>
             <option>Certifications</option>
             <option>Marketplace</option>
@@ -52,8 +52,9 @@ export function ReportFilters({ onApplyFilters, onResetFilter, className }: Repo
 
         {/* From Date */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">From Date</label>
+          <label htmlFor="report-from-date" className="mb-2 block text-xs font-medium text-gray-300">From Date</label>
           <input
+            id="report-from-date"
             type="date"
             defaultValue="2023-01-01"
             className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none"
@@ -62,8 +63,9 @@ export function ReportFilters({ onApplyFilters, onResetFilter, className }: Repo
 
         {/* To Date */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">To Date</label>
+          <label htmlFor="report-to-date" className="mb-2 block text-xs font-medium text-gray-300">To Date</label>
           <input
+            id="report-to-date"
             type="date"
             defaultValue="2023-12-31"
             className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none"

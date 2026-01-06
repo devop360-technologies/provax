@@ -39,8 +39,9 @@ export function HomepageTexts({
       <div className="grid gap-6 md:grid-cols-2">
         {/* Main Title */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-gray-300">Main Title</label>
+          <label htmlFor="homepage-main-title" className="text-xs font-medium text-gray-300">Main Title</label>
           <input
+            id="homepage-main-title"
             type="text"
             defaultValue={mainTitle}
             placeholder={mainTitlePlaceholder}
@@ -53,8 +54,9 @@ export function HomepageTexts({
 
         {/* Subtitle */}
         <div className="space-y-2">
-          <label className="text-xs font-medium text-gray-300">Subtitle</label>
+          <label htmlFor="homepage-subtitle" className="text-xs font-medium text-gray-300">Subtitle</label>
           <input
+            id="homepage-subtitle"
             type="text"
             defaultValue={subtitle}
             placeholder={subtitlePlaceholder}
@@ -68,8 +70,9 @@ export function HomepageTexts({
 
       {/* Description */}
       <div className="space-y-2">
-        <label className="text-xs font-medium text-gray-300">Description</label>
+        <label htmlFor="homepage-description" className="text-xs font-medium text-gray-300">Description</label>
         <textarea
+          id="homepage-description"
           defaultValue={description}
           placeholder={descriptionPlaceholder}
           rows={4}

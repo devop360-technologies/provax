@@ -124,6 +124,11 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
   ({ side = "left", variant = "default", className, children, ...props }, ref) => {
     const { isMobile, state, openMobile, setOpenMobile } = useSidebar()
 
+    const getMobileTranslateClass = () => {
+      if (openMobile) return "translate-x-0";
+      return side === "left" ? "-translate-x-full" : "translate-x-full";
+    };
+
     if (isMobile) {
       return (
         <div className="fixed inset-0 z-50 md:hidden">
@@ -131,7 +136,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
             className={cn(
               "fixed inset-y-0 z-50 w-[var(--sidebar-width-mobile)] bg-sidebar transition-transform duration-200 ease-in-out",
               side === "left" ? "left-0" : "right-0",
-              openMobile ? "translate-x-0" : side === "left" ? "-translate-x-full" : "translate-x-full"
+              getMobileTranslateClass()
             )}
           >
             <div
@@ -347,9 +352,8 @@ const SidebarMenuButton = React.forwardRef<
     isActive?: boolean
     tooltip?: string | React.ComponentProps<any>
   } & VariantProps<typeof sidebarMenuButtonVariants>
->(({ asChild = false, isActive = false, variant = "default", size = "default", tooltip, className, ...props }, ref) => {
+>(({ asChild = false, isActive = false, variant = "default", size = "default", className, ...props }, ref) => {
   const Comp = asChild ? React.Fragment : "button"
-  const [showTooltip, setShowTooltip] = React.useState(false)
 
   const button = (
     <Comp

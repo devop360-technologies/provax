@@ -1,6 +1,6 @@
 'use client'
 import React from "react";
-import Image from "next/image";
+import Link from "next/link";
 import carfooter from "../../asests/footerCar.png"
 
 export default function Footer() {
@@ -71,27 +71,24 @@ export default function Footer() {
 
                 {/* Social Links */}
                 <div className="space-y-4">
-                  <a
-                    href="#"
-                    className="flex items-center space-x-3 text-white/70 hover:text-cyan-400 transition-colors"
+                  <span
+                    className="flex items-center space-x-3 text-white/70 hover:text-cyan-400 transition-colors cursor-pointer"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                     </svg>
                     <span className="text-sm tracking-widest uppercase">Facebook</span>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center space-x-3 text-white/70 hover:text-cyan-400 transition-colors"
+                  </span>
+                  <span
+                    className="flex items-center space-x-3 text-white/70 hover:text-cyan-400 transition-colors cursor-pointer"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M23.953 4.57a10 10 0 002.856-3.515 10 10 0 01-2.837.856c1.021-.609 1.802-1.574 2.165-2.724-.954.564-2.005.974-3.127 1.195-.9-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06c0 2.386 1.697 4.374 3.946 4.827a4.996 4.996 0 01-2.212.085c.627 1.956 2.444 3.379 4.6 3.419-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548z"/>
                     </svg>
                     <span className="text-sm tracking-widest uppercase">Twitter</span>
-                  </a>
-                  <a
-                    href="#"
-                    className="flex items-center space-x-3 text-white/70 hover:text-cyan-400 transition-colors"
+                  </span>
+                  <span
+                    className="flex items-center space-x-3 text-white/70 hover:text-cyan-400 transition-colors cursor-pointer"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" strokeWidth="2"/>
@@ -99,7 +96,7 @@ export default function Footer() {
                       <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
                     </svg>
                     <span className="text-sm tracking-widest uppercase">Instagram</span>
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -130,24 +127,24 @@ export default function Footer() {
             <div className="space-y-6">
               <h3 className="text-xl font-bold text-white">Navigate</h3>
               <div className="space-y-3">
-                <a href="#" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
+                <Link href="/" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
                   Home
-                </a>
-                <a href="#" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
+                </Link>
+                <Link href="/how-its-works" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
                   How Its Works
-                </a>
-                <a href="#" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
+                </Link>
+                <Link href="/marketplace" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
                   Marketplace
-                </a>
-                <a href="#" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
+                </Link>
+                <Link href="/services" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
                   Service
-                </a>
-                <a href="#" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
+                </Link>
+                <Link href="/subscriptions" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
                   Subscription
-                </a>
-                <a href="#" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
+                </Link>
+                <Link href="/contact" className="block text-sm text-white/70 hover:text-cyan-400 transition-colors uppercase tracking-wider">
                   Contact
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -165,10 +162,10 @@ export default function Footer() {
                   ))}
                 </div>
                 <p className="text-sm text-white/60">+1,000 Reviews</p>
-                <a href="#" className="inline-flex items-center space-x-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                <span className="inline-flex items-center space-x-2 text-cyan-400 hover:text-cyan-300 transition-colors text-sm cursor-pointer">
                   <span>VIEW ON GOOGLE</span>
                   <span>↗</span>
-                </a>
+                </span>
               </div>
 
               {/* Vertical "FOR EVERY NEED" text */}
@@ -226,12 +223,12 @@ export default function Footer() {
               © PROVAX 2025 · All rights reserved
             </p>
             <div className="flex items-center space-x-6">
-              <a href="#" className="text-xs text-white/50 hover:text-white/80 transition-colors">
+              <Link href="/privacy-policy" className="text-xs text-white/50 hover:text-white/80 transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-xs text-white/50 hover:text-white/80 transition-colors">
+              </Link>
+              <Link href="/terms" className="text-xs text-white/50 hover:text-white/80 transition-colors">
                 Terms of Use
-              </a>
+              </Link>
             </div>
           </div>
         </div>

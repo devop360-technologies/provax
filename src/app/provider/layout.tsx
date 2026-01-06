@@ -3,7 +3,7 @@ import { ProviderDashboardSidebar } from "@/components/layouts/dashboard/provide
 import { DashboardHeader } from "@/components/layouts/dashboard/dashboard-header";
 import { MobileSidebarProvider } from "@/components/layouts/dashboard/mobile-sidebar-context";
 
-export default function ProviderDashboardLayout({ children }: PropsWithChildren) {
+export default function ProviderDashboardLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <MobileSidebarProvider>
       <div className="flex h-screen bg-[#141332]">

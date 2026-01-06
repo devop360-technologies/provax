@@ -10,7 +10,7 @@ interface OtpVerificationFormProps {
   onResendOtp: () => void;
 }
 
-export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: OtpVerificationFormProps) {
+export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: Readonly<OtpVerificationFormProps>) {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [isVerifying, setIsVerifying] = useState(false);
   const [error, setError] = useState('');
@@ -49,7 +49,7 @@ export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: O
   const handlePaste = (e: React.ClipboardEvent) => {
     e.preventDefault();
     const pasteData = e.clipboardData.getData('text');
-    const digits = pasteData.replace(/\D/g, '').slice(0, 6);
+    const digits = pasteData.replaceAll(/\D/g, '').slice(0, 6);
     
     if (digits.length === 6) {
       const newOtp = digits.split('');
@@ -124,10 +124,10 @@ export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: O
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* OTP Input Fields */}
             <div className="space-y-4">
-              <label className="block text-white text-sm font-medium text-center">
+              <span className="block text-white text-sm font-medium text-center">
                 Verification Code
-              </label>
-              <div className="flex justify-center space-x-3">
+              </span>
+              <div className="flex justify-center space-x-3" role="group" aria-label="Verification Code">
                 {otp.map((digit, index) => (
                   <input
                     key={index}
@@ -138,6 +138,7 @@ export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: O
                     onChange={(e) => handleOtpChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
                     onPaste={index === 0 ? handlePaste : undefined}
+                    aria-label={`Digit ${index + 1} of 6`}
                     className="w-12 h-12 text-center text-xl font-bold bg-transparent border border-gray-500 rounded-xl text-white focus:outline-none focus:border-blue-500 transition-colors"
                     required
                   />

@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { BarChart3, TrendingUp, Wallet, ArrowUpRight, ArrowDownLeft } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import FinancialOverview from '@/components/dashboard/financial-overview';
 import FinancialTabs from "@/components/dashboard/financial-tabs";
 import FinancialFilters from "@/components/dashboard/financial-filters";

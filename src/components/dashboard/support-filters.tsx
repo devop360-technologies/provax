@@ -6,8 +6,8 @@ export default function SupportFilters() {
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
         {/* Status Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Status</label>
-          <select className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
+          <label htmlFor="supportStatusFilter" className="block text-sm font-medium text-gray-300 mb-2">Status</label>
+          <select id="supportStatusFilter" className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
             <option>All Status</option>
             <option>Open</option>
             <option>Pending</option>
@@ -17,8 +17,8 @@ export default function SupportFilters() {
 
         {/* Priority Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Priority</label>
-          <select className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
+          <label htmlFor="supportPriorityFilter" className="block text-sm font-medium text-gray-300 mb-2">Priority</label>
+          <select id="supportPriorityFilter" className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
             <option>All Priorities</option>
             <option>High</option>
             <option>Medium</option>
@@ -28,8 +28,8 @@ export default function SupportFilters() {
 
         {/* Topic Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Topic</label>
-          <select className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
+          <label htmlFor="supportTopicFilter" className="block text-sm font-medium text-gray-300 mb-2">Topic</label>
+          <select id="supportTopicFilter" className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
             <option>All Topic</option>
             <option>Billing</option>
             <option>Technical Issue</option>
@@ -40,8 +40,8 @@ export default function SupportFilters() {
 
         {/* Assigned Agent Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">Assigned Agent</label>
-          <select className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
+          <label htmlFor="supportAgentFilter" className="block text-sm font-medium text-gray-300 mb-2">Assigned Agent</label>
+          <select id="supportAgentFilter" className="w-full bg-[#252850] border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-cyan-400">
             <option>All Agents</option>
             <option>Sarah Johnson</option>
             <option>Michael Brown</option>

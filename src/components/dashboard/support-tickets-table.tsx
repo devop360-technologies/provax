@@ -142,8 +142,8 @@ export default function SupportTicketsTable() {
               </tr>
             </thead>
             <tbody>
-              {supportTickets.map((ticket, index) => (
-                <tr key={index} className="border-b border-gray-700 hover:bg-[#252850] transition-colors">
+              {supportTickets.map((ticket) => (
+                <tr key={ticket.id} className="border-b border-gray-700 hover:bg-[#252850] transition-colors">
                   <td className="py-4 px-4">
                     <span className="text-white font-medium">{ticket.id}</span>
                   </td>

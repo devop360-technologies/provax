@@ -14,7 +14,7 @@ import "./globals.css";
 export const metadata: Metadata = createMetadata();
 export const viewport: Viewport = getViewportMetadata();
 
-export default function RootLayout({ children }: PropsWithChildren) {
+export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${jetBrainsMono.variable} antialiased`}>

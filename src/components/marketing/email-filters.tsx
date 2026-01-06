@@ -38,10 +38,10 @@ export function EmailFilters({
       <div className="grid grid-cols-1 gap-4 md:grid-cols-5 lg:grid-cols-6 border p-4 rounded-2xl my-3 bg-[#1D1D41]  border-[#404254]">
         {/* Status Filter */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">
+          <label htmlFor="filter-status" className="mb-2 block text-xs font-medium text-gray-300">
             Status
           </label>
-          <select className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
+          <select id="filter-status" className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
             <option>All Status</option>
             <option>Draft</option>
             <option>Scheduled</option>
@@ -52,10 +52,10 @@ export function EmailFilters({
 
         {/* Category Filter */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">
+          <label htmlFor="filter-category" className="mb-2 block text-xs font-medium text-gray-300">
             Category
           </label>
-          <select className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
+          <select id="filter-category" className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none">
             <option>All Categories</option>
             <option>Promotional</option>
             <option>Transactional</option>
@@ -66,10 +66,11 @@ export function EmailFilters({
 
         {/* From Date */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">
+          <label htmlFor="filter-from-date" className="mb-2 block text-xs font-medium text-gray-300">
             From Date
           </label>
           <input
+            id="filter-from-date"
             type="date"
             defaultValue="2023-01-01"
             className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none"
@@ -78,10 +79,11 @@ export function EmailFilters({
 
         {/* To Date */}
         <div>
-          <label className="mb-2 block text-xs font-medium text-gray-300">
+          <label htmlFor="filter-to-date" className="mb-2 block text-xs font-medium text-gray-300">
             To Date
           </label>
           <input
+            id="filter-to-date"
             type="date"
             defaultValue="2023-12-31"
             className="w-full rounded-lg border border-[#404254] bg-[#252850] px-3 py-2 text-sm text-white transition-colors hover:border-[#505464] focus:border-[#4F46E5] focus:outline-none"

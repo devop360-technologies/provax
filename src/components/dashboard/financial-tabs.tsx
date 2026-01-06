@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 interface FinancialTabsProps {
   activeTab?: string;
   onTabChange?: (tab: string) => void;
 }
 
-export function FinancialTabs({ activeTab = "Financial Dashboard", onTabChange }: FinancialTabsProps) {
+export function FinancialTabs({ activeTab = "Financial Dashboard", onTabChange }: Readonly<FinancialTabsProps>) {
   const tabs = [
     "Financial Dashboard",
     "Transactions", 

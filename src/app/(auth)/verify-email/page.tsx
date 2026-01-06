@@ -64,7 +64,7 @@ export default function VerifyEmail() {
   const handlePaste = (e: React.ClipboardEvent) => {
     e.preventDefault();
     const pasteData = e.clipboardData.getData('text');
-    const digits = pasteData.replace(/\D/g, '').slice(0, 6);
+    const digits = pasteData.replaceAll(/\D/g, '').slice(0, 6);
     
     if (digits.length === 6) {
       const newOtp = digits.split('');
@@ -101,7 +101,7 @@ export default function VerifyEmail() {
       } else {
         setError(result.error || 'Invalid verification code');
       }
-    } catch (error) {
+    } catch {
       setError('Failed to verify email. Please try again.');
     }
 
@@ -126,7 +126,7 @@ export default function VerifyEmail() {
       } else {
         setError(result.error || 'Failed to resend verification code');
       }
-    } catch (error) {
+    } catch {
       setError('Failed to resend code. Please try again.');
     }
 
@@ -180,102 +180,115 @@ export default function VerifyEmail() {
 
       <div className="w-full lg:w-1/2 bg-[#141332] flex items-center justify-center p-8">
         <div className="max-w-md w-full space-y-8">
-          {!isInitialized ? (
-            <div className="text-center">
-              <h1 className="text-3xl font-bold text-white mb-4">Loading...</h1>
-              <div className="flex justify-center">
-                <svg className="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-              </div>
-            </div>
-          ) : !email ? (
-            <div className="text-center">
-              <h1 className="text-3xl font-bold text-white mb-2">Redirecting...</h1>
-              <p className="text-red-400">{error}</p>
-            </div>
-          ) : (
-            <>
-              <div className="text-center">
-                <h1 className="text-3xl font-bold text-white mb-2">Verify Your Email</h1>
-                <p className="text-gray-300">
-                  We've sent a 6-digit verification code to
-                </p>
-                <p className="text-blue-400 font-medium">{email}</p>
-              </div>
-
-              <form onSubmit={handleVerifyOtp} className="space-y-6">
-            <div className="space-y-4">
-              <label className="block text-white text-sm font-medium text-center">
-                Verification Code
-              </label>
-              <div className="flex justify-center space-x-3">
-                {otp.map((digit, index) => (
-                  <input
-                    key={index}
-                    ref={(el) => {
-                      inputRefs.current[index] = el;
-                    }}
-                    type="text"
-                    maxLength={1}
-                    value={digit}
-                    onChange={(e) => handleOtpChange(index, e.target.value)}
-                    onKeyDown={(e) => handleKeyDown(index, e)}
-                    onPaste={index === 0 ? handlePaste : undefined}
-                    className="w-12 h-12 text-center text-xl font-bold bg-transparent border border-gray-500 rounded-xl text-white focus:outline-none focus:border-blue-500 transition-colors"
-                    required
-                  />
-                ))}
-              </div>
-              {error && (
-                <p className="text-red-400 text-sm text-center">{error}</p>
-              )}
-            </div>
-
-            <button
-              type="submit"
-              disabled={isVerifying || otp.join('').length !== 6}
-              className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-            >
-              {isVerifying ? (
+          {(() => {
+            if (isInitialized && email) {
+              return (
                 <>
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <div className="text-center">
+                    <h1 className="text-3xl font-bold text-white mb-2">Verify Your Email</h1>
+                    <p className="text-gray-300">
+                      We've sent a 6-digit verification code to
+                    </p>
+                    <p className="text-blue-400 font-medium">{email}</p>
+                  </div>
+
+                  <form onSubmit={handleVerifyOtp} className="space-y-6">
+                <div className="space-y-4">
+                  <span className="block text-white text-sm font-medium text-center">
+                    Verification Code
+                  </span>
+                  <div className="flex justify-center space-x-3">
+                    {otp.map((digit, index) => (
+                      <input
+                        key={`otp-${index}`}
+                        ref={(el) => {
+                          inputRefs.current[index] = el;
+                        }}
+                        type="text"
+                        maxLength={1}
+                        value={digit}
+                        onChange={(e) => handleOtpChange(index, e.target.value)}
+                        onKeyDown={(e) => handleKeyDown(index, e)}
+                        onPaste={index === 0 ? handlePaste : undefined}
+                        className="w-12 h-12 text-center text-xl font-bold bg-transparent border border-gray-500 rounded-xl text-white focus:outline-none focus:border-blue-500 transition-colors"
+                        required
+                        aria-label={`Digit ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                  {error && (
+                    <p className="text-red-400 text-sm text-center">{error}</p>
+                  )}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isVerifying || otp.join('').length !== 6}
+                  className="w-full bg-blue-600 text-white py-3 rounded-xl font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                >
+                  {isVerifying ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Verifying...
+                    </>
+                  ) : (
+                    'Verify Email'
+                  )}
+                </button>
+
+                <div className="text-center space-y-2">
+                  <p className="text-gray-400 text-sm">
+                    Didn&apos;t receive the code?
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleResendOtp}
+                    disabled={resendCooldown > 0 || isLoading}
+                    className="text-blue-400 hover:text-blue-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
+                  >
+                    {(() => {
+                      if (resendCooldown > 0) return `Resend in ${resendCooldown}s`;
+                      if (isLoading) return 'Sending...';
+                      return 'Resend Code';
+                    })()}
+                  </button>
+                </div>
+
+                <p className="text-center text-gray-300 mt-6">
+                  <a
+                    href="/login"
+                    className="text-green-400 hover:text-green-300 transition-colors"
+                  >
+                    ← Back to login
+                  </a>
+                </p>
+              </form>
+                </>
+              );
+            }
+            if (isInitialized) {
+              return (
+                <div className="text-center">
+                  <h1 className="text-3xl font-bold text-white mb-2">Redirecting...</h1>
+                  <p className="text-red-400">{error}</p>
+                </div>
+              );
+            }
+            return (
+              <div className="text-center">
+                <h1 className="text-3xl font-bold text-white mb-4">Loading...</h1>
+                <div className="flex justify-center">
+                  <svg className="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Verifying...
-                </>
-              ) : (
-                'Verify Email'
-              )}
-            </button>
-
-            <div className="text-center space-y-2">
-              <p className="text-gray-400 text-sm">
-                Didn't receive the code?
-              </p>
-              <button
-                type="button"
-                onClick={handleResendOtp}
-                disabled={resendCooldown > 0 || isLoading}
-                className="text-blue-400 hover:text-blue-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium"
-              >
-                {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : isLoading ? 'Sending...' : 'Resend Code'}
-              </button>
-            </div>
-
-            <p className="text-center text-gray-300 mt-6">
-              <a
-                href="/login"
-                className="text-green-400 hover:text-green-300 transition-colors"
-              >
-                ← Back to login
-              </a>
-            </p>
-          </form>
-            </>
-          )}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </div>
     </div>

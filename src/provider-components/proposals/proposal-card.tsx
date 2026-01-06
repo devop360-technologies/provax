@@ -20,6 +20,14 @@ interface ProposalCardProps {
   clientFeedback?: string;
 }
 
+const getStatusColor = (status: 'Pending' | 'Accepted' | 'Rejected') => {
+  switch (status) {
+    case 'Accepted': return 'bg-transparent text-[#00FF88]';
+    case 'Rejected': return 'bg-transparent text-[#FF6B6B]';
+    default: return 'bg-transparent text-[#00d9ff]';
+  }
+};
+
 export const ProposalCard = ({
   id,
   title,
@@ -48,13 +56,7 @@ export const ProposalCard = ({
           />
         </div>
         <Badge
-          className={`border-0 text-sm font-medium ${
-            status === 'Accepted'
-              ? 'bg-transparent text-[#00FF88]'
-              : status === 'Rejected'
-              ? 'bg-transparent text-[#FF6B6B]'
-              : 'bg-transparent text-[#00d9ff]'
-          }`}
+          className={`border-0 text-sm font-medium ${getStatusColor(status)}`}
         >
           {status}
         </Badge>

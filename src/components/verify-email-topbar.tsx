@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 
 import { sendVerificationEmail } from "@/actions/email-verification-actions";
 
-export function VerifyEmailTopbar({ email }: { email: string }) {
+export function VerifyEmailTopbar({ email }: Readonly<{ email: string }>) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSendVerificationEmail = useCallback(async () => {
@@ -27,7 +27,7 @@ export function VerifyEmailTopbar({ email }: { email: string }) {
       toast.success("Verification email sent!", {
         description: "Please check your email for the verification link."
       });
-    } catch (error) {
+    } catch {
       toast.error("Something went wrong", {
         description: "Failed to resend verification email"
       });

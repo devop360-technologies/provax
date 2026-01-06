@@ -12,30 +12,7 @@ import { auth } from "@/lib/auth";
  * - Deployment complications on non-Vercel platforms
  */
 
-// Uncomment the code If you still wanna use it.
-
-export default auth((req) => {
-  // const isLoggedIn = !!req.auth;
-  // const pathname = req.nextUrl.pathname;
-
-  // // Protected routes that require logged in user
-  // const isPrivate = pathname.startsWith("/dashboard");
-
-  // // Public / Authentication routes (login/signup pages)
-  // const isPublic = pathname.startsWith("/login") || pathname.startsWith("/register");
-
-  // // Redirect unauthenticated users to login
-  // if (isPrivate && !isLoggedIn) {
-  //   const url = new URL("/login", req.nextUrl);
-  //   url.searchParams.set("callbackUrl", pathname);
-  //   return NextResponse.redirect(url);
-  // }
-
-  // // Redirect logged in users away from authentication pages (login/register)
-  // if (isLoggedIn && isPublic) {
-  //   return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
-  // }
-
+export default auth(() => {
   return NextResponse.next();
 });
 

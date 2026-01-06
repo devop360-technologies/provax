@@ -60,7 +60,7 @@ export function useGeneralSettingForm({ user }: { user: User }) {
     if (result.status === "success") {
       update();
       toast.success("Profile updated successfully");
-    } else if (result.errors && result.errors.fieldErrors) {
+    } else if (result.errors?.fieldErrors) {
       // Set field errors in the form if they exist
       Object.entries(result.errors.fieldErrors).forEach(([field, errors]) => {
         if (errors && errors.length > 0) {

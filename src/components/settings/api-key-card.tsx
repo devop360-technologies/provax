@@ -66,9 +66,9 @@ export function APIKeyCard({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Public Key */}
         <div>
-          <label className="block text-xs font-medium text-gray-400 mb-2">
+          <span className="block text-xs font-medium text-gray-400 mb-2">
             Public Key
-          </label>
+          </span>
           <div className="flex items-center gap-2">
             <input
               type="password"
@@ -92,9 +92,9 @@ export function APIKeyCard({
         {/* Secret Key or Access Token */}
         {secretKey && (
           <div>
-            <label className="block text-xs font-medium text-gray-400 mb-2">
+            <span className="block text-xs font-medium text-gray-400 mb-2">
               Secret Key
-            </label>
+            </span>
             <div className="flex items-center gap-2">
               <input
                 type="password"
@@ -120,9 +120,9 @@ export function APIKeyCard({
 
         {accessToken && (
           <div>
-            <label className="block text-xs font-medium text-gray-400 mb-2">
+            <span className="block text-xs font-medium text-gray-400 mb-2">
               Access Token
-            </label>
+            </span>
             <div className="flex items-center gap-2">
               <input
                 type="password"

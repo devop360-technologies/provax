@@ -6,9 +6,8 @@ import { User } from "@/types/user";
 
 export async function getUsers(): Promise<User[]> {
   try {
-    const currentUser = await getCurrentUser();
-
     // Only allow admin users to view user table
+    // const currentUser = await getCurrentUser();
     // if (!currentUser?.isAdmin) {
     //   throw new Error("Unauthorized");
     // }

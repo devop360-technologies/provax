@@ -10,7 +10,7 @@ export default function TransactionDetailsModal({
   isOpen,
   onClose,
   transactionId
-}: TransactionDetailsModalProps) {
+}: Readonly<TransactionDetailsModalProps>) {
   if (!isOpen) return null;
 
   // Mock data - in a real app, this would fetch transaction details based on transactionId

@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useCallback, type PropsWithChildren } from "react";
+import { createContext, useContext, useState, useCallback, useMemo, type PropsWithChildren } from "react";
 
 interface MobileSidebarContextType {
   isOpen: boolean;
@@ -18,8 +18,10 @@ export function MobileSidebarProvider({ children }: PropsWithChildren) {
   const close = useCallback(() => setIsOpen(false), []);
   const open = useCallback(() => setIsOpen(true), []);
 
+  const value = useMemo(() => ({ isOpen, toggle, close, open }), [isOpen, toggle, close, open]);
+
   return (
-    <MobileSidebarContext.Provider value={{ isOpen, toggle, close, open }}>
+    <MobileSidebarContext.Provider value={value}>
       {children}
     </MobileSidebarContext.Provider>
   );

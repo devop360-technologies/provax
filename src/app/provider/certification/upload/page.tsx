@@ -18,7 +18,6 @@ interface MediaFile {
 export default function CertificationUploadPage() {
   const [currentStep, setCurrentStep] = useState<Step>('module-selection');
   const [selectedModules, setSelectedModules] = useState<string[]>([]);
-  const [uploadedFiles, setUploadedFiles] = useState<MediaFile[]>([]);
 
   const handleModuleToggle = (moduleId: string) => {
     setSelectedModules(prev =>
@@ -38,8 +37,7 @@ export default function CertificationUploadPage() {
     setCurrentStep('module-selection');
   };
 
-  const handleStartProcessing = (files: MediaFile[]) => {
-    setUploadedFiles(files);
+  const handleStartProcessing = (_files: MediaFile[]) => {
     setCurrentStep('processing');
   };
 

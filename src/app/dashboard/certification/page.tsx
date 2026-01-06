@@ -1,12 +1,9 @@
-import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { DashboardTitle } from "@/components/dashboard-title";
 import { appConfig } from "@/config";
 import { users } from "@/data/users";
 import { getCurrentUser } from "@/lib/auth";
-import { createMetadata } from "@/lib/metadata";
-import { StatCard } from "@/components/dashboard";
 import { CertificationManagement } from "@/components/certification/certification-management";
 
 export default async function CertificationPage() {

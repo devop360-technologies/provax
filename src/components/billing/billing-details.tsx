@@ -10,7 +10,7 @@ import { appConfig } from "@/config";
 import { formatDate, isTrialPeriod } from "@/lib/utils";
 import { User } from "@/types/user";
 
-export function BillingDetails({ user }: { user: User }) {
+export function BillingDetails({ user }: Readonly<{ user: User }>) {
   // If user has access (subscribed or purchased), show subscription management UI
   const plan = appConfig.stripe.plans.find((p) => p.priceId === user.priceId && user.hasAccess);
 

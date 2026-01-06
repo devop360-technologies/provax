@@ -1,6 +1,6 @@
 'use client';
 
-import { AlertTriangle, AlertCircle, Clock } from 'lucide-react';
+import { AlertTriangle, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface Alert {
@@ -72,7 +72,7 @@ const borderColorMap = {
   blue: 'border-l-blue-500',
 };
 
-export function RealTimeAlerts({ alerts = defaultAlerts }: RealTimeAlertsProps) {
+export function RealTimeAlerts({ alerts = defaultAlerts }: Readonly<RealTimeAlertsProps>) {
   const getIcon = (icon: string) => {
     switch (icon) {
       case 'warning':
@@ -96,9 +96,9 @@ export function RealTimeAlerts({ alerts = defaultAlerts }: RealTimeAlertsProps) 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {alerts.map((alert) => {
             const Icon = getIcon(alert.icon);
-            const bgColor = iconBgMap[alert.color as keyof typeof iconBgMap];
-            const iconColor = iconColorMap[alert.color as keyof typeof iconColorMap];
-            const borderColor = borderColorMap[alert.color as keyof typeof borderColorMap];
+            const bgColor = iconBgMap[alert.color];
+            const iconColor = iconColorMap[alert.color];
+            const borderColor = borderColorMap[alert.color];
 
             return (
               <div

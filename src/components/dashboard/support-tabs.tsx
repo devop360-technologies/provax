@@ -5,7 +5,7 @@ interface SupportTabsProps {
   onTabChange: (tab: string) => void;
 }
 
-export default function SupportTabs({ activeTab, onTabChange }: SupportTabsProps) {
+export default function SupportTabs({ activeTab, onTabChange }: Readonly<SupportTabsProps>) {
   const tabs = [
     "Support Tickets",
     "Dispute",

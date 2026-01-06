@@ -67,10 +67,11 @@ export default function     ContactForm() {
           {/* Full Name and Email Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-3">
-              <label className="block text-white font-semibold text-sm">
+              <label htmlFor="contactFullName" className="block text-white font-semibold text-sm">
                 Full Name
               </label>
               <input
+                id="contactFullName"
                 type="text"
                 name="fullName"
                 value={formData.fullName}
@@ -82,10 +83,11 @@ export default function     ContactForm() {
             </div>
 
             <div className="space-y-3">
-              <label className="block text-white font-semibold text-sm">
+              <label htmlFor="contactEmail" className="block text-white font-semibold text-sm">
                 Email address
               </label>
               <input
+                id="contactEmail"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -100,10 +102,11 @@ export default function     ContactForm() {
           {/* Phone and Subject Row */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-3">
-              <label className="block text-white font-semibold text-sm">
+              <label htmlFor="contactPhone" className="block text-white font-semibold text-sm">
                 Phone number
               </label>
               <input
+                id="contactPhone"
                 type="tel"
                 name="phone"
                 value={formData.phone}
@@ -114,11 +117,12 @@ export default function     ContactForm() {
             </div>
 
             <div className="space-y-3">
-              <label className="block text-white font-semibold text-sm">
-                Email address
+              <label htmlFor="contactSubject" className="block text-white font-semibold text-sm">
+                Subject
               </label>
               <input
-                type="email"
+                id="contactSubject"
+                type="text"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
@@ -130,10 +134,11 @@ export default function     ContactForm() {
 
           {/* Message */}
           <div className="space-y-3">
-            <label className="block text-white font-semibold text-sm">
+            <label htmlFor="contactMessage" className="block text-white font-semibold text-sm">
               Message
             </label>
             <textarea
+              id="contactMessage"
               name="message"
               value={formData.message}
               onChange={handleChange}

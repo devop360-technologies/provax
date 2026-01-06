@@ -11,6 +11,24 @@ interface vehicleMarketplaceManagementProps {
 
 type Tab = "Catalog" | "detail" | "tools" | "moderation";
 
+// Helper function for inspection status badge styling
+const getInspectionStatusClass = (status: string) => {
+  switch (status) {
+    case "Approved": return "bg-green-500/20 text-green-400";
+    case "Processing": return "bg-yellow-500/20 text-yellow-400";
+    case "Pending": return "bg-blue-500/20 text-blue-400";
+    default: return "bg-red-500/20 text-red-400";
+  }
+};
+
+// Helper function for integrity score badge styling
+const getIntegrityScoreClass = (score: string) => {
+  if (score.startsWith("9")) return "bg-green-500/20 text-green-400";
+  if (score.startsWith("8")) return "bg-orange-500/20 text-orange-400";
+  if (score.startsWith("7")) return "bg-yellow-500/20 text-yellow-400";
+  return "bg-red-500/20 text-red-400";
+};
+
 export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManagementProps) {
   const [activeTab, setActiveTab] = useState<Tab>("Catalog");
   const [selectedListing, setSelectedListing] = useState<User | null>(
@@ -164,8 +182,7 @@ function CatalogTab({
     }
   ];
 
-  const handleViewListing = (vehicle: { id?: string; vehicle?: string }) => {
-    void vehicle; // Acknowledge the parameter
+  const handleViewListing = (_vehicle: { id?: string; vehicle?: string }) => {
     const listing = users[0];
     if (listing) {
       onViewListing(listing);
@@ -178,8 +195,9 @@ function CatalogTab({
       <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 md:mr-7">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Integrity Score</label>
+            <label htmlFor="vehicle-integrity-score-filter" className="mb-2 block text-sm font-medium text-white">Integrity Score</label>
             <select
+              id="vehicle-integrity-score-filter"
               value={dateRangeFilter}
               onChange={(e) => setDateRangeFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -192,8 +210,9 @@ function CatalogTab({
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Combo Type</label>
+            <label htmlFor="vehicle-combo-type-filter" className="mb-2 block text-sm font-medium text-white">Combo Type</label>
             <select
+              id="vehicle-combo-type-filter"
               value={aiModuleFilter}
               onChange={(e) => setAiModuleFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -205,8 +224,9 @@ function CatalogTab({
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Price Range</label>
+            <label htmlFor="vehicle-price-range-filter" className="mb-2 block text-sm font-medium text-white">Price Range</label>
             <select
+              id="vehicle-price-range-filter"
               value={comboTypeFilter}
               onChange={(e) => setComboTypeFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -219,8 +239,9 @@ function CatalogTab({
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Location</label>
+            <label htmlFor="vehicle-location-filter" className="mb-2 block text-sm font-medium text-white">Location</label>
             <select
+              id="vehicle-location-filter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -235,8 +256,9 @@ function CatalogTab({
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Status</label>
+            <label htmlFor="vehicle-status-filter" className="mb-2 block text-sm font-medium text-white">Status</label>
             <select
+              id="vehicle-status-filter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -274,15 +296,7 @@ function CatalogTab({
               {/* Status Badge */}
               <div className="absolute top-3 right-3">
                 <span
-                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                    inspection.status === "Approved"
-                      ? "bg-green-500/20 text-green-400"
-                      : inspection.status === "Processing"
-                        ? "bg-yellow-500/20 text-yellow-400"
-                        : inspection.status === "Pending"
-                          ? "bg-blue-500/20 text-blue-400"
-                          : "bg-red-500/20 text-red-400"
-                  }`}
+                  className={`rounded-full px-3 py-1 text-xs font-semibold ${getInspectionStatusClass(inspection.status)}`}
                 >
                   {inspection.status}
                 </span>
@@ -307,15 +321,7 @@ function CatalogTab({
                 <div className="text-right">
                   <p className="mb-1 text-xs text-gray-400">Integrity Score:</p>
                   <span
-                    className={`rounded px-2 py-1 text-sm font-semibold ${
-                      inspection.integrityScore.startsWith("9")
-                        ? "bg-green-500/20 text-green-400"
-                        : inspection.integrityScore.startsWith("8")
-                          ? "bg-orange-500/20 text-orange-400"
-                          : inspection.integrityScore.startsWith("7")
-                            ? "bg-yellow-500/20 text-yellow-400"
-                            : "bg-red-500/20 text-red-400"
-                    }`}
+                    className={`rounded px-2 py-1 text-sm font-semibold ${getIntegrityScoreClass(inspection.integrityScore)}`}
                   >
                     {inspection.integrityScore}
                   </span>

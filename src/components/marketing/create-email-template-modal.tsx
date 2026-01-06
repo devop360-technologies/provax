@@ -86,10 +86,11 @@ export function CreateEmailTemplateModal({
         <div className="space-y-4">
           {/* Template Name */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="template-name" className="mb-2 block text-sm font-medium text-gray-300">
               Template Name
             </label>
             <input
+              id="template-name"
               type="text"
               name="name"
               value={formData.name}
@@ -101,10 +102,11 @@ export function CreateEmailTemplateModal({
 
           {/* Subject */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="template-subject" className="mb-2 block text-sm font-medium text-gray-300">
               Subject
             </label>
             <input
+              id="template-subject"
               type="text"
               name="subject"
               value={formData.subject}
@@ -116,10 +118,11 @@ export function CreateEmailTemplateModal({
 
           {/* Body */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="template-body" className="mb-2 block text-sm font-medium text-gray-300">
               Body
             </label>
             <textarea
+              id="template-body"
               name="body"
               value={formData.body}
               onChange={handleInputChange}

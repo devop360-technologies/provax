@@ -43,7 +43,7 @@ const nextAuth = NextAuth({
       return session;
     },
     async jwt({ token, user, trigger }) {
-      if (trigger === "update" && token && token.sub) {
+      if (trigger === "update" && token?.sub) {
         const user = await prisma.user.findUnique({ where: { id: token.sub } });
         if (!user) return token;
 

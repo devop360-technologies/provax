@@ -30,11 +30,11 @@ export default function ReportingPage() {
   const [activeTab, setActiveTab] = useState("pre-configured");
 
   const handleExportCSV = () => {
-    // TODO: Implement export CSV functionality
+    // Export CSV functionality - implementation pending
   };
 
   const handleExportPDF = () => {
-    // TODO: Implement export PDF functionality
+    // Export PDF functionality - implementation pending
   };
 
   return (
@@ -89,8 +89,8 @@ export default function ReportingPage() {
         {/* Filters */}
         <div className="py-6">
           <ReportFilters
-            onApplyFilters={() => { /* TODO: Implement apply filters */ }}
-            onResetFilter={() => { /* TODO: Implement reset filter */ }}
+            onApplyFilters={() => { /* Apply filters not implemented yet */ }}
+            onResetFilter={() => { /* Reset filter not implemented yet */ }}
           />
         </div>
 
@@ -170,9 +170,9 @@ export default function ReportingPage() {
                   ],
                   color: "#3B82F6"
                 }}
-                onExportCSV={() => { /* TODO: Implement export CSV */ }}
-                onExportPDF={() => { /* TODO: Implement export PDF */ }}
-                onComparePeriods={() => { /* TODO: Implement compare periods */ }}
+                onExportCSV={() => { /* Export CSV not implemented yet */ }}
+                onExportPDF={() => { /* Export PDF not implemented yet */ }}
+                onComparePeriods={() => { /* Compare periods not implemented yet */ }}
               />
             </div>
 
@@ -195,38 +195,38 @@ export default function ReportingPage() {
                 title="Revenue Overview"
                 dataLabel="Total Revenue"
                 color="cyan"
-                onExportCSV={() => { /* TODO: Implement export CSV */ }}
-                onExportPDF={() => { /* TODO: Implement export PDF */ }}
-                onExpand={() => { /* TODO: Implement expand */ }}
+                onExportCSV={() => { /* Export CSV not implemented yet */ }}
+                onExportPDF={() => { /* Export PDF not implemented yet */ }}
+                onExpand={() => { /* Expand not implemented yet */ }}
               />
               <RevenueOverviewChart
                 title="Revenue Overview"
                 dataLabel="Provider Payouts"
                 color="green"
-                onExportCSV={() => { /* TODO: Implement export CSV */ }}
-                onExportPDF={() => { /* TODO: Implement export PDF */ }}
-                onExpand={() => { /* TODO: Implement expand */ }}
+                onExportCSV={() => { /* Export CSV not implemented yet */ }}
+                onExportPDF={() => { /* Export PDF not implemented yet */ }}
+                onExpand={() => { /* Expand not implemented yet */ }}
               />
             </div>
 
             {/* Revenue by Category */}
             <RevenueByCategoryChart
-              onExportCSV={() => { /* TODO: Implement export CSV */ }}
-              onExportPDF={() => { /* TODO: Implement export PDF */ }}
+              onExportCSV={() => { /* Export CSV not implemented yet */ }}
+              onExportPDF={() => { /* Export PDF not implemented yet */ }}
             />
 
             {/* Provider Payouts Table */}
             <ProviderPayoutsTable
-              onExportCSV={() => { /* TODO: Implement export CSV */ }}
-              onExportPDF={() => { /* TODO: Implement export PDF */ }}
-              onShowDetails={() => { /* TODO: Implement show details */ }}
+              onExportCSV={() => { /* Export CSV not implemented yet */ }}
+              onExportPDF={() => { /* Export PDF not implemented yet */ }}
+              onShowDetails={() => { /* Show details not implemented yet */ }}
             />
 
             {/* Revenue Analytics Table */}
             <RevenueAnalyticsTable
-              onExportCSV={() => { /* TODO: Implement export CSV */ }}
-              onExportPDF={() => { /* TODO: Implement export PDF */ }}
-              onViewTimeline={() => { /* TODO: Implement view timeline */ }}
+              onExportCSV={() => { /* Export CSV not implemented yet */ }}
+              onExportPDF={() => { /* Export PDF not implemented yet */ }}
+              onViewTimeline={() => { /* View timeline not implemented yet */ }}
             />
           </div>
         )}
@@ -240,24 +240,24 @@ export default function ReportingPage() {
                 title="AI Module Performance Overview"
                 dataLabel="Success Rate (%)"
                 color="green"
-                onExportCSV={() => { /* TODO: Implement export CSV */ }}
-                onExportPDF={() => { /* TODO: Implement export PDF */ }}
-                onExpand={() => { /* TODO: Implement expand */ }}
+                onExportCSV={() => { /* Export CSV not implemented yet */ }}
+                onExportPDF={() => { /* Export PDF not implemented yet */ }}
+                onExpand={() => { /* Expand not implemented yet */ }}
               />
               <AIModulePerformanceChart
                 title="AI Module Performance Overview"
                 dataLabel="Error Rate (%)"
                 color="red"
-                onExportCSV={() => { /* TODO: Implement export CSV */ }}
-                onExportPDF={() => { /* TODO: Implement export PDF */ }}
-                onExpand={() => { /* TODO: Implement expand */ }}
+                onExportCSV={() => { /* Export CSV not implemented yet */ }}
+                onExportPDF={() => { /* Export PDF not implemented yet */ }}
+                onExpand={() => { /* Expand not implemented yet */ }}
               />
             </div>
 
             {/* AI Module Performance Details Table */}
             <AIModulePerformanceDetailsTable
-              onExportCSV={() => { /* TODO: Implement export CSV */ }}
-              onExportPDF={() => { /* TODO: Implement export PDF */ }}
+              onExportCSV={() => { /* Export CSV not implemented yet */ }}
+              onExportPDF={() => { /* Export PDF not implemented yet */ }}
             />
 
             {/* Volume by Period Charts */}

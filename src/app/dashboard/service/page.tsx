@@ -1,13 +1,9 @@
-import { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { DashboardTitle } from "@/components/dashboard-title";
 import { appConfig } from "@/config";
-import { users } from "@/data/users";
 import { getCurrentUser } from "@/lib/auth";
-import { createMetadata } from "@/lib/metadata";
 import { StatCard } from "@/components/dashboard";
-import { VehicleMarketplaceManagement } from "@/components/vehicle-marketplace-management/vehicle-marketplace-management";
 import { ServiceBidding } from "@/components/service-bidding/service-bidding";
 
 export default async function ServiceBiddingPage() {

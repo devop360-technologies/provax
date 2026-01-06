@@ -43,7 +43,6 @@ export function RevenueOverviewChart({ className }: RevenueOverviewChartProps) {
 
   const maxValue = 2500;
   const minValue = 0;
-  const yStep = 500;
   const yLabels = [0, 500, 1000, 1500, 2000, 2500];
 
   const xScale = chartWidth / (data.length - 1);

@@ -36,7 +36,7 @@ export default function FilterStrip() {
   });
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [filters, setFilters] = useState({
+  const [filters, _setFilters] = useState({
     priceFrom: 40000,
     priceTo: 240000,
     yearFrom: 2023,
@@ -193,8 +193,9 @@ export default function FilterStrip() {
                   <div className="space-y-4">
                     <div className="flex gap-2">
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">From</label>
+                        <label htmlFor="price-from-filter" className="text-white/60 text-xs mb-2 block">From</label>
                         <input 
+                          id="price-from-filter"
                           type="text" 
                           value={`$${filters.priceFrom.toLocaleString()}`}
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
@@ -202,8 +203,9 @@ export default function FilterStrip() {
                         />
                       </div>
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">To</label>
+                        <label htmlFor="price-to-filter" className="text-white/60 text-xs mb-2 block">To</label>
                         <input 
+                          id="price-to-filter"
                           type="text" 
                           value={`$${filters.priceTo.toLocaleString()}`}
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
@@ -237,8 +239,9 @@ export default function FilterStrip() {
                   <div className="space-y-4">
                     <div className="flex gap-2">
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">From</label>
+                        <label htmlFor="year-from-filter" className="text-white/60 text-xs mb-2 block">From</label>
                         <input 
+                          id="year-from-filter"
                           type="text" 
                           value={filters.yearFrom}
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
@@ -246,8 +249,9 @@ export default function FilterStrip() {
                         />
                       </div>
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">To</label>
+                        <label htmlFor="year-to-filter" className="text-white/60 text-xs mb-2 block">To</label>
                         <input 
+                          id="year-to-filter"
                           type="text" 
                           value={filters.yearTo}
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
@@ -281,8 +285,9 @@ export default function FilterStrip() {
                   <div className="space-y-4">
                     <div className="flex gap-2">
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">From</label>
+                        <label htmlFor="mileage-from-filter" className="text-white/60 text-xs mb-2 block">From</label>
                         <input 
+                          id="mileage-from-filter"
                           type="text" 
                           value={filters.mileageFrom}
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
@@ -290,8 +295,9 @@ export default function FilterStrip() {
                         />
                       </div>
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">To</label>
+                        <label htmlFor="mileage-to-filter" className="text-white/60 text-xs mb-2 block">To</label>
                         <input 
+                          id="mileage-to-filter"
                           type="text" 
                           value={filters.mileageTo}
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
@@ -323,8 +329,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.registeredIn && (
                   <div className="space-y-3">
-                    {registeredAreas.map((area, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {registeredAreas.map((area) => (
+                      <label key={area} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{area}</span>
                       </label>
@@ -346,8 +352,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.transmission && (
                   <div className="space-y-3">
-                    {transmissions.map((transmission, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {transmissions.map((transmission) => (
+                      <label key={transmission} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{transmission}</span>
                       </label>
@@ -369,8 +375,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.color && (
                   <div className="space-y-3">
-                    {colors.map((color, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {colors.map((color) => (
+                      <label key={color} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{color}</span>
                       </label>
@@ -392,8 +398,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.engineType && (
                   <div className="space-y-3">
-                    {engineTypes.map((engineType, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {engineTypes.map((engineType) => (
+                      <label key={engineType} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{engineType}</span>
                       </label>
@@ -417,16 +423,18 @@ export default function FilterStrip() {
                   <div className="space-y-4">
                     <div className="flex gap-2">
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">From</label>
+                        <label htmlFor="engine-capacity-from-filter" className="text-white/60 text-xs mb-2 block">From</label>
                         <input 
+                          id="engine-capacity-from-filter"
                           type="text" 
                           defaultValue="1400"
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
                         />
                       </div>
                       <div className="flex-1">
-                        <label className="text-white/60 text-xs mb-2 block">To</label>
+                        <label htmlFor="engine-capacity-to-filter" className="text-white/60 text-xs mb-2 block">To</label>
                         <input 
+                          id="engine-capacity-to-filter"
                           type="text" 
                           defaultValue="2000"
                           className="w-full bg-white/5 border border-white/10 rounded px-3 py-2 text-white text-sm"
@@ -457,8 +465,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.assembly && (
                   <div className="space-y-3">
-                    {assemblies.map((assembly, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {assemblies.map((assembly) => (
+                      <label key={assembly} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{assembly}</span>
                       </label>
@@ -468,8 +476,6 @@ export default function FilterStrip() {
               </div>
             </div>
           </div>
-
-        
         </div>
   );
-}   
+}

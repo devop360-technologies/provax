@@ -22,13 +22,13 @@ interface Inspection {
   status?: string;
 }
 
-interface certificationManagementProps {
+interface CertificationManagementProps {
   users: User[];
 }
 
 type Tab = "list" | "detail" | "statistics" | "export";
 
-export function CertificationManagement({ users }: certificationManagementProps) {
+export function CertificationManagement({ users }: CertificationManagementProps) {
   const [activeTab, setActiveTab] = useState<Tab>("list");
   const [selectedUser, setSelectedUser] = useState<User | null>(
     users && users.length > 0 ? users[0] : null
@@ -283,9 +283,8 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
     }
   ];
 
-  const handleViewInspection = (inspection: Inspection) => {
+  const handleViewInspection = (_inspection: Inspection) => {
     // Map inspection to a User object to navigate to Certification Detail
-    void inspection; // Acknowledge the parameter
     const user = users[0]; // Use first user or you can create a mock user
     if (user) {
       onViewUser(user);
@@ -298,8 +297,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
       <div className="flex justify-between items-center mr-0 rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 md:mr-7">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Date Range</label>
+            <label htmlFor="certDateRangeFilter" className="mb-2 block text-sm font-medium text-white">Date Range</label>
             <select
+              id="certDateRangeFilter"
               value={dateRangeFilter}
               onChange={(e) => setDateRangeFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -312,8 +312,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">AI Module</label>
+            <label htmlFor="certAiModuleFilter" className="mb-2 block text-sm font-medium text-white">AI Module</label>
             <select
+              id="certAiModuleFilter"
               value={aiModuleFilter}
               onChange={(e) => setAiModuleFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -327,8 +328,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Combo Type</label>
+            <label htmlFor="certComboTypeFilter" className="mb-2 block text-sm font-medium text-white">Combo Type</label>
             <select
+              id="certComboTypeFilter"
               value={comboTypeFilter}
               onChange={(e) => setComboTypeFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -340,8 +342,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-sm font-medium text-white">Status</label>
+            <label htmlFor="certStatusFilter" className="mb-2 block text-sm font-medium text-white">Status</label>
             <select
+              id="certStatusFilter"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
@@ -385,9 +388,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
               </tr>
             </thead>
             <tbody>
-              {inspections.map((inspection, idx) => (
+              {inspections.map((inspection) => (
                 <tr
-                  key={idx}
+                  key={inspection.userId}
                   className="border-b border-[#2a2d4a] transition-colors hover:bg-[#252850]/50"
                 >
                   <td className="px-4 py-4 text-[12px] font-medium text-white">
@@ -684,9 +687,9 @@ function AIModuleResultsTab() {
     <div className="space-y-6">
       <h3 className="mb-6 text-lg font-semibold text-white">AI Module Results</h3>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {moduleResults.map((module, idx) => (
+        {moduleResults.map((module) => (
           <div
-            key={idx}
+            key={module.title}
             className="overflow-hidden rounded-xl border border-l-4 border-[#2a2d4a] border-l-[#00FF88] bg-[#1a1d3a]"
           >
             <div className="flex items-center justify-between border-b border-[#2a2d4a] bg-[#252850] px-6 py-3">
@@ -696,8 +699,8 @@ function AIModuleResultsTab() {
               </span>
             </div>
             <div className="space-y-3 p-4">
-              {module.metrics.map((metric, midx) => (
-                <div key={midx} className="flex items-center justify-between">
+              {module.metrics.map((metric) => (
+                <div key={metric.label} className="flex items-center justify-between">
                   <span className="text-xs font-medium text-gray-400">{metric.label}:</span>
                   <span className={`rounded px-3 py-1 text-xs font-bold ${metric.color}`}>
                     {metric.score}
@@ -1068,8 +1071,9 @@ function DataExportTab() {
       <div className="rounded-2xl border border-[#2a2d4a] bg-[#262651] p-6">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
           <div>
-            <label className="mb-2 block text-xs font-medium text-gray-300">Date Range</label>
+            <label htmlFor="exportDateRange" className="mb-2 block text-xs font-medium text-gray-300">Date Range</label>
             <select
+              id="exportDateRange"
               value={dateRangeFilter}
               onChange={(e) => setDateRangeFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] px-4 py-5 text-xs text-white focus:outline-none"
@@ -1081,8 +1085,9 @@ function DataExportTab() {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-xs font-medium text-gray-300">AI Module</label>
+            <label htmlFor="exportAiModule" className="mb-2 block text-xs font-medium text-gray-300">AI Module</label>
             <select
+              id="exportAiModule"
               value={aiModuleFilter}
               onChange={(e) => setAiModuleFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] px-4 py-5 text-xs text-white focus:outline-none"
@@ -1095,8 +1100,9 @@ function DataExportTab() {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-xs font-medium text-gray-300">Status</label>
+            <label htmlFor="exportStatus" className="mb-2 block text-xs font-medium text-gray-300">Status</label>
             <select
+              id="exportStatus"
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#1a1d3a] px-4 py-5 text-xs text-white focus:outline-none"

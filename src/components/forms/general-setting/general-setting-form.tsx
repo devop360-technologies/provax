@@ -27,7 +27,7 @@ import { User } from "@/types/user";
 
 import { useGeneralSettingForm } from "./use-general-setting-form";
 
-export function GeneralSettingForm({ user }: { user: User }) {
+export function GeneralSettingForm({ user }: Readonly<{ user: User }>) {
   const { form, isUploading, avatarPreview, isSubmitting, handleFileChange, onSubmit } =
     useGeneralSettingForm({ user });
 

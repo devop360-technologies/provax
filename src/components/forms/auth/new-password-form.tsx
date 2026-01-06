@@ -9,7 +9,7 @@ interface NewPasswordFormProps {
   onSuccess: () => void;
 }
 
-export function NewPasswordForm({ email, otp, onSuccess }: NewPasswordFormProps) {
+export function NewPasswordForm({ email, otp, onSuccess }: Readonly<NewPasswordFormProps>) {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -77,11 +77,12 @@ export function NewPasswordForm({ email, otp, onSuccess }: NewPasswordFormProps)
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* New Password Field */}
             <div>
-              <label className="block text-white text-sm font-medium mb-3">
+              <label htmlFor="newPasswordInput" className="block text-white text-sm font-medium mb-3">
                 New Password
               </label>
               <div className="relative">
                 <input
+                  id="newPasswordInput"
                   type={showNewPassword ? "text" : "password"}
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
@@ -110,11 +111,12 @@ export function NewPasswordForm({ email, otp, onSuccess }: NewPasswordFormProps)
 
             {/* Confirm Password Field */}
             <div>
-              <label className="block text-white text-sm font-medium mb-3">
+              <label htmlFor="confirmPasswordInput" className="block text-white text-sm font-medium mb-3">
                 Confirm Password
               </label>
               <div className="relative">
                 <input
+                  id="confirmPasswordInput"
                   type={showConfirmPassword ? "text" : "password"}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}

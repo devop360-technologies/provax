@@ -7,7 +7,7 @@ interface FinancialFiltersProps {
   onFiltersChange?: (filters: Record<string, string | number | boolean>) => void;
 }
 
-export function FinancialFilters({ onFiltersChange }: FinancialFiltersProps) {
+export function FinancialFilters({ onFiltersChange }: Readonly<FinancialFiltersProps>) {
   const [period, setPeriod] = useState("Last 7 Days");
   const [category, setCategory] = useState("All Categories");
   const [fromDate, setFromDate] = useState("01/01/2023");
@@ -38,8 +38,9 @@ export function FinancialFilters({ onFiltersChange }: FinancialFiltersProps) {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:items-end">
           {/* Period */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">Period</label>
+            <label htmlFor="financialPeriod" className="mb-2 block text-sm font-medium text-gray-300">Period</label>
             <select
+              id="financialPeriod"
               value={period}
               onChange={(e) => setPeriod(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-2.5 text-sm text-white focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
@@ -52,8 +53,9 @@ export function FinancialFilters({ onFiltersChange }: FinancialFiltersProps) {
 
           {/* Product Category */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">Product Category</label>
+            <label htmlFor="financialCategory" className="mb-2 block text-sm font-medium text-gray-300">Product Category</label>
             <select
+              id="financialCategory"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-2.5 text-sm text-white focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500"
@@ -66,9 +68,10 @@ export function FinancialFilters({ onFiltersChange }: FinancialFiltersProps) {
 
           {/* From Date */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">From Date</label>
+            <label htmlFor="financialFromDate" className="mb-2 block text-sm font-medium text-gray-300">From Date</label>
             <div className="relative">
               <input
+                id="financialFromDate"
                 type="text"
                 value={fromDate}
                 onChange={(e) => setFromDate(e.target.value)}
@@ -81,9 +84,10 @@ export function FinancialFilters({ onFiltersChange }: FinancialFiltersProps) {
 
           {/* To Date */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">To Date</label>
+            <label htmlFor="financialToDate" className="mb-2 block text-sm font-medium text-gray-300">To Date</label>
             <div className="relative">
               <input
+                id="financialToDate"
                 type="text"
                 value={toDate}
                 onChange={(e) => setToDate(e.target.value)}

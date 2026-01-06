@@ -86,10 +86,11 @@ export function CreateMarketingCampaignModal({
         <div className="space-y-4">
           {/* Campaign Name */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="campaign-name" className="mb-2 block text-sm font-medium text-gray-300">
               Campaign Name
             </label>
             <input
+              id="campaign-name"
               type="text"
               name="name"
               value={formData.name}
@@ -101,10 +102,11 @@ export function CreateMarketingCampaignModal({
 
           {/* Audience */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="campaign-audience" className="mb-2 block text-sm font-medium text-gray-300">
               Audience
             </label>
             <select
+              id="campaign-audience"
               name="audience"
               value={formData.audience}
               onChange={handleInputChange}
@@ -120,10 +122,11 @@ export function CreateMarketingCampaignModal({
 
           {/* Email Template */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <label htmlFor="campaign-template" className="mb-2 block text-sm font-medium text-gray-300">
               Email Template
             </label>
             <select
+              id="campaign-template"
               name="template"
               value={formData.template}
               onChange={handleInputChange}
@@ -166,10 +169,11 @@ export function CreateMarketingCampaignModal({
           {/* Schedule and TimeZone */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-300">
+              <label htmlFor="campaign-schedule" className="mb-2 block text-sm font-medium text-gray-300">
                 Schedule
               </label>
               <input
+                id="campaign-schedule"
                 type="datetime-local"
                 name="schedule"
                 value={formData.schedule}
@@ -179,10 +183,11 @@ export function CreateMarketingCampaignModal({
               />
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-300">
+              <label htmlFor="campaign-timezone" className="mb-2 block text-sm font-medium text-gray-300">
                 Time Zone
               </label>
               <select
+                id="campaign-timezone"
                 name="timeZone"
                 value={formData.timeZone}
                 onChange={handleInputChange}

@@ -171,8 +171,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
         <div className="flex justify-between items-center mb-1">
           <div className="mb-4 grid grid-cols-1 gap-5 md:grid-cols-4">
             <div>
-              <label className="mb-2 block text-[11px] text-gray-100">Role</label>
+              <label htmlFor="user-list-role-filter" className="mb-2 block text-[11px] text-gray-100">Role</label>
               <select
+                id="user-list-role-filter"
                 value={roleFilter}
                 onChange={(e) => setRoleFilter(e.target.value)}
                 className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-6 py-4 text-[11px] text-white"
@@ -186,8 +187,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
               </select>
             </div>
             <div>
-              <label className="mb-2 block text-[11px] text-gray-100">Status</label>
+              <label htmlFor="user-list-status-filter" className="mb-2 block text-[11px] text-gray-100">Status</label>
               <select
+                id="user-list-status-filter"
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
                 className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-6 py-4 text-[11px] text-white"
@@ -198,8 +200,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
               </select>
             </div>
             <div>
-              <label className="mb-2 block text-[11px] text-gray-100">Segments</label>
+              <label htmlFor="user-list-segment-filter" className="mb-2 block text-[11px] text-gray-100">Segments</label>
               <select
+                id="user-list-segment-filter"
                 value={segmentFilter}
                 onChange={(e) => setSegmentFilter(e.target.value)}
                 className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-6 py-4 text-[11px] text-white"
@@ -211,8 +214,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
               </select>
             </div>
             <div>
-              <label className="mb-2 block text-[11px] text-gray-100">Verification</label>
+              <label htmlFor="user-list-verification-filter" className="mb-2 block text-[11px] text-gray-100">Verification</label>
               <select
+                id="user-list-verification-filter"
                 value={verificationFilter}
                 onChange={(e) => setVerificationFilter(e.target.value)}
                 className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-6 py-4 text-[11px] text-white"
@@ -930,8 +934,9 @@ function AuditLogTab() {
         <div className="flex justify-between items-center mb-1">
         <div className="mb-4 grid grid-cols-1 gap-5 md:grid-cols-3">
           <div>
-            <label className="mb-2 block text-[12px] text-gray-400">Date Range</label>
+            <label htmlFor="audit-log-date-filter" className="mb-2 block text-[12px] text-gray-400">Date Range</label>
             <select
+              id="audit-log-date-filter"
               value={dateFilter}
               onChange={(e) => setDateFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
@@ -943,8 +948,9 @@ function AuditLogTab() {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-[12px] text-gray-400">Admin</label>
+            <label htmlFor="audit-log-admin-filter" className="mb-2 block text-[12px] text-gray-400">Admin</label>
             <select
+              id="audit-log-admin-filter"
               value={adminFilter}
               onChange={(e) => setAdminFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"
@@ -956,8 +962,9 @@ function AuditLogTab() {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-[12px] text-gray-400">Action Type</label>
+            <label htmlFor="audit-log-action-filter" className="mb-2 block text-[12px] text-gray-400">Action Type</label>
             <select
+              id="audit-log-action-filter"
               value={actionFilter}
               onChange={(e) => setActionFilter(e.target.value)}
               className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-4 text-[12px] text-white"

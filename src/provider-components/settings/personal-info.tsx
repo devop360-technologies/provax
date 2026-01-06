@@ -51,7 +51,7 @@ const defaultData: PersonalInfoData = {
 function FormField({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <label className="block text-sm text-gray-400 mb-2">{label}</label>
+      <span className="block text-sm text-gray-400 mb-2">{label}</span>
       <div className="rounded-lg bg-[#23234B] px-4 py-3 text-sm text-white">
         {value}
       </div>

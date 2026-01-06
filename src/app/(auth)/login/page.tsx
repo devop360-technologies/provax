@@ -36,16 +36,14 @@ export default function Login() {
       if (result.success) {
         // Redirect to dashboard or specified URL
         router.push('/dashboard');
+      } else if (result.error?.includes('verify')) {
+        // Email not verified - offer to resend verification
+        setError('Please verify your email first. ');
+        localStorage.setItem('registration-email', formData.email);
       } else {
-        if (result.error?.includes('verify')) {
-          // Email not verified - offer to resend verification
-          setError('Please verify your email first. ');
-          localStorage.setItem('registration-email', formData.email);
-        } else {
-          setError(result.error || 'Login failed');
-        }
+        setError(result.error || 'Login failed');
       }
-    } catch (error) {
+    } catch {
       setError('Failed to login. Please try again.');
     }
 
@@ -63,18 +61,7 @@ export default function Login() {
           className="object-cover"
           priority
         />
-        
-        {/* Overlay with Login/Sign Up buttons */}
-        {/* <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center">
-          <div className="space-y-4">
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-              Login
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors">
-              Sign Up
-            </button>
-          </div>
-        </div> */}
+        {/* Overlay gradient */}
       </div>
 
       {/* Right side - Login Form */}
@@ -90,10 +77,11 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
             <div>
-              <label className="block text-white text-sm font-medium mb-3">
+              <label htmlFor="email" className="block text-white text-sm font-medium mb-3">
                 Email Address
               </label>
               <input
+                id="email"
                 type="email"
                 name="email"
                 value={formData.email}
@@ -106,11 +94,12 @@ export default function Login() {
 
             {/* Password Field */}
             <div>
-              <label className="block text-white text-sm font-medium mb-3">
+              <label htmlFor="password" className="block text-white text-sm font-medium mb-3">
                 Password
               </label>
               <div className="relative">
                 <input
+                  id="password"
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
