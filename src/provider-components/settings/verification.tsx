@@ -103,7 +103,7 @@ export function Verification({
 
       {/* Verified Badge */}
       {data.isVerified && (
-        <div className="mb-8 rounded-xl border-l-4 border-[#22C55E] bg-[#1D1D41]/50 p-4">
+        <div className="mb-8 rounded-xl border-l-4 border-[#22C55E] bg-[#23234B]/50 p-4">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-full bg-[#22C55E] flex items-center justify-center">
               <CheckCircle className="w-8 h-8 text-white" />
@@ -127,7 +127,7 @@ export function Verification({
           {data.documents.map((doc) => (
             <div
               key={doc.id}
-              className="flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41]/50 px-5 py-4"
+              className="flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#23234B]/50 px-5 py-4"
             >
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full border-2 border-[#00D1FF] flex items-center justify-center">

@@ -7,7 +7,7 @@ export default function ProviderReviewsPage() {
       {/* Stats Grid - 4 columns */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         <ProvidetStatCard
-          title="Open Requests"
+          title="Customer Satisfaction"
           value="12"
           change=""
           changeType="positive"
@@ -15,7 +15,7 @@ export default function ProviderReviewsPage() {
           iconBg="bg-[#64CFF6]"
         />
         <ProvidetStatCard
-          title="Active Proposals"
+          title="Quality of Work"
           value="8"
           change=""
           changeType="positive"
@@ -23,7 +23,7 @@ export default function ProviderReviewsPage() {
           iconBg="bg-[#64CFF6]"
         />
         <ProvidetStatCard
-          title="Active Jobs"
+          title="Communication"
           value="5"
           change=""
           changeType="positive"
@@ -31,7 +31,7 @@ export default function ProviderReviewsPage() {
           iconBg="bg-[#64CFF6]"
         />
         <ProvidetStatCard
-          title="Escrow Value"
+          title="Timeliness"
           value="7"
           change=""
           changeType="positive"

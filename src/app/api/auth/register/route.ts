@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     if (result.status === "error") {
       return NextResponse.json(
-        { error: result.message || "Registration failed" },
+        { error: result.message || "Registration failed", errors: result.errors || [] },
         { status: 400 }
       );
     }

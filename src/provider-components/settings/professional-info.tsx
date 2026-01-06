@@ -102,32 +102,32 @@ export function ProfessionalInfo({
 
       {/* Business Name */}
       <div className="mb-6">
-        <label className="block text-sm text-gray-400 mb-2">Business Name</label>
-        <div className="rounded-lg bg-[#2a2d4a] px-4 py-3 text-sm text-white">
+        <label className="block text-sm text-gray-300 mb-2">Business Name</label>
+        <div className="rounded-lg bg-[#23234B] px-4 py-3 text-sm text-white">
           {data.businessName}
         </div>
       </div>
 
       {/* Professional Description */}
       <div className="mb-6">
-        <label className="block text-sm text-gray-400 mb-2">Professional Description</label>
-        <div className="rounded-lg bg-[#2a2d4a] px-4 py-3 text-sm text-gray-300 leading-relaxed">
+        <label className="block text-sm text-gray-300 mb-2">Professional Description</label>
+        <div className="rounded-lg bg-[#23234B] px-4 py-3 text-sm text-gray-300 leading-relaxed">
           {data.description}
         </div>
       </div>
 
       {/* Hourly Rate */}
       <div className="mb-6">
-        <label className="block text-sm text-gray-400 mb-2">Hourly Rate ($)</label>
-        <div className="rounded-lg bg-[#2a2d4a] px-4 py-3 text-sm text-white w-32">
+        <label className="block text-sm text-gray-300 mb-2">Hourly Rate ($)</label>
+        <div className="rounded-lg bg-[#23234B] px-4 py-3 text-sm text-white w-32">
           {data.hourlyRate}
         </div>
       </div>
 
       {/* Categories of Work */}
       <div className="mb-8">
-        <label className="block text-sm text-gray-400 mb-2">Categories of Work</label>
-        <p className="text-xs text-gray-500 mb-3">Select the service categories you specialize in:</p>
+        <label className="block text-sm text-gray-200 mb-2">Categories of Work</label>
+        <p className="text-xs text-gray-400 mb-3">Select the service categories you specialize in:</p>
         <div className="flex flex-wrap gap-2">
           {data.categories.map((category, index) => (
             <span
@@ -142,16 +142,16 @@ export function ProfessionalInfo({
 
       {/* Certifications */}
       <div className="mb-8">
-        <label className="block text-sm text-gray-400 mb-4">Categories of Work</label>
+        <label className="block text-sm text-gray-200 mb-4">Categories of Work</label>
         <div className="space-y-3">
           {data.certifications.map((cert) => (
             <div
               key={cert.id}
-              className="flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41]/50 px-4 py-3"
+              className="flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#23234B]/50 px-4 py-3"
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full border-2 border-[#00D1FF] flex items-center justify-center">
-                  <span className="text-[#00D1FF] text-xs font-bold">C</span>
+                  <span className="text-[#64CFF6] text-xs font-bold">C</span>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-[#00D1FF]">{cert.name}</p>
@@ -167,7 +167,7 @@ export function ProfessionalInfo({
 
         <button
           onClick={onAddCertification}
-          className="mt-4 flex items-center gap-2 rounded-lg border border-[#00D1FF] bg-transparent px-4 py-2 text-sm font-medium text-[#00D1FF] hover:bg-[#00D1FF]/10 transition-colors"
+          className="mt-4 flex items-center gap-2 rounded-lg border border-[#0059ff] bg-[#3A86FF] px-4 py-2 text-sm font-medium text-white hover:bg-[#0077ff] transition-colors"
         >
           <Plus size={16} />
           Add Certification
@@ -176,20 +176,20 @@ export function ProfessionalInfo({
 
       {/* Portfolio */}
       <div className="mb-8">
-        <label className="block text-sm text-gray-400 mb-2">Portfolio</label>
-        <p className="text-xs text-gray-500 mb-4">Showcase your best work with photos and descriptions:</p>
+        <label className="block text-base text-gray-200 mb-2">Portfolio</label>
+        <p className="text-xs text-gray-400 mb-4">Showcase your best work with photos and descriptions:</p>
         
         <div className="grid grid-cols-3 gap-4 mb-4">
           {data.portfolio.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col items-center text-center p-4"
+              className="flex flex-col items-center text-center p-4 bg-[#23234B] rounded-lg"
             >
               <div className="w-16 h-16 rounded-full border-2 border-[#00D1FF] flex items-center justify-center mb-3">
                 <IconComponent icon={item.icon} />
               </div>
               <p className="text-sm font-medium text-white">{item.title}</p>
-              <p className="text-xs text-gray-500">{item.subtitle}</p>
+              <p className="text-xs text-gray-400">{item.subtitle}</p>
             </div>
           ))}
         </div>
@@ -197,7 +197,7 @@ export function ProfessionalInfo({
         {/* Upload Area */}
         <div
           onClick={onUploadMedia}
-          className="border-2 border-dashed border-[#2a2d4a] rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#00D1FF] transition-colors"
+          className="border-2 border-dashed border-[#2a2d4a] bg-[#23234B] rounded-xl p-8 flex flex-col items-center justify-center cursor-pointer hover:border-[#00D1FF] transition-colors"
         >
           <Upload className="w-10 h-10 text-gray-500 mb-2" />
           <p className="text-sm text-gray-500">Click to upload project media</p>
