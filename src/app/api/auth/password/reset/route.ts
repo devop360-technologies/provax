@@ -41,7 +41,8 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Reset password API error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Reset password API error:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

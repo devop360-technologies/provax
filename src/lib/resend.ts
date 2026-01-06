@@ -88,23 +88,32 @@ export async function sendEmail({
     const { data, error } = await resend.emails.send(emailPayload);
 
     if (error) {
-      console.error("Resend API error:", error);
+      if (process.env.NODE_ENV === "development") {
+        // eslint-disable-next-line no-console
+        console.error("Resend API error:", error);
+      }
       return {
         success: false,
         error: error.message || "Failed to send email via Resend API"
       };
     }
 
-    console.log(`✅ Email sent successfully to ${Array.isArray(to) ? to.join(", ") : to}`, {
-      id: data?.id,
-      subject: subject,
-      timestamp: new Date().toISOString()
-    });
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.log(`✅ Email sent successfully to ${Array.isArray(to) ? to.join(", ") : to}`, {
+        id: data?.id,
+        subject: subject,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     return { success: true, data };
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
-    console.error("Unexpected error sending email:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Unexpected error sending email:", error);
+    }
 
     return {
       success: false,

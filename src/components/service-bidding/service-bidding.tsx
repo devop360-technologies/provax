@@ -5,6 +5,21 @@ import Image from "next/image";
 import { User } from "@/types/user";
 import { Edit, Eye } from "lucide-react";
 
+interface Service {
+  userId: string;
+  service: string;
+  requester?: { name: string; image: string };
+  category?: string;
+  urgency?: string;
+  urgencyColor?: string;
+  budget?: string;
+  deadline?: string;
+  status?: string;
+  statusColor?: string;
+  date?: string;
+  action?: string;
+}
+
 interface ServiceBiddingProps {
   users: User[];
 }
@@ -14,7 +29,7 @@ type Tab = "Service Requests" | "Service Detail" | "Dispute Management" | "SLA T
 export function ServiceBidding({ users }: ServiceBiddingProps) {
   const [activeTab, setActiveTab] = useState<Tab>("Service Requests");
   const [activeDetailTab, setActiveDetailTab] = useState("Service Information");
-  const [selectedService, setSelectedService] = useState<any>(null);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [filters, setFilters] = useState({
     category: "All Categories",
     region: "All Regions", 
@@ -150,7 +165,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
   ];
 
   // Handle viewing a specific service
-  const handleViewService = (service: any) => {
+  const handleViewService = (service: Service) => {
     setSelectedService(service);
     setActiveTab("Service Detail");
     setActiveDetailTab("Service Information");

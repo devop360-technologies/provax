@@ -16,7 +16,10 @@ export async function POST(request: NextRequest) {
   if (!webhookSecret) {
     const message =
       "Stripe webhook secret (STRIPE_WEBHOOK_SECRET) is missing from environment variables. Cannot verify incoming Stripe webhooks.";
-    console.error(message);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error(message);
+    }
     return NextResponse.json({ error: { message } }, { status: 500 });
   }
 
@@ -25,12 +28,18 @@ export async function POST(request: NextRequest) {
   // Validate the Stripe webhook signature and parse the incoming event payload
   try {
     event = stripeClient.webhooks.constructEvent(body, signature, webhookSecret);
-    console.log(`Stripe event: ${event.type}`);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.log(`Stripe event: ${event.type}`);
+    }
   } catch (err) {
     const error = err as Error;
     const message = `Webhook signature verification failed: ${error.message}`;
 
-    console.log(message);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.log(message);
+    }
     return NextResponse.json({ error: { message } }, { status: 400 });
   }
 
@@ -38,7 +47,10 @@ export async function POST(request: NextRequest) {
     switch (event.type) {
       case "checkout.session.completed": {
         // Handles both initial subscription payments and one-time purchases.
-        console.log(`Handling "${event.type}" event...`);
+        if (process.env.NODE_ENV === "development") {
+          // eslint-disable-next-line no-console
+          console.log(`Handling "${event.type}" event...`);
+        }
 
         const stripeObject = event.data.object;
         const checkoutSession = await stripeClient.checkout.sessions.retrieve(stripeObject.id, {
@@ -50,9 +62,12 @@ export async function POST(request: NextRequest) {
         const stripeCustomerId = checkoutSession?.customer as string;
         const customerEmail = checkoutSession?.customer_details?.email;
         const priceId = checkoutSession?.line_items?.data[0]?.price?.id;
-        console.log(
-          ` UserID: ${userId}, CustomerID: ${stripeCustomerId}, Email: ${customerEmail}, PriceID: ${priceId}`
-        );
+        if (process.env.NODE_ENV === "development") {
+          // eslint-disable-next-line no-console
+          console.log(
+            ` UserID: ${userId}, CustomerID: ${stripeCustomerId}, Email: ${customerEmail}, PriceID: ${priceId}`
+          );
+        }
 
         let user: User | null = null;
 
@@ -64,9 +79,12 @@ export async function POST(request: NextRequest) {
         }
 
         if (!user) {
-          console.error(
-            `Stripe Webhook Error: Unable to associate checkout session with userId: ${userId}, email: ${customerEmail}`
-          );
+          if (process.env.NODE_ENV === "development") {
+            // eslint-disable-next-line no-console
+            console.error(
+              `Stripe Webhook Error: Unable to associate checkout session with userId: ${userId}, email: ${customerEmail}`
+            );
+          }
 
           return NextResponse.json(
             {
@@ -81,7 +99,10 @@ export async function POST(request: NextRequest) {
         const plan = appConfig.stripe.plans.find((p) => p.priceId === priceId);
         if (!plan) {
           const message = `Plan configuration missing for priceId: ${priceId}`;
-          console.error(message);
+          if (process.env.NODE_ENV === "development") {
+            // eslint-disable-next-line no-console
+            console.error(message);
+          }
           throw new Error(message);
         }
 
@@ -128,7 +149,10 @@ export async function POST(request: NextRequest) {
       case "customer.subscription.updated": {
         // Handles subscription updates, such as plan changes (upgrades/downgrades) and renewals.
         // TODO: Optionally update user credits on a monthly basis if required.
-        console.log(`Handling "${event.type}" event...`);
+        if (process.env.NODE_ENV === "development") {
+          // eslint-disable-next-line no-console
+          console.log(`Handling "${event.type}" event...`);
+        }
         const subscription = event.data.object;
 
         const status = subscription.status;
@@ -141,9 +165,12 @@ export async function POST(request: NextRequest) {
         });
 
         if (!user) {
-          console.error(
-            `Stripe Webhook Error: User not found for subscription update. customerId: ${customerId}`
-          );
+          if (process.env.NODE_ENV === "development") {
+            // eslint-disable-next-line no-console
+            console.error(
+              `Stripe Webhook Error: User not found for subscription update. customerId: ${customerId}`
+            );
+          }
 
           return NextResponse.json(
             {
@@ -170,7 +197,10 @@ export async function POST(request: NextRequest) {
 
       case "customer.subscription.deleted": {
         // Handles subscription cancellations or expirations by revoking user access.
-        console.log(`Handling "${event.type}" event...`);
+        if (process.env.NODE_ENV === "development") {
+          // eslint-disable-next-line no-console
+          console.log(`Handling "${event.type}" event...`);
+        }
         const stripeObject = event.data.object;
 
         // The customer might have changed the plan (higher or lower plan, cancel soon etc...)
@@ -184,9 +214,12 @@ export async function POST(request: NextRequest) {
         });
 
         if (!user) {
-          console.error(
-            `Stripe Webhook Error: User not found for subscription deletion. customerId: ${customerId}`
-          );
+          if (process.env.NODE_ENV === "development") {
+            // eslint-disable-next-line no-console
+            console.error(
+              `Stripe Webhook Error: User not found for subscription deletion. customerId: ${customerId}`
+            );
+          }
 
           return NextResponse.json(
             {
@@ -230,16 +263,22 @@ export async function POST(request: NextRequest) {
       }
 
       default:
-        console.warn(
-          `Received unhandled Stripe event type: "${event.type}". Event ID: ${event.id}.`
-        );
+        if (process.env.NODE_ENV === "development") {
+          // eslint-disable-next-line no-console
+          console.warn(
+            `Received unhandled Stripe event type: "${event.type}". Event ID: ${event.id}.`
+          );
+        }
     }
 
     return NextResponse.json({ message: "Stripe webhook event handled successfully." });
   } catch (err) {
     const error = err as Error;
     const message = `Failed to process Stripe webhook: ${error.message}`;
-    console.error(message);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error(message);
+    }
 
     return NextResponse.json({ error: { message } }, { status: 500 });
   }

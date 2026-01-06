@@ -92,7 +92,10 @@ export async function loginAction(
       redirectUrl: result?.url || appConfig.auth.afterLogin
     };
   } catch (error) {
-    console.error("Login error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Login error:", error);
+    }
     return {
       success: false,
       error: "An error occurred during login"
@@ -142,7 +145,10 @@ export async function requestLoginOtpAction(email: string): Promise<LoginResult>
       requiresOtp: true
     };
   } catch (error) {
-    console.error("Request login OTP error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Request login OTP error:", error);
+    }
     return {
       success: false,
       error: "Failed to send login code"
@@ -193,7 +199,10 @@ export async function loginWithOtpAction(
       redirectUrl: redirectTo || appConfig.auth.afterLogin
     };
   } catch (error) {
-    console.error("Login with OTP error:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Login with OTP error:", error);
+    }
     return {
       success: false,
       error: "Failed to login with OTP"

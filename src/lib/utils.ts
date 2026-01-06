@@ -8,15 +8,18 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /** ====================================================
- * Logs an error message to the browser console
+ * Logs an error message to the browser console (development only)
  * @param message - The error message to log
  *  =====================================================
  */
 export function browserConsoleError(message: string) {
-  console.log(
-    `%c${message}`,
-    "background: #dc2626; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;"
-  );
+  if (process.env.NODE_ENV === "development") {
+    // eslint-disable-next-line no-console
+    console.log(
+      `%c${message}`,
+      "background: #dc2626; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;"
+    );
+  }
 }
 
 /** ====================================================

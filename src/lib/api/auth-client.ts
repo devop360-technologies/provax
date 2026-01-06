@@ -3,7 +3,7 @@
  * Helper functions to call authentication API routes
  */
 
-interface ApiResponse<T = any> {
+interface ApiResponse<T = unknown> {
   success?: boolean;
   error?: string;
   message?: string;

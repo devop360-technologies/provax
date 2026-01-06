@@ -129,7 +129,7 @@ import { MobileMenuButton } from "./mobile-menu-button";
 export async function DashboardHeader() {
 
   const user = await getCurrentUser();
-  console.log("user hu mai",user);
+  
   return (
     <header className="bg-[#1D1D41] border-b border-[#2a2d4a] px-3 sm:px-4 lg:px-6 py-3 sm:py-4 lg:py-5 sticky top-2 sm:top-3 lg:top-5 rounded-xl sm:rounded-2xl mx-2 sm:mx-4 lg:mr-10 lg:ml-0 z-40">
       <div className="flex items-center justify-between gap-2 sm:gap-4 lg:gap-8">

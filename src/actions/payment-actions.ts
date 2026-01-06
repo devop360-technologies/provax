@@ -35,14 +35,16 @@ export async function createCheckoutSessionAction(priceId: string) {
       throw new Error("Failed to create Stripe checkout session");
     }
 
-    // Return the checkout URL so the client can redirect
     return {
       status: "success",
       url: checkoutUrl
     };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error("Error creating Stripe checkout session:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Error creating Stripe checkout session:", error);
+    }
     return { status: "error", message };
   }
 }
@@ -75,14 +77,16 @@ export async function createCustomerPortalAction() {
       throw new Error("Failed to create Stripe customer portal session");
     }
 
-    // Return the portal URL so the client can redirect
     return {
       status: "success",
       url: portalUrl
     };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error("Error creating Stripe customer portal session:", message);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Error creating Stripe customer portal session:", message);
+    }
     return { status: "error", message };
   }
 }

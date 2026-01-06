@@ -90,9 +90,12 @@ export async function removeFromStorage(url: string) {
 
     // Check if the provided URL belongs to the configured S3 bucket
     if (!url.includes(BUCKET_NAME)) {
-      console.warn(
-        `The provided URL does not belong to the configured S3 bucket (${BUCKET_NAME}). Skipping removal: ${url}`
-      );
+      if (process.env.NODE_ENV === "development") {
+        // eslint-disable-next-line no-console
+        console.warn(
+          `The provided URL does not belong to the configured S3 bucket (${BUCKET_NAME}). Skipping removal: ${url}`
+        );
+      }
 
       return false;
     }

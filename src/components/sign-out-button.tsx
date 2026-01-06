@@ -21,8 +21,8 @@ export function SignOutButton({
         callbackUrl: "/",
         redirect: true
       })
-    } catch (error) {
-      console.error("Sign out error:", error)
+    } catch {
+      // Sign out error handled silently in production
     }
   }
 

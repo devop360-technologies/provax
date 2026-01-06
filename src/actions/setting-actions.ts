@@ -44,7 +44,10 @@ export async function updateUserProfile(data: GeneralSettingsSchema) {
     revalidatePath("dashboard/profile");
     return { status: "success" };
   } catch (error) {
-    console.error("Error updating user profile:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Error updating user profile:", error);
+    }
     return {
       status: "error",
       message: error instanceof Error ? error.message : "Unknown error"
@@ -106,7 +109,10 @@ export async function changeUserPassword(data: ChangePasswordSchema) {
       message: "Password updated successfully"
     };
   } catch (error) {
-    console.error("Error changing password:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Error changing password:", error);
+    }
     return {
       status: "error",
       message: error instanceof Error ? error.message : "Unknown error"

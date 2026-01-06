@@ -10,6 +10,18 @@ import { User } from "@/types/user";
 import { Edit, Trash } from "lucide-react";
 import { BarChartOverview, ChartOverview } from "../dashboard";
 
+interface Comment {
+  module: string;
+  text: string;
+  id?: string;
+}
+
+interface Inspection {
+  id: string;
+  vehicle?: string;
+  status?: string;
+}
+
 interface certificationManagementProps {
   users: User[];
 }
@@ -24,8 +36,8 @@ export function CertificationManagement({ users }: certificationManagementProps)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isTechnicalCommentModalOpen, setIsTechnicalCommentModalOpen] = useState(false);
   const [isDeleteCommentModalOpen, setIsDeleteCommentModalOpen] = useState(false);
-  const [editingComment, setEditingComment] = useState<any>(null);
-  const [deletingComment, setDeletingComment] = useState<any>(null);
+  const [editingComment, setEditingComment] = useState<Comment | null>(null);
+  const [deletingComment, setDeletingComment] = useState<Comment | null>(null);
   const [editFormData, setEditFormData] = useState<{
     fullName: string;
     email: string;
@@ -71,25 +83,21 @@ export function CertificationManagement({ users }: certificationManagementProps)
     setIsTechnicalCommentModalOpen(true);
   };
 
-  const handleEditComment = (comment: any) => {
+  const handleEditComment = (comment: Comment) => {
     setEditingComment({
-      commentType: "Technical Override",
-      aiModule: comment.module.replace("AI Module: ", ""),
-      priority: "Medium",
-      comment: comment.text,
-      requiresFollowUp: false
+      module: "AI Module: " + comment.module.replace("AI Module: ", ""),
+      text: comment.text,
     });
     setIsTechnicalCommentModalOpen(true);
   };
 
-  const handleDeleteComment = (comment: any) => {
+  const handleDeleteComment = (comment: Comment) => {
     setDeletingComment(comment);
     setIsDeleteCommentModalOpen(true);
   };
 
   const handleConfirmDeleteComment = () => {
-    console.log("Comment deleted:", deletingComment);
-    // Add your delete logic here
+    // TODO: Implement delete logic for deletingComment
     setDeletingComment(null);
     setIsDeleteCommentModalOpen(false);
   };
@@ -102,11 +110,9 @@ export function CertificationManagement({ users }: certificationManagementProps)
     requiresFollowUp: boolean;
   }) => {
     if (editingComment) {
-      console.log("Technical comment updated:", commentData);
-      // Add your update logic here
+      // TODO: Implement update logic with commentData
     } else {
-      console.log("Technical comment saved:", commentData);
-      // Add your save logic here
+      // TODO: Implement save logic with commentData
     }
     setEditingComment(null);
     setIsTechnicalCommentModalOpen(false);
@@ -277,8 +283,9 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
     }
   ];
 
-  const handleViewInspection = (inspection: any) => {
+  const handleViewInspection = (inspection: Inspection) => {
     // Map inspection to a User object to navigate to Certification Detail
+    void inspection; // Acknowledge the parameter
     const user = users[0]; // Use first user or you can create a mock user
     if (user) {
       onViewUser(user);
@@ -468,8 +475,8 @@ function UserDetailTab({
   user: User; 
   onEditClick: () => void;
   onTechnicalCommentClick: () => void;
-  onEditComment: (comment: any) => void;
-  onDeleteComment: (comment: any) => void;
+  onEditComment: (comment: Comment) => void;
+  onDeleteComment: (comment: Comment) => void;
 }) {
   const [activeDetailTab, setActiveDetailTab] = useState("User Uploads");
 
@@ -900,8 +907,8 @@ function AdminCommentsTab({
   onDeleteComment 
 }: { 
   onTechnicalCommentClick: () => void;
-  onEditComment: (comment: any) => void;
-  onDeleteComment: (comment: any) => void;
+  onEditComment: (comment: Comment) => void;
+  onDeleteComment: (comment: Comment) => void;
 }) {
   const comments = [
     {

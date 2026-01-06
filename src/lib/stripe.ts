@@ -4,7 +4,10 @@ import { appConfig } from "@/config";
 import { StripeCheckoutSessionParams, StripeCustomerPortalParams } from "@/types/stripe";
 
 if (!appConfig.stripe.secretKey) {
-  console.error("STRIPE_SECRET_KEY is not set");
+  if (process.env.NODE_ENV === "development") {
+    // eslint-disable-next-line no-console
+    console.error("STRIPE_SECRET_KEY is not set");
+  }
   throw new Error("STRIPE_SECRET_KEY is not set");
 }
 
@@ -68,7 +71,10 @@ export async function createStripeCheckoutSession({
 
     return session.url ?? undefined;
   } catch (error) {
-    console.error("Failed to create Stripe checkout session:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Failed to create Stripe checkout session:", error);
+    }
     return undefined;
   }
 }
@@ -89,7 +95,10 @@ export async function createStripeCustomerPortal({
 
     return portalSession.url;
   } catch (error) {
-    console.error("Failed to create Stripe customer portal session:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Failed to create Stripe customer portal session:", error);
+    }
     return undefined;
   }
 }

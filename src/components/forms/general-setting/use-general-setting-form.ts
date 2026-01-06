@@ -47,8 +47,8 @@ export function useGeneralSettingForm({ user }: { user: User }) {
       } else {
         toast.error(result.message || "Error while uploading avatar");
       }
-    } catch (error) {
-      console.error("Error uploading file:", error);
+    } catch {
+      toast.error("Error uploading file");
     } finally {
       setIsUploading(false);
     }

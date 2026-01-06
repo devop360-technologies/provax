@@ -40,7 +40,8 @@ export async function sendEmailVerificationOtpAction(
     const result = await sendOtpAction(email, "email_verification");
     return result;
   } catch (error) {
-    console.error("Send email verification OTP error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Send email verification OTP error:", error);
     return {
       success: false,
       error: "Failed to send verification code"
@@ -79,7 +80,8 @@ export async function verifyEmailWithOtpAction(
       message: "Email verified successfully"
     };
   } catch (error) {
-    console.error("Verify email with OTP error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Verify email with OTP error:", error);
     return {
       success: false,
       error: "Failed to verify email"
@@ -108,7 +110,8 @@ export async function checkEmailVerificationAction(
       exists: true
     };
   } catch (error) {
-    console.error("Check email verification error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Check email verification error:", error);
     return { verified: false, exists: false };
   }
 }

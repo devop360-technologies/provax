@@ -79,15 +79,15 @@ export function AIModuleVolumeAreaChart({
   pathData += " Z";
 
   const handleExportCSV = () => {
-    console.log("Export CSV");
+    // TODO: Implement CSV export
   };
 
   const handleExportPDF = () => {
-    console.log("Export PDF");
+    // TODO: Implement PDF export
   };
 
   const handleComparePeriods = () => {
-    console.log("Compare Periods");
+    // TODO: Implement compare periods
   };
 
   return (

@@ -23,7 +23,8 @@ export async function GET(request: Request) {
       message: "Email verified successfully"
     });
   } catch (error) {
-    console.error("Email verification API error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Email verification API error:", error);
     return Response.json({ success: false, error: "Internal server error" }, { status: 500 });
   }
 }
@@ -62,7 +63,8 @@ async function verifyEmailToken(
 
     return { success: true, email: verificationToken.identifier };
   } catch (error) {
-    console.error("Email verification error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Email verification error:", error);
     return { success: false, error: "Failed to verify email" };
   }
 }

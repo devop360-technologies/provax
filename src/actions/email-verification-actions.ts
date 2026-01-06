@@ -91,7 +91,8 @@ export async function sendVerificationEmail(
 
     return { success: true };
   } catch (error) {
-    console.error("Send verification email error:", error);
+    // eslint-disable-next-line no-console
+    if (process.env.NODE_ENV === "development") console.error("Send verification email error:", error);
     return {
       success: false,
       error: "Failed to send verification email"

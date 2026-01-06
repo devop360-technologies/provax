@@ -32,7 +32,10 @@ export async function getUsers(): Promise<User[]> {
 
     return users;
   } catch (error) {
-    console.error("Error fetching users:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Error fetching users:", error);
+    }
     throw new Error("Failed to fetch users");
   }
 }
@@ -58,7 +61,10 @@ export async function deleteUser(userId: string): Promise<{ success: boolean; er
 
     return { success: true };
   } catch (error) {
-    console.error("Error deleting user:", error);
+    if (process.env.NODE_ENV === "development") {
+      // eslint-disable-next-line no-console
+      console.error("Error deleting user:", error);
+    }
     return { success: false, error: "Failed to delete user" };
   }
 }

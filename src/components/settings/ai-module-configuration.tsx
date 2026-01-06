@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AIModuleCard } from "./ai-module-card";
 
 interface AIModuleConfigurationProps {
-  onConfigChange?: (module: string, config: any) => void;
+  onConfigChange?: (module: string, config: unknown) => void;
 }
 
 export function AIModuleConfiguration({
@@ -28,7 +28,7 @@ export function AIModuleConfiguration({
     },
   });
 
-  const handleUpdate = (module: string, key: string, value: any) => {
+  const handleUpdate = (module: string, key: string, value: string | number | boolean | object) => {
     setModules((prev) => ({
       ...prev,
       [module]: {

@@ -19,12 +19,12 @@ export function EmailManagement({ className }: EmailManagementProps) {
   const [isCreateCampaignModalOpen, setIsCreateCampaignModalOpen] =
     useState(false);
 
-  const handleCreateTemplate = (templateData: any) => {
-    console.log("Create template:", templateData);
+  const handleCreateTemplate = (_templateData: Record<string, unknown>) => {
+    // TODO: Implement template creation
   };
 
-  const handleCreateCampaign = (campaignData: any) => {
-    console.log("Create campaign:", campaignData);
+  const handleCreateCampaign = (_campaignData: Record<string, unknown>) => {
+    // TODO: Implement campaign creation
   };
 
   return (
@@ -32,7 +32,7 @@ export function EmailManagement({ className }: EmailManagementProps) {
       <div className={cn("space-y-6", className)}>
         {/* Filters Section */}
         <EmailFilters
-          onApplyFilters={() => console.log("Filters applied")}
+          onApplyFilters={() => { /* TODO: Implement filter application */ }}
           onCreateTemplate={() => setIsCreateTemplateModalOpen(true)}
           onCreateCampaign={() => setIsCreateCampaignModalOpen(true)}
         />
@@ -63,20 +63,20 @@ export function EmailManagement({ className }: EmailManagementProps) {
         {/* Transactional Email Templates */}
         <div className="border-t border-[#404254] pt-6">
           <EmailTemplates
-            onViewAll={() => console.log("View all templates")}
-            onEdit={(id) => console.log("Edit template:", id)}
-            onTest={(id) => console.log("Test template:", id)}
-            onRestore={(id) => console.log("Restore template:", id)}
+            onViewAll={() => { /* TODO: Implement view all templates */ }}
+            onEdit={(_id) => { /* TODO: Implement edit template */ }}
+            onTest={(_id) => { /* TODO: Implement test template */ }}
+            onRestore={(_id) => { /* TODO: Implement restore template */ }}
           />
         </div>
 
         {/* Marketing Campaigns */}
         <div className="border-t border-[#404254] pt-6">
           <MarketingCampaignsTable
-            onViewAll={() => console.log("View all campaigns")}
-            onView={(id) => console.log("View campaign:", id)}
-            onEdit={(id) => console.log("Edit campaign:", id)}
-            onDelete={(id) => console.log("Delete campaign:", id)}
+            onViewAll={() => { /* TODO: Implement view all campaigns */ }}
+            onView={(_id) => { /* TODO: Implement view campaign */ }}
+            onEdit={(_id) => { /* TODO: Implement edit campaign */ }}
+            onDelete={(_id) => { /* TODO: Implement delete campaign */ }}
           />
         </div>
       </div>
