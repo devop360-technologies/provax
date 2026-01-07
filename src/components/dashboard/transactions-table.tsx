@@ -3,9 +3,25 @@
 import React, { useState } from "react";
 import { Eye } from "lucide-react";
 import TransactionDetailsModal from "./transaction-details-modal";
-import { TRANSACTIONS } from "@/data/dashboard-data";
+import { TABLE_CLASSES } from "@/lib/table-utils";
 
-export function TransactionsTable() {
+export interface Transaction {
+  id: string;
+  date: string;
+  payer: { name: string; avatar: string };
+  receiver: string;
+  amount: string;
+  gateway: string;
+  gatewayColor: string;
+  status: string;
+  statusColor: string;
+}
+
+interface TransactionsTableProps {
+  transactions?: Transaction[];
+}
+
+export function TransactionsTable({ transactions = [] }: TransactionsTableProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTransactionId, setSelectedTransactionId] = useState("");
 
@@ -14,69 +30,46 @@ export function TransactionsTable() {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedTransactionId("");
-  };
+  if (transactions.length === 0) {
+    return (
+      <div className={TABLE_CLASSES.wrapper}>
+        <div className="p-8 text-center text-gray-400">No transactions found</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="bg-[#1D1D41] rounded-lg border border-[#2a2d4a] overflow-hidden">
-      <div className="overflow-x-auto">
+    <div className={TABLE_CLASSES.wrapper}>
+      <div className={TABLE_CLASSES.overflowContainer}>
         <table className="w-full">
           <thead>
-            <tr className="bg-[#252850] border-b border-[#2a2d4a]">
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">ID</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Date</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Payer</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Receiver</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Amount</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Gateway</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Status</th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Action</th>
+            <tr className={TABLE_CLASSES.header}>
+              {["ID", "Date", "Payer", "Receiver", "Amount", "Gateway", "Status", "Action"].map((h) => (
+                <th key={h} className={TABLE_CLASSES.headerCell}>{h}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {TRANSACTIONS.map((transaction) => (
-              <tr 
-                key={transaction.id}
-                className="border-b border-[#2a2d4a] hover:bg-[#252850]/50 transition-colors"
-              >
-                <td className="px-6 py-4 text-sm font-medium text-white">
-                  {transaction.id}
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-300">
-                  {transaction.date}
-                </td>
-                <td className="px-6 py-4 text-sm text-gray-300">
+            {transactions.map((t) => (
+              <tr key={t.id} className={TABLE_CLASSES.row}>
+                <td className={TABLE_CLASSES.cellMedium}>{t.id}</td>
+                <td className={TABLE_CLASSES.cell}>{t.date}</td>
+                <td className={TABLE_CLASSES.cell}>
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-sm">
-                      {transaction.payer.avatar}
-                    </div>
-                    <span>{transaction.payer.name}</span>
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-sm">{t.payer.avatar}</div>
+                    <span>{t.payer.name}</span>
                   </div>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-300">
-                  {transaction.receiver}
+                <td className={TABLE_CLASSES.cell}>{t.receiver}</td>
+                <td className={TABLE_CLASSES.cellMedium}>{t.amount}</td>
+                <td className={TABLE_CLASSES.cell}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${t.gatewayColor}`}>{t.gateway}</span>
                 </td>
-                <td className="px-6 py-4 text-sm font-medium text-white">
-                  {transaction.amount}
+                <td className={TABLE_CLASSES.cell}>
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${t.statusColor}`}>{t.status}</span>
                 </td>
-                <td className="px-6 py-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${transaction.gatewayColor}`}>
-                    {transaction.gateway}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium text-white ${transaction.statusColor}`}>
-                    {transaction.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <button 
-                    onClick={() => handleViewDetails(transaction.id)}
-                    className="text-cyan-400 hover:text-cyan-300 transition-colors p-1 rounded"
-                    title="View transaction details"
-                  >
+                <td className={TABLE_CLASSES.cell}>
+                  <button type="button" onClick={() => handleViewDetails(t.id)} className="text-cyan-400 hover:text-cyan-300 transition-colors p-1 rounded" title="View details">
                     <Eye className="w-4 h-4" />
                   </button>
                 </td>
@@ -85,13 +78,7 @@ export function TransactionsTable() {
           </tbody>
         </table>
       </div>
-
-      {/* Transaction Details Modal */}
-      <TransactionDetailsModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        transactionId={selectedTransactionId}
-      />
+      <TransactionDetailsModal isOpen={isModalOpen} onClose={() => { setIsModalOpen(false); setSelectedTransactionId(""); }} transactionId={selectedTransactionId} />
     </div>
   );
 }
