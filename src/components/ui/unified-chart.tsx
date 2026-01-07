@@ -1,7 +1,6 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { calculateYStep, generateGridLines, calculateBarDimensions, calculateLineChartPoints, createSmoothCurvePath, createFillPath, CHART_COLORS } from '@/lib/chart-utils';
+import { generateGridLines, calculateBarDimensions, calculateLineChartPoints, createSmoothCurvePath, createFillPath, CHART_COLORS } from '@/lib/chart-utils';
 
 export type ChartType = 'bar' | 'line';
 
@@ -34,7 +33,6 @@ export function UnifiedChart({ type, data, color, title, height = 'h-80' }: Read
 
   if (type === 'bar') {
     const { barWidth, barGap } = calculateBarDimensions(svgWidth, padding, normalizedData.length);
-    const yStep = calculateYStep(maxValue, 0, yLevels);
     const gridLines = generateGridLines(maxValue, 0, yLevels, svgHeight, padding, chartHeight);
 
     return (
@@ -50,7 +48,7 @@ export function UnifiedChart({ type, data, color, title, height = 'h-80' }: Read
             const x = padding + idx * (barWidth + barGap) + barGap;
             const y = svgHeight - padding - 30 - barHeight;
             return (
-              <rect key={`bar-${idx}`} x={x} y={y} width={barWidth} height={barHeight} fill={color} opacity="0.8" rx="4" />
+              <rect key={`bar-${x}-${value}`} x={x} y={y} width={barWidth} height={barHeight} fill={color} opacity="0.8" rx="4" />
             );
           })}
         </svg>
@@ -80,8 +78,8 @@ export function UnifiedChart({ type, data, color, title, height = 'h-80' }: Read
         <line x1={padding} y1={svgHeight - padding - 30} x2={svgWidth} y2={svgHeight - padding - 30} stroke={CHART_COLORS.grid} strokeWidth="1.5" />
         <path d={fillPathD} fill={`url(#gradient-${color})`} opacity="0.1" />
         <polyline points={points.map(p => `${p.x},${p.y}`).join(' ')} fill="none" stroke={color} strokeWidth="2" />
-        {points.map((point, idx) => (
-          <circle key={`point-${idx}`} cx={point.x} cy={point.y} r="4" fill={color} />
+        {points.map((point) => (
+          <circle key={`point-${point.x}-${point.y}`} cx={point.x} cy={point.y} r="4" fill={color} />
         ))}
       </svg>
     </div>

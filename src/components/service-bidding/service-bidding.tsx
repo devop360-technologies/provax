@@ -487,6 +487,9 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                       <h4 className="text-base font-semibold text-white">Service Details</h4>
                     </div>
                     <table className="w-full">
+                      <thead className="sr-only">
+                        <tr><th>Property</th><th>Value</th></tr>
+                      </thead>
                       <tbody>
                         <tr className="border-b border-[#2a2d4a]">
                           <td className="px-6 py-4 text-sm text-gray-400">Service ID:</td>
@@ -530,6 +533,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                       <h4 className="text-base font-semibold text-white">Vehicle Information</h4>
                     </div>
                     <table className="w-full">
+                      <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                       <tbody>
                         <tr className="border-b border-[#2a2d4a]">
                           <td className="px-6 py-4 text-sm text-gray-400">Make & Model:</td>
@@ -557,6 +561,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                       <h4 className="text-base font-semibold text-white">Client Information</h4>
                     </div>
                     <table className="w-full">
+                      <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                       <tbody>
                         <tr className="border-b border-[#2a2d4a]">
                           <td className="px-6 py-4 text-sm text-gray-400">Name:</td>
@@ -853,6 +858,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                       <h5 className="text-base font-semibold text-white">Contact Information</h5>
                     </div>
                     <table className="w-full">
+                      <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                       <tbody>
                         <tr className="border-b border-[#2a2d4a]">
                           <td className="px-6 py-4 text-sm text-gray-400">Email:</td>
@@ -880,6 +886,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                       <h5 className="text-base font-semibold text-white">Service Statistics</h5>
                     </div>
                     <table className="w-full">
+                      <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                       <tbody>
                         <tr className="border-b border-[#2a2d4a]">
                           <td className="px-6 py-4 text-sm text-gray-400">Completed Services:</td>
@@ -1390,6 +1397,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                   </span>
                 </div>
                 <table className="w-full">
+                  <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                   <tbody>
                     <tr className="border-b border-[#2a2d4a]">
                       <td className="py-2 text-sm text-gray-400">Provider:</td>
@@ -1423,6 +1431,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                   </span>
                 </div>
                 <table className="w-full">
+                  <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                   <tbody>
                     <tr className="border-b border-[#2a2d4a]">
                       <td className="py-2 text-sm text-gray-400">Provider:</td>
@@ -1456,6 +1465,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                   </span>
                 </div>
                 <table className="w-full">
+                  <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                   <tbody>
                     <tr className="border-b border-[#2a2d4a]">
                       <td className="py-2 text-sm text-gray-400">Provider:</td>

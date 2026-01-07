@@ -4,3 +4,4 @@ export { ChartCard } from './chart-card';
 export { ChartOverview } from './chart-overview';
 export { BarChart, BarChartOverview } from './bar-chart';
 export { RealTimeAlerts } from './real-time-alerts';
+export { ChartWrapper } from './chart-wrapper';

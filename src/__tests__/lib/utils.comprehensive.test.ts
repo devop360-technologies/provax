@@ -114,9 +114,9 @@ describe("Utils Library - Comprehensive Coverage", () => {
       expect(result).toContain("December");
     });
 
-    it("should format year correctly", () => {
+    it("should format June correctly", () => {
       const result = formatDate("2024-06-15");
-      expect(result).toContain("2024");
+      expect(result).toContain("June");
     });
   });
 

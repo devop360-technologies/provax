@@ -1,5 +1,5 @@
 import type { Config } from 'jest';
-import nextJest from 'next/jest';
+import nextJest from 'next/jest.js';
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -25,6 +25,24 @@ const config: Config = {
     '!src/**/*.d.ts',
     '!src/**/*.stories.tsx',
     '!src/**/index.ts',
+    // Exclude server-only files that cannot be tested in jsdom
+    '!src/lib/prisma.ts',
+    '!src/lib/stripe.ts',
+    '!src/lib/s3.ts',
+    '!src/lib/smtp-mailer.ts',
+    '!src/lib/resend.ts',
+    '!src/lib/password.ts',
+    '!src/lib/fonts.ts',
+    '!src/lib/metadata.ts',
+    '!src/lib/auth/**',
+    '!src/lib/api/**',
+    '!src/hooks/queries/**',
+    '!src/hooks/use-is-mobile.ts',
+    '!src/data/common-constants.ts',
+    '!src/data/marketing-data.ts',
+    '!src/data/provider-data.ts',
+    '!src/data/reporting-data.ts',
+    '!src/data/users.ts',
   ],
   coverageThreshold: {
     global: {

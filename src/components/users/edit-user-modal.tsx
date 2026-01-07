@@ -55,9 +55,10 @@ export function EditUserModal({
       onClick={handleBackdropClick}
       role="presentation"
     >
-      <div 
+      <div
         className="bg-[#1a1d3a] border border-[#2a2d4a] rounded-xl p-8 max-w-2xl w-full mx-4 shadow-2xl"
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
       >

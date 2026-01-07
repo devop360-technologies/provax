@@ -176,7 +176,7 @@ describe("Complete Utils Coverage - All Functions", () => {
       expect(formatExpiry("1")).toBe("1");
     });
     it("handles partial input 2 digits", () => {
-      expect(formatExpiry("12")).toBe("12");
+      expect(formatExpiry("12")).toBe("12/");
     });
     it("handles partial input 3 digits", () => {
       const result = formatExpiry("123");

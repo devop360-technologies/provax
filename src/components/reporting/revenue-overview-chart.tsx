@@ -61,11 +61,7 @@ export function RevenueOverviewChart({
   dataPoints.forEach((point, index) => {
     const x = padding + index * xScale;
     const y = height - padding - point.y * yScale;
-    if (index === 0) {
-      pathData += ` L ${x} ${y}`;
-    } else {
-      pathData += ` L ${x} ${y}`;
-    }
+    pathData += ` L ${x} ${y}`;
   });
 
   pathData += ` L ${width - padding} ${height - padding}`;

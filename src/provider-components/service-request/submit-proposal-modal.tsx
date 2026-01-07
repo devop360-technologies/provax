@@ -126,9 +126,9 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
             <label htmlFor="proposal-file-input" className="text-white text-[12px] font-medium mb-2 block">
               Attachments (Optional)
             </label>
-            <div
-              className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#2C2C68] hover:border-[#4a4f6a] transition-colors cursor-pointer"
-              onClick={() => document.getElementById('proposal-file-input')?.click()}
+            <label
+              htmlFor="proposal-file-input"
+              className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#2C2C68] hover:border-[#4a4f6a] transition-colors cursor-pointer block"
             >
               <div className="flex flex-col items-center">
                 <div className="w-12 h-12 rounded-full bg-[#2C2C68] flex items-center justify-center mb-3">
@@ -146,7 +146,7 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
                 className="hidden"
                 accept="image/*,.pdf,.doc,.docx"
               />
-            </div>
+            </label>
 
             {/* Attachment List */}
             {attachments.length > 0 && (
@@ -160,6 +160,8 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
                       {file.name}
                     </span>
                     <button
+                      type="button"
+                      aria-label="Remove attachment"
                       onClick={() => removeAttachment(index)}
                       className="text-red-400 hover:text-red-300 ml-2"
                     >

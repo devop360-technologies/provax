@@ -92,9 +92,9 @@ export const ServiceMediaModal = ({ isOpen, onClose, jobTitle }: ServiceMediaMod
           {/* Before Service Photos */}
           <div className="mb-8">
             <h3 className="text-white text-sm font-semibold mb-4">Before Service Photos</h3>
-            <div
-              className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#1D1D41] hover:border-[#4a4f6a] transition-colors cursor-pointer"
-              onClick={() => document.getElementById('before-upload')?.click()}
+            <label
+              htmlFor="before-upload"
+              className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#1D1D41] hover:border-[#4a4f6a] transition-colors cursor-pointer block"
             >
               <div className="flex flex-col items-center">
                 <div className="w-16 h-16 rounded-full bg-[#2a2f4a] flex items-center justify-center mb-3">
@@ -110,7 +110,7 @@ export const ServiceMediaModal = ({ isOpen, onClose, jobTitle }: ServiceMediaMod
                 className="hidden"
                 accept="image/*"
               />
-            </div>
+            </label>
             {beforePhotos.length > 0 && (
               <p className="text-gray-400 text-xs mt-2">{beforePhotos.length} photo(s) uploaded</p>
             )}
@@ -130,9 +130,9 @@ export const ServiceMediaModal = ({ isOpen, onClose, jobTitle }: ServiceMediaMod
 
               <div>
                 <p className="text-white text-xs font-medium mb-3">Stage {String(index + 1).padStart(2, '0')} Photos</p>
-                <div
-                  className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#1D1D41] hover:border-[#4a4f6a] transition-colors cursor-pointer"
-                  onClick={() => document.getElementById(`stage-${stage.id}-upload`)?.click()}
+                <label
+                  htmlFor={`stage-${stage.id}-upload`}
+                  className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#1D1D41] hover:border-[#4a4f6a] transition-colors cursor-pointer block"
                 >
                   <div className="flex flex-col items-center">
                     <div className="w-16 h-16 rounded-full bg-[#2a2f4a] flex items-center justify-center mb-3">
@@ -148,7 +148,7 @@ export const ServiceMediaModal = ({ isOpen, onClose, jobTitle }: ServiceMediaMod
                     className="hidden"
                     accept="image/*"
                   />
-                </div>
+                </label>
                 {stage.photos.length > 0 && (
                   <p className="text-gray-400 text-xs mt-2">{stage.photos.length} photo(s) uploaded</p>
                 )}
@@ -169,9 +169,9 @@ export const ServiceMediaModal = ({ isOpen, onClose, jobTitle }: ServiceMediaMod
           {/* After Service Photos */}
           <div className="mb-8">
             <h3 className="text-white text-sm font-semibold mb-4">After Service Photos</h3>
-            <div
-              className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#1D1D41] hover:border-[#4a4f6a] transition-colors cursor-pointer"
-              onClick={() => document.getElementById('after-upload')?.click()}
+            <label
+              htmlFor="after-upload"
+              className="border-2 border-dashed border-[#3a3f5a] rounded-lg p-8 text-center bg-[#1D1D41] hover:border-[#4a4f6a] transition-colors cursor-pointer block"
             >
               <div className="flex flex-col items-center">
                 <div className="w-16 h-16 rounded-full bg-[#2a2f4a] flex items-center justify-center mb-3">
@@ -187,7 +187,7 @@ export const ServiceMediaModal = ({ isOpen, onClose, jobTitle }: ServiceMediaMod
                 className="hidden"
                 accept="image/*"
               />
-            </div>
+            </label>
             {afterPhotos.length > 0 && (
               <p className="text-gray-400 text-xs mt-2">{afterPhotos.length} photo(s) uploaded</p>
             )}

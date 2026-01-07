@@ -40,7 +40,7 @@ export function NewPasswordForm({ email, otp, onSuccess }: Readonly<NewPasswordF
     if (result.success) {
       onSuccess();
     } else {
-      setError(result.error || 'Failed to reset password. Please try again.');
+      setError(result.error ?? 'Failed to reset password. Please try again.');
     }
     
     setIsSubmitting(false);

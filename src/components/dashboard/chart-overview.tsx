@@ -1,7 +1,7 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { calculateLineChartPoints, createSmoothCurvePath, createFillPath, generateGridLines, CHART_COLORS } from '@/lib/chart-utils';
+import { ChartWrapper } from './chart-wrapper';
 
 const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -154,33 +154,13 @@ export function ChartOverview({
   onFilterChange,
 }: Readonly<ChartOverviewProps>) {
   return (
-    <Card className="bg-[#1D1D41] border-[#2a2d4a]">
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle className="text-white text-lg">{title}</CardTitle>
-            <p className="text-xs text-gray-400 mt-1">{subtitle}</p>
-          </div>
-          <div className="flex gap-2">
-            {filters.map((filter, idx) => (
-              <button
-                key={filter}
-                onClick={() => onFilterChange?.(filter)}
-                className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
-                  idx === 0
-                    ? 'bg-green-500/20 text-green-400 border border-green-500/50'
-                    : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-      </CardHeader>
-      <CardContent className="pt-4">
-        <LineChart data={data} color={color} />
-      </CardContent>
-    </Card>
+    <ChartWrapper
+      title={title}
+      subtitle={subtitle}
+      filters={filters}
+      onFilterChange={onFilterChange}
+    >
+      <LineChart data={data} color={color} />
+    </ChartWrapper>
   );
 }

@@ -369,6 +369,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Personal Details</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Full Name:</td>
@@ -395,6 +396,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Account Information</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">User ID:</td>
@@ -437,6 +439,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Contact Information</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Email:</td>
@@ -459,6 +462,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Emergency Contact</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Name:</td>
@@ -485,6 +489,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Contact Information</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Status:</td>
@@ -517,6 +522,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Address Verification</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Status:</td>
@@ -541,6 +547,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Payment Method Verification</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Status:</td>
@@ -569,6 +576,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Certification Summary</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Total Certifications:</td>
@@ -707,6 +715,7 @@ function UserDetailTab({
                 <h3 className="font-semibold text-white">Rating Summary</h3>
               </div>
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-400">Average Rating:</td>
@@ -827,6 +836,7 @@ function UserDetailTab({
             </div>
             <div className="overflow-x-auto">
               <table className="w-full">
+                <thead className="sr-only"><tr><th>Property</th><th>Value</th></tr></thead>
                 <tbody>
                   <tr className="border-b border-[#2a2d4a]">
                     <td className="px-6 py-4 text-sm text-gray-300">2023-10-12 14:30</td>
