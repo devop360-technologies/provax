@@ -1,6 +1,7 @@
 "use client";
 
 import { TableWrapper, TableHeader, TableColumnHeader, TableRow, TableCell, ActionButton } from "@/components/ui/table-components";
+import { PROVIDER_PAYOUTS_DATA } from "@/data/reporting-data";
 
 interface ProviderPayoutRow {
   period: string;
@@ -19,51 +20,8 @@ interface ProviderPayoutsTableProps {
   onShowDetails?: () => void;
 }
 
-const defaultRows: ProviderPayoutRow[] = [
-  {
-    period: "October 2023",
-    totalPayouts: "$88,804",
-    completed: "$82,544",
-    pending: "$4,176",
-    failed: "$1,341",
-    avgProcessingTime: "2.4 days",
-  },
-  {
-    period: "September 2023",
-    totalPayouts: "$78,521",
-    completed: "$70,156",
-    pending: "$5,840",
-    failed: "$1,281",
-    avgProcessingTime: "3.1 days",
-  },
-  {
-    period: "August 2023",
-    totalPayouts: "$78,454",
-    completed: "$74,214",
-    pending: "$3,178",
-    failed: "$1,223",
-    avgProcessingTime: "2.7 days",
-  },
-  {
-    period: "July 2023",
-    totalPayouts: "$71,488",
-    completed: "$66,341",
-    pending: "$4,016",
-    failed: "$993",
-    avgProcessingTime: "3.3 days",
-  },
-  {
-    period: "June 2023",
-    totalPayouts: "$83,874",
-    completed: "$82,419",
-    pending: "$1,520",
-    failed: "$970",
-    avgProcessingTime: "2.9 days",
-  },
-];
-
 export function ProviderPayoutsTable({
-  rows = defaultRows,
+  rows = PROVIDER_PAYOUTS_DATA as any,
   className,
   onExportCSV,
   onExportPDF,

@@ -1,6 +1,7 @@
 "use client";
 
 import { TableWrapper, TableHeader, TableColumnHeader, TableRow, TableCell, ActionButton, StatusBadge } from "@/components/ui/table-components";
+import { REVENUE_ANALYTICS_DATA } from "@/data/reporting-data";
 
 type StatusBadgeType = "COMPLETED" | "PENDING" | "VERIFIED" | "APPROVED";
 
@@ -22,56 +23,8 @@ interface RevenueAnalyticsTableProps {
   onViewTimeline?: () => void;
 }
 
-const defaultRows: RevenueAnalyticsRow[] = [
-  {
-    id: "ASOP-9541",
-    amount: "$1,200",
-    description: "John Swan on Tech Startups",
-    status: "COMPLETED",
-    daysOpen: "5",
-    notes: "-",
-    resolutions: "-",
-  },
-  {
-    id: "ASOP-8331",
-    amount: "$309",
-    description: "Sarah Johnson on Global Certifications",
-    status: "PENDING",
-    daysOpen: "2",
-    notes: "-",
-    resolutions: "-",
-  },
-  {
-    id: "ASOP-4342",
-    amount: "$455",
-    description: "Michael Brown on Service Pro",
-    status: "VERIFIED",
-    daysOpen: "7",
-    notes: "Split refund",
-    resolutions: "-",
-  },
-  {
-    id: "ASOP-9321",
-    amount: "$342",
-    description: "Emily Davis on Sushi Master",
-    status: "APPROVED",
-    daysOpen: "3",
-    notes: "-",
-    resolutions: "Returned to Processor",
-  },
-  {
-    id: "ASOP-6128",
-    amount: "$1,600",
-    description: "Robert Miller on AI Experts",
-    status: "VERIFIED",
-    daysOpen: "8",
-    notes: "-",
-    resolutions: "Returned to Card",
-  },
-];
-
 export function RevenueAnalyticsTable({
-  rows = defaultRows,
+  rows = REVENUE_ANALYTICS_DATA as any,
   className,
   onExportCSV,
   onExportPDF,
