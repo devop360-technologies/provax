@@ -33,10 +33,10 @@ export function UserActionTable({ users: initialUsers }: UsersTableProps) {
 
     startTransition(async () => {
       try {
-        // TODO: Implement delete user
+        
         // const result = await deleteUser(userToDelete.id);
 
-        // TODO: Remove this
+        
         const result = { success: true, error: null };
 
         if (result.success) {

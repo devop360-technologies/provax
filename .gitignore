@@ -12,6 +12,10 @@
 
 sonar-project.properties
 
+UTILITIES_REFERENCE.md
+DUPLICATION_FIXES_SUMMARY.md
+
+
 # testing
 /coverage
 

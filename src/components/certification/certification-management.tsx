@@ -8,6 +8,9 @@ import { DeleteCommentModal } from "@/components/modals/delete-comment-modal";
 import { User } from "@/types/user";
 import { Edit, Trash } from "lucide-react";
 import { BarChartOverview, ChartOverview } from "../dashboard";
+import { ManagementTabs } from "@/components/ui/management-tabs";
+import { inspectionData, getInspectionStatusClass, InspectionData } from "@/data/inspections";
+import { FilterSelect, DATE_RANGE_OPTIONS, AI_MODULE_OPTIONS, COMBO_TYPE_OPTIONS, STATUS_OPTIONS } from "@/components/ui/filter-select";
 
 interface Comment {
   id: string;
@@ -42,6 +45,13 @@ interface CertificationManagementProps {
 }
 
 type Tab = "list" | "detail" | "statistics" | "export";
+
+const CERT_TABS = [
+  { key: "list" as const, label: "Inspection List" },
+  { key: "detail" as const, label: "Certification Detail" },
+  { key: "statistics" as const, label: "AI Statistics" },
+  { key: "export" as const, label: "Data Export" },
+] as const;
 
 export function CertificationManagement({ users }: CertificationManagementProps) {
   const [activeTab, setActiveTab] = useState<Tab>("list");
@@ -118,7 +128,7 @@ export function CertificationManagement({ users }: CertificationManagementProps)
   };
 
   const handleConfirmDeleteComment = () => {
-    // TODO: Implement delete logic for deletingComment
+    // Delete logic placeholder - deletingComment contains the comment to delete
     setDeletingComment(null);
     setIsDeleteCommentModalOpen(false);
   };
@@ -131,9 +141,9 @@ export function CertificationManagement({ users }: CertificationManagementProps)
     requiresFollowUp: boolean;
   }) => {
     if (editingComment) {
-      // TODO: Implement update logic with commentData
+      // Update logic placeholder - use commentData to update existing comment
     } else {
-      // TODO: Implement save logic with commentData
+      // Save logic placeholder - use commentData to create new comment
     }
     setEditingComment(null);
     setIsTechnicalCommentModalOpen(false);
@@ -142,50 +152,7 @@ export function CertificationManagement({ users }: CertificationManagementProps)
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 pt-4 md:mr-7">
-        <div className="flex gap-8">
-          <button
-            onClick={() => setActiveTab("list")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "list"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Inspection List
-          </button>
-          <button
-            onClick={() => setActiveTab("detail")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "detail"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Certification Detail
-          </button>
-          <button
-            onClick={() => setActiveTab("statistics")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "statistics"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            AI Statistics
-          </button>
-          <button
-            onClick={() => setActiveTab("export")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "export"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Data Export
-          </button>
-        </div>
-      </div>
+      <ManagementTabs tabs={CERT_TABS} activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Tab Content */}
       <div>
@@ -251,71 +218,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
   const [comboTypeFilter, setComboTypeFilter] = useState("All Types");
   const [statusFilter, setStatusFilter] = useState("All Status");
 
-  // Mock inspection data matching the image
-  const inspections = [
-    {
-      id: "insp-001",
-      userId: "#USR-001",
-      vehicle: "Toyota Camry 2022",
-      owner: { name: "John Smith", image: "" },
-      date: "2023-10-15",
-      aiModule: "Structure Analysis",
-      comboType: "Premium Package",
-      integrityScore: "92%",
-      status: "Approved",
-      statusColor: "bg-green-500/20 text-green-400"
-    },
-    {
-      id: "insp-002",
-      userId: "#USR-002",
-      vehicle: "Honda Civic 2021",
-      owner: { name: "Sarah Johnson", image: "" },
-      date: "2023-10-14",
-      aiModule: "Paint Analysis",
-      comboType: "Basic Inspection",
-      integrityScore: "87%",
-      status: "Processing",
-      statusColor: "bg-yellow-500/20 text-yellow-400"
-    },
-    {
-      id: "insp-003",
-      userId: "#USR-003",
-      vehicle: "Ford F-150 2020",
-      owner: { name: "Michael Brown", image: "" },
-      date: "2023-10-12",
-      aiModule: "Ballistic Glass",
-      comboType: "Comprehensive",
-      integrityScore: "78%",
-      status: "Pending",
-      statusColor: "bg-yellow-500/20 text-yellow-400"
-    },
-    {
-      id: "insp-004",
-      userId: "#USR-004",
-      vehicle: "BMW X5 2023",
-      owner: { name: "Emily Davis", image: "" },
-      date: "2023-10-10",
-      aiModule: "Interior Inspection",
-      comboType: "Premium Package",
-      integrityScore: "95%",
-      status: "Approved",
-      statusColor: "bg-green-500/20 text-green-400"
-    },
-    {
-      id: "insp-005",
-      userId: "#USR-005",
-      vehicle: "Tesla Model 3 2023",
-      owner: { name: "Robert Wilson", image: "" },
-      date: "2023-10-08",
-      aiModule: "Functionality Test",
-      comboType: "Comprehensive",
-      integrityScore: "89%",
-      status: "Rejected",
-      statusColor: "bg-red-500/20 text-red-400"
-    }
-  ];
-
-  const handleViewInspection = (_inspection: Inspection) => {
+  const handleViewInspection = (_inspection: InspectionData) => {
     // Map inspection to a User object to navigate to Certification Detail
     const user = users[0]; // Use first user or you can create a mock user
     if (user) {
@@ -328,66 +231,10 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
       {/* Filters */}
       <div className="flex justify-between items-center mr-0 rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 md:mr-7">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
-          <div>
-            <label htmlFor="certDateRangeFilter" className="mb-2 block text-sm font-medium text-white">Date Range</label>
-            <select
-              id="certDateRangeFilter"
-              value={dateRangeFilter}
-              onChange={(e) => setDateRangeFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Dates</option>
-              <option>Today</option>
-              <option>This Week</option>
-              <option>This Month</option>
-              <option>Last 3 Months</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="certAiModuleFilter" className="mb-2 block text-sm font-medium text-white">AI Module</label>
-            <select
-              id="certAiModuleFilter"
-              value={aiModuleFilter}
-              onChange={(e) => setAiModuleFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>AI Modules</option>
-              <option>Structure Analysis</option>
-              <option>Paint Analysis</option>
-              <option>Ballistic Glass</option>
-              <option>Interior Inspection</option>
-              <option>Functionality Test</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="certComboTypeFilter" className="mb-2 block text-sm font-medium text-white">Combo Type</label>
-            <select
-              id="certComboTypeFilter"
-              value={comboTypeFilter}
-              onChange={(e) => setComboTypeFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Types</option>
-              <option>Premium Package</option>
-              <option>Basic Inspection</option>
-              <option>Comprehensive</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="certStatusFilter" className="mb-2 block text-sm font-medium text-white">Status</label>
-            <select
-              id="certStatusFilter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Status</option>
-              <option>Approved</option>
-              <option>Processing</option>
-              <option>Pending</option>
-              <option>Rejected</option>
-            </select>
-          </div>
+          <FilterSelect id="certDateRangeFilter" label="Date Range" value={dateRangeFilter} onChange={setDateRangeFilter} options={DATE_RANGE_OPTIONS} />
+          <FilterSelect id="certAiModuleFilter" label="AI Module" value={aiModuleFilter} onChange={setAiModuleFilter} options={AI_MODULE_OPTIONS} />
+          <FilterSelect id="certComboTypeFilter" label="Combo Type" value={comboTypeFilter} onChange={setComboTypeFilter} options={COMBO_TYPE_OPTIONS} />
+          <FilterSelect id="certStatusFilter" label="Status" value={statusFilter} onChange={setStatusFilter} options={STATUS_OPTIONS} />
         </div>
         <div>
           <button className="w-full mt-4 rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-4 py-3 text-sm font-medium text-cyan-400 transition-colors hover:bg-cyan-500/30">
@@ -420,7 +267,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
               </tr>
             </thead>
             <tbody>
-              {inspections.map((inspection) => (
+              {inspectionData.map((inspection) => (
                 <tr
                   key={inspection.userId}
                   className="border-b border-[#2a2d4a] transition-colors hover:bg-[#252850]/50"
@@ -443,7 +290,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
                   </td>
                   <td className="px-4 py-4 text-sm">
                     <span
-                      className={`rounded px-3 py-1 text-xs font-medium ${inspection.statusColor}`}
+                      className={`rounded px-3 py-1 text-xs font-medium ${getInspectionStatusClass(inspection.status)}`}
                     >
                       {inspection.status}
                     </span>

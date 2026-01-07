@@ -2,6 +2,7 @@
 
 import { ArrowUp, ArrowDown, X, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ActionCardStyled } from "@/components/ui/action-card";
 
 interface PaymentMethod {
   type: "mastercard" | "visa";
@@ -60,56 +61,38 @@ export function ManageSubscription({
 
       {/* Action Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Upgrade Plan */}
-        <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 text-center">
-          <h3 className="text-lg font-semibold text-white mb-4">Upgrade Plan</h3>
-          <div className="flex justify-center mb-4">
-            <ArrowUp className="w-10 h-10 text-[#3B82F6]" />
-          </div>
-          <p className="text-sm text-gray-400 mb-6">
-            Upgrade to a higher plan with more features and benefits.
-          </p>
-          <button
-            onClick={onUpgradePlan}
-            className="w-full py-2.5 rounded-lg bg-[#3B82F6] text-sm font-medium text-white hover:bg-[#2563EB] transition-colors"
-          >
-            Upgrade Plan
-          </button>
-        </div>
+        <ActionCardStyled
+          title="Upgrade Plan"
+          description="Upgrade to a higher plan with more features and benefits."
+          icon={ArrowUp}
+          iconColor="text-[#3B82F6]"
+          buttonText="Upgrade Plan"
+          buttonColor="#3B82F6"
+          buttonHoverColor="#2563EB"
+          onClick={onUpgradePlan}
+        />
 
-        {/* Downgrade Plan */}
-        <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 text-center">
-          <h3 className="text-lg font-semibold text-white mb-4">Downgrade Plan</h3>
-          <div className="flex justify-center mb-4">
-            <ArrowDown className="w-10 h-10 text-[#F59E0B]" />
-          </div>
-          <p className="text-sm text-gray-400 mb-6">
-            Downgrade to a lower plan with fewer features.
-          </p>
-          <button
-            onClick={onDowngradePlan}
-            className="w-full py-2.5 rounded-lg bg-[#F59E0B] text-sm font-medium text-white hover:bg-[#D97706] transition-colors"
-          >
-            Downgrade Plan
-          </button>
-        </div>
+        <ActionCardStyled
+          title="Downgrade Plan"
+          description="Downgrade to a lower plan with fewer features."
+          icon={ArrowDown}
+          iconColor="text-[#F59E0B]"
+          buttonText="Downgrade Plan"
+          buttonColor="#F59E0B"
+          buttonHoverColor="#D97706"
+          onClick={onDowngradePlan}
+        />
 
-        {/* Cancel Subscription */}
-        <div className="rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 text-center">
-          <h3 className="text-lg font-semibold text-white mb-4">Cancel Subscription</h3>
-          <div className="flex justify-center mb-4">
-            <X className="w-10 h-10 text-[#F87171]" />
-          </div>
-          <p className="text-sm text-gray-400 mb-6">
-            Cancel your subscription. Your access will continue until the end of your billing period.
-          </p>
-          <button
-            onClick={onCancelSubscription}
-            className="w-full py-2.5 rounded-lg bg-[#F87171] text-sm font-medium text-white hover:bg-[#EF4444] transition-colors"
-          >
-            Cancel Subscription
-          </button>
-        </div>
+        <ActionCardStyled
+          title="Cancel Subscription"
+          description="Cancel your subscription. Your access will continue until the end of your billing period."
+          icon={X}
+          iconColor="text-[#F87171]"
+          buttonText="Cancel Subscription"
+          buttonColor="#F87171"
+          buttonHoverColor="#EF4444"
+          onClick={onCancelSubscription}
+        />
       </div>
 
       {/* Payment Method Section */}

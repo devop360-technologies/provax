@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import FinancialOverview from '@/components/dashboard/financial-overview';
 import FinancialTabs from "@/components/dashboard/financial-tabs";
 import FinancialFilters from "@/components/dashboard/financial-filters";

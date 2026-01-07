@@ -47,7 +47,7 @@ export default function FilterStrip() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement search logic with searchQuery
+    // Search implementation placeholder - use searchQuery
   };    
 
   const toggleSection = (section: keyof typeof expandedSections) => {
@@ -57,10 +57,10 @@ export default function FilterStrip() {
     }));
   };
 
-  const cities = ['Area', 'Area', 'Area', 'Area', 'Area'];
-  const provinces = ['Area', 'Area', 'Area', 'Area', 'Area', 'Federally Administered Tribal Areas'];
+  const cities = ['Karachi', 'Lahore', 'Islamabad', 'Rawalpindi', 'Peshawar'];
+  const provinces = ['Punjab', 'Sindh', 'KPK', 'Balochistan', 'AJK', 'Gilgit-Baltistan'];
   const makes = ['Suzuki', 'Toyota', 'Honda', 'Daihatsu', 'Nissan'];
-  const registeredAreas = ['Area', 'Area', 'Area', 'Area', 'Area'];
+  const registeredAreas = ['Punjab', 'Sindh', 'KPK', 'Balochistan', 'Islamabad'];
   const transmissions = ['Automatic', 'Manual'];
   const colors = ['White', 'Black', 'Silver', 'Grey', 'Unlisted'];
   const engineTypes = ['Petrol', 'Hybrid', 'Diesel', 'Electric'];

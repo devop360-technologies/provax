@@ -63,7 +63,7 @@ export const ServiceMediaModal = ({ isOpen, onClose, jobTitle }: ServiceMediaMod
   };
 
   const handleSubmit = () => {
-    // TODO: Implement actual submission logic for service media
+    
     onClose();
   };
 

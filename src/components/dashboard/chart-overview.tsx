@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { calculateLineChartPoints, createSmoothCurvePath, createFillPath, generateGridLines, CHART_COLORS } from '@/lib/chart-utils';
 
 const monthLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -12,34 +13,16 @@ interface LineChartProps {
 export function LineChart({ data, color }: Readonly<LineChartProps>) {
   const maxValue = Math.max(...data);
   const minValue = Math.min(...data);
-  const range = maxValue - minValue || 1;
   const svgHeight = 280;
   const svgWidth = 500;
-  const pointSpacing = (svgWidth - 80) / (data.length - 1);
   const padding = 40;
   const chartHeight = svgHeight - padding - 40;
-
-  // Y-axis labels (4 levels)
   const yLevels = 4;
-  const yStep = range / yLevels;
-
-  // Generate SVG path for smooth curve
-  const points = data.map((value, i) => ({
-    x: (i * pointSpacing) + padding,
-    y: svgHeight - padding - 30 - ((value - minValue) / range) * chartHeight,
-  }));
-
-  // Create smooth curve path using quadratic bezier curves
-  let pathD = `M ${points[0].x} ${points[0].y}`;
-  for (let i = 1; i < points.length; i++) {
-    const xMid = (points[i - 1].x + points[i].x) / 2;
-    const yMid = (points[i - 1].y + points[i].y) / 2;
-    pathD += ` Q ${xMid} ${points[i - 1].y}, ${xMid} ${yMid}`;
-    pathD += ` T ${points[i].x} ${points[i].y}`;
-  }
-
-  // Create fill path
-  const fillPathD = pathD + ` L ${points[points.length - 1].x} ${svgHeight - padding - 30} L ${padding} ${svgHeight - padding - 30} Z`;
+  
+  const points = calculateLineChartPoints(data, svgWidth, svgHeight, padding, minValue);
+  const pathD = createSmoothCurvePath(points);
+  const fillPathD = createFillPath(pathD, points[points.length - 1], padding, svgHeight);
+  const gridLines = generateGridLines(maxValue, minValue, yLevels, svgHeight, padding, chartHeight);
 
   return (
     <div className="w-full h-80">
@@ -56,21 +39,18 @@ export function LineChart({ data, color }: Readonly<LineChartProps>) {
         </defs>
 
         {/* Grid lines (horizontal) */}
-        {Array.from({ length: yLevels + 1 }).map((_, i) => {
-          const y = svgHeight - padding - 30 - (i * chartHeight) / yLevels;
-          return (
-            <line
-              key={`grid-${i}`}
-              x1={padding}
-              y1={y}
-              x2={svgWidth}
-              y2={y}
-              stroke="#3a3d5a"
-              strokeWidth="1"
-              strokeDasharray="3,3"
-            />
-          );
-        })}
+        {gridLines.map(({ y, index }) => (
+          <line
+            key={`grid-line-y${y.toFixed(2)}`}
+            x1={padding}
+            y1={y}
+            x2={svgWidth}
+            y2={y}
+            stroke={CHART_COLORS.grid}
+            strokeWidth="1"
+            strokeDasharray="3,3"
+          />
+        ))}
 
         {/* Y-axis */}
         <line
@@ -78,7 +58,7 @@ export function LineChart({ data, color }: Readonly<LineChartProps>) {
           y1={20}
           x2={padding}
           y2={svgHeight - padding - 30}
-          stroke="#3a3d5a"
+          stroke={CHART_COLORS.grid}
           strokeWidth="1.5"
         />
 
@@ -88,41 +68,40 @@ export function LineChart({ data, color }: Readonly<LineChartProps>) {
           y1={svgHeight - padding - 30}
           x2={svgWidth}
           y2={svgHeight - padding - 30}
-          stroke="#3a3d5a"
+          stroke={CHART_COLORS.grid}
           strokeWidth="1.5"
         />
 
         {/* Y-axis labels */}
-        {Array.from({ length: yLevels + 1 }).map((_, i) => {
-          const y = svgHeight - padding - 30 - (i * chartHeight) / yLevels;
-          const value = minValue + (yLevels - i) * yStep;
+        {gridLines.map(({ y, label, index }) => (
+          <text
+            key={`y-label-v${label}`}
+            x={padding - 15}
+            y={y + 5}
+            textAnchor="end"
+            fontSize="12"
+            fill={CHART_COLORS.text}
+          >
+            {label}
+          </text>
+        ))}
+
+        {/* X-axis labels */}
+        {points.map((point, i) => {
+          const labelKey = monthLabels[i] ?? "m" + String(i);
           return (
             <text
-              key={`y-label-${i}`}
-              x={padding - 15}
-              y={y + 5}
-              textAnchor="end"
+              key={`x-label-${labelKey}`}
+              x={point.x}
+              y={svgHeight - padding - 10}
+              textAnchor="middle"
               fontSize="12"
-              fill="#9ca3af"
+              fill={CHART_COLORS.text}
             >
-              {Math.round(value)}
+              {monthLabels[i] || ''}
             </text>
           );
         })}
-
-        {/* X-axis labels */}
-        {points.map((point, i) => (
-          <text
-            key={`x-label-${i}`}
-            x={point.x}
-            y={svgHeight - padding - 10}
-            textAnchor="middle"
-            fontSize="12"
-            fill="#9ca3af"
-          >
-            {monthLabels[i] || ''}
-          </text>
-        ))}
 
         {/* Fill area */}
         <path
@@ -144,7 +123,7 @@ export function LineChart({ data, color }: Readonly<LineChartProps>) {
         {/* Data points */}
         {points.map((point, i) => (
           <circle
-            key={`point-${i}`}
+            key={`point-x${point.x.toFixed(0)}-y${point.y.toFixed(0)}`}
             cx={point.x}
             cy={point.y}
             r="3"

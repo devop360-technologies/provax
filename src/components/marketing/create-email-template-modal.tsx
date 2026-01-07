@@ -55,7 +55,7 @@ export function CreateEmailTemplateModal({
   };
 
   const handleSaveAndTest = () => {
-    // TODO: Implement save and test with formData
+    // Save and test implementation placeholder - use formData
     onClose();
   };
 

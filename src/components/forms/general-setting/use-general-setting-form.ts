@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { uploadFileToStorage } from "@/actions/file-actions";
-import { updateUserProfile } from "@/actions/setting-actions";
+import { userApi, getErrorMessage } from "@/lib/api";
 import { generalSettingsSchema, GeneralSettingsSchema } from "@/lib/zod-schemas";
 import { User } from "@/types/user";
 
@@ -40,39 +39,32 @@ export function useGeneralSettingForm({ user }: { user: User }) {
       setAvatarPreview(objectUrl);
 
       // Replace the old image with the new one
-      const result = await uploadFileToStorage(file);
+      const result = await userApi.uploadFile(file);
 
-      if (result.status === "success") {
+      if (result.success) {
         setValue("image", result.url);
       } else {
         toast.error(result.message || "Error while uploading avatar");
       }
-    } catch {
-      toast.error("Error uploading file");
+    } catch (error) {
+      toast.error(getErrorMessage(error));
     } finally {
       setIsUploading(false);
     }
   };
 
   const onSubmit = handleSubmit(async (data) => {
-    const result = await updateUserProfile(data);
+    try {
+      const result = await userApi.updateProfile(data);
 
-    if (result.status === "success") {
-      update();
-      toast.success("Profile updated successfully");
-    } else if (result.errors?.fieldErrors) {
-      // Set field errors in the form if they exist
-      Object.entries(result.errors.fieldErrors).forEach(([field, errors]) => {
-        if (errors && errors.length > 0) {
-          form.setError(field as keyof GeneralSettingsSchema, {
-            type: "server",
-            message: errors[0]
-          });
-        }
-      });
-      toast.error("Please correct the errors in the form");
-    } else {
-      toast.error("Error while updating profile");
+      if (result.success) {
+        update();
+        toast.success("Profile updated successfully");
+      } else {
+        toast.error(result.message || "Error while updating profile");
+      }
+    } catch (error) {
+      toast.error(getErrorMessage(error));
     }
   });
 

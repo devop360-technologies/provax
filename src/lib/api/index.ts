@@ -4,6 +4,8 @@ export type { ApiErrorResponse } from "./http-client";
 
 // API Functions
 export { authApi } from "./auth";
+export { userApi } from "./user";
+export { paymentApi } from "./payment";
 
 // Types
 export * from "./types";

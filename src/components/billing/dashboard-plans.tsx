@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
-import { createCheckoutSessionAction } from "@/actions/payment-actions";
+import { paymentApi, getErrorMessage } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { appConfig } from "@/config";
@@ -39,10 +40,14 @@ export function DashboardPlans() {
   const handleCheckout = async (priceId: string) => {
     setLoadingPlan(priceId);
     try {
-      const result = await createCheckoutSessionAction(priceId);
-      if (result.status === "success" && result.url) {
-        globalThis.location.href = result.url;
+      const result = await paymentApi.createCheckoutSession(priceId);
+      if (result.success && result.data?.url) {
+        globalThis.location.href = result.data.url;
+      } else {
+        toast.error(result.message || "Failed to create checkout session");
       }
+    } catch (error) {
+      toast.error(getErrorMessage(error));
     } finally {
       setLoadingPlan(null);
     }

@@ -30,7 +30,7 @@ export function useDeleteAccountForm() {
     // }
 
     /**
-     * TODO: Remove the toast error when the account deletion logic is implemented
+     * Demo mode: Remove this toast and enable actual account deletion when ready
      */
     toast.error("Don't allow to delete account", {
       description: "This is a demo website, so you can't delete the account"

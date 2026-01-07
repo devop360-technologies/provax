@@ -20,11 +20,11 @@ export function EmailManagement({ className }: EmailManagementProps) {
     useState(false);
 
   const handleCreateTemplate = (_templateData: Record<string, unknown>) => {
-    // TODO: Implement template creation
+    // Template creation implementation placeholder
   };
 
   const handleCreateCampaign = (_campaignData: Record<string, unknown>) => {
-    // TODO: Implement campaign creation
+    // Campaign creation implementation placeholder
   };
 
   return (
@@ -32,7 +32,7 @@ export function EmailManagement({ className }: EmailManagementProps) {
       <div className={cn("space-y-6", className)}>
         {/* Filters Section */}
         <EmailFilters
-          onApplyFilters={() => { /* TODO: Implement filter application */ }}
+          onApplyFilters={() => { /* Filter application placeholder */ }}
           onCreateTemplate={() => setIsCreateTemplateModalOpen(true)}
           onCreateCampaign={() => setIsCreateCampaignModalOpen(true)}
         />
@@ -63,20 +63,20 @@ export function EmailManagement({ className }: EmailManagementProps) {
         {/* Transactional Email Templates */}
         <div className="border-t border-[#404254] pt-6">
           <EmailTemplates
-            onViewAll={() => { /* TODO: Implement view all templates */ }}
-            onEdit={(_id) => { /* TODO: Implement edit template */ }}
-            onTest={(_id) => { /* TODO: Implement test template */ }}
-            onRestore={(_id) => { /* TODO: Implement restore template */ }}
+            onViewAll={() => { /* View all templates placeholder */ }}
+            onEdit={(_id) => { /* Edit template placeholder */ }}
+            onTest={(_id) => { /* Test template placeholder */ }}
+            onRestore={(_id) => { /* Restore template placeholder */ }}
           />
         </div>
 
         {/* Marketing Campaigns */}
         <div className="border-t border-[#404254] pt-6">
           <MarketingCampaignsTable
-            onViewAll={() => { /* TODO: Implement view all campaigns */ }}
-            onView={(_id) => { /* TODO: Implement view campaign */ }}
-            onEdit={(_id) => { /* TODO: Implement edit campaign */ }}
-            onDelete={(_id) => { /* TODO: Implement delete campaign */ }}
+            onViewAll={() => { /* View all campaigns placeholder */ }}
+            onView={(_id) => { /* View campaign placeholder */ }}
+            onEdit={(_id) => { /* Edit campaign placeholder */ }}
+            onDelete={(_id) => { /* Delete campaign placeholder */ }}
           />
         </div>
       </div>

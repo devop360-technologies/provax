@@ -50,7 +50,7 @@ const UploadVehicleMedia = ({ onBack, onStartProcessing }: UploadVehicleMediaPro
     const newFiles: MediaFile[] = files.map(file => {
       const isVideo = file.type.startsWith('video/');
       return {
-        id: Math.random().toString(36).substr(2, 9),
+        id: crypto.randomUUID(),
         file,
         preview: isVideo ? '/provider/certificates/video.png' : URL.createObjectURL(file),
         type: isVideo ? 'video' : 'image',

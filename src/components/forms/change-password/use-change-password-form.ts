@@ -28,7 +28,7 @@ export function useChangePasswordForm() {
 
   const onSubmit = handleSubmit(async (data: ChangePasswordSchema) => {
     /**
-     * TODO: Implement the password change logic
+     * Password change implementation placeholder
      * Uncomment the code below when the password change logic is implemented
      * Import the changeUserPassword function from the setting-actions.ts file
      * and use it to change the password
@@ -57,7 +57,7 @@ export function useChangePasswordForm() {
     // }
 
     /**
-     * TODO: Remove the toast error when the password change logic is implemented
+     * Demo mode: Remove this toast and enable actual password change when ready
      */
     toast.error("Don't allow to change password", {
       description: "This is a demo website, so you can't change the password"

@@ -45,7 +45,7 @@ export async function registerUser(data: RegisterData): Promise<ApiResponse> {
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to connect to server'
@@ -65,7 +65,7 @@ export async function sendVerificationOtp(email: string): Promise<ApiResponse> {
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to send verification code'
@@ -85,7 +85,7 @@ export async function verifyEmailOtp(data: OtpData): Promise<ApiResponse> {
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to verify email'
@@ -105,7 +105,7 @@ export async function loginUser(data: LoginData): Promise<ApiResponse> {
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to connect to server'
@@ -125,7 +125,7 @@ export async function requestLoginOtp(email: string): Promise<ApiResponse> {
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to send login code'
@@ -145,7 +145,7 @@ export async function loginWithOtp(data: OtpData & { redirectTo?: string }): Pro
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to login'
@@ -165,7 +165,7 @@ export async function requestPasswordReset(email: string): Promise<ApiResponse> 
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to send reset code'
@@ -185,7 +185,7 @@ export async function verifyPasswordResetOtp(data: OtpData): Promise<ApiResponse
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to verify OTP'
@@ -205,7 +205,7 @@ export async function resetPassword(data: ResetPasswordData): Promise<ApiRespons
     });
 
     return await response.json();
-  } catch {
+  } catch (error) {
     return {
       success: false,
       error: 'Failed to reset password'

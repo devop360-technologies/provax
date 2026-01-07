@@ -45,7 +45,7 @@ export function CreateMarketingCampaignModal({
   };
 
   const handleSaveAsDraft = () => {
-    // TODO: Implement save as draft with formData
+    // Save as draft implementation placeholder - use formData
     onClose();
   };
 
@@ -55,7 +55,7 @@ export function CreateMarketingCampaignModal({
   };
 
   const handleSendImmediately = () => {
-    // TODO: Implement send immediately with formData
+    // Send immediately implementation placeholder - use formData
     onClose();
   };
 

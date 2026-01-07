@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ServiceMediaModal } from './service-media-modal';
+import { InfoGrid, HighlightedSection, CardDescription } from '@/components/ui/card-components';
 
 interface ActiveJobCardProps {
   id: string;
@@ -22,7 +23,6 @@ interface ActiveJobCardProps {
 }
 
 export const ActiveJobCard = ({
-  id,
   title,
   year,
   client,
@@ -34,6 +34,13 @@ export const ActiveJobCard = ({
   status,
 }: ActiveJobCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const infoItems = [
+    { label: "Client", value: client },
+    { label: "Deadline", value: deadline },
+    { label: "Job Value", value: jobValue },
+    { label: "Escrow Status", value: escrowStatus },
+  ];
 
   return (
     <>
@@ -50,41 +57,20 @@ export const ActiveJobCard = ({
         <p className="text-gray-500 text-sm mb-4">{year}</p>
 
         {/* Info Grid */}
-        <div className="grid grid-cols-2 gap-6 mb-4">
-          <div>
-            <p className="text-white text-sm font-semibold mb-1">Client</p>
-            <p className="text-gray-400 text-sm">{client}</p>
-          </div>
-          <div>
-            <p className="text-white text-sm font-semibold mb-1">Deadline</p>
-            <p className="text-gray-400 text-sm">{deadline}</p>
-          </div>
-          <div>
-            <p className="text-white text-sm font-semibold mb-1">Job Value</p>
-            <p className="text-gray-400 text-sm">{jobValue}</p>
-          </div>
-          <div>
-            <p className="text-white text-sm font-semibold mb-1">Escrow Status</p>
-            <p className="text-gray-400 text-sm">{escrowStatus}</p>
-          </div>
-        </div>
+        <InfoGrid items={infoItems} className="mb-4" />
 
         {/* Full Description */}
-        <div className="mb-6">
-          <p className="text-white text-sm font-semibold mb-2">Full Description:</p>
-          <p className="text-gray-400 text-[12px] leading-relaxed">
-            {fullDescription}
-          </p>
-        </div>
+        <CardDescription 
+          title="Full Description:" 
+          description={fullDescription} 
+          className="mb-6" 
+        />
 
         {/* Escrow Information */}
-        <div className="bg-[#23234B] border-l-4 border-[#00FF88] rounded-lg p-4 mb-6 flex-grow">
-          <h4 className="text-[#00FF88] text-sm font-semibold mb-2">
-            Escrow Information
-          </h4>
+        <HighlightedSection title="Escrow Information" className="mb-6 flex-grow">
           <p className="text-[#5ecc99] text-lg font-bold mb-1">{escrowInformation.amount}</p>
           <p className="text-gray-400 text-xs">{escrowInformation.text}</p>
-        </div>
+        </HighlightedSection>
 
         {/* Upload Button */}
         <Button

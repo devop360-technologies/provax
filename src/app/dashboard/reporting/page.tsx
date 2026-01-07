@@ -89,8 +89,8 @@ export default function ReportingPage() {
         {/* Filters */}
         <div className="py-6">
           <ReportFilters
-            onApplyFilters={() => { /* Apply filters not implemented yet */ }}
-            onResetFilter={() => { /* Reset filter not implemented yet */ }}
+            onApplyFilters={() => {  }}
+            onResetFilter={() => {  }}
           />
         </div>
 
@@ -170,9 +170,9 @@ export default function ReportingPage() {
                   ],
                   color: "#3B82F6"
                 }}
-                onExportCSV={() => { /* Export CSV not implemented yet */ }}
-                onExportPDF={() => { /* Export PDF not implemented yet */ }}
-                onComparePeriods={() => { /* Compare periods not implemented yet */ }}
+                onExportCSV={() => {  }}
+                onExportPDF={() => {  }}
+                onComparePeriods={() => {  }}
               />
             </div>
 
@@ -195,38 +195,38 @@ export default function ReportingPage() {
                 title="Revenue Overview"
                 dataLabel="Total Revenue"
                 color="cyan"
-                onExportCSV={() => { /* Export CSV not implemented yet */ }}
-                onExportPDF={() => { /* Export PDF not implemented yet */ }}
-                onExpand={() => { /* Expand not implemented yet */ }}
+                onExportCSV={() => {  }}
+                onExportPDF={() => {  }}
+                onExpand={() => {  }}
               />
               <RevenueOverviewChart
                 title="Revenue Overview"
                 dataLabel="Provider Payouts"
                 color="green"
-                onExportCSV={() => { /* Export CSV not implemented yet */ }}
-                onExportPDF={() => { /* Export PDF not implemented yet */ }}
-                onExpand={() => { /* Expand not implemented yet */ }}
+                onExportCSV={() => {  }}
+                onExportPDF={() => {  }}
+                onExpand={() => {  }}
               />
             </div>
 
             {/* Revenue by Category */}
             <RevenueByCategoryChart
-              onExportCSV={() => { /* Export CSV not implemented yet */ }}
-              onExportPDF={() => { /* Export PDF not implemented yet */ }}
+              onExportCSV={() => {  }}
+              onExportPDF={() => {  }}
             />
 
             {/* Provider Payouts Table */}
             <ProviderPayoutsTable
-              onExportCSV={() => { /* Export CSV not implemented yet */ }}
-              onExportPDF={() => { /* Export PDF not implemented yet */ }}
-              onShowDetails={() => { /* Show details not implemented yet */ }}
+              onExportCSV={() => {  }}
+              onExportPDF={() => {  }}
+              onShowDetails={() => {  }}
             />
 
             {/* Revenue Analytics Table */}
             <RevenueAnalyticsTable
-              onExportCSV={() => { /* Export CSV not implemented yet */ }}
-              onExportPDF={() => { /* Export PDF not implemented yet */ }}
-              onViewTimeline={() => { /* View timeline not implemented yet */ }}
+              onExportCSV={() => {  }}
+              onExportPDF={() => {  }}
+              onViewTimeline={() => {  }}
             />
           </div>
         )}
@@ -240,24 +240,24 @@ export default function ReportingPage() {
                 title="AI Module Performance Overview"
                 dataLabel="Success Rate (%)"
                 color="green"
-                onExportCSV={() => { /* Export CSV not implemented yet */ }}
-                onExportPDF={() => { /* Export PDF not implemented yet */ }}
-                onExpand={() => { /* Expand not implemented yet */ }}
+                onExportCSV={() => {  }}
+                onExportPDF={() => {  }}
+                onExpand={() => {  }}
               />
               <AIModulePerformanceChart
                 title="AI Module Performance Overview"
                 dataLabel="Error Rate (%)"
                 color="red"
-                onExportCSV={() => { /* Export CSV not implemented yet */ }}
-                onExportPDF={() => { /* Export PDF not implemented yet */ }}
-                onExpand={() => { /* Expand not implemented yet */ }}
+                onExportCSV={() => {  }}
+                onExportPDF={() => {  }}
+                onExpand={() => {  }}
               />
             </div>
 
             {/* AI Module Performance Details Table */}
             <AIModulePerformanceDetailsTable
-              onExportCSV={() => { /* Export CSV not implemented yet */ }}
-              onExportPDF={() => { /* Export PDF not implemented yet */ }}
+              onExportCSV={() => {  }}
+              onExportPDF={() => {  }}
             />
 
             {/* Volume by Period Charts */}

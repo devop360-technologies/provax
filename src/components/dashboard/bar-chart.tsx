@@ -1,6 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { calculateYStep, generateGridLines, calculateBarDimensions, CHART_COLORS } from '@/lib/chart-utils';
 
 interface BarChartProps {
   data: Array<{ month: string; value: number }>;
@@ -13,12 +14,10 @@ export function BarChart({ data, color }: Readonly<BarChartProps>) {
   const svgWidth = 500;
   const padding = 40;
   const chartHeight = svgHeight - padding - 40;
-  const barWidth = (svgWidth - padding - 20) / (data.length * 1.8);
-  const barGap = barWidth * 0.6;
-
-  // Y-axis labels (4 levels)
+  const { barWidth, barGap } = calculateBarDimensions(svgWidth, padding, data.length);
   const yLevels = 4;
-  const yStep = maxValue / yLevels;
+  const yStep = calculateYStep(maxValue, 0, yLevels);
+  const gridLines = generateGridLines(maxValue, 0, yLevels, svgHeight, padding, chartHeight);
 
   return (
     <div className="w-full h-80">
@@ -28,21 +27,18 @@ export function BarChart({ data, color }: Readonly<BarChartProps>) {
         preserveAspectRatio="xMidYMid meet"
       >
         {/* Grid lines (horizontal) */}
-        {Array.from({ length: yLevels + 1 }).map((_, i) => {
-          const y = svgHeight - padding - 30 - (i * chartHeight) / yLevels;
-          return (
-            <line
-              key={`grid-${i}`}
-              x1={padding}
-              y1={y}
-              x2={svgWidth}
-              y2={y}
-              stroke="#3a3d5a"
-              strokeWidth="1"
-              strokeDasharray="3,3"
-            />
-          );
-        })}
+        {gridLines.map(({ y, index }) => (
+          <line
+            key={`grid-${index}`}
+            x1={padding}
+            y1={y}
+            x2={svgWidth}
+            y2={y}
+            stroke={CHART_COLORS.grid}
+            strokeWidth="1"
+            strokeDasharray="3,3"
+          />
+        ))}
 
         {/* Y-axis */}
         <line
@@ -50,7 +46,7 @@ export function BarChart({ data, color }: Readonly<BarChartProps>) {
           y1={20}
           x2={padding}
           y2={svgHeight - padding - 30}
-          stroke="#3a3d5a"
+          stroke={CHART_COLORS.grid}
           strokeWidth="1.5"
         />
 
@@ -60,27 +56,23 @@ export function BarChart({ data, color }: Readonly<BarChartProps>) {
           y1={svgHeight - padding - 30}
           x2={svgWidth}
           y2={svgHeight - padding - 30}
-          stroke="#3a3d5a"
+          stroke={CHART_COLORS.grid}
           strokeWidth="1.5"
         />
 
         {/* Y-axis labels */}
-        {Array.from({ length: yLevels + 1 }).map((_, i) => {
-          const y = svgHeight - padding - 30 - (i * chartHeight) / yLevels;
-          const value = (yLevels - i) * yStep;
-          return (
-            <text
-              key={`y-label-${i}`}
-              x={padding - 15}
-              y={y + 5}
-              textAnchor="end"
-              fontSize="12"
-              fill="#9ca3af"
-            >
-              {Math.round(value)}
-            </text>
-          );
-        })}
+        {gridLines.map(({ y, label, index }) => (
+          <text
+            key={`y-label-${index}`}
+            x={padding - 15}
+            y={y + 5}
+            textAnchor="end"
+            fontSize="12"
+            fill={CHART_COLORS.text}
+          >
+            {label}
+          </text>
+        ))}
 
         {/* Bars and X-axis labels */}
         {data.map((item, i) => {
@@ -105,7 +97,7 @@ export function BarChart({ data, color }: Readonly<BarChartProps>) {
                 y={svgHeight - padding - 10}
                 textAnchor="middle"
                 fontSize="12"
-                fill="#9ca3af"
+                fill={CHART_COLORS.text}
               >
                 {item.month}
               </text>

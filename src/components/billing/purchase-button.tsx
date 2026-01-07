@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { useCallback, useTransition } from "react";
 import { toast } from "sonner";
 
-import { createCheckoutSessionAction } from "@/actions/payment-actions";
+import { paymentApi, getErrorMessage } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { appConfig } from "@/config";
 import { browserConsoleError, cn } from "@/lib/utils";
@@ -28,12 +28,18 @@ export function PurchaseButton({
 
     // Handle the checkout process
     startTransition(async () => {
-      const result = await createCheckoutSessionAction(priceId);
+      try {
+        const result = await paymentApi.createCheckoutSession(priceId);
 
-      if (result.status === "success" && result.url) {
-        globalThis.location.href = result.url; // Redirect to the stripe checkout page
-      } else {
-        const message = result.message || "Failed to create checkout session";
+        if (result.success && result.data?.url) {
+          globalThis.location.href = result.data.url; // Redirect to the stripe checkout page
+        } else {
+          const message = result.message || "Failed to create checkout session";
+          toast.error(message);
+          browserConsoleError(message);
+        }
+      } catch (error) {
+        const message = getErrorMessage(error);
         toast.error(message);
         browserConsoleError(message);
       }

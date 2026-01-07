@@ -1,7 +1,6 @@
 "use client";
 
-import { Download, FileText, Clock } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { TableWrapper, TableHeader, TableColumnHeader, TableRow, TableCell, ActionButton, StatusBadge } from "@/components/ui/table-components";
 
 type StatusBadgeType = "COMPLETED" | "PENDING" | "VERIFIED" | "APPROVED";
 
@@ -71,13 +70,6 @@ const defaultRows: RevenueAnalyticsRow[] = [
   },
 ];
 
-const statusColorMap: Record<StatusBadgeType, { bg: string; text: string }> = {
-  COMPLETED: { bg: "bg-[#F59E0B]/20", text: "text-[#F59E0B]" },
-  PENDING: { bg: "bg-[#3B82F6]/20", text: "text-[#3B82F6]" },
-  VERIFIED: { bg: "bg-[#10B981]/20", text: "text-[#10B981]" },
-  APPROVED: { bg: "bg-[#8B5CF6]/20", text: "text-[#8B5CF6]" },
-};
-
 export function RevenueAnalyticsTable({
   rows = defaultRows,
   className,
@@ -86,100 +78,43 @@ export function RevenueAnalyticsTable({
   onViewTimeline,
 }: RevenueAnalyticsTableProps) {
   return (
-    <div className={cn("rounded-lg border border-[#404254] bg-[#1D1D41] p-6", className)}>
-      {/* Header */}
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-base font-medium text-white">Escrow Analytics</h3>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={onExportCSV}
-            className="flex items-center gap-1 rounded bg-[#10B981] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#059669] transition-colors"
-          >
-            <Download size={14} />
-            Export CSV
-          </button>
-          <button
-            onClick={onExportPDF}
-            className="flex items-center gap-1 rounded bg-[#FF6B6B] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#EF4444] transition-colors"
-          >
-            <FileText size={14} />
-            Export PDF
-          </button>
-          <button
-            onClick={onViewTimeline}
-            className="flex items-center gap-1 rounded border border-[#00D9FF] px-3 py-1.5 text-xs font-medium text-[#00D9FF] hover:bg-[#1D1D41] transition-colors"
-          >
-            <Clock size={14} />
-            View Timeline
-          </button>
-        </div>
-      </div>
+    <TableWrapper className={className}>
+      <TableHeader
+        title="Escrow Analytics"
+        onExportCSV={onExportCSV}
+        onExportPDF={onExportPDF}
+        extraActions={<ActionButton onClick={onViewTimeline} icon="clock" label="View Timeline" />}
+      />
 
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-[#404254]">
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Dispute ID
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Amount
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Parties
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Status
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Days Open
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Resolution
-              </th>
+              <TableColumnHeader>Dispute ID</TableColumnHeader>
+              <TableColumnHeader>Amount</TableColumnHeader>
+              <TableColumnHeader>Parties</TableColumnHeader>
+              <TableColumnHeader>Status</TableColumnHeader>
+              <TableColumnHeader>Days Open</TableColumnHeader>
+              <TableColumnHeader>Resolution</TableColumnHeader>
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => {
-              const statusStyle = statusColorMap[row.status];
-              return (
-                <tr
-                  key={row.id}
-                  className="border-b border-[#404254] transition-colors hover:bg-[#252850]"
-                >
-                  <td className="px-4 py-3 text-sm font-medium text-white">
-                    {row.id}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-medium text-white">
-                    {row.amount}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-300">
-                    {row.description}
-                  </td>
-                  <td className="px-4 py-3">
-                    <span
-                      className={cn(
-                        "inline-block px-2.5 py-1 rounded text-xs font-medium",
-                        statusStyle.bg,
-                        statusStyle.text
-                      )}
-                    >
-                      {row.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-300">
-                    {row.daysOpen}
-                  </td>
-                  <td className="px-4 py-3 text-sm text-gray-500">
-                    {row.resolutions}
-                  </td>
-                </tr>
-              );
-            })}
+            {rows.map((row) => (
+              <TableRow key={row.id} rowKey={row.id}>
+                <TableCell className="font-medium">{row.id}</TableCell>
+                <TableCell className="font-medium">{row.amount}</TableCell>
+                <TableCell variant="muted">{row.description}</TableCell>
+                <TableCell>
+                  <StatusBadge status={row.status} />
+                </TableCell>
+                <TableCell variant="muted">{row.daysOpen}</TableCell>
+                <TableCell className="text-gray-500">{row.resolutions}</TableCell>
+              </TableRow>
+            ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </TableWrapper>
   );
 }

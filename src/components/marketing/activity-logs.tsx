@@ -3,14 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ActivityLogItem } from "./activity-log-item";
 import { cn } from "@/lib/utils";
-
-interface Activity {
-  id: string;
-  userName: string;
-  action: string;
-  description?: string;
-  timestamp: string;
-}
+import { Activity, DEFAULT_ACTIVITIES } from "@/data/marketing-data";
 
 interface ActivityLogsProps {
   activities?: Activity[];
@@ -19,50 +12,7 @@ interface ActivityLogsProps {
 }
 
 export function ActivityLogs({
-  activities = [
-    {
-      id: "1",
-      userName: "Sarah Johnson",
-      action: "Updated homepage banner 'Summer Sale'",
-      description: "Changed banner image and schedule",
-      timestamp: "2023-10-16 14:30",
-    },
-    {
-      id: "2",
-      userName: "Michael Brown",
-      action: "Created new email campaign 'Black Friday Sale'",
-      description: "Scheduled for 2023-11-20",
-      timestamp: "2023-10-15 12:15",
-    },
-    {
-      id: "3",
-      userName: "John Smith",
-      action: "Edited transactional template 'Welcome Email'",
-      description: "Updated subject line and body content",
-      timestamp: "2023-10-14 16:45",
-    },
-    {
-      id: "4",
-      userName: "Sarah Johnson",
-      action: "Sarah Johnson",
-      description: "Changed banner image and schedule",
-      timestamp: "2023-10-14 12:20",
-    },
-    {
-      id: "5",
-      userName: "Emily Davis",
-      action: "Added new highlight section 'Customer Testimonials'",
-      description: "Changed banner image and schedule",
-      timestamp: "2023-10-11 09:30",
-    },
-    {
-      id: "6",
-      userName: "Michael Brown",
-      action: "Created campaign block 'New Year Promotion'",
-      description: "Scheduled for 2023-12-26 to 2024-01-05",
-      timestamp: "2023-10-10 17:15",
-    },
-  ],
+  activities = DEFAULT_ACTIVITIES,
   onViewAll,
   className,
 }: ActivityLogsProps) {

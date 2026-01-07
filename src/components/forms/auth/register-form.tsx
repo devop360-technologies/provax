@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EyeIcon, EyeOffIcon, Loader } from "lucide-react";
+import { Loader } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -17,11 +17,12 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PasswordInputField } from "@/components/ui/password-input-field";
 
 import { cn } from "@/lib/utils";
 import { registerSchema, RegisterSchema } from "@/lib/zod-schemas";
+import { authApi, getErrorMessage } from "@/lib/api";
 
-import { authRegisterAction } from "@/actions/register-actions";
 import { GoogleLogin } from "./google-login";
 
 interface RegisterFormProps {
@@ -31,8 +32,6 @@ interface RegisterFormProps {
 export function RegisterForm({ className = "" }: Readonly<RegisterFormProps>) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const form = useForm<RegisterSchema>({
     resolver: zodResolver(registerSchema),
@@ -50,21 +49,26 @@ export function RegisterForm({ className = "" }: Readonly<RegisterFormProps>) {
   } = form;
 
   const onSubmit = handleSubmit(async (values) => {
-    const result = await authRegisterAction(values);
+    try {
+      const result = await authApi.register(values);
 
-    if (result.status === "error") {
-      toast.error("Something went wrong.", {
-        description: result?.message || "Your registration request failed. Please try again."
+      if (!result.success) {
+        toast.error("Something went wrong.", {
+          description: result?.message || "Your registration request failed. Please try again."
+        });
+        return;
+      }
+
+      toast.success("Registered successfully", {
+        description: "You are now registered. Please login to continue."
       });
 
-      return;
+      router.push("/login");
+    } catch (error) {
+      toast.error("Something went wrong.", {
+        description: getErrorMessage(error)
+      });
     }
-
-    toast.success("Registered successfully", {
-      description: "You are now registered. Please login to continue."
-    });
-
-    router.push("/login");
   });
 
   return (
@@ -108,76 +112,16 @@ export function RegisterForm({ className = "" }: Readonly<RegisterFormProps>) {
               )}
             />
 
-            <FormField
-              control={form.control}
+            <PasswordInputField
+              form={form}
               name="password"
-              render={({ field }) => (
-                <FormItem className="grid gap-0">
-                  <FormLabel htmlFor="password" className="pb-3">
-                    Password
-                  </FormLabel>
-
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        placeholder="********"
-                        autoComplete="password"
-                        type={showPassword ? "text" : "password"}
-                        {...field}
-                      />
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-3"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <EyeIcon className="text-muted-foreground size-4" />
-                        ) : (
-                          <EyeOffIcon className="text-muted-foreground size-4" />
-                        )}
-                      </button>
-                    </div>
-                  </FormControl>
-
-                  <FormMessage className="mt-2" />
-                </FormItem>
-              )}
+              label="Password"
             />
 
-            <FormField
-              control={form.control}
+            <PasswordInputField
+              form={form}
               name="confirmPassword"
-              render={({ field }) => (
-                <FormItem className="grid gap-0">
-                  <FormLabel htmlFor="confirmPassword" className="pb-3">
-                    Confirm Password
-                  </FormLabel>
-
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        placeholder="********"
-                        autoComplete="password"
-                        type={showConfirmPassword ? "text" : "password"}
-                        {...field}
-                      />
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-3"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      >
-                        {showConfirmPassword ? (
-                          <EyeIcon className="text-muted-foreground size-4" />
-                        ) : (
-                          <EyeOffIcon className="text-muted-foreground size-4" />
-                        )}
-                      </button>
-                    </div>
-                  </FormControl>
-
-                  <FormMessage className="mt-2" />
-                </FormItem>
-              )}
+              label="Confirm Password"
             />
 
             <Button type="submit" className="w-full" disabled={isSubmitting || isLoading}>

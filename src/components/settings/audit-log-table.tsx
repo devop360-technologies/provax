@@ -33,7 +33,7 @@ const defaultEntries: AuditLogEntry[] = [
     dateTime: "2023-10-15 14:30",
     user: "Admin User",
     actionPerformed: "Updated certification fee from $45.00 to $49.99",
-    ipAddress: "192.168.1.100",
+    ipAddress: "xxx.xxx.x.xxx", // Placeholder for demo
     previousValue: "$45.00",
     newValue: "$49.99",
   },
@@ -43,7 +43,7 @@ const defaultEntries: AuditLogEntry[] = [
     dateTime: "2023-10-15 12:15",
     user: "Support Agent",
     actionPerformed: "User logged in from new device",
-    ipAddress: "203.0.113.45",
+    ipAddress: "xxx.x.xxx.xx",
   },
   {
     id: "3",
@@ -51,7 +51,7 @@ const defaultEntries: AuditLogEntry[] = [
     dateTime: "2023-10-14 16:45",
     user: "Admin User",
     actionPerformed: "Generated new Stripe API key",
-    ipAddress: "192.168.1.100",
+    ipAddress: "xxx.xxx.x.xxx", // Placeholder for demo
   },
   {
     id: "4",
@@ -59,7 +59,7 @@ const defaultEntries: AuditLogEntry[] = [
     dateTime: "2023-10-14 11:20",
     user: "System",
     actionPerformed: "Multiple failed login attempts detected",
-    ipAddress: "198.51.100.23",
+    ipAddress: "xxx.xx.xxx.xx",
   },
   {
     id: "5",

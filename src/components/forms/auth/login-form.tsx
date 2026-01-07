@@ -1,9 +1,8 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, EyeIcon, EyeOffIcon, Loader } from "lucide-react";
+import { AlertCircle, Loader } from "lucide-react";
 import { signIn } from "next-auth/react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,6 +19,7 @@ import {
   FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { PasswordInputField } from "@/components/ui/password-input-field";
 
 import { appConfig } from "@/config";
 import { cn } from "@/lib/utils";
@@ -35,15 +35,14 @@ export function LoginForm({ className = "" }: Readonly<LoginFormProps>) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
 
   const error = searchParams.get("error");
 
   const form = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "admin@example.com",
-      password: "1Y9-[}o|?6/]"
+      email: "",
+      password: ""
     }
   });
 
@@ -106,47 +105,11 @@ export function LoginForm({ className = "" }: Readonly<LoginFormProps>) {
               )}
             />
 
-            <FormField
-              control={form.control}
+            <PasswordInputField
+              form={form}
               name="password"
-              render={({ field }) => (
-                <FormItem className="grid gap-0">
-                  <div className="flex items-center justify-between pb-3">
-                    <FormLabel htmlFor="password">Password</FormLabel>
-
-                    <Link
-                      href="/forgot-password"
-                      className="text-primary hover:text-foreground text-sm underline underline-offset-4"
-                    >
-                      Forgot password?
-                    </Link>
-                  </div>
-
-                  <FormControl>
-                    <div className="relative">
-                      <Input
-                        placeholder="********"
-                        autoComplete="password"
-                        type={showPassword ? "text" : "password"}
-                        {...field}
-                      />
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-3"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <EyeIcon className="text-muted-foreground size-4" />
-                        ) : (
-                          <EyeOffIcon className="text-muted-foreground size-4" />
-                        )}
-                      </button>
-                    </div>
-                  </FormControl>
-
-                  <FormMessage className="mt-2" />
-                </FormItem>
-              )}
+              label="Password"
+              showForgotPassword={true}
             />
 
             <Button type="submit" className="w-full" disabled={isSubmitting || isLoading}>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { SubmitProposalModal } from './submit-proposal-modal';
+import { InfoGrid, HighlightedSection, CardDescription } from '@/components/ui/card-components';
 
 interface ServiceRequestCardProps {
   id: string;
@@ -21,7 +22,6 @@ interface ServiceRequestCardProps {
 }
 
 export const ServiceRequestCard = ({
-  id,
   title,
   requestId,
   budget,
@@ -34,6 +34,13 @@ export const ServiceRequestCard = ({
   status,
 }: ServiceRequestCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const infoItems = [
+    { label: "Budget", value: budget },
+    { label: "Location", value: location },
+    { label: "Category", value: category },
+    { label: "Posted", value: posted },
+  ];
 
   return (
     <>
@@ -59,52 +66,31 @@ export const ServiceRequestCard = ({
       <p className="text-gray-500 text-sm mb-6">{requestId}</p>
 
       {/* Info Grid */}
-      <div className="grid grid-cols-2 gap-6 mb-6">
-        <div>
-          <p className="text-white text-sm font-semibold mb-1">Budget</p>
-          <p className="text-gray-400 text-sm">{budget}</p>
-        </div>
-        <div>
-          <p className="text-white text-sm font-semibold mb-1">Location</p>
-          <p className="text-gray-400 text-sm">{location}</p>
-        </div>
-        <div>
-          <p className="text-white text-sm font-semibold mb-1">Category</p>
-          <p className="text-gray-400 text-sm">{category}</p>
-        </div>
-        <div>
-          <p className="text-white text-sm font-semibold mb-1">Posted</p>
-          <p className="text-gray-400 text-sm">{posted}</p>
-        </div>
-      </div>
+      <InfoGrid items={infoItems} className="mb-6" />
 
       {/* Client Description */}
-      <div className="mb-6">
-        <p className="text-white text-sm font-semibold mb-2">Client Description:</p>
-        <p className="text-gray-400 text-sm leading-relaxed">
-          "{clientDescription}"
-        </p>
-      </div>
+      <CardDescription 
+        title="Client Description:" 
+        description={clientDescription} 
+        quoted 
+        className="mb-6" 
+      />
 
         {/* AI Diagnostic Report */}
-        <div className="bg-[#23234B] border-l-4 border-[#00FF88] rounded-lg p-4 mb-6 flex-grow">
-        <div className="mb-3">
-          <h4 className="text-[#00FF88] text-sm font-semibold mb-1">
-            AI Diagnostic Report
-          </h4>
-          <p className="text-gray-500 text-xs">
-            The client uploaded an AI vehicle scan.
-          </p>
-        </div>
-        <ul className="space-y-2">
-          {diagnosticFindings.map((finding) => (
-            <li key={finding} className="flex items-start gap-2 text-gray-400 text-xs">
-              <span className="text-[#00d9ff] mt-1">•</span>
-              <span>{finding}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <HighlightedSection 
+          title="AI Diagnostic Report" 
+          subtitle="The client uploaded an AI vehicle scan."
+          className="mb-6 flex-grow"
+        >
+          <ul className="space-y-2">
+            {diagnosticFindings.map((finding) => (
+              <li key={finding} className="flex items-start gap-2 text-gray-400 text-xs">
+                <span className="text-[#00d9ff] mt-1">•</span>
+                <span>{finding}</span>
+              </li>
+            ))}
+          </ul>
+        </HighlightedSection>
 
       {/* Submit Button */}
       <Button 

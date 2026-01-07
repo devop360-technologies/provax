@@ -4,6 +4,9 @@ import { useState } from "react";
 import Image from "next/image";
 import { User } from "@/types/user";
 import { Edit, Trash } from "lucide-react";
+import { ManagementTabs } from "@/components/ui/management-tabs";
+import { inspectionData, getInspectionStatusClass, getIntegrityScoreClass, calculatePrice } from "@/data/inspections";
+import { FilterSelect, SCORE_OPTIONS, COMBO_TYPE_OPTIONS, PRICE_RANGE_OPTIONS, LOCATION_OPTIONS, LISTING_STATUS_OPTIONS } from "@/components/ui/filter-select";
 
 interface vehicleMarketplaceManagementProps {
   users: User[];
@@ -11,23 +14,12 @@ interface vehicleMarketplaceManagementProps {
 
 type Tab = "Catalog" | "detail" | "tools" | "moderation";
 
-// Helper function for inspection status badge styling
-const getInspectionStatusClass = (status: string) => {
-  switch (status) {
-    case "Approved": return "bg-green-500/20 text-green-400";
-    case "Processing": return "bg-yellow-500/20 text-yellow-400";
-    case "Pending": return "bg-blue-500/20 text-blue-400";
-    default: return "bg-red-500/20 text-red-400";
-  }
-};
-
-// Helper function for integrity score badge styling
-const getIntegrityScoreClass = (score: string) => {
-  if (score.startsWith("9")) return "bg-green-500/20 text-green-400";
-  if (score.startsWith("8")) return "bg-orange-500/20 text-orange-400";
-  if (score.startsWith("7")) return "bg-yellow-500/20 text-yellow-400";
-  return "bg-red-500/20 text-red-400";
-};
+const MARKETPLACE_TABS = [
+  { key: "Catalog" as const, label: "Catalog" },
+  { key: "detail" as const, label: "Listing Detail" },
+  { key: "tools" as const, label: "Promotional Tools" },
+  { key: "moderation" as const, label: "Content Moderation" },
+] as const;
 
 export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManagementProps) {
   const [activeTab, setActiveTab] = useState<Tab>("Catalog");
@@ -43,50 +35,7 @@ export function VehicleMarketplaceManagement({ users }: vehicleMarketplaceManage
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] px-6 pt-4 md:mr-7">
-        <div className="flex gap-8">
-          <button
-            onClick={() => setActiveTab("Catalog")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "Catalog"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Catalog
-          </button>
-          <button
-            onClick={() => setActiveTab("detail")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "detail"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Listing Detail
-          </button>
-          <button
-            onClick={() => setActiveTab("tools")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "tools"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Promotional Tools
-          </button>
-          <button
-            onClick={() => setActiveTab("moderation")}
-            className={`px-2 pb-3 font-medium transition-colors ${
-              activeTab === "moderation"
-                ? "border-b-2 border-cyan-400 text-cyan-400"
-                : "text-gray-400 hover:text-white"
-            }`}
-          >
-            Content Moderation
-          </button>
-        </div>
-      </div>
+      <ManagementTabs tabs={MARKETPLACE_TABS} activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* Tab Content */}
       <div>
@@ -107,80 +56,11 @@ function CatalogTab({
   users: User[];
   onViewListing: (listing: User) => void;
 }) {
-  const [dateRangeFilter, setDateRangeFilter] = useState("All Dates");
-  const [aiModuleFilter, setAiModuleFilter] = useState("AI Modules");
+  const [scoreFilter, setScoreFilter] = useState("All Score");
   const [comboTypeFilter, setComboTypeFilter] = useState("All Types");
+  const [priceRangeFilter, setPriceRangeFilter] = useState("All Price");
+  const [locationFilter, setLocationFilter] = useState("All Locations");
   const [statusFilter, setStatusFilter] = useState("All Status");
-
-  // Mock inspection data matching the image
-  const inspections = [
-    {
-      userId: "#USR-001",
-      vehicle: "Toyota Camry 2022",
-      owner: { name: "John Smith", image: "" },
-      date: "2023-10-15",
-      aiModule: "Structure Analysis",
-      comboType: "Premium Package",
-      integrityScore: "92%",
-      status: "Approved",
-      statusColor: "bg-green-500/20 text-green-400"
-    },
-    {
-      userId: "#USR-002",
-      vehicle: "Honda Civic 2021",
-      owner: { name: "Sarah Johnson", image: "" },
-      date: "2023-10-14",
-      aiModule: "Paint Analysis",
-      comboType: "Basic Inspection",
-      integrityScore: "87%",
-      status: "Processing",
-      statusColor: "bg-yellow-500/20 text-yellow-400"
-    },
-    {
-      userId: "#USR-003",
-      vehicle: "Ford F-150 2020",
-      owner: { name: "Michael Brown", image: "" },
-      date: "2023-10-12",
-      aiModule: "Ballistic Glass",
-      comboType: "Comprehensive",
-      integrityScore: "78%",
-      status: "Pending",
-      statusColor: "bg-yellow-500/20 text-yellow-400"
-    },
-    {
-      userId: "#USR-004",
-      vehicle: "BMW X5 2023",
-      owner: { name: "Emily Davis", image: "" },
-      date: "2023-10-10",
-      aiModule: "Interior Inspection",
-      comboType: "Premium Package",
-      integrityScore: "95%",
-      status: "Approved",
-      statusColor: "bg-green-500/20 text-green-400"
-    },
-    {
-      userId: "#USR-005",
-      vehicle: "Tesla Model 3 2023",
-      owner: { name: "Robert Wilson", image: "" },
-      date: "2023-10-08",
-      aiModule: "Functionality Test",
-      comboType: "Comprehensive",
-      integrityScore: "89%",
-      status: "Rejected",
-      statusColor: "bg-red-500/20 text-red-400"
-    },
-    {
-      userId: "#USR-005",
-      vehicle: "Tesla Model 3 2023",
-      owner: { name: "Robert Wilson", image: "" },
-      date: "2023-10-08",
-      aiModule: "Functionality Test",
-      comboType: "Comprehensive",
-      integrityScore: "89%",
-      status: "Rejected",
-      statusColor: "bg-red-500/20 text-red-400"
-    }
-  ];
 
   const handleViewListing = (_vehicle: { id?: string; vehicle?: string }) => {
     const listing = users[0];
@@ -194,83 +74,11 @@ function CatalogTab({
       {/* Filters */}
       <div className="mr-0 flex items-center justify-between rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6 md:mr-7">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:items-end">
-          <div>
-            <label htmlFor="vehicle-integrity-score-filter" className="mb-2 block text-sm font-medium text-white">Integrity Score</label>
-            <select
-              id="vehicle-integrity-score-filter"
-              value={dateRangeFilter}
-              onChange={(e) => setDateRangeFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Score</option>
-              <option>90% and above</option>
-              <option>80% - 89%</option>
-              <option>70% - 79%</option>
-              <option>Below 70%</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="vehicle-combo-type-filter" className="mb-2 block text-sm font-medium text-white">Combo Type</label>
-            <select
-              id="vehicle-combo-type-filter"
-              value={aiModuleFilter}
-              onChange={(e) => setAiModuleFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Types</option>
-              <option>Basic Inspection</option>
-              <option>Premium Package</option>
-              <option>Comprehensive</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="vehicle-price-range-filter" className="mb-2 block text-sm font-medium text-white">Price Range</label>
-            <select
-              id="vehicle-price-range-filter"
-              value={comboTypeFilter}
-              onChange={(e) => setComboTypeFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Price</option>
-              <option>$0 - $10,000</option>
-              <option>$10,000 - $25,000</option>
-              <option>$25,000 - $50,000</option>
-              <option>$50,000+</option>
-            </select>
-          </div>
-          <div>
-            <label htmlFor="vehicle-location-filter" className="mb-2 block text-sm font-medium text-white">Location</label>
-            <select
-              id="vehicle-location-filter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Locations</option>
-              <option>New York</option>
-              <option>California</option>
-              <option>Texas</option>
-              <option>Florida</option>
-              <option>Illinois</option>
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="vehicle-status-filter" className="mb-2 block text-sm font-medium text-white">Status</label>
-            <select
-              id="vehicle-status-filter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full rounded-lg border border-[#2a2d4a] bg-[#252850] px-4 py-3 text-sm text-white focus:outline-none"
-            >
-              <option>All Status</option>
-              <option>Active</option>
-              <option>Pending</option>
-              <option>Paused</option>
-              <option>Sold</option>
-              <option>Removed</option>
-            </select>
-          </div>
+          <FilterSelect id="vehicle-integrity-score-filter" label="Integrity Score" value={scoreFilter} onChange={setScoreFilter} options={SCORE_OPTIONS} />
+          <FilterSelect id="vehicle-combo-type-filter" label="Combo Type" value={comboTypeFilter} onChange={setComboTypeFilter} options={COMBO_TYPE_OPTIONS} />
+          <FilterSelect id="vehicle-price-range-filter" label="Price Range" value={priceRangeFilter} onChange={setPriceRangeFilter} options={PRICE_RANGE_OPTIONS} />
+          <FilterSelect id="vehicle-location-filter" label="Location" value={locationFilter} onChange={setLocationFilter} options={LOCATION_OPTIONS} />
+          <FilterSelect id="vehicle-status-filter" label="Status" value={statusFilter} onChange={setStatusFilter} options={LISTING_STATUS_OPTIONS} />
         </div>
         <div>
           <button className="mt-4 w-full rounded-lg border border-cyan-500/50 bg-cyan-500/20 px-4 py-3 text-sm font-medium text-cyan-400 transition-colors hover:bg-cyan-500/30">
@@ -281,7 +89,7 @@ function CatalogTab({
 
       {/* Vehicle Catalog Cards */}
       <div className="mr-0 grid grid-cols-1 gap-6 md:mr-7 md:grid-cols-2 lg:grid-cols-3">
-        {inspections.map((inspection) => (
+        {inspectionData.map((inspection) => (
           <div
             key={inspection.vehicle}
             className="overflow-hidden rounded-xl border border-[#2a2d4a] bg-[#1D1D41] transition-colors hover:border-cyan-500/50"
@@ -315,7 +123,7 @@ function CatalogTab({
               <div className="mb-4 flex items-center justify-between">
                 <div>
                   <p className="text-2xl font-bold text-cyan-400">
-                    ${Math.floor(Math.random() * 40000 + 15000).toLocaleString()}
+                    ${calculatePrice(inspection.integrityScore).toLocaleString()}
                   </p>
                 </div>
                 <div className="text-right">

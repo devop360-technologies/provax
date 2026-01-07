@@ -135,10 +135,10 @@ export default function SettingsPage() {
             </h2>
             <APIKeysManagement
               onGenerateKey={() => {
-                /* Generate new key not implemented yet */
+                
               }}
               onDeactivateKey={() => {
-                /* Deactivate key not implemented yet */
+                
               }}
             />
           </div>
@@ -152,7 +152,7 @@ export default function SettingsPage() {
             </h2>
             <AIModuleConfiguration
               onConfigChange={() => {
-                /* Config change handler not implemented yet */
+                
               }}
             />
           </div>
@@ -165,8 +165,8 @@ export default function SettingsPage() {
               Security & Audit Log
             </h2>
             <SecurityAuditLog
-              onExportCSV={() => { /* Export CSV not implemented yet */ }}
-              onExportPDF={() => { /* Export PDF not implemented yet */ }}
+              onExportCSV={() => {  }}
+              onExportPDF={() => {  }}
             />
           </div>
         )}

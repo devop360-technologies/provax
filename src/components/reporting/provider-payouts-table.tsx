@@ -1,7 +1,6 @@
 "use client";
 
-import { Download, FileText, Eye } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { TableWrapper, TableHeader, TableColumnHeader, TableRow, TableCell, ActionButton } from "@/components/ui/table-components";
 
 interface ProviderPayoutRow {
   period: string;
@@ -71,81 +70,41 @@ export function ProviderPayoutsTable({
   onShowDetails,
 }: ProviderPayoutsTableProps) {
   return (
-    <div className={cn("rounded-lg border border-[#404254] bg-[#1D1D41] p-6", className)}>
-      {/* Header */}
-      <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-base font-medium text-white">Provider Payouts</h3>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={onExportCSV}
-            className="flex items-center gap-1 rounded bg-[#10B981] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#059669] transition-colors"
-          >
-            <Download size={14} />
-            Export CSV
-          </button>
-          <button
-            onClick={onExportPDF}
-            className="flex items-center gap-1 rounded bg-[#FF6B6B] px-3 py-1.5 text-xs font-medium text-white hover:bg-[#EF4444] transition-colors"
-          >
-            <FileText size={14} />
-            Export PDF
-          </button>
-          <button
-            onClick={onShowDetails}
-            className="flex items-center gap-1 rounded border border-[#00D9FF] px-3 py-1.5 text-xs font-medium text-[#00D9FF] hover:bg-[#1D1D41] transition-colors"
-          >
-            <Eye size={14} />
-            Show Details
-          </button>
-        </div>
-      </div>
+    <TableWrapper className={className}>
+      <TableHeader
+        title="Provider Payouts"
+        onExportCSV={onExportCSV}
+        onExportPDF={onExportPDF}
+        extraActions={<ActionButton onClick={onShowDetails} icon="eye" label="Show Details" />}
+      />
 
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
             <tr className="border-b border-[#404254]">
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Period
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Total Payouts
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Completed
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Pending
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Failed
-              </th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-400">
-                Average Processing Time
-              </th>
+              <TableColumnHeader>Period</TableColumnHeader>
+              <TableColumnHeader>Total Payouts</TableColumnHeader>
+              <TableColumnHeader>Completed</TableColumnHeader>
+              <TableColumnHeader>Pending</TableColumnHeader>
+              <TableColumnHeader>Failed</TableColumnHeader>
+              <TableColumnHeader>Average Processing Time</TableColumnHeader>
             </tr>
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr
-                key={row.period}
-                className="border-b border-[#404254] transition-colors hover:bg-[#252850]"
-              >
-                <td className="px-4 py-3 text-sm text-white">{row.period}</td>
-                <td className="px-4 py-3 text-sm font-medium text-white">
-                  {row.totalPayouts}
-                </td>
-                <td className="px-4 py-3 text-sm text-white">{row.completed}</td>
-                <td className="px-4 py-3 text-sm text-white">{row.pending}</td>
-                <td className="px-4 py-3 text-sm text-white">{row.failed}</td>
-                <td className="px-4 py-3 text-sm text-gray-300">
-                  {row.avgProcessingTime}
-                </td>
-              </tr>
+              <TableRow key={row.period} rowKey={row.period}>
+                <TableCell>{row.period}</TableCell>
+                <TableCell className="font-medium">{row.totalPayouts}</TableCell>
+                <TableCell>{row.completed}</TableCell>
+                <TableCell>{row.pending}</TableCell>
+                <TableCell>{row.failed}</TableCell>
+                <TableCell variant="muted">{row.avgProcessingTime}</TableCell>
+              </TableRow>
             ))}
           </tbody>
         </table>
       </div>
-    </div>
+    </TableWrapper>
   );
 }

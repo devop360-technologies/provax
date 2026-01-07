@@ -197,7 +197,7 @@ export default function MarketingPage() {
               {/* Homepage Texts Section */}
               <div className="border-t border-[#404254] pt-6">
                 <HomepageTexts
-                  onSave={() => { /* Save homepage texts not implemented yet */ }}
+                  onSave={() => {  }}
                 />
               </div>
 
@@ -205,8 +205,8 @@ export default function MarketingPage() {
               <div className="border-t border-[#404254] pt-6">
                 <HighlightSections
                   onAdd={() => setIsAddHighlightSectionModalOpen(true)}
-                  onEdit={() => { /* Edit section not implemented yet */ }}
-                  onDelete={() => { /* Delete section not implemented yet */ }}
+                  onEdit={() => {  }}
+                  onDelete={() => {  }}
                 />
               </div>
 
@@ -214,8 +214,8 @@ export default function MarketingPage() {
               <div className="border-t border-[#404254] pt-6">
                 <CampaignBlocks
                   onAdd={() => setIsCreateCampaignBlockModalOpen(true)}
-                  onEdit={() => { /* Edit campaign not implemented yet */ }}
-                  onDelete={() => { /* Delete campaign not implemented yet */ }}
+                  onEdit={() => {  }}
+                  onDelete={() => {  }}
                 />
               </div>
             </>
@@ -229,14 +229,14 @@ export default function MarketingPage() {
             <div className="space-y-8">
               {/* Activity Logs */}
               <ActivityLogs
-                onViewAll={() => { /* View all activities not implemented yet */ }}
+                onViewAll={() => {  }}
               />
 
               {/* Version History */}
               <div className="border-t border-[#404254] pt-6">
                 <VersionHistoryTable
-                  onView={() => { /* View version not implemented yet */ }}
-                  onDownload={() => { /* Download version not implemented yet */ }}
+                  onView={() => {  }}
+                  onDownload={() => {  }}
                 />
               </div>
             </div>

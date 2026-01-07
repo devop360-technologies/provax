@@ -5,8 +5,7 @@ import { useCallback, useState } from "react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
-
-import { sendVerificationEmail } from "@/actions/email-verification-actions";
+import { userApi, getErrorMessage } from "@/lib/api";
 
 export function VerifyEmailTopbar({ email }: Readonly<{ email: string }>) {
   const [isLoading, setIsLoading] = useState(false);
@@ -15,11 +14,11 @@ export function VerifyEmailTopbar({ email }: Readonly<{ email: string }>) {
     setIsLoading(true);
 
     try {
-      const result = await sendVerificationEmail(email);
+      const result = await userApi.sendVerificationEmail(email);
 
-      if (result.error) {
+      if (!result.success) {
         toast.error("Failed to resend email", {
-          description: result.error
+          description: result.message
         });
         return;
       }
@@ -27,9 +26,9 @@ export function VerifyEmailTopbar({ email }: Readonly<{ email: string }>) {
       toast.success("Verification email sent!", {
         description: "Please check your email for the verification link."
       });
-    } catch {
+    } catch (error) {
       toast.error("Something went wrong", {
-        description: "Failed to resend verification email"
+        description: getErrorMessage(error)
       });
     } finally {
       setIsLoading(false);
