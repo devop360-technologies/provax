@@ -96,8 +96,8 @@ const UploadVehicleMedia = ({ onBack, onStartProcessing }: UploadVehicleMediaPro
               Media Requirements for Structure AI
             </h3>
             <div className="space-y-2">
-              {requirements.map((req, index) => (
-                <div key={index} className="flex items-center gap-2">
+              {requirements.map((req) => (
+                <div key={req.text} className="flex items-center gap-2">
                   {req.checked ? (
                     <Check className="w-4 h-4 text-[#00d9ff]" />
                   ) : (
@@ -160,7 +160,7 @@ const UploadVehicleMedia = ({ onBack, onStartProcessing }: UploadVehicleMediaPro
           const file = uploadedFiles[index];
           return (
             <div
-              key={index}
+              key={`slot-${index}`}
               className="aspect-square bg-[#24244C] rounded-lg border-2 border-[#2a2f4a] relative overflow-hidden group"
             >
               {file ? (

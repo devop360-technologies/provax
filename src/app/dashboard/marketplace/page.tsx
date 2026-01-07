@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 
+import { StatCard } from "@/components/dashboard";
 import { DashboardTitle } from "@/components/dashboard-title";
+import { VehicleMarketplaceManagement } from "@/components/vehicle-marketplace-management/vehicle-marketplace-management";
 import { appConfig } from "@/config";
 import { users } from "@/data/users";
 import { getCurrentUser } from "@/lib/auth";
-import { VehicleMarketplaceManagement } from "@/components/vehicle-marketplace-management/vehicle-marketplace-management";
 
 export default async function MarketplacePage() {
   const currentUser = await getCurrentUser();

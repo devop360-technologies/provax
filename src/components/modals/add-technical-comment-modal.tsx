@@ -135,9 +135,9 @@ export function AddTechnicalCommentModal({ isOpen, onClose, onSave, editData, is
           <div className="space-y-6">
             {/* Comment Type Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <span className="block text-sm font-medium text-gray-300 mb-2">
                 Comment Type
-              </label>
+              </span>
               <div className="relative">
                 <button
                   onClick={() => setIsCommentTypeDropdownOpen(!isCommentTypeDropdownOpen)}
@@ -171,9 +171,9 @@ export function AddTechnicalCommentModal({ isOpen, onClose, onSave, editData, is
 
             {/* AI Module Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <span className="block text-sm font-medium text-gray-300 mb-2">
                 AI Module
-              </label>
+              </span>
               <div className="relative">
                 <button
                   onClick={() => setIsAiModuleDropdownOpen(!isAiModuleDropdownOpen)}
@@ -207,9 +207,9 @@ export function AddTechnicalCommentModal({ isOpen, onClose, onSave, editData, is
 
             {/* Priority Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <span className="block text-sm font-medium text-gray-300 mb-2">
                 Priority
-              </label>
+              </span>
               <div className="relative">
                 <button
                   onClick={() => setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}

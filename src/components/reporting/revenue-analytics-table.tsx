@@ -141,11 +141,11 @@ export function RevenueAnalyticsTable({
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, index) => {
+            {rows.map((row) => {
               const statusStyle = statusColorMap[row.status];
               return (
                 <tr
-                  key={index}
+                  key={row.id}
                   className="border-b border-[#404254] transition-colors hover:bg-[#252850]"
                 >
                   <td className="px-4 py-3 text-sm font-medium text-white">

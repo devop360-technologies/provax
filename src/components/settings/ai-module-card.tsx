@@ -73,9 +73,10 @@ export function AIModuleCard({
       <div className="mb-6 grid grid-cols-2 gap-8">
         {/* Threshold Section */}
         <div>
-          <label className="mb-3 block text-sm font-medium text-white">{thresholdLabel}</label>
+          <label htmlFor="threshold-slider" className="mb-3 block text-sm font-medium text-white">{thresholdLabel}</label>
           <div className="flex items-center gap-4">
             <input
+              id="threshold-slider"
               type="range"
               min="0"
               max="100"
@@ -93,7 +94,7 @@ export function AIModuleCard({
 
         {/* Human Review Rule */}
         <div>
-          <label className="mb-3 block text-sm font-medium text-white">Human Review Rule</label>
+          <span className="mb-3 block text-sm font-medium text-white">Human Review Rule</span>
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -131,9 +132,10 @@ export function AIModuleCard({
         <div className="grid grid-cols-2 gap-8">
           {/* Error Rate Threshold */}
           <div>
-            <label className="mb-3 block text-sm font-medium text-white">Error Rate Threshold</label>
+            <label htmlFor="error-rate-threshold" className="mb-3 block text-sm font-medium text-white">Error Rate Threshold</label>
             <div className="flex items-center gap-2">
               <input
+                id="error-rate-threshold"
                 type="number"
                 defaultValue="3.0"
                 step="0.1"

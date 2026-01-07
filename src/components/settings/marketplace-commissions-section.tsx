@@ -1,7 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-
 interface FeeInputFieldProps {
   label: string;
   value: string;
@@ -17,11 +15,13 @@ function FeeInputField({
   unit,
   description,
 }: FeeInputFieldProps) {
+  const inputId = `fee-input-${label.toLowerCase().replaceAll(/\s+/g, '-')}`;
   return (
     <div className="flex flex-col">
-      <label className="mb-2 text-sm font-medium text-gray-300">{label}</label>
+      <label htmlFor={inputId} className="mb-2 text-sm font-medium text-gray-300">{label}</label>
       <div className="flex items-center gap-2">
         <input
+          id={inputId}
           type="number"
           value={value}
           onChange={(e) => onChange(e.target.value)}

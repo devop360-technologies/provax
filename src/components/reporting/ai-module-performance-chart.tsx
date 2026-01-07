@@ -81,8 +81,8 @@ export function AIModulePerformanceChart({
 
       {/* Chart */}
       <div className="flex items-end justify-between gap-4 px-4" style={{ height: "280px" }}>
-        {chartData.map((item, index) => (
-          <div key={index} className="flex flex-col items-center gap-3 flex-1">
+        {chartData.map((item) => (
+          <div key={item.label} className="flex flex-col items-center gap-3 flex-1">
             <div
               className="w-full rounded-t-md transition-all hover:opacity-80"
               style={{

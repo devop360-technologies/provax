@@ -129,9 +129,9 @@ export function ProfessionalInfo({
         <span className="block text-sm text-gray-200 mb-2">Categories of Work</span>
         <p className="text-xs text-gray-400 mb-3">Select the service categories you specialize in:</p>
         <div className="flex flex-wrap gap-2">
-          {data.categories.map((category, index) => (
+          {data.categories.map((category) => (
             <span
-              key={index}
+              key={category}
               className="inline-flex items-center rounded-lg border border-[#00D1FF] bg-transparent px-4 py-2 text-sm font-medium text-[#00D1FF]"
             >
               {category}

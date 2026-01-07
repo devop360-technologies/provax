@@ -198,9 +198,11 @@ export default function VerifyEmail() {
                     Verification Code
                   </span>
                   <div className="flex justify-center space-x-3">
-                    {otp.map((digit, index) => (
+                    {otp.map((digit, index) => {
+                      const position = index + 1;
+                      return (
                       <input
-                        key={`otp-${index}`}
+                        key={`otp-digit-${position}`}
                         ref={(el) => {
                           inputRefs.current[index] = el;
                         }}
@@ -214,7 +216,8 @@ export default function VerifyEmail() {
                         required
                         aria-label={`Digit ${index + 1}`}
                       />
-                    ))}
+                    );
+                    })}
                   </div>
                   {error && (
                     <p className="text-red-400 text-sm text-center">{error}</p>

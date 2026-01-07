@@ -1006,9 +1006,9 @@ function AuditLogTab() {
               </tr>
             </thead>
             <tbody>
-              {auditLogs.map((log, idx) => (
+              {auditLogs.map((log) => (
                 <tr
-                  key={idx}
+                  key={`${log.timestamp}-${log.action}`}
                   className="border-b border-[#2a2d4a] transition-colors hover:bg-[#1a1d3a]/50"
                 >
                   <td className="px-6 py-4 text-sm text-gray-300">{log.timestamp}</td>

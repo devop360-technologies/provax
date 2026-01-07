@@ -1,6 +1,5 @@
 'use client'
 import React from "react";
-import Link from "next/link";
 import carfooter from "../../asests/footerCar.png"
 
 export default function Footer() {
@@ -158,7 +157,7 @@ export default function Footer() {
                 </div>
                 <div className="flex space-x-1">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-cyan-400">★</span>
+                    <span key={`star-${i}`} className="text-cyan-400">★</span>
                   ))}
                 </div>
                 <p className="text-sm text-white/60">+1,000 Reviews</p>

@@ -101,9 +101,9 @@ export function PaymentDetailsModal({
             <div>
               <h4 className="text-base font-semibold text-white mb-4">Breakdown</h4>
               <div className="space-y-3">
-                {payment.breakdown.map((item, index) => (
+                {payment.breakdown.map((item) => (
                   <div
-                    key={index}
+                    key={item.name}
                     className="flex items-center justify-between py-2 border-b border-[#2a2d4a] last:border-b-0"
                   >
                     <span className="text-sm text-gray-300">{item.name}</span>

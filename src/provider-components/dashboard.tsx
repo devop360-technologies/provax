@@ -84,8 +84,8 @@ export const Dashboard = () => {
       <div className='bg-[#1D1D41] rounded-xl p-6 '>
         <h2 className='text-white text-xl font-semibold mb-6'>Recent Activity</h2>
         <div className='space-y-4'>
-          {recentActivities.map((activity, index) => (
-            <div key={index} className='flex items-start gap-4 rounded-xl p-3 bg-[#23234B]'>
+          {recentActivities.map((activity) => (
+            <div key={`${activity.title}-${activity.time}`} className='flex items-start gap-4 rounded-xl p-3 bg-[#23234B]'>
               <div className={`${activity.iconBg} rounded-full p-3 flex-shrink-0`}>
                 <Image 
                   src={activity.icon} 
@@ -109,8 +109,8 @@ export const Dashboard = () => {
       <div className='bg-[#1D1D41] rounded-xl p-6'>
         <h2 className='text-white text-xl font-semibold mb-6'>Notifications</h2>
         <div className='space-y-4'>
-          {notifications.map((notification, index) => (
-            <div key={index} className='border-l-4 border-red-500 pl-4 py-2 rounded-xl p-1 bg-[#23234B]'>
+          {notifications.map((notification) => (
+            <div key={`${notification.title}-${notification.time}`} className='border-l-4 border-red-500 pl-4 py-2 rounded-xl p-1 bg-[#23234B]'>
               <div className='flex items-start justify-between mb-2'>
                 <h3 className='text-blue-400 font-medium text-sm'>{notification.title}</h3>
                 <span className='text-gray-500 text-xs whitespace-nowrap ml-2'>{notification.time}</span>

@@ -29,8 +29,8 @@ export default function TrustedBy() {
         {/* Marquee Section */}
         <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg">
           <Marquee duration="40s" className="ms-2 flex shrink-0 flex-row justify-around gap-2">
-            {sponsors.map((sponsor, index) => (
-              <div key={index} className="flex h-16 w-40 items-center justify-center">
+            {sponsors.map((sponsor) => (
+              <div key={sponsor} className="flex h-16 w-40 items-center justify-center">
                 <Image
                   width={0}
                   alt="logo"

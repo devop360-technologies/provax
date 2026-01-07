@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Logo from "@/components/logo";
 

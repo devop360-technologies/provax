@@ -1,35 +1,14 @@
-import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 
 import { appConfig } from "@/config";
-import { prisma } from "@/lib/prisma";
 import { authConfig } from "./auth-config";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 const nextAuth = NextAuth({
-  adapter: PrismaAdapter(prisma),
   secret: appConfig.auth.secret,
   session: { strategy: "jwt" },
   jwt: { maxAge: appConfig.auth.maxAge },
-
-  events: {
-    async linkAccount({ account, profile }) {
-      if (account?.provider === "google" && profile) {
-        // check if user already exists with same email
-        const user = await prisma.user.findUnique({
-          where: { email: profile.email! },
-          select: { id: true }
-        });
-
-        // if user exists, update the emailVerified field
-        if (user) {
-          await prisma.user.update({
-            where: { id: user.id },
-            data: { emailVerified: new Date() }
-          });
-        }
-      }
-    }
-  },
 
   callbacks: {
     async session({ session, token }) {
@@ -44,11 +23,19 @@ const nextAuth = NextAuth({
     },
     async jwt({ token, user, trigger }) {
       if (trigger === "update" && token?.sub) {
-        const user = await prisma.user.findUnique({ where: { id: token.sub } });
-        if (!user) return token;
-
-        token.name = user.name;
-        token.image = user.image;
+        // Fetch user from Express backend
+        try {
+          const response = await fetch(`${API_BASE_URL}/api/auth/user/${token.sub}`);
+          if (response.ok) {
+            const userData = await response.json();
+            if (userData.data) {
+              token.name = userData.data.name;
+              token.image = userData.data.image;
+            }
+          }
+        } catch {
+          // Keep existing token data on error
+        }
       }
 
       if (user) {

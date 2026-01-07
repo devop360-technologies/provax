@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { EnhancedUserTable } from "@/components/users/enhanced-user-table";
 import { EditUserModal } from "@/components/users/edit-user-modal";
 import { AddTechnicalCommentModal } from "@/components/modals/add-technical-comment-modal";
 import { DeleteCommentModal } from "@/components/modals/delete-comment-modal";
@@ -11,15 +10,31 @@ import { Edit, Trash } from "lucide-react";
 import { BarChartOverview, ChartOverview } from "../dashboard";
 
 interface Comment {
+  id: string;
   module: string;
   text: string;
-  id?: string;
+  author?: string;
+  commentType?: string;
+  aiModule?: string;
+  priority?: string;
+  requiresFollowUp?: boolean;
+  badge?: string;
+  badgeColor?: string;
+  date?: string;
+  hasActions?: boolean;
 }
 
 interface Inspection {
   id: string;
+  userId?: string;
   vehicle?: string;
   status?: string;
+  owner?: { name: string; image: string };
+  date?: string;
+  aiModule?: string;
+  comboType?: string;
+  integrityScore?: string;
+  statusColor?: string;
 }
 
 interface CertificationManagementProps {
@@ -85,8 +100,14 @@ export function CertificationManagement({ users }: CertificationManagementProps)
 
   const handleEditComment = (comment: Comment) => {
     setEditingComment({
-      module: "AI Module: " + comment.module.replace("AI Module: ", ""),
+      id: comment.id,
+      module: comment.module,
       text: comment.text,
+      author: comment.author,
+      commentType: comment.commentType || "Technical Override",
+      aiModule: comment.aiModule || comment.module.replace("AI Module: ", ""),
+      priority: comment.priority || "Medium",
+      requiresFollowUp: comment.requiresFollowUp || false,
     });
     setIsTechnicalCommentModalOpen(true);
   };
@@ -199,7 +220,13 @@ export function CertificationManagement({ users }: CertificationManagementProps)
           setEditingComment(null);
         }}
         onSave={handleSaveTechnicalComment}
-        editData={editingComment}
+        editData={editingComment ? {
+          commentType: editingComment.commentType || "Technical Override",
+          aiModule: editingComment.aiModule || editingComment.module.replace("AI Module: ", ""),
+          priority: editingComment.priority || "Medium",
+          comment: editingComment.text,
+          requiresFollowUp: editingComment.requiresFollowUp || false,
+        } : null}
         isEditing={!!editingComment}
       />
 
@@ -227,6 +254,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
   // Mock inspection data matching the image
   const inspections = [
     {
+      id: "insp-001",
       userId: "#USR-001",
       vehicle: "Toyota Camry 2022",
       owner: { name: "John Smith", image: "" },
@@ -238,6 +266,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
       statusColor: "bg-green-500/20 text-green-400"
     },
     {
+      id: "insp-002",
       userId: "#USR-002",
       vehicle: "Honda Civic 2021",
       owner: { name: "Sarah Johnson", image: "" },
@@ -249,6 +278,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
       statusColor: "bg-yellow-500/20 text-yellow-400"
     },
     {
+      id: "insp-003",
       userId: "#USR-003",
       vehicle: "Ford F-150 2020",
       owner: { name: "Michael Brown", image: "" },
@@ -260,6 +290,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
       statusColor: "bg-yellow-500/20 text-yellow-400"
     },
     {
+      id: "insp-004",
       userId: "#USR-004",
       vehicle: "BMW X5 2023",
       owner: { name: "Emily Davis", image: "" },
@@ -271,6 +302,7 @@ function UserListTab({ users, onViewUser }: { users: User[]; onViewUser: (user: 
       statusColor: "bg-green-500/20 text-green-400"
     },
     {
+      id: "insp-005",
       userId: "#USR-005",
       vehicle: "Tesla Model 3 2023",
       owner: { name: "Robert Wilson", image: "" },
@@ -915,7 +947,7 @@ function AdminCommentsTab({
 }) {
   const comments = [
     {
-      id: 1,
+      id: "comment-1",
       author: "Admin User",
       badge: "Safety Issue",
       badgeColor: "bg-red-500/20 text-red-400",
@@ -925,7 +957,7 @@ function AdminCommentsTab({
       hasActions: true
     },
     {
-      id: 2,
+      id: "comment-2",
       author: "Technical Team",
       badge: "In Progress",
       badgeColor: "bg-blue-500/20 text-blue-400",
@@ -935,7 +967,7 @@ function AdminCommentsTab({
       hasActions: true
     },
     {
-      id: 3,
+      id: "comment-3",
       author: "Admin User",
       badge: "Safety Issue",
       badgeColor: "bg-red-500/20 text-red-400",

@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 import { EmailTemplateCard } from "./email-template-card";
 import { cn } from "@/lib/utils";
 

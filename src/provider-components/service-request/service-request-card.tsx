@@ -97,8 +97,8 @@ export const ServiceRequestCard = ({
           </p>
         </div>
         <ul className="space-y-2">
-          {diagnosticFindings.map((finding, index) => (
-            <li key={index} className="flex items-start gap-2 text-gray-400 text-xs">
+          {diagnosticFindings.map((finding) => (
+            <li key={finding} className="flex items-start gap-2 text-gray-400 text-xs">
               <span className="text-[#00d9ff] mt-1">•</span>
               <span>{finding}</span>
             </li>

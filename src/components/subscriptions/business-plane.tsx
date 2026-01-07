@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import bluesign from "../../asests/icons/bluesign.png";
-import Image from "next/image";
 
 export default function BusinessPlans() {
   const plans = [
@@ -51,9 +49,9 @@ export default function BusinessPlans() {
 
         {/* Plans Grid */}
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <div
-              key={index}
+              key={plan.name}
               className="border-1 border-green-800/60 rounded-2xl  bg-gradient-to-br from-green-500/10 to-green-500/5  hover:border-green-900/40"
             //   className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20"
             >
@@ -69,11 +67,11 @@ export default function BusinessPlans() {
 
                 {/* Billing Options */}
                 <div className="flex gap-2">
-                  {plan.billingOptions.map((option, idx) => (
+                  {plan.billingOptions.map((option) => (
                     <button
-                      key={idx}
+                      key={option}
                       className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
-                        idx === 0
+                        plan.billingOptions.indexOf(option) === 0
                           ? "bg-white/80 text-black hover:bg-white"
                           : "bg-white/20 text-white border border-white/30 hover:bg-white/30"
                       }`}
@@ -115,7 +113,7 @@ export default function BusinessPlans() {
                 {/* Features List */}
                 <div className="space-y-3 pt-4 border-t border-white/10">
                   {plan.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center gap-3">
+                    <div key={`${plan.name}-feature-${featureIndex}`} className="flex items-center gap-3">
                       <svg className="w-6 h-6 text-[#0697cc] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>

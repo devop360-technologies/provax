@@ -3,7 +3,8 @@ import "server-only";
 import { cache } from "react";
 
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 /** ==============================================================================================
  * Get the current user from the database
@@ -16,12 +17,25 @@ export const getCurrentUser = cache(async () => {
     const session = await auth();
 
     if (session?.user) {
-      const user = await prisma.user.findUnique({
-        where: { id: session.user.id },
-        omit: { password: true, updatedAt: true }
+      // Fetch full user data from Express backend
+      const response = await fetch(`${API_BASE_URL}/api/auth/user/${session.user.id}`, {
+        cache: "no-store",
       });
 
-      if (user) return user;
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success && data.data) {
+          return data.data;
+        }
+      }
+
+      // Fallback to session user if API fails
+      return {
+        id: session.user.id,
+        name: session.user.name,
+        email: session.user.email,
+        image: session.user.image,
+      };
     }
 
     return null;

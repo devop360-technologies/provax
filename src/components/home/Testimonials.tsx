@@ -88,7 +88,7 @@ export default function Testimonials() {
               key={testimonial.id}
               className={`relative rounded-2xl border p-5 transition-all duration-300 bg-gradient-to-br from-green-500/10 to-green-800 backdrop-blur-sm border-green-400/50 shadow-lg shadow-green-500/20 ${activeTestimonial === index ? 'ring-2 ring-green-400' : ''}`}
               onMouseEnter={() => setActiveTestimonial(index)}
-              aria-label={`Testimonial from ${testimonial.name}, ${testimonial.role}`}
+              aria-label={`Testimonial from ${testimonial.name}, ${testimonial.position}`}
             >
               {/* Quote Icon */}
               <div className="mb-6">⭐⭐⭐⭐⭐⭐</div>

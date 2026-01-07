@@ -5,6 +5,7 @@ import { appConfig } from "@/config";
 import { getCurrentUser } from "@/lib/auth";
 import { StatCard } from "@/components/dashboard";
 import { ServiceBidding } from "@/components/service-bidding/service-bidding";
+import { users } from "@/data/users";
 
 export default async function ServiceBiddingPage() {
   const currentUser = await getCurrentUser();

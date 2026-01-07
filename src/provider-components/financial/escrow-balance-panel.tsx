@@ -83,9 +83,9 @@ export function EscrowBalancePanel({
       <div>
         <h4 className="text-base font-medium text-white mb-4">Release Schedule</h4>
         <div className="space-y-3">
-          {releaseSchedule.map((item, index) => (
+          {releaseSchedule.map((item) => (
             <div
-              key={index}
+              key={`${item.date}-${item.service}`}
               className="flex items-center justify-between py-3 border-t border-[#2a2d4a] first:border-t-0"
             >
               <div className="flex-1">

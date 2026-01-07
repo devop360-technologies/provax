@@ -98,9 +98,9 @@ export function RevenueByCategoryChart({
         <div className="flex flex-col items-center justify-center">
           <svg viewBox="0 0 200 200" className="w-48 h-48">
             {/* Outer circle */}
-            {slices.map((slice, index) => (
+            {slices.map((slice) => (
               <path
-                key={index}
+                key={slice.color}
                 d={slice.d}
                 fill={slice.color}
                 stroke="#1D1D41"
@@ -114,8 +114,8 @@ export function RevenueByCategoryChart({
 
           {/* Legend */}
           <div className="mt-6 space-y-2">
-            {data.map((item, index) => (
-              <div key={index} className="flex items-center gap-2">
+            {data.map((item) => (
+              <div key={item.name} className="flex items-center gap-2">
                 <div
                   className="h-3 w-3 rounded-full"
                   style={{ backgroundColor: item.color }}
@@ -137,8 +137,8 @@ export function RevenueByCategoryChart({
             </div>
 
             {/* Table Body */}
-            {tableData.map((row, index) => (
-              <div key={index} className="grid grid-cols-3 gap-4">
+            {tableData.map((row) => (
+              <div key={row.category} className="grid grid-cols-3 gap-4">
                 <span className="text-sm text-gray-300">{row.category}</span>
                 <span className="text-sm font-medium text-white">
                   {row.revenue}

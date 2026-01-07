@@ -64,9 +64,9 @@ export function AddFlagModal({ isOpen, onClose, userName }: AddFlagModalProps) {
           <div className="space-y-6">
             {/* Flag Priority Dropdown */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <span className="block text-sm font-medium text-gray-300 mb-2">
                 Flag Priority
-              </label>
+              </span>
               <div className="relative">
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}

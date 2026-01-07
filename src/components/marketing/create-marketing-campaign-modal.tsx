@@ -142,9 +142,9 @@ export function CreateMarketingCampaignModal({
 
           {/* Email Builder */}
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-300">
+            <span className="mb-2 block text-sm font-medium text-gray-300">
               Email Builder
-            </label>
+            </span>
             <div className="rounded-lg border border-[#404254] bg-[#252850] p-6 flex flex-col items-center justify-center min-h-64">
               <p className="mb-4 text-sm text-gray-400">
                 Drag and drop elements to build your email

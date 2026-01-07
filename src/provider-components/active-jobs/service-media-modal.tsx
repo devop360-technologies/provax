@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Upload, X, Plus } from 'lucide-react';
+import { Upload, Plus } from 'lucide-react';
 
 interface ServiceMediaModalProps {
   isOpen: boolean;

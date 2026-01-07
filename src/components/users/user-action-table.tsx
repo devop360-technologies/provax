@@ -45,7 +45,7 @@ export function UserActionTable({ users: initialUsers }: UsersTableProps) {
         } else {
           toast.error(result.error || "Failed to delete user");
         }
-      } catch (error) {
+      } catch {
         toast.error("An error occurred while deleting the user");
       } finally {
         setUserToDelete(null);

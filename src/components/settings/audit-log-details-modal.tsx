@@ -2,7 +2,6 @@
 
 import { X } from "lucide-react";
 import { AuditLogEntry } from "./audit-log-table";
-import { cn } from "@/lib/utils";
 
 interface AuditLogDetailsModalProps {
   isOpen: boolean;

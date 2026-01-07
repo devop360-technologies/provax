@@ -115,7 +115,7 @@ export default function Footer() {
                     <div className="ml-2 flex">
                       {[...Array(5)].map((_, i) => (
                         <svg
-                          key={i}
+                          key={`star-${i}`}
                           className="h-4 w-4 text-emerald-400"
                           fill="currentColor"
                           viewBox="0 0 20 20"

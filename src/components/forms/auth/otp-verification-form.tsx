@@ -127,10 +127,12 @@ export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: R
               <span className="block text-white text-sm font-medium text-center">
                 Verification Code
               </span>
-              <div className="flex justify-center space-x-3" role="group" aria-label="Verification Code">
-                {otp.map((digit, index) => (
+              <fieldset className="flex justify-center space-x-3 border-0 p-0 m-0" aria-label="Verification Code">
+                {otp.map((digit, index) => {
+                  const position = index + 1;
+                  return (
                   <input
-                    key={index}
+                    key={`otp-digit-${position}`}
                     ref={(el) => { inputRefs.current[index] = el; }}
                     type="text"
                     maxLength={1}
@@ -142,8 +144,9 @@ export function OtpVerificationForm({ email, onBack, onSuccess, onResendOtp }: R
                     className="w-12 h-12 text-center text-xl font-bold bg-transparent border border-gray-500 rounded-xl text-white focus:outline-none focus:border-blue-500 transition-colors"
                     required
                   />
-                ))}
-              </div>
+                );
+                })}
+              </fieldset>
               {error && (
                 <p className="text-red-400 text-sm text-center">{error}</p>
               )}

@@ -127,8 +127,8 @@ export function UsageHistory({
     <div className={cn("space-y-6", className)}>
       {/* Usage Stats Cards */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        {statsWithHandlers.map((stat, index) => (
-          <div key={index} className="relative rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
+        {statsWithHandlers.map((stat) => (
+          <div key={stat.name} className="relative rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6">
             <div className="mb-4 flex items-start justify-between">
               <h3 className="text-sm font-medium text-gray-400">{stat.name}</h3>
               <div
@@ -192,8 +192,8 @@ export function UsageHistory({
               </tr>
             </thead>
             <tbody>
-              {history.map((item, index) => (
-                <tr key={index} className="border-b border-[#2a2d4a] last:border-b-0">
+              {history.map((item) => (
+                <tr key={item.month} className="border-b border-[#2a2d4a] last:border-b-0">
                   <td className="px-4 py-4 text-sm text-gray-300">{item.month}</td>
                   <td className="px-4 py-4 text-sm text-gray-300">{item.certifications}</td>
                   <td className="px-4 py-4 text-sm text-gray-300">{item.listings}</td>

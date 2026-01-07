@@ -1,6 +1,6 @@
 'use client';
 
-import { ArrowUpRight, LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 

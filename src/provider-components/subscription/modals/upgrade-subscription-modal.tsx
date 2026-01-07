@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { X, ChevronDown, AlertCircle } from "lucide-react";
+import { X, ChevronDown } from "lucide-react";
 
 interface PaymentMethod {
   id: string;

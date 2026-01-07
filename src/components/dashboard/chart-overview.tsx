@@ -144,7 +144,7 @@ export function LineChart({ data, color }: Readonly<LineChartProps>) {
         {/* Data points */}
         {points.map((point, i) => (
           <circle
-            key={i}
+            key={`point-${i}`}
             cx={point.x}
             cy={point.y}
             r="3"

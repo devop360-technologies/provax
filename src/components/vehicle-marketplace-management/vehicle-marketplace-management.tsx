@@ -281,9 +281,9 @@ function CatalogTab({
 
       {/* Vehicle Catalog Cards */}
       <div className="mr-0 grid grid-cols-1 gap-6 md:mr-7 md:grid-cols-2 lg:grid-cols-3">
-        {inspections.map((inspection, idx) => (
+        {inspections.map((inspection) => (
           <div
-            key={idx}
+            key={inspection.vehicle}
             className="overflow-hidden rounded-xl border border-[#2a2d4a] bg-[#1D1D41] transition-colors hover:border-cyan-500/50"
           >
             {/* Vehicle Image */}
@@ -650,7 +650,8 @@ function ListingDetailTab({ listing }: { listing: User }) {
                     className="h-full w-full object-cover"
                     onError={(e) => {
                       e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling.style.display = 'flex';
+                      const nextEl = e.currentTarget.nextElementSibling as HTMLElement | null;
+                      if (nextEl) nextEl.style.display = 'flex';
                     }}
                   />
                   <div className="hidden h-full w-full items-center justify-center bg-gray-500 text-white text-xl font-semibold">
@@ -956,9 +957,9 @@ function AIModuleResultsTab() {
     <div className="space-y-6">
       <h3 className="mb-6 text-lg font-semibold text-white">AI Module Results</h3>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {moduleResults.map((module, idx) => (
+        {moduleResults.map((module) => (
           <div
-            key={idx}
+            key={module.title}
             className="overflow-hidden rounded-xl border border-l-4 border-[#2a2d4a] border-l-[#00FF88] bg-[#1a1d3a]"
           >
             <div className="flex items-center justify-between border-b border-[#2a2d4a] bg-[#252850] px-6 py-3">
@@ -968,8 +969,8 @@ function AIModuleResultsTab() {
               </span>
             </div>
             <div className="space-y-3 p-4">
-              {module.metrics.map((metric, midx) => (
-                <div key={midx} className="flex items-center justify-between">
+              {module.metrics.map((metric) => (
+                <div key={`${module.title}-${metric.label}`} className="flex items-center justify-between">
                   <span className="text-xs font-medium text-gray-400">{metric.label}:</span>
                   <span className={`rounded px-3 py-1 text-xs font-bold ${metric.color}`}>
                     {metric.score}
@@ -1349,9 +1350,9 @@ function PromotionalToolsTab() {
 
         {/* Promotion Cards */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {promotionPackages.map((pkg, idx) => (
+          {promotionPackages.map((pkg, pkgIndex) => (
             <div
-              key={idx}
+              key={pkg.name}
               className="flex flex-col rounded-xl border border-[#2a2d4a] bg-[#1D1D41] p-6"
             >
               {/* Icon */}
@@ -1378,8 +1379,8 @@ function PromotionalToolsTab() {
 
               {/* Features */}
               <div className="mb-6 flex-1 space-y-3">
-                {pkg.features.map((feature, featureIdx) => (
-                  <div key={featureIdx} className="flex items-start gap-3">
+                {pkg.features.map((feature) => (
+                  <div key={feature} className="flex items-start gap-3">
                     <span className="mt-1 text-cyan-400">✓</span>
                     <span className="text-sm text-gray-300">{feature}</span>
                   </div>
@@ -1388,15 +1389,15 @@ function PromotionalToolsTab() {
 
               {/* Apply Button */}
               <button
-                onClick={() => handleApplyPromotion(idx)}
-                disabled={appliedPromotions[idx]}
+                onClick={() => handleApplyPromotion(pkgIndex)}
+                disabled={appliedPromotions[pkgIndex]}
                 className={`w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition-colors ${
-                  appliedPromotions[idx]
+                  appliedPromotions[pkgIndex]
                     ? "cursor-not-allowed bg-gray-600/50 text-gray-400"
                     : "bg-[#3083FF] hover:bg-blue-700"
                 }`}
               >
-                {appliedPromotions[idx] ? "Applied" : "Apply Promotion"}
+                {appliedPromotions[pkgIndex] ? "Applied" : "Apply Promotion"}
               </button>
             </div>
           ))}
@@ -1445,8 +1446,8 @@ function PromotionalToolsTab() {
 
                   {/* Features */}
                   <div className="mb-6 flex-1 space-y-3">
-                    {pkg.features.map((feature, featureIdx) => (
-                      <div key={featureIdx} className="flex items-start gap-3">
+                    {pkg.features.map((feature) => (
+                      <div key={`${pkg.name}-${feature}`} className="flex items-start gap-3">
                         <span className="mt-1 text-green-400">✓</span>
                         <span className="text-sm text-gray-300">{feature}</span>
                       </div>
@@ -1622,9 +1623,9 @@ function ModerationGuidelinesTab() {
         </div>
         {/* Guidelines Grid - 3 Columns */}
         <div className="grid grid-cols-1 gap-6 p-7 md:grid-cols-3">
-          {guidelines.map((guideline, idx) => (
+          {guidelines.map((guideline) => (
             <div
-              key={idx}
+              key={guideline.title}
               className="overflow-hidden rounded-xl border border-[#2a2d4a] bg-[#1D1D41]"
             >
               {/* Header */}
@@ -1636,7 +1637,7 @@ function ModerationGuidelinesTab() {
               <div className="divide-y divide-[#2a2d4a]">
                 {guideline.rules.map((rule, ruleIdx) => (
                   <div
-                    key={ruleIdx}
+                    key={`${guideline.title}-rule-${ruleIdx}`}
                     className={`px-6 py-4 ${ruleIdx % 2 === 0 ? "bg-[#1D1D41]" : "bg-[#252850]"}`}
                   >
                     <div className="flex items-start gap-3">

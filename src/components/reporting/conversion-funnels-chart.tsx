@@ -38,11 +38,11 @@ export function ConversionFunnelsChart({
 }: ConversionFunnelsChartProps) {
   const renderFunnel = (steps: ConversionFunnelStep[], color: string) => (
     <div className="flex flex-col items-center gap-3">
-      {steps.map((step, index) => {
-        const widthPercentage = 150 - index * 20;
+      {steps.map((step) => {
+        const widthPercentage = 150 - steps.indexOf(step) * 20;
         return (
           <div
-            key={index}
+            key={step.label}
             className="flex items-center transition-all"
             style={{ width: `${widthPercentage}%` }}
           >

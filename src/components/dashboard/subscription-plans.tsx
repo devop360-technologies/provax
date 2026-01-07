@@ -79,8 +79,8 @@ export function SubscriptionPlans() {
             </div>
 
             <div className="space-y-4 mb-8">
-              {plan.features.map((feature, featureIdx) => (
-                <div key={featureIdx} className="flex items-center gap-3">
+              {plan.features.map((feature) => (
+                <div key={feature} className="flex items-center gap-3">
                   <Check className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                   <span className="text-sm text-gray-300">{feature}</span>
                 </div>

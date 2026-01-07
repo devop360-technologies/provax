@@ -19,7 +19,6 @@ import { usePathname } from "next/navigation";
 import {
   SidebarGroup,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
   useSidebar
 } from "@/components/ui/sidebar";

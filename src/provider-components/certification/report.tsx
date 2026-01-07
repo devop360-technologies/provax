@@ -5,16 +5,22 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, Upload } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 interface ReportProps {
   onBack: () => void;
 }
 
+/** Status of a processing step in the certification workflow */
+type StepStatus = 'completed' | 'in-progress' | 'pending';
+
+/** Severity level for certification findings */
+type Severity = 'pass' | 'fail' | 'warning';
+
 interface ProcessingStep {
   id: string;
   title: string;
-  status: 'completed' | 'in-progress' | 'pending';
+  status: StepStatus;
   timestamp?: string;
   icon: string;
 }
@@ -22,11 +28,11 @@ interface ProcessingStep {
 interface Finding {
   id: string;
   title: string;
-  severity: 'pass' | 'fail' | 'warning';
+  severity: Severity;
 }
 
 // Helper functions for styling
-const getStepStatusColor = (status: 'completed' | 'in-progress' | 'pending') => {
+const getStepStatusColor = (status: StepStatus) => {
   switch (status) {
     case 'completed': return 'text-[#00d9ff]';
     case 'in-progress': return 'text-[#00d9ff]';
@@ -34,7 +40,7 @@ const getStepStatusColor = (status: 'completed' | 'in-progress' | 'pending') => 
   }
 };
 
-const getSeverityBorderColor = (severity: 'pass' | 'fail' | 'warning') => {
+const getSeverityBorderColor = (severity: Severity) => {
   switch (severity) {
     case 'pass': return '#10b981';
     case 'fail': return '#ef4444';
@@ -42,7 +48,7 @@ const getSeverityBorderColor = (severity: 'pass' | 'fail' | 'warning') => {
   }
 };
 
-const getSeverityBadgeClass = (severity: 'pass' | 'fail' | 'warning') => {
+const getSeverityBadgeClass = (severity: Severity) => {
   switch (severity) {
     case 'pass': return 'bg-green-500/20 text-green-400';
     case 'fail': return 'bg-red-500/20 text-red-400';
@@ -50,7 +56,7 @@ const getSeverityBadgeClass = (severity: 'pass' | 'fail' | 'warning') => {
   }
 };
 
-const getSeverityLabel = (severity: 'pass' | 'fail' | 'warning') => {
+const getSeverityLabel = (severity: Severity) => {
   switch (severity) {
     case 'pass': return 'Pass';
     case 'fail': return 'Fail';

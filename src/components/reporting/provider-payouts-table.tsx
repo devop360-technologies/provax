@@ -126,9 +126,9 @@ export function ProviderPayoutsTable({
             </tr>
           </thead>
           <tbody>
-            {rows.map((row, index) => (
+            {rows.map((row) => (
               <tr
-                key={index}
+                key={row.period}
                 className="border-b border-[#404254] transition-colors hover:bg-[#252850]"
               >
                 <td className="px-4 py-3 text-sm text-white">{row.period}</td>

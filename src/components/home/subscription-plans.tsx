@@ -74,10 +74,10 @@ export default function SubscriptionPlans() {
 
         {/* Plans Grid */}
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-3">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <div
             // bg-green-400/10
-              key={index}
+              key={plan.name}
               className={`relative overflow-hidden rounded-2xl transition-all duration-300 ${
                 plan.highlighted
                   ? "border-1 border-green-400/60 bg-gradient-to-br from-green-500/10 to-blue-500/5 shadow-2xl shadow-cyan-500/20 md:scale-105"
@@ -110,8 +110,8 @@ export default function SubscriptionPlans() {
 
                 {/* Features List */}
                 <div className="space-y-2">
-                  {plan.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-center space-x-3">
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-center space-x-3">
                       <Image src={bluesign} alt="Blue Tick" width={12} height={12} />
                       <span className="text-sm leading-relaxed text-white/80 md:text-base">
                         {feature}

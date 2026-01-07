@@ -74,9 +74,9 @@ export function BillingHistory({
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {data.map((item) => (
               <tr
-                key={index}
+                key={`${item.date}-${item.description}`}
                 className="border-b border-[#2a2d4a] last:border-b-0"
               >
                 <td className="py-4 px-4 text-sm text-gray-300">{item.date}</td>

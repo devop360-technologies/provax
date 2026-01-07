@@ -3,12 +3,13 @@ import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 
 import { loginSchema } from "@/lib/zod-schemas";
-import { verifyPassword } from "@/lib/password";
-import { prisma } from "@/lib/prisma";
 
 class InvalidLoginError extends CredentialsSignin {
   code = "invalid_credentials";
 }
+
+// TODO: Update this to your Express backend URL
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export const authConfig = {
   providers: [
@@ -28,25 +29,22 @@ export const authConfig = {
             throw new Error("Invalid credentials");
           }
 
-          // Find user by email in the database
-          const user = await prisma.user.findUnique({
-            where: { email: result.data.email }
+          // Call Express backend for authentication
+          const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              email: result.data.email,
+              password: result.data.password
+            })
           });
 
-          // If user not found or no password set
-          if (!user?.password) {
+          if (!response.ok) {
             throw new Error("Invalid credentials");
           }
 
-          // Compare password hashes using bcrypt
-          const isValid = await verifyPassword(result.data.password, user.password);
-          if (!isValid) {
-            throw new Error("Invalid credentials");
-          }
-
-          // Return user object (omit password)
-          const { password, ...userWithoutPassword } = user;
-          return userWithoutPassword;
+          const user = await response.json();
+          return user;
         } catch (error) {
           const message = error instanceof Error ? error.message : "Invalid credentials";
           throw new InvalidLoginError(message);

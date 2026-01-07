@@ -94,7 +94,7 @@ function StarRating({ rating }: { rating: number }) {
     <div className="flex items-center gap-1">
       {[...Array(5)].map((_, i) => (
         <Star
-          key={i}
+          key={`star-${i}`}
           size={16}
           className={cn(getStarClass(i))}
         />
@@ -152,9 +152,9 @@ export function AllReviews({
 
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
-              {review.tags.map((tag, index) => (
+              {review.tags.map((tag) => (
                 <span
-                  key={index}
+                  key={tag.label}
                   className="inline-flex items-center rounded bg-[#3B82F6] px-3 py-1.5 text-xs font-medium text-white"
                 >
                   {tag.label}

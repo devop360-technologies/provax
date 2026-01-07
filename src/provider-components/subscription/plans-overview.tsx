@@ -99,8 +99,8 @@ export function PlansOverview({
           </div>
 
           <div className="space-y-4 mb-6">
-            {usage.map((item, index) => (
-              <div key={index}>
+            {usage.map((item) => (
+              <div key={item.name}>
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-gray-300">{item.name}</span>
                   <span className="text-sm text-gray-400">
@@ -177,8 +177,8 @@ export function PlansOverview({
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="flex gap-3">
+            {benefits.map((benefit) => (
+              <div key={benefit.title} className="flex gap-3">
                 <CheckCircle className="w-5 h-5 text-[#3B82F6] flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-sm font-medium text-white">{benefit.title}</p>

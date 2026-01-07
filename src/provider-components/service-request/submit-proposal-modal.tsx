@@ -151,9 +151,9 @@ export const SubmitProposalModal = ({ isOpen, onClose, requestId }: SubmitPropos
             {/* Attachment List */}
             {attachments.length > 0 && (
               <div className="mt-1 ">
-                {attachments.map((file, index) => (
+                {attachments.map((file) => (
                   <div
-                    key={index}
+                    key={file.name}
                     className="flex items-center justify-between bg-[#2a2f4a] rounded-lg p-3"
                   >
                     <span className="text-white text-sm truncate flex-1">

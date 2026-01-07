@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { User } from "@/types/user";
 import { Edit, Eye } from "lucide-react";
 
@@ -343,9 +342,9 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                   </tr>
                 </thead>
                 <tbody>
-                  {serviceRequests.map((request, idx) => (
+                  {serviceRequests.map((request) => (
                     <tr
-                      key={idx}
+                      key={request.userId}
                       className="border-b border-[#2a2d4a] transition-colors hover:bg-[#252850]/50"
                     >
                       <td className="px-4 py-4 text-xs font-medium text-white">
@@ -837,7 +836,7 @@ export function ServiceBidding({ users }: ServiceBiddingProps) {
                     <div className="flex items-center gap-1 mt-1">
                       <div className="flex text-yellow-400">
                         {"★★★★★".split("").map((star, i) => (
-                          <span key={i}>{star}</span>
+                          <span key={`star-${i}`}>{star}</span>
                         ))}
                       </div>
                       <span className="text-sm text-gray-400 ml-2">(1,854/107 reviews)</span>

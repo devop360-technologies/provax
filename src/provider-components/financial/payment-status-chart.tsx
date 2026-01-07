@@ -92,8 +92,8 @@ export function PaymentStatusChart({ className }: PaymentStatusChartProps) {
       <div className="flex items-center gap-8">
         {/* Legend */}
         <div className="flex-1 space-y-4">
-          {data.map((item, index) => (
-            <div key={index} className="flex items-center gap-3">
+          {data.map((item) => (
+            <div key={item.name} className="flex items-center gap-3">
               <div
                 className="h-3 w-8 rounded-sm"
                 style={{ backgroundColor: item.color }}
@@ -106,9 +106,9 @@ export function PaymentStatusChart({ className }: PaymentStatusChartProps) {
         {/* Donut Chart */}
         <div className="flex-shrink-0">
           <svg viewBox={`0 0 ${size} ${size}`} className="w-48 h-48">
-            {arcs.map((arc, index) => (
+            {arcs.map((arc) => (
               <path
-                key={index}
+                key={arc.color}
                 d={arc.d}
                 fill={arc.color}
                 stroke="#1D1D41"

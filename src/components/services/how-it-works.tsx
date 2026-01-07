@@ -4,7 +4,6 @@ import Image from 'next/image';
 
 import icon1 from "../../asests/icons/icon-1.png";
 import icon2 from "../../asests/icons/icon-2.png";
-import icon3 from "../../asests/icons/icon-3.png";
 import icon4 from "../../asests/icons/icon-4.png";
 
 export default function ServicesHowItWorks() {

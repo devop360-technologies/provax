@@ -1,7 +1,6 @@
 "use client";
 
 import { Eye } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 export interface AuditLogEntry {
   id: string;

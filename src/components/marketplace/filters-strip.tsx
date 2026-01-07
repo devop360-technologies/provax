@@ -36,7 +36,7 @@ export default function FilterStrip() {
   });
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [filters, _setFilters] = useState({
+  const [filters] = useState({
     priceFrom: 40000,
     priceTo: 240000,
     yearFrom: 2023,
@@ -122,8 +122,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.city && (
                   <div className="space-y-3">
-                    {cities.map((city, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {cities.map((city) => (
+                      <label key={city} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{city}</span>
                       </label>
@@ -145,8 +145,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.province && (
                   <div className="space-y-3">
-                    {provinces.map((province, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {provinces.map((province) => (
+                      <label key={province} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{province}</span>
                       </label>
@@ -168,8 +168,8 @@ export default function FilterStrip() {
                 </button>
                 {expandedSections.make && (
                   <div className="space-y-3">
-                    {makes.map((make, idx) => (
-                      <label key={idx} className="flex items-center gap-3 cursor-pointer group">
+                    {makes.map((make) => (
+                      <label key={make} className="flex items-center gap-3 cursor-pointer group">
                         <input type="checkbox" className="w-4 h-4 rounded bg-white/10 border border-white/20 cursor-pointer accent-[#00ff7f]" />
                         <span className="text-white/70 text-sm group-hover:text-white transition-colors">{make}</span>
                       </label>

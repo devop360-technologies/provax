@@ -94,8 +94,8 @@ export function SubscriptionDetailsModal({
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Plan Benefits:</h4>
             <div className="grid grid-cols-2 gap-3">
-              {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-center gap-3">
+              {benefits.map((benefit) => (
+                <div key={benefit.name} className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-[#00D1FF] flex-shrink-0" />
                   <span className="text-sm text-white">{benefit.name}</span>
                 </div>

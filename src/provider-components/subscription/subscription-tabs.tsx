@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 type TabType = "plans-overview" | "plans-pricing" | "manage-subscription" | "usage-history";

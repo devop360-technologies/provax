@@ -1,10 +1,11 @@
 import { redirect } from "next/navigation";
 
+import { CertificationManagement } from "@/components/certification/certification-management";
+import { StatCard } from "@/components/dashboard";
 import { DashboardTitle } from "@/components/dashboard-title";
 import { appConfig } from "@/config";
 import { users } from "@/data/users";
 import { getCurrentUser } from "@/lib/auth";
-import { CertificationManagement } from "@/components/certification/certification-management";
 
 export default async function CertificationPage() {
   const currentUser = await getCurrentUser();

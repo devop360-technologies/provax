@@ -116,9 +116,9 @@ export function PlansPricing({
 
       {/* Pricing Cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {plans.map((plan, index) => (
+        {plans.map((plan) => (
           <div
-            key={index}
+            key={plan.name}
             className={cn(
               "rounded-xl border bg-[#1D1D41] p-6 relative",
               plan.isCurrent ? "border-[#00D1FF]" : "border-[#2a2d4a]"
@@ -141,8 +141,8 @@ export function PlansPricing({
             <p className="text-xs text-gray-500 text-center mb-6">{plan.subtext}</p>
 
             <div className="space-y-3 mb-8">
-              {plan.features.map((feature, featureIndex) => (
-                <div key={featureIndex} className="flex items-center gap-2">
+              {plan.features.map((feature) => (
+                <div key={`${plan.name}-${feature.text}`} className="flex items-center gap-2">
                   {feature.included ? (
                     <Check className="w-4 h-4 text-[#00D1FF]" />
                   ) : (
@@ -198,8 +198,8 @@ export function PlansPricing({
               </tr>
             </thead>
             <tbody>
-              {comparisonFeatures.map((feature, index) => (
-                <tr key={index} className="border-b border-[#2a2d4a] last:border-b-0">
+              {comparisonFeatures.map((feature) => (
+                <tr key={feature.name} className="border-b border-[#2a2d4a] last:border-b-0">
                   <td className="py-4 px-4 text-sm text-gray-300">{feature.name}</td>
                   <td className="py-4 px-4 text-center">
                     <FeatureValueCell value={feature.basic} />
