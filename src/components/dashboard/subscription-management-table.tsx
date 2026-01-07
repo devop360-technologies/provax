@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Play, Pause, X } from "lucide-react";
 import SuspendSubscriptionModal from "./suspend-subscription-modal";
 import DeleteSubscriptionModal from "./delete-subscription-modal";
+import { TABLE_CLASSES } from "@/lib/table-utils";
 
 interface SubscriptionData {
   provider: string;
@@ -12,76 +13,29 @@ interface SubscriptionData {
 }
 
 const subscriptionData: SubscriptionData[] = [
-  {
-    provider: "#TX-7845",
-    plan: "Professional",
-    status: "Active",
-    renewalDate: "2023-11-15",
-    paymentStatus: "Paid"
-  },
-  {
-    provider: "#TX-7844", 
-    plan: "Enterprise",
-    status: "Active",
-    renewalDate: "2023-11-20",
-    paymentStatus: "Paid"
-  },
-  {
-    provider: "#TX-7843",
-    plan: "Basic", 
-    status: "Suspended",
-    renewalDate: "2023-10-25",
-    paymentStatus: "Failed"
-  },
-  {
-    provider: "#TX-7842",
-    plan: "Professional",
-    status: "Active", 
-    renewalDate: "2023-11-05",
-    paymentStatus: "Paid"
-  }
+  { provider: "#TX-7845", plan: "Professional", status: "Active", renewalDate: "2023-11-15", paymentStatus: "Paid" },
+  { provider: "#TX-7844", plan: "Enterprise", status: "Active", renewalDate: "2023-11-20", paymentStatus: "Paid" },
+  { provider: "#TX-7843", plan: "Basic", status: "Suspended", renewalDate: "2023-10-25", paymentStatus: "Failed" },
+  { provider: "#TX-7842", plan: "Professional", status: "Active", renewalDate: "2023-11-05", paymentStatus: "Paid" },
 ];
 
-const getStatusBadge = (status: string) => {
-  const baseClasses = "px-2 py-1 rounded text-xs font-medium";
-  
-  switch (status) {
-    case "Active":
-      return `${baseClasses} bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400`;
-    case "Suspended":
-      return `${baseClasses} bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400`;
-    default:
-      return `${baseClasses} bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-400`;
-  }
+const STATUS_STYLES: Record<string, string> = {
+  Active: "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400",
+  Suspended: "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400",
 };
 
-const getPlanBadge = (plan: string) => {
-  const baseClasses = "px-2 py-1 rounded text-xs font-medium";
-  
-  switch (plan) {
-    case "Professional":
-      return `${baseClasses} bg-blue-500 text-white`;
-    case "Enterprise":
-      return `${baseClasses} bg-green-500 text-white`;
-    case "Basic":
-      return `${baseClasses} bg-gray-500 text-white`;
-    default:
-      return `${baseClasses} bg-gray-500 text-white`;
-  }
+const PLAN_STYLES: Record<string, string> = {
+  Professional: "bg-blue-500 text-white",
+  Enterprise: "bg-green-500 text-white",
+  Basic: "bg-gray-500 text-white",
 };
 
-const getPaymentStatusBadge = (status: string) => {
-  const baseClasses = "px-2 py-1 rounded text-xs font-medium";
-  
-  switch (status) {
-    case "Paid":
-      return `${baseClasses} bg-green-500 text-white`;
-    case "Failed":
-      return `${baseClasses} bg-red-500 text-white`;
-    default:
-      return `${baseClasses} bg-gray-500 text-white`;
-  }
+const PAYMENT_STYLES: Record<string, string> = {
+  Paid: "bg-green-500 text-white",
+  Failed: "bg-red-500 text-white",
 };
+
+const BADGE_BASE = "px-2 py-1 rounded text-xs font-medium";
 
 export default function SubscriptionManagementTable() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,75 +50,54 @@ export default function SubscriptionManagementTable() {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedProvider("");
-  };
-
   const handleDeleteClick = (providerId: string) => {
     setSelectedProviderForDelete(providerId);
     setIsDeleteModalOpen(true);
   };
 
-  const handleCloseDeleteModal = () => {
-    setIsDeleteModalOpen(false);
-    setSelectedProviderForDelete("");
-  };
   return (
     <div className="bg-[#252850] rounded-lg p-6">
       <h2 className="text-lg font-semibold text-white mb-6">Provider Subscription Management</h2>
-      
-      <div className="overflow-x-auto">
+      <div className={TABLE_CLASSES.overflowContainer}>
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-600">
-              <th className="text-left py-3 px-4 text-gray-300 font-medium">Provider</th>
-              <th className="text-left py-3 px-4 text-gray-300 font-medium">Plan</th>
-              <th className="text-left py-3 px-4 text-gray-300 font-medium">Status</th>
-              <th className="text-left py-3 px-4 text-gray-300 font-medium">Renewal Date</th>
-              <th className="text-left py-3 px-4 text-gray-300 font-medium">Payment Status</th>
-              <th className="text-left py-3 px-4 text-gray-300 font-medium">Action</th>
+              {["Provider", "Plan", "Status", "Renewal Date", "Payment Status", "Action"].map((h) => (
+                <th key={h} className="text-left py-3 px-4 text-gray-300 font-medium">{h}</th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {subscriptionData.map((subscription) => (
-              <tr key={subscription.provider} className="border-b border-gray-700 hover:bg-[#2a2d4a] transition-colors">
+            {subscriptionData.map((sub) => (
+              <tr key={sub.provider} className="border-b border-gray-700 hover:bg-[#2a2d4a] transition-colors">
+                <td className="py-4 px-4"><span className="text-white font-medium">{sub.provider}</span></td>
                 <td className="py-4 px-4">
-                  <span className="text-white font-medium">{subscription.provider}</span>
+                  <span className={`${BADGE_BASE} ${PLAN_STYLES[sub.plan] || "bg-gray-500 text-white"}`}>{sub.plan}</span>
                 </td>
                 <td className="py-4 px-4">
-                  <span className={getPlanBadge(subscription.plan)}>
-                    {subscription.plan}
-                  </span>
+                  <span className={`${BADGE_BASE} ${STATUS_STYLES[sub.status] || "bg-gray-100 text-gray-800"}`}>{sub.status}</span>
                 </td>
+                <td className="py-4 px-4"><span className="text-gray-300">{sub.renewalDate}</span></td>
                 <td className="py-4 px-4">
-                  <span className={getStatusBadge(subscription.status)}>
-                    {subscription.status}
-                  </span>
-                </td>
-                <td className="py-4 px-4">
-                  <span className="text-gray-300">{subscription.renewalDate}</span>
-                </td>
-                <td className="py-4 px-4">
-                  <span className={getPaymentStatusBadge(subscription.paymentStatus)}>
-                    {subscription.paymentStatus}
-                  </span>
+                  <span className={`${BADGE_BASE} ${PAYMENT_STYLES[sub.paymentStatus] || "bg-gray-500 text-white"}`}>{sub.paymentStatus}</span>
                 </td>
                 <td className="py-4 px-4">
                   <div className="flex items-center space-x-2">
-                    <button 
-                      onClick={() => handlePlayPauseClick(subscription.provider, subscription.status)}
+                    <button
+                      type="button"
+                      onClick={() => handlePlayPauseClick(sub.provider, sub.status)}
                       className="p-1 hover:bg-gray-600 rounded transition-colors"
-                      title={subscription.status === "Active" ? "Suspend subscription" : "Resume subscription"}
+                      title={sub.status === "Active" ? "Suspend subscription" : "Resume subscription"}
                     >
-                      {subscription.status === "Active" ? (
+                      {sub.status === "Active" ? (
                         <Pause className="h-4 w-4 text-gray-400 hover:text-white" />
                       ) : (
                         <Play className="h-4 w-4 text-gray-400 hover:text-white" />
                       )}
                     </button>
-                    <button 
-                      onClick={() => handleDeleteClick(subscription.provider)}
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteClick(sub.provider)}
                       className="p-1 hover:bg-gray-600 rounded transition-colors"
                       title="Delete subscription"
                     >
@@ -177,21 +110,8 @@ export default function SubscriptionManagementTable() {
           </tbody>
         </table>
       </div>
-
-      {/* Suspend Subscription Modal */}
-      <SuspendSubscriptionModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        providerId={selectedProvider}
-        isSuspending={isSuspending}
-      />
-
-      {/* Delete Subscription Modal */}
-      <DeleteSubscriptionModal
-        isOpen={isDeleteModalOpen}
-        onClose={handleCloseDeleteModal}
-        providerId={selectedProviderForDelete}
-      />
+      <SuspendSubscriptionModal isOpen={isModalOpen} onClose={() => { setIsModalOpen(false); setSelectedProvider(""); }} providerId={selectedProvider} isSuspending={isSuspending} />
+      <DeleteSubscriptionModal isOpen={isDeleteModalOpen} onClose={() => { setIsDeleteModalOpen(false); setSelectedProviderForDelete(""); }} providerId={selectedProviderForDelete} />
     </div>
   );
 }
