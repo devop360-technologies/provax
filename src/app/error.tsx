@@ -6,8 +6,14 @@ import { useEffect } from "react";
 
 import { Button } from "@/components/ui/button";
 
+interface AppError {
+  message?: string;
+  name?: string;
+  stack?: string;
+}
+
 interface ErrorPageProps {
-  error: Error;
+  error: AppError;
   reset: () => void;
 }
 
