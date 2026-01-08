@@ -1,7 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:where(.dark, .dark *));
+/* Tailwind CSS v4 dark mode variant - using layer to avoid linter warnings */
+@layer base {
+  .dark,
+  .dark * {
+    color-scheme: dark;
+  }
+}
 
 /* ✅ Custom classes must be defined outside theme */
 @layer utilities {
@@ -120,15 +126,22 @@
   }
 }
 
-@utility container {
-  margin-inline: auto;
-  padding-inline: 2rem;
+/* Container utility - using layer to avoid linter warnings */
+@layer utilities {
+  .container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+  }
+}
 
-  @media (width >= --theme(--breakpoint-sm)) {
+@media (min-width: 640px) {
+  .container {
     max-width: none;
   }
+}
 
-  @media (width >= 1400px) {
+@media (min-width: 1400px) {
+  .container {
     max-width: 1400px;
   }
 }
