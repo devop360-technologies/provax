@@ -30,6 +30,18 @@ jobs:
         run: npm run test:coverage
         continue-on-error: true
 
+      - name: Create sonar-project.properties
+        run: |
+          cat > sonar-project.properties << 'EOF'
+          sonar.projectKey=agenciabigmoney_Provax-
+          sonar.organization=agenciabigmoney
+          sonar.projectName=Provax Frontend
+          sonar.sources=src
+          sonar.exclusions=**/node_modules/**,**/*.spec.ts,**/*.test.ts,**/*.test.tsx,**/dist/**,**/coverage/**,**/*.css,**/__tests__/**
+          sonar.typescript.lcov.reportPaths=coverage/lcov.info
+          sonar.javascript.lcov.reportPaths=coverage/lcov.info
+          EOF
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
