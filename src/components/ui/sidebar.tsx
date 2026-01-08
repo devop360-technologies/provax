@@ -49,7 +49,7 @@ export function SidebarProvider({
       : setOpen((open) => !open)
   }, [isMobile, setOpen, setOpenMobile])
 
-  const state = open ? "expanded" : "collapsed"
+  const state: "expanded" | "collapsed" = open ? "expanded" : "collapsed"
 
   const contextValue = React.useMemo(
     () => ({
@@ -361,6 +361,7 @@ const SidebarMenuButton = React.forwardRef<
 
   const button = (
     <Comp
+      // @ts-expect-error Fragment ref type conflict
       ref={ref}
       data-sidebar="menu-button"
       data-size={size}
@@ -413,6 +414,7 @@ const SidebarMenuSubButton = React.forwardRef<
 
   return (
     <Comp
+      // @ts-expect-error Fragment ref type conflict
       ref={ref}
       data-sidebar="menu-sub-button"
       data-size={size}
@@ -445,7 +447,5 @@ export {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-  SidebarProvider,
   SidebarTrigger,
-  useSidebar,
 }

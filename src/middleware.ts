@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-
-import { auth } from "@/lib/auth";
+import type { NextRequest } from "next/server";
 
 /**
  * Next.js Middleware
@@ -10,11 +9,15 @@ import { auth } from "@/lib/auth";
  * - Cannot reliably check subscription status like (hasAccess) via session
  * - Cannot update the session data when webhooks modify subscription status
  * - Deployment complications on non-Vercel platforms
+ * 
+ * NOTE: Prisma cannot be used in Edge runtime middleware.
+ * Authentication is handled by NextAuth.js in API routes instead.
  */
 
-export default auth(() => {
+export function middleware(request: NextRequest) {
+  // Simply pass through - auth is handled by NextAuth.js
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: [

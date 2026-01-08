@@ -1,5 +1,6 @@
 'use client'
 import React from "react";
+import Link from "next/link";
 import carfooter from "../../asests/footerCar.png"
 
 export default function Footer() {

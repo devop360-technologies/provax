@@ -2,11 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 import { appConfig } from "@/config";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import { stripeClient } from "@/lib/stripe";
 import { User } from "@/types/user";
 
 // import { RetentionOfferEmail } from "@/components/mails/retention-offer-email";
+
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: NextRequest) {
   const body = await request.text();

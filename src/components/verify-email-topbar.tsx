@@ -14,7 +14,7 @@ export function VerifyEmailTopbar({ email }: Readonly<{ email: string }>) {
     setIsLoading(true);
 
     try {
-      const result = await userApi.sendVerificationEmail(email);
+      const result = await userApi.sendVerificationEmail(email) as { success: boolean; message?: string };
 
       if (!result.success) {
         toast.error("Failed to resend email", {

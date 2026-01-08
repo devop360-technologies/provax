@@ -50,7 +50,7 @@ export default function DeleteSubscriptionModal({
           </div>
           
           <p className="text-gray-300">
-            Are you sure you want to permanently delete the subscription for provider ID: {providerId.replace("#TX-", "")}?
+            Are you sure you want to permanently delete the subscription for provider ID: {_providerId.replace("#TX-", "")}?
           </p>
           
           <p className="text-gray-400 text-sm">

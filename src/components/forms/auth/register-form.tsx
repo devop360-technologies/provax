@@ -21,7 +21,7 @@ import { PasswordInputField } from "@/components/ui/password-input-field";
 
 import { cn } from "@/lib/utils";
 import { registerSchema, RegisterSchema } from "@/lib/zod-schemas";
-import { authApi, getErrorMessage } from "@/lib/api";
+import { getErrorMessage } from "@/lib/api";
 
 import { GoogleLogin } from "./google-login";
 
@@ -49,26 +49,7 @@ export function RegisterForm({ className = "" }: Readonly<RegisterFormProps>) {
   } = form;
 
   const onSubmit = handleSubmit(async (values) => {
-    try {
-      const result = await authApi.register(values);
-
-      if (!result.success) {
-        toast.error("Something went wrong.", {
-          description: result?.message || "Your registration request failed. Please try again."
-        });
-        return;
-      }
-
-      toast.success("Registered successfully", {
-        description: "You are now registered. Please login to continue."
-      });
-
-      router.push("/login");
-    } catch (error) {
-      toast.error("Something went wrong.", {
-        description: getErrorMessage(error)
-      });
-    }
+   
   });
 
   return (

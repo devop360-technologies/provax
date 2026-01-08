@@ -89,9 +89,9 @@ interface UseRegisterOptions {
 
 export function useRegister(options?: UseRegisterOptions) {
   return useMutation({
-    mutationFn: (data: RegisterInput) => authApi.register(data),
+    mutationFn: (data: RegisterInput) => authApi.register(data) as any,
     onSuccess: (response, variables) => {
-      if (response.success) {
+      if ((response as any).success) {
         options?.onSuccess?.(variables.email);
       }
     },
@@ -114,9 +114,9 @@ export function useVerifyOtp(options?: UseVerifyOtpOptions) {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: (data: VerifyOtpInput) => authApi.verifyOtp(data),
+    mutationFn: (data: VerifyOtpInput) => authApi.verifyOtp(data) as any,
     onSuccess: (response) => {
-      if (response.success) {
+      if ((response as any).success) {
         options?.onSuccess?.();
         router.push("/login");
       }
@@ -138,9 +138,9 @@ interface UseResendOtpOptions {
 
 export function useResendOtp(options?: UseResendOtpOptions) {
   return useMutation({
-    mutationFn: (data: ResendOtpInput) => authApi.resendOtp(data),
+    mutationFn: (data: ResendOtpInput) => authApi.resendOtp(data) as any,
     onSuccess: (response) => {
-      if (response.success) {
+      if ((response as any).success) {
         options?.onSuccess?.();
       }
     },
@@ -161,9 +161,9 @@ interface UseForgotPasswordOptions {
 
 export function useForgotPassword(options?: UseForgotPasswordOptions) {
   return useMutation({
-    mutationFn: (data: ForgotPasswordInput) => authApi.forgotPassword(data),
+    mutationFn: (data: ForgotPasswordInput) => authApi.forgotPassword(data) as any,
     onSuccess: (response) => {
-      if (response.success) {
+      if ((response as any).success) {
         options?.onSuccess?.();
       }
     },
@@ -186,9 +186,9 @@ export function useResetPassword(options?: UseResetPasswordOptions) {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: (data: ResetPasswordInput) => authApi.resetPassword(data),
+    mutationFn: (data: ResetPasswordInput) => authApi.resetPassword(data) as any,
     onSuccess: (response) => {
-      if (response.success) {
+      if ((response as any).success) {
         options?.onSuccess?.();
         router.push("/login");
       }

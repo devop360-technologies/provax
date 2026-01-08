@@ -1,4 +1,6 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
   try {

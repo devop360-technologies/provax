@@ -8,10 +8,13 @@ interface Service {
   userId: string;
   service: string;
   requester?: { name: string; image: string };
+  client?: { name: string; image?: string; avatar?: string; email?: string; phone?: string; };
+  region?: string;
   category?: string;
   urgency?: string;
   urgencyColor?: string;
   budget?: string;
+  bids?: string;
   deadline?: string;
   status?: string;
   statusColor?: string;

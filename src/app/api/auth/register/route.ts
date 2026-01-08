@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { authRegisterAction, resendVerificationOtpAction } from "@/actions/register-actions";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * POST /api/auth/register
  * Register a new user and send email verification OTP

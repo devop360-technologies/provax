@@ -41,11 +41,11 @@ export function useGeneralSettingForm({ user }: { user: User }) {
       // Replace the old image with the new one
       const result = await userApi.uploadFile(file);
 
-      if (result.success) {
-        setValue("image", result.url);
-      } else {
-        toast.error(result.message || "Error while uploading avatar");
-      }
+      // if (result.success) {
+      //   setValue("image", result.url);
+      // } else {
+      //   toast.error(result.message || "Error while uploading avatar");
+      // }
     } catch (error) {
       toast.error(getErrorMessage(error));
     } finally {
@@ -54,18 +54,7 @@ export function useGeneralSettingForm({ user }: { user: User }) {
   };
 
   const onSubmit = handleSubmit(async (data) => {
-    try {
-      const result = await userApi.updateProfile(data);
-
-      if (result.success) {
-        update();
-        toast.success("Profile updated successfully");
-      } else {
-        toast.error(result.message || "Error while updating profile");
-      }
-    } catch (error) {
-      toast.error(getErrorMessage(error));
-    }
+   
   });
 
   return {

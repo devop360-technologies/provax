@@ -11,7 +11,8 @@ const config: Config = {
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
-  testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  testMatch: ['**/__tests__/**/*.test.ts?(x)', '**/__tests__/**/*.spec.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  testPathIgnorePatterns: ['/node_modules/', String.raw`\.d\.ts$`],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
@@ -27,22 +28,16 @@ const config: Config = {
     '!src/**/index.ts',
     // Exclude server-only files that cannot be tested in jsdom
     '!src/lib/prisma.ts',
+    '!src/lib/prisma-mock.ts',
     '!src/lib/stripe.ts',
     '!src/lib/s3.ts',
     '!src/lib/smtp-mailer.ts',
     '!src/lib/resend.ts',
-    '!src/lib/password.ts',
     '!src/lib/fonts.ts',
     '!src/lib/metadata.ts',
     '!src/lib/auth/**',
     '!src/lib/api/**',
     '!src/hooks/queries/**',
-    '!src/hooks/use-is-mobile.ts',
-    '!src/data/common-constants.ts',
-    '!src/data/marketing-data.ts',
-    '!src/data/provider-data.ts',
-    '!src/data/reporting-data.ts',
-    '!src/data/users.ts',
   ],
   coverageThreshold: {
     global: {

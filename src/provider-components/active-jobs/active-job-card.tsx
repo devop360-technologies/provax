@@ -19,7 +19,7 @@ interface ActiveJobCardProps {
     amount: string;
     text: string;
   };
-  status: 'In Progress';
+  status: 'In Progress' | 'Pending' | 'Completed';
 }
 
 export const ActiveJobCard = ({

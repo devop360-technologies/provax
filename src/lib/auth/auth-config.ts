@@ -4,7 +4,7 @@ import Google from "next-auth/providers/google";
 
 import { loginSchema } from "@/lib/zod-schemas";
 import { verifyPassword } from "@/lib/password";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 
 class InvalidLoginError extends CredentialsSignin {
   code = "invalid_credentials";

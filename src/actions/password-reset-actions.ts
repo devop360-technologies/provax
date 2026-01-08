@@ -1,7 +1,7 @@
 "use server";
 
 import { hashPassword, verifyPassword } from "@/lib/password";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import { sendOtpAction, verifyOtpAction, deleteVerifiedOtpAction } from "./otp-actions";
 
 interface PasswordResetResult {

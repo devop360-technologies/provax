@@ -1,7 +1,7 @@
 "use server";
 
 import { getCurrentUser } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import { User } from "@/types/user";
 
 export async function getUsers(): Promise<User[]> {
@@ -31,6 +31,7 @@ export async function getUsers(): Promise<User[]> {
     });
 
     return users;
+
   } catch (error) {
     if (process.env.NODE_ENV === "development") {
       // eslint-disable-next-line no-console

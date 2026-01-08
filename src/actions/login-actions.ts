@@ -2,7 +2,7 @@
 
 import { signIn } from "@/lib/auth";
 import { verifyPassword } from "@/lib/password";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import { loginSchema, LoginSchema } from "@/lib/zod-schemas";
 import { sendOtpAction, verifyOtpAction, deleteVerifiedOtpAction } from "./otp-actions";
 import { appConfig } from "@/config";

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { loginAction, requestLoginOtpAction, loginWithOtpAction } from "@/actions/login-actions";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * POST /api/auth/login
  * Login with email and password

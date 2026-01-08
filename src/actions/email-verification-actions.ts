@@ -3,7 +3,7 @@
 import crypto from "node:crypto";
 
 import { appConfig } from "@/config";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import { renderEmail, sendEmail } from "@/lib/resend";
 
 import { EmailVerification } from "@/components/mails/email-verification";

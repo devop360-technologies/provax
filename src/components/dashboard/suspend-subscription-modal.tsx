@@ -49,7 +49,7 @@ export default function SuspendSubscriptionModal({
         {/* Content */}
         <div className="space-y-4 mb-6">
           <p className="text-gray-300">
-            You are about to {isSuspending ? "suspend" : "cancel"} the subscription for provider ID: {providerId.replace("#TX-", "")}.
+            You are about to {isSuspending ? "suspend" : "cancel"} the subscription for provider ID: {_providerId.replace("#TX-", "")}.
           </p>
           
           <p className="text-gray-300">

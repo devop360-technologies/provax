@@ -2,7 +2,7 @@
 
 import crypto from "node:crypto";
 import { appConfig } from "@/config";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import { sendSmtpEmail } from "@/lib/smtp-mailer";
 import { OtpEmail } from "@/components/mails/otp-email";
 import { render } from "@react-email/components";

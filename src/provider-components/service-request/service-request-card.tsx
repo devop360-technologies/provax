@@ -18,7 +18,7 @@ interface ServiceRequestCardProps {
   clientDescription: string;
   imageSrc: string;
   diagnosticFindings: string[];
-  status: 'Open' | 'Closed';
+  status: 'Open' | 'Closed' | 'Pending';
 }
 
 export const ServiceRequestCard = ({

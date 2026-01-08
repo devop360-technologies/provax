@@ -4,7 +4,7 @@ import { Loader } from "lucide-react";
 import { useCallback, useTransition } from "react";
 import { toast } from "sonner";
 
-import { paymentApi, getErrorMessage } from "@/lib/api";
+import { getErrorMessage } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -14,17 +14,7 @@ export function CustomerPortalButton({ className = "" }: Readonly<{ className?: 
   const handlePortalClick = useCallback(() => {
     // Handle the customer portal process
     startTransition(async () => {
-      try {
-        const result = await paymentApi.createCustomerPortal();
-        if (result.success && result.data?.url) {
-          // Redirect to the Stripe customer portal
-          globalThis.location.href = result.data.url;
-        } else {
-          toast.error(result.message || "Failed to open customer portal");
-        }
-      } catch (error) {
-        toast.error(getErrorMessage(error));
-      }
+      
     });
   }, []);
 

@@ -1,6 +1,9 @@
 import { sendEmailVerificationOtpAction } from "@/actions/email-verification-otp-actions";
 import { createApiHandler } from "@/lib/api/api-handler";
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 /**
  * POST /api/auth/verify-email/send
  * Send email verification OTP

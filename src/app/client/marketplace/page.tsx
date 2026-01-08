@@ -1,3 +1,5 @@
+"use client";
+
 export default function ClientMarketplacePage() {
   return (
     <div className="flex items-center justify-center min-h-[60vh] pr-6">

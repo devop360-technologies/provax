@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { requestLoginOtpAction } from "@/actions/login-actions";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * POST /api/auth/login/otp-request
  * Request OTP for passwordless login

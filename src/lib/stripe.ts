@@ -13,7 +13,7 @@ if (!appConfig.stripe.secretKey) {
 
 export const stripeClient = new Stripe(appConfig.stripe.secretKey, {
   // https://github.com/stripe/stripe-node#configuration
-  apiVersion: "2025-06-30.basil", // Use the latest API version
+  apiVersion: "2025-12-15.clover", // Use the latest API version
   typescript: true
 });
 

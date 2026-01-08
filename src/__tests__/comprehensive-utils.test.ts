@@ -95,21 +95,21 @@ describe("Utils Coverage", () => {
 
     it("logs in development", () => {
       const orig = process.env.NODE_ENV;
-      process.env.NODE_ENV = "development";
+      (process.env as any).NODE_ENV = "development";
       browserConsoleError("Error");
       expect(spy).toHaveBeenCalledTimes(1);
-      process.env.NODE_ENV = orig;
+      (process.env as any).NODE_ENV = orig;
     });
 
     it("does not log in production/test", () => {
       const orig = process.env.NODE_ENV;
       ["production", "test"].forEach((env) => {
-        process.env.NODE_ENV = env;
+        (process.env as any).NODE_ENV = env;
         spy.mockClear();
         browserConsoleError("Error");
         expect(spy).not.toHaveBeenCalled();
       });
-      process.env.NODE_ENV = orig;
+      (process.env as any).NODE_ENV = orig;
     });
   });
 });

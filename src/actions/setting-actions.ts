@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { removeFileFromStorage } from "@/actions/file-actions";
 import { getCurrentUser } from "@/lib/auth";
 import { hashPassword, verifyPassword } from "@/lib/password";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import {
   changePasswordSchema,
   ChangePasswordSchema,

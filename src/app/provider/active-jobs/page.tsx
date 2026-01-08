@@ -1,3 +1,5 @@
+"use client";
+
 import { ProviderStatsGrid } from "@/provider-components/provider-stats-grid";
 import { ActiveJobCard } from "@/provider-components/active-jobs/active-job-card";
 import { ACTIVE_JOBS } from "@/data/provider-data";

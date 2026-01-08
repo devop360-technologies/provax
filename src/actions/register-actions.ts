@@ -1,7 +1,7 @@
 "use server";
 
 import { hashPassword } from "@/lib/password";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma-mock";
 import { registerSchema, RegisterSchema } from "@/lib/zod-schemas";
 import { sendOtpAction } from "./otp-actions";
 

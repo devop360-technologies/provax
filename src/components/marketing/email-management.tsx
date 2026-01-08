@@ -5,8 +5,8 @@ import { EmailFilters } from "./email-filters";
 import { EmailPerformanceChart } from "./email-performance-chart";
 import { EmailTemplates } from "./email-templates";
 import { MarketingCampaignsTable } from "./marketing-campaigns-table";
-import { CreateEmailTemplateModal } from "./create-email-template-modal";
-import { CreateMarketingCampaignModal } from "./create-marketing-campaign-modal";
+import { CreateEmailTemplateModal, EmailTemplateFormData } from "./create-email-template-modal";
+import { CreateMarketingCampaignModal, MarketingCampaignFormData } from "./create-marketing-campaign-modal";
 import { cn } from "@/lib/utils";
 
 interface EmailManagementProps {
@@ -19,11 +19,11 @@ export function EmailManagement({ className }: EmailManagementProps) {
   const [isCreateCampaignModalOpen, setIsCreateCampaignModalOpen] =
     useState(false);
 
-  const handleCreateTemplate = (_templateData: Record<string, unknown>) => {
+  const handleCreateTemplate = (_templateData: EmailTemplateFormData) => {
     // Template creation implementation placeholder
   };
 
-  const handleCreateCampaign = (_campaignData: Record<string, unknown>) => {
+  const handleCreateCampaign = (_campaignData: MarketingCampaignFormData) => {
     // Campaign creation implementation placeholder
   };
 

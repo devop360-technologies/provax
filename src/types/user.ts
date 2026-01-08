@@ -2,10 +2,10 @@
 export interface User {
   id: string;
   name: string | null;
-  email: string;
+  email: string | null;
   emailVerified: Date | null;
   image: string | null;
-  role: "ADMIN" | "USER" | "PROVIDER" | "CLIENT";
+  role?: "ADMIN" | "USER" | "PROVIDER" | "CLIENT";
   hasAccess: boolean;
   isAdmin: boolean;
   customerId: string | null;

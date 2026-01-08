@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { loginWithOtpAction } from "@/actions/login-actions";
 
+export const dynamic = 'force-dynamic';
+
 /**
  * POST /api/auth/login/otp-verify
  * Login with OTP code

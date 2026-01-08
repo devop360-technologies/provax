@@ -1,3 +1,5 @@
+"use client";
+
 // Shared card components to reduce duplication
 
 import { cn } from "@/lib/utils";
